@@ -2,7 +2,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 	<!-- Test Comment -->
-    <artifactId>hua-gui</artifactId>
+    <artifactId>sf-gui</artifactId>
 
     <parent>
         <groupId>com.salesforce</groupId>
@@ -56,7 +56,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>target/hua-gui</directory>
+                <directory>target/sf-gui</directory>
                 <targetPath>static</targetPath>
             </resource>
         </resources>
