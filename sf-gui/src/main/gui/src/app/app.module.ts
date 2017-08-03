@@ -17,7 +17,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { EmployeeDetailsResolve } from './resolvers/employee-details.resolve';
-import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
@@ -45,7 +44,6 @@ import { SafePipe } from './pipes/safe.pipe';
     HttpService,
     UserService,
     AuthguardService,
-    CanDeactivateGuard,
     { provide: "windowObject", useValue: window}
   ],
   bootstrap: [AppComponent]

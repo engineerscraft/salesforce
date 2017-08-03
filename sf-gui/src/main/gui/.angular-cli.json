@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "hua-gui"
+    "name": "sf-gui"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "../../../../hua-server/src/main/resources/static",
+      "outDir": "../../../../sf-server/src/main/resources/static",
       "assets": [
         "assets",
         "favicon.ico"

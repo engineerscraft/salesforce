@@ -76,8 +76,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.hamdard.hua</groupId>
-			<artifactId>hua-gui</artifactId>
+			<groupId>com.salesforce</groupId>
+			<artifactId>sf-gui</artifactId>
 			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>
@@ -466,12 +466,12 @@
 								<configuration>
 
 
-									<basedir>${basedir}</basedir>
+									<!-- <basedir>${basedir}</basedir>
 									<srcFiles>
 										<srcFile>../hua-setup/all_ddl.sql</srcFile>
 										<srcFile>../hua-setup/all_baseline.sql</srcFile>
 										<srcFile>../hua-setup/all_test_data.sql</srcFile>
-									</srcFiles>
+									</srcFiles> -->
 
 								</configuration>
 							</execution>
@@ -482,7 +482,7 @@
 						<artifactId>ldap-maven-plugin</artifactId>
 						<version>${ldap-maven-plugin.version}</version>
 						<configuration>
-							<ldifFile>../hua-setup/hrms.ldif</ldifFile>
+							<ldifFile>../sf-setup/hrms.ldif</ldifFile>
 							<ldapPort>11389</ldapPort>
 							<monitorPort>11388</monitorPort>
 							<monitorKey>ldap</monitorKey>
