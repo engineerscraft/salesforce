@@ -18,6 +18,10 @@ import { ForbiddenAccessComponent } from './forbidden-access/forbidden-access.co
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { EmployeeDetailsResolve } from './resolvers/employee-details.resolve';
 import { SafePipe } from './pipes/safe.pipe';
+import { LeadDetailsComponent } from './lead-details/lead-details.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { ContactDetailsComponent } from './contact-details/contact-details.component';
+import { OpportunityDetailsComponent } from './opportunity-details/opportunity-details.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { SafePipe } from './pipes/safe.pipe';
     NotFoundComponent,
     ForbiddenAccessComponent,
     DatePickerComponent,
-    SafePipe
+    SafePipe,
+    LeadDetailsComponent,
+    AccountDetailsComponent,
+    ContactDetailsComponent,
+    OpportunityDetailsComponent
   ],
   imports: [
     BrowserModule,

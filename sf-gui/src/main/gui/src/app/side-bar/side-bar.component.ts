@@ -124,27 +124,27 @@ export class SideBarComponent implements OnInit {
     this.showChangePassword = false;
   }
 
-  onClickAccountMgmt() {
+  onClickOpportunityDetails() {
     window.scrollTo(0, 0);
-    this.router.navigate(['accountManagement']);
+    this.router.navigate(['opportunityDetails']);
     this.open = false;
   }
 
-  onClickEmployeeHierarchySearch() {
+  onClickContactDetails() {
     window.scrollTo(0, 0);
-    this.router.navigate(['employeeHierarchySearch']);
+    this.router.navigate(['contactDetails']);
     this.open = false;
   }
 
-  onClickEmployeeCreation() {
+  onClickAccountDetails() {
     window.scrollTo(0, 0);
-    this.router.navigate(['employeeCreation']);
+    this.router.navigate(['accountDetails']);
     this.open = false;
   }
 
-  onClickUserDetails() {
+  onClickLeadDetails() {
     window.scrollTo(0, 0);
-    this.router.navigate(['userDetails']);
+    this.router.navigate(['leadDetails']);
     this.open = false;
   }
 

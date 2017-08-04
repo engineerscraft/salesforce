@@ -5,6 +5,7 @@
     background: url("/assets/img/loginimage-min.jpg") no-repeat center center fixed;
     background-size: cover;
     overflow: auto;
+    filter: brightness(70%);
 }
 
 .login {
