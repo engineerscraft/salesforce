@@ -758,6 +758,30 @@ select * {
   right: 10px;
 }
 
+add-btn {
+  background: url("/assets/img/ic_add_white_24px.svg") no-repeat 13px center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  color: #fff;
+  text-align: center;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: none; 
+  background-color: #4ca1af;
+  text-decoration: none;
+  z-index: 100;
+}
+.add-btn > .material-icons { font-size: 20px; }
+
+.add-btn-fixed {
+  position: fixed;
+  top: 120px;
+  right: 10px;
+}
+
 .save-btn {
   background: url("/assets/img/ic_save_white_24px.svg") no-repeat 13px center;
   width: 50px;
