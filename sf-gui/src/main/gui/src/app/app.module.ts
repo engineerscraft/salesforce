@@ -22,6 +22,7 @@ import { LeadDetailsComponent } from './lead-details/lead-details.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { OpportunityDetailsComponent } from './opportunity-details/opportunity-details.component';
+import { LeadDetailsResultComponent } from './lead-details-result/lead-details-result.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { OpportunityDetailsComponent } from './opportunity-details/opportunity-d
     LeadDetailsComponent,
     AccountDetailsComponent,
     ContactDetailsComponent,
-    OpportunityDetailsComponent
+    OpportunityDetailsComponent,
+    LeadDetailsResultComponent
   ],
   imports: [
     BrowserModule,

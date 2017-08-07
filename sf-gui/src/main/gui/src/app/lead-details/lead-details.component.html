@@ -7,15 +7,15 @@
 <div class="body">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div class="row">
-      <a class="search-btn ripple search-btn-fixed" href="javascript:void(0)" (click)="employeeHierarchySearchForm.ngSubmit.emit()"></a>
+      <a class="search-btn ripple search-btn-fixed" href="javascript:void(0)" (click)="leadDetailsSearchForm.ngSubmit.emit()"></a>
   </div>
 
-  <form [formGroup]="formGroupSearch" #employeeHierarchySearchForm="ngForm" (ngSubmit)="search()" method="get" class="loginform width-with-right-margin">
+  <form [formGroup]="formGroupSearch" #leadDetailsSearchForm="ngForm" (ngSubmit)="search()" method="get" class="loginform width-with-right-margin">
     <fieldset [disabled]="processingInProgress">
       <div class="toggle">
         <!-- Checkbox toggle -->
-        <input type="checkbox" value="selected" id="employeePersonalDetails" class="toggle-input" checked>
-        <label for="employeePersonalDetails" class="toggle-label">Lead Information Criteria</label>
+        <input type="checkbox" value="selected" id="leadInfoCriteria" class="toggle-input" checked>
+        <label for="leadInfoCriteria" class="toggle-label">Lead Information Criteria</label>
 
         <div role="toggle" class="toggle-content">
           <div class="display-table inner-component-width">
@@ -23,9 +23,9 @@
               <div class="cell span_1_of_3">
                 <div class="group">
                   <input #firstName list="firstName" class="inputMaterial span_4_of_4" type="text" formControlName="firstName" required>
-                  <datalist id="firstName">
+                  <!-- <datalist id="firstName">
                     <option *ngFor="let firstNameSuggestion of autoCompleteSuggestions.firstNameSuggestions" value="{{firstNameSuggestion.firstName}}">
-                  </datalist>
+                  </datalist> -->
                   <label class="text-input-label">First Name</label>
                   <span class="highlight"></span>
                   <span class="bar span_4_of_4"></span>
@@ -34,9 +34,9 @@
               <div class="cell span_1_of_3">
                 <div class="group">
                   <input #lastName list="lastName" class="inputMaterial span_4_of_4" type="text" formControlName="lastName" required>
-                  <datalist id="lastName">
+                  <!-- <datalist id="lastName">
                     <option *ngFor="let lastNameSuggestion of autoCompleteSuggestions.lastNameSuggestions" value="{{lastNameSuggestion.lastName}}">
-                  </datalist>
+                  </datalist> -->
                   <label class="text-input-label">Last Name</label>
                   <span class="highlight"></span>
                   <span class="bar span_4_of_4"></span>
@@ -45,9 +45,9 @@
               <div class="cell span_1_of_3">
                 <div class="group">
                   <input #emailId list="emailId" class="inputMaterial span_4_of_4" type="text" formControlName="emailId" required>
-                  <datalist id="emailId">
+                  <!-- <datalist id="emailId">
                     <option *ngFor="let emailIdSuggestion of autoCompleteSuggestions.emailIdSuggestions" value="{{emailIdSuggestion.emailId}}">
-                  </datalist>
+                  </datalist> -->
                   <label class="text-input-label">Email Id</label>
                   <span class="highlight"></span>
                   <span class="bar span_4_of_4"></span>
@@ -59,7 +59,7 @@
                 <div class="group combo-group">
                   <label class="text-input-label">Lead Status</label>
                   <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="sex">
+                    <select class="span_4_of_4" formControlName="status">
                   <option value=""></option>
                   <option value="CONTRACTED">Contracted</option>
                   <option value="OPEN">Open</option>
@@ -71,7 +71,7 @@
               </div>
               <div class="cell span_1_of_3">
                 <div class="group">
-                  <input #identityDocNumber class="inputMaterial span_4_of_4" type="text" formControlName="identityDocNumber" required>
+                  <input #identityDocNumber class="inputMaterial span_4_of_4" type="text" formControlName="company" required>
                   <label class="text-input-label">Company</label>
                   <span class="highlight"></span>
                   <span class="bar span_4_of_4"></span>
@@ -80,9 +80,9 @@
               <div class="cell span_1_of_3">
                 <div class="group">
                   <input #contactNo list="contactNo" class="inputMaterial span_4_of_4" type="text" formControlName="contactNo" required>
-                  <datalist id="contactNo">
+                  <!-- <datalist id="contactNo">
                     <option *ngFor="let contactNoSuggestion of autoCompleteSuggestions.contactNoSuggestions" value="{{contactNoSuggestion.contactNo}}">
-                  </datalist>
+                  </datalist> -->
                   <label class="text-input-label">Contact No</label>
                   <span class="highlight"></span>
                   <span class="bar span_4_of_4"></span>
