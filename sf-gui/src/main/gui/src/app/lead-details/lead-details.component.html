@@ -4,10 +4,31 @@
   <h1>Lead Details Search</h1>
 </div>
 
-<div class="body">
+<div class="body"  [ngClass]="{'disable-scroll' : modalDisplay === true }">
   <app-spinner *ngIf="processingInProgress"></app-spinner>
   <div class="row">
       <a class="search-btn ripple search-btn-fixed" href="javascript:void(0)" (click)="leadDetailsSearchForm.ngSubmit.emit()"></a>
+  </div>
+  <div class="row">
+      <a class="circle-btn ripple circle-btn-fixed" href="javascript:void(0)" (click)="createBasicLead()"></a>
+  </div>
+
+  <div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowUpdateMessage()">
+    <div class="modal-small">
+      <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+      <div class="modal-header">
+        <h1>Message</h1>
+      </div>
+      <div class="modal-body">
+        <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+        <div class="group center">
+          <h3>Lead Creation is successful !!!</h3>
+          <div style="height:30px;">
+          </div>
+          <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <form [formGroup]="formGroupSearch" #leadDetailsSearchForm="ngForm" (ngSubmit)="search()" method="get" class="loginform width-with-right-margin">
@@ -98,4 +119,121 @@
       </div>
     </fieldset>
   </form>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowCreateBasicLead()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Create Lead Information</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupLeadCreateForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupLeadCreate" #formGroupLeadCreateForm="ngForm" (ngSubmit)="onLeadInfoCreate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Full Name</h2>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Title*</label>
+                  <div class="select select-fancy select-fancy-image">
+                    <select formControlName="title">
+                      <option value="Mr.">Dr</option>
+                      <option value="Mr.">Mr</option>
+                      <option value="Miss.">Miss</option>
+                      <option value="Mrs.">Mrs</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="leadFirstName" required>
+                  <label class="text-input-label">First Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="leadMiddleName" required>
+                  <label class="text-input-label">Middle Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="leadLastName" required>
+                  <label class="text-input-label">Last Name</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Contact Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="emailId" required>
+                  <label class="text-input-label">Email Id</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="contactNo" required>
+                  <label class="text-input-label">ContactNumber</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Lead Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="companyName" required>
+                  <label class="text-input-label">Company Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Lead status</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="leadStatus">
+                          <option value="OPEN">Open</option>
+                          <option value="CONTRACTED">Contracted</option>
+                          <option value="QUALIFIED">Qualified</option>
+                          <option value="UNQUALIFIED">Unqualified</option>
+                        </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Account Currency</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="currency">
+                          <option value="INR">INR - Indian Rupee</option>
+                          <option value="USD">USD - U.S. Dollar</option>
+                          <option value="AUD">AUD - Australian Dollar</option>
+                        </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 </div>
