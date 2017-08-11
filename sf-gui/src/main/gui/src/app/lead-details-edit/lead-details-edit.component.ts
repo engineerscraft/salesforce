@@ -10,14 +10,14 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 export class LeadDetailsEditComponent implements OnInit {
 
   private leadName;
-  private leadTitle = "Mr";
+  private leadTitle;
   private leadMiddleName;
-  private leadLastName = "Mathews";
-  private leadEmailId = "john.mathews@abc.com";
-  private leadContactNo = "8987898700";
-  private leadCompany = "ABC Ltd";
-  private leadStatus = "Open";
-  private leadCurrency = "INR";
+  private leadLastName;
+  private leadEmailId;
+  private leadContactNo;
+  private leadCompany;
+  private leadStatus;
+  private leadCurrency;
   private leadWebsite;
 
   private houseNo;
@@ -54,13 +54,47 @@ export class LeadDetailsEditComponent implements OnInit {
       .subscribe(params => {
         this.leadName = params.get("leadName");
       });
+      this.populateStaticData(this.leadName);
       this.formGroupInitializer();
+  }
+
+  populateStaticData(name: string) {
+    if (name === 'John'){
+      this.leadTitle = "Mr.";
+      this.leadLastName = "Mathews";
+      this.leadEmailId = "john.mathews@abc.com";
+      this.leadContactNo = "8987898700";
+      this.leadCompany = "ABC Ltd";
+      this.leadStatus = "OPEN";
+      this.leadCurrency = "INR";
+      this.leadWebsite = "www.abcltd.co.in";
+      this.houseNo = "181";
+      this.streetName = "Russel Street";
+      this.area = "Trinity Circle";
+      this.pinno = "560088";
+      this.districtName = "Bengaluru Urban";
+      this.stateName = "Karnataka";
+      this.countryName = "India";
+      this.noOfEmployees = 50;
+      this.annualRevenue = "25,00,000 INR";
+      this.leadSource = "Public Relations";
+      this.industry = "Banking";
+      this.description = "This is a possible lead. It has been created to maintain and observe it's growth.";
+    } else {
+      this.leadTitle = "Dr.";
+      this.leadLastName = "Dey";
+      this.leadEmailId = "rik.dey@abc.com";
+      this.leadContactNo = "8987898907";
+      this.leadCompany = "ABC Ltd";
+      this.leadStatus = "OPEN";
+      this.leadCurrency = "INR";
+    }
   }
 
   formGroupInitializer() {
     this.formGroupBasicInfo = this.formBuilder.group({
       'leadTitle': [this.leadTitle, Validators.required],
-      'leadFirstName': [this.leadName, Validators.required],
+      'leadName': [this.leadName, Validators.required],
       'leadMiddleName': [this.leadMiddleName],
       'leadLastName': [this.leadLastName, Validators.required],      
       'leadEmailId': [this.leadEmailId],
@@ -109,6 +143,7 @@ export class LeadDetailsEditComponent implements OnInit {
     if (event === null || event.undefined || event.currentTarget === event.target) {
       this.modalDisplay = false;
       this.showUpdateMessage = false;
+      this.showEditLeadInfo = false;
     }
   }
 
@@ -117,10 +152,19 @@ export class LeadDetailsEditComponent implements OnInit {
   }
 
   editLeadInfo() {
+    this.showEditLeadInfo = true;
+    this.modalDisplay = true;
+  }
+
+  onLeadInfoEdit() {
     this.processingInProgress = true;
     this.processingInProgress = false;
     this.showEditLeadInfo = false;
     this.showUpdateMessage = true;
+  }
+
+  getShowEditLeadInfo() {
+    return this.showEditLeadInfo;
   }
 
 }
