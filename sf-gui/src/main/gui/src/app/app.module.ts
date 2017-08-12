@@ -24,6 +24,8 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
 import { OpportunityDetailsComponent } from './opportunity-details/opportunity-details.component';
 import { LeadDetailsResultComponent } from './lead-details-result/lead-details-result.component';
 import { LeadDetailsEditComponent } from './lead-details-edit/lead-details-edit.component';
+import { AccountDetailsResultComponent } from './account-details-result/account-details-result.component';
+import { AccountDetailsEditComponent } from './account-details-edit/account-details-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { LeadDetailsEditComponent } from './lead-details-edit/lead-details-edit.
     ContactDetailsComponent,
     OpportunityDetailsComponent,
     LeadDetailsResultComponent,
-    LeadDetailsEditComponent
+    LeadDetailsEditComponent,
+    AccountDetailsResultComponent,
+    AccountDetailsEditComponent
   ],
   imports: [
     BrowserModule,

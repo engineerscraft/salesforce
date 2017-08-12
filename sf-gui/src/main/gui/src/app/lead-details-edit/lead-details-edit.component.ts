@@ -43,6 +43,7 @@ export class LeadDetailsEditComponent implements OnInit {
   private modalDisplay = false;
   private processingInProgress = false;
   private showEditLeadInfo = false;
+  private showEditAdditionalInfo = false;
 
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -144,6 +145,7 @@ export class LeadDetailsEditComponent implements OnInit {
       this.modalDisplay = false;
       this.showUpdateMessage = false;
       this.showEditLeadInfo = false;
+      this.showEditAdditionalInfo = false;
     }
   }
 
@@ -165,6 +167,22 @@ export class LeadDetailsEditComponent implements OnInit {
 
   getShowEditLeadInfo() {
     return this.showEditLeadInfo;
+  }
+
+  editAdditionalInfo() {
+    this.showEditAdditionalInfo = true;
+    this.modalDisplay = true;
+  }
+
+  onAdditionalInfoEdit() {
+    this.processingInProgress = true;
+    this.processingInProgress = false;
+    this.showEditAdditionalInfo = false;
+    this.showUpdateMessage = true;
+  }
+
+  getShowEditAdditionalInfo() {
+    return this.showEditAdditionalInfo;
   }
 
 }

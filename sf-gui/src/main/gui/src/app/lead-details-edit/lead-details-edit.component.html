@@ -378,7 +378,7 @@
             <div class="row">
               <div class="cell span_2_of_4">
                 <div class="group combo-group">
-                  <label class="text-input-label">Lead status</label>
+                  <label class="text-input-label">Lead Status</label>
                   <div class="select select-fancy select-fancy-image span_4_of_4">
                     <select class="span_4_of_4" formControlName="leadStatus">
                           <option value="OPEN">Open</option>
@@ -500,6 +500,88 @@
                 </div>
               </div>
             </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAdditionalInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Additional Information</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAdditionalInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupAdditionalInfo" #formGroupAdditionalInfoForm="ngForm" (ngSubmit)="onAdditionalInfoEdit()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Additional Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="noOfEmployees" required>
+                  <label class="text-input-label">No Of Employees</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="annualRevenue" required>
+                  <label class="text-input-label">Annual Revenue</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Lead Source</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="leadSource">
+                        <option value=""></option>
+                        <option value="Advertisement">Advertisement</option>
+                        <option value="Employee Referal">Employee Referal</option>
+                        <option value="External Referal">External Referal</option>
+                        <option value="Partner">Partner</option>
+                        <option value="Public Relations">Public Relations</option>
+                        <option value="Seminar Internal">Seminar Internal</option>
+                        <option value="Seminar Partner">Seminar Partner</option>
+                        <option value="Web">Web</option>
+                        <option value="Other">Other</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Industry</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="industry">
+                      <option value=""></option>
+                      <option value="Banking">Banking</option>
+                      <option value="Agriculture">Agriculture</option>
+                      <option value="Chemical">Chemical</option>
+                      <option value="Communications">Communications</option>
+                      <option value="IT Industry">IT Industry</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial span_4_of_4" type="textarea" formControlName="description" maxlength="500">
+                  <label class="text-input-label">Description</label>
+                  <span class="highlight"></span>
+                  <span class="bar span_4_of_4"></span>
+                </div>
+              </div>
             </div>
           </div>
         </fieldset>
