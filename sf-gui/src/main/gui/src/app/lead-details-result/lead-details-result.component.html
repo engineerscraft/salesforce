@@ -75,7 +75,7 @@
     </div>
 
 
-    <div class="row outer-component-width" *ngFor="let leadInfo of leadInfos" (contextmenu)="onRightClick($event, employee.id)">
+    <div class="row outer-component-width" *ngFor="let leadInfo of leadInfos" (contextmenu)="onRightClick($event, leadInfo.firstName)">
       <div class="cell">
         <a [routerLink]="['/leadDetailsEdit', leadInfo.firstName]">{{leadInfo.firstName}}</a>
       </div>
