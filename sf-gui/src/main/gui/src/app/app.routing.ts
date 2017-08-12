@@ -8,6 +8,8 @@ import {LeadDetailsComponent} from './lead-details/lead-details.component';
 import {LeadDetailsResultComponent} from './lead-details-result/lead-details-result.component';
 import {LeadDetailsEditComponent} from './lead-details-edit/lead-details-edit.component';
 import {AccountDetailsComponent} from './account-details/account-details.component';
+import {AccountDetailsResultComponent} from './account-details-result/account-details-result.component';
+import {AccountDetailsEditComponent} from './account-details-edit/account-details-edit.component';
 import {ContactDetailsComponent} from './contact-details/contact-details.component';
 import {OpportunityDetailsComponent} from './opportunity-details/opportunity-details.component';
 
@@ -18,6 +20,8 @@ export const routing = RouterModule.forRoot([
     { path: 'leadDetailsResult', component: LeadDetailsResultComponent, canActivate: [AuthguardService] },
     { path: 'leadDetailsEdit/:leadName', component: LeadDetailsEditComponent, canActivate: [AuthguardService] },
     { path: 'accountDetails', component: AccountDetailsComponent, canActivate: [AuthguardService] },
+    { path: 'accountDetailsResult', component: AccountDetailsResultComponent, canActivate: [AuthguardService] },
+    { path: 'accountDetailsEdit', component: AccountDetailsEditComponent, canActivate: [AuthguardService] },
     { path: 'contactDetails', component: ContactDetailsComponent, canActivate: [AuthguardService] },
     { path: 'opportunityDetails', component: OpportunityDetailsComponent, canActivate: [AuthguardService] },
     { path: 'forbidden', component: ForbiddenAccessComponent, canActivate: [AuthguardService] },
