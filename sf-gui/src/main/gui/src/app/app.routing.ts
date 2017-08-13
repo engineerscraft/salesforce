@@ -21,7 +21,7 @@ export const routing = RouterModule.forRoot([
     { path: 'leadDetailsEdit/:leadName', component: LeadDetailsEditComponent, canActivate: [AuthguardService] },
     { path: 'accountDetails', component: AccountDetailsComponent, canActivate: [AuthguardService] },
     { path: 'accountDetailsResult', component: AccountDetailsResultComponent, canActivate: [AuthguardService] },
-    { path: 'accountDetailsEdit', component: AccountDetailsEditComponent, canActivate: [AuthguardService] },
+    { path: 'accountDetailsEdit/:accountName', component: AccountDetailsEditComponent, canActivate: [AuthguardService] },
     { path: 'contactDetails', component: ContactDetailsComponent, canActivate: [AuthguardService] },
     { path: 'opportunityDetails', component: OpportunityDetailsComponent, canActivate: [AuthguardService] },
     { path: 'forbidden', component: ForbiddenAccessComponent, canActivate: [AuthguardService] },
