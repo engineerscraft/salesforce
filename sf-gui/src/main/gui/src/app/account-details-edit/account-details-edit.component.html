@@ -1,3 +1,715 @@
-<p>
-  account-details-edit works!
-</p>
+<app-side-bar></app-side-bar>
+<div class="page-header">
+  <h1>Account Details</h1>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowUpdateMessage()">
+  <div class="modal-small">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Message</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <div class="group center">
+        <h3>Your update request is successful !!!</h3>
+        <div style="height:30px;">
+        </div>
+        <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="body" [ngClass]="{'disable-scroll' : modalDisplay === true }">
+  <app-spinner *ngIf="processingInProgress"></app-spinner>
+
+  <div class="display-table width-with-right-margin">
+    <div class="row span_4_of_4">
+      <div>
+        <div class="tab_container">
+          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
+          <label for="tab1" class="tab-header span_1_of_6 cell">Account Information</label>
+
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" />
+          <label for="tab2" class="tab-header span_1_of_6 cell">Additional Information</label>
+
+          <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
+          <label for="tab3" class="tab-header span_1_of_6 cell">Accounts Timeline</label>
+
+          <section id="content1" class="tab-content">
+
+            <div class="table span_4_of_4">
+              <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAccountInfo()"></a>
+              <div class="row">
+                <div class="cell">
+                  <label class="text-label">Account Name</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{accountName}}</label>
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="row even-row">
+                <div class="cell">
+                  <label class="text-label">Parent Account</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{parentAccount}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Lead Source</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{leadSource}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Account Currency</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{accountCurrency}}</label>
+                </div>
+              </div>
+              <div class="row span_4_of_4">
+                <div class="cell">
+                  <label class="text-label">Email Id</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{accountEmailId}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Contact No</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{accountContactNo}}</label>
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>                    
+            </div>
+            <div class="toggle">
+              <input type="checkbox" value="selected" id="billingAddress" class="toggle-input" checked>
+              <label for="billingAddress" class="toggle-label">Billing Address</label>
+              <div role="toggle" class="toggle-content">
+                <div class="table span_4_of_4">
+                  <div></div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">House Number</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{houseNo}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Street</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{streetName}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Area</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{area}}</label>
+                    </div>
+                  </div>
+                  <div class="row even-row">
+                    <div class="cell">
+                      <label class="text-label">PIN / Zip Code</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{pinno}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Region</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{region}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">District</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{districtName}}</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell span_1_of_6">
+                      <label class="text-label">State</label>
+                    </div>
+                    <div class="cell span_1_of_6">
+                      <label class="text-value">{{stateName}}</label>
+                    </div>
+                    <div class="cell span_1_of_6">
+                      <label class="text-label">Country</label>
+                    </div>
+                    <div class="cell span_1_of_6">
+                      <label class="text-value">{{countryName}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="toggle">
+              <input type="checkbox" value="selected" id="shippingAddress" class="toggle-input" checked>
+              <label for="shippingAddress" class="toggle-label">Shipping Address</label>
+              <div role="toggle" class="toggle-content">
+                <div class="table span_4_of_4">
+                  <div></div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">House Number</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{houseNo}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Street</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{streetName}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Area</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{area}}</label>
+                    </div>
+                  </div>
+                  <div class="row  even-row">
+                    <div class="cell">
+                      <label class="text-label">PIN / Zip Code</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{pinno}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Region</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{region}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">District</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{districtName}}</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="cell">
+                      <label class="text-label">State</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{stateName}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label">Country</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-value">{{countryName}}</label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                    <div class="cell">
+                      <label class="text-label"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="content2" class="tab-content">
+            <div class="table span_4_of_4">
+              <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAdditionalInfo()"></a>
+              <div class="row">
+                <div class="cell">
+                  <label class="text-label">Website</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{accountWebsite}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Fax</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{accountFax}}</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cell">
+                  <label class="text-label">No Of Employees</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{noOfEmployees}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Annual Revenue</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{annualRevenue}}</label>
+                </div>
+              </div>
+              <div class="row">                
+                <div class="cell">
+                  <label class="text-label">Industry</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{industry}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
+                </div>
+                <div class="cell">
+                  <label class="text-label"></label>
+                </div>                
+              </div>
+              <div class="row">                
+                <div class="cell">
+                  <label class="text-label">Description</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{description}}</label>
+                </div>                
+              </div>
+            </div>
+          </section>
+
+          <section class="comments" id="content3" class="tab-content">
+            <div class="table span_4_of_4">
+            <article class="comment">
+              <a class="comment-img" href="#non">
+                <img src="" alt="" width="50" height="50" />
+              </a>
+                
+              <div class="comment-body">
+                <div class="text">
+                  <p>Hello, this is an example comment</p>
+                </div>
+                <p class="attribution">by <a href="javascript:void(0)">Joe Bloggs</a> at 2:20pm, 14th Jul 2017</p>
+              </div>
+            </article>
+            
+            <article class="comment">
+              <a class="comment-img" href="#non">
+              <img src="" alt="" width="50" height="50">
+              </a>
+                
+              <div class="comment-body">
+                <div class="text">
+                  <p>This is a much longer one that will go on for a few lines.</p>
+                  <p>It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</p>
+                </div>
+              <p class="attribution">by <a href="javascript:void(0)">Joe Bloggs</a> at 2:23pm, 4th Aug 2017</p>
+              </div>
+            </article>
+              
+            <article class="comment">
+              <a class="comment-img" href="#non">
+              <img src="" alt="" width="50" height="50">
+              </a>
+                
+              <div class="comment-body">
+                <div class="text">
+                  <p>Originally from <a href="https://cssdeck.com/item/301/timeline-style-blog-comments#comment_289">cssdeck.com</a> this presentation has been updated 
+                  to looks more precisely to the facebook timeline</p>
+                </div>
+              <p class="attribution">by <a href="javascript:void(0)">Luky Vj</a> at 2:44pm, 14th Jul 2017</p>
+              </div>
+            </article>
+
+            <article class="input-comment">          
+              <div class="comment-body">
+                <div class="text">
+                  <textarea rows="3" cols="150" placeholder="Enter your comment here...">
+                  </textarea>
+                </div>
+                <div class="row">
+                  <button type="submit" class="btn ripple">Post</button>
+              </div>
+              </div>
+            </article>
+            </div>
+          </section>​
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAccountInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Account Information</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupBasicInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupBasicInfo" #formGroupBasicInfoForm="ngForm" (ngSubmit)="onAccountInfoEdit()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Account Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="accountName" required>
+                  <label class="text-input-label">Account Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="parentAccount" required>
+                  <label class="text-input-label">Parent Account</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="accountEmailId" required>
+                  <label class="text-input-label">Email Id</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="accountContactNo" required>
+                  <label class="text-input-label">Contact Number</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Lead Source</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="leadSource">
+                      <option value="Advertisement">Advertisement</option>
+                      <option value="Employee Referal">Employee Referal</option>
+                      <option value="External Referal">External Referal</option>
+                      <option value="Partner">Partner</option>
+                      <option value="Public Relations">Public Relations</option>
+                      <option value="Seminar Internal">Seminar Internal</option>
+                      <option value="Seminar Partner">Seminar Partner</option>
+                      <option value="Web">Web</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Account Currency</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="accountCurrency">
+                      <option value="INR">INR - Indian Rupee</option>
+                      <option value="USD">USD - U.S. Dollar</option>
+                      <option value="AUD">AUD - Australian Dollar</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Billing Address</h2>
+            <div class="cell span_4_of_4" formGroupName="billing">
+            <div class="row">
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="houseNo">
+                    <label class="text-input-label">House Number</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="streetName">
+                    <label class="text-input-label">Street</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="area">
+                  <label class="text-input-label">Area</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="pinno">
+                  <label class="text-input-label">PIN / Zip Code</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="region">
+                  <label class="text-input-label">Region</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Country</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="countryName">
+                      <option value="India">India</option>
+                      <option value="USA">USA</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Germany">Germany</option>
+                      <option value="UAE">UAE</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">State</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="stateName">
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="West Bengal">West Bengal</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">District</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="districtName">
+                      <option value=""></option>
+                      <option value="Bagalkot">Bagalkot</option>
+                      <option value="Bengaluru Urban">Bengaluru Urban</option>
+                      <option value="Bengaluru Rural">Bengaluru Rural</option>
+                      <option value="Bellary">Bellary</option>
+                      <option value="Gadag">Gadag</option>
+                      <option value="Hassan">Hassan</option>
+                      <option value="Mysuru">Mysuru</option>
+                      <option value="Kollar">Kollar</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Shipping Address</h2>
+            <div class="cell span_4_of_4" formGroupName="shipping">
+            <div class="row">
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="houseNo">
+                    <label class="text-input-label">House Number</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="streetName">
+                    <label class="text-input-label">Street</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="area">
+                  <label class="text-input-label">Area</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="pinno">
+                  <label class="text-input-label">PIN / Zip Code</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="region">
+                  <label class="text-input-label">Region</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Country</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="countryName">
+                      <option value="India">India</option>
+                      <option value="USA">USA</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Germany">Germany</option>
+                      <option value="UAE">UAE</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">State</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="stateName">
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="West Bengal">West Bengal</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">District</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="districtName">
+                      <option value=""></option>
+                      <option value="Bagalkot">Bagalkot</option>
+                      <option value="Bengaluru Urban">Bengaluru Urban</option>
+                      <option value="Bengaluru Rural">Bengaluru Rural</option>
+                      <option value="Bellary">Bellary</option>
+                      <option value="Gadag">Gadag</option>
+                      <option value="Hassan">Hassan</option>
+                      <option value="Mysuru">Mysuru</option>
+                      <option value="Kollar">Kollar</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAdditionalInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Additional Information</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAdditionalInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupAdditionalInfo" #formGroupAdditionalInfoForm="ngForm" (ngSubmit)="onAdditionalInfoEdit()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Additional Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="accountWebsite" required>
+                  <label class="text-input-label">Website</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="accountFax" required>
+                  <label class="text-input-label">Fax</label>
+                </div>
+              </div>
+            </div>
+           <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="noOfEmployees" required>
+                  <label class="text-input-label">No Of Employees</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="annualRevenue" required>
+                  <label class="text-input-label">Annual Revenue</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Industry</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="industry">
+                      <option value=""></option>
+                      <option value="Banking">Banking</option>
+                      <option value="Agriculture">Agriculture</option>
+                      <option value="Chemical">Chemical</option>
+                      <option value="Communications">Communications</option>
+                      <option value="IT Industry">IT Industry</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial span_4_of_4" type="textarea" formControlName="description" maxlength="500">
+                  <label class="text-input-label">Description</label>
+                  <span class="highlight"></span>
+                  <span class="bar span_4_of_4"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

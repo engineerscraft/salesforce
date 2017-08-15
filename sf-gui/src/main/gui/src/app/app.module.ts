@@ -26,6 +26,10 @@ import { LeadDetailsResultComponent } from './lead-details-result/lead-details-r
 import { LeadDetailsEditComponent } from './lead-details-edit/lead-details-edit.component';
 import { AccountDetailsResultComponent } from './account-details-result/account-details-result.component';
 import { AccountDetailsEditComponent } from './account-details-edit/account-details-edit.component';
+import { ContactDetailsEditComponent } from './contact-details-edit/contact-details-edit.component';
+import { ContactDetailsResultComponent } from './contact-details-result/contact-details-result.component';
+import { OpportunityDetailsEditComponent } from './opportunity-details-edit/opportunity-details-edit.component';
+import { OpportunityDetailsResultComponent } from './opportunity-details-result/opportunity-details-result.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { AccountDetailsEditComponent } from './account-details-edit/account-deta
     LeadDetailsResultComponent,
     LeadDetailsEditComponent,
     AccountDetailsResultComponent,
-    AccountDetailsEditComponent
+    AccountDetailsEditComponent,
+    ContactDetailsEditComponent,
+    ContactDetailsResultComponent,
+    OpportunityDetailsEditComponent,
+    OpportunityDetailsResultComponent
   ],
   imports: [
     BrowserModule,
