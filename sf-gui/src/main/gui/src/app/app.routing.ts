@@ -12,6 +12,8 @@ import {AccountDetailsResultComponent} from './account-details-result/account-de
 import {AccountDetailsEditComponent} from './account-details-edit/account-details-edit.component';
 import {ContactDetailsComponent} from './contact-details/contact-details.component';
 import {OpportunityDetailsComponent} from './opportunity-details/opportunity-details.component';
+import {OpportunityDetailsResultComponent} from './opportunity-details-result/opportunity-details-result.component';
+import {OpportunityDetailsEditComponent} from './opportunity-details-edit/opportunity-details-edit.component';
 
 export const routing = RouterModule.forRoot([
     { path: '', component: LoginFormComponent},
@@ -24,6 +26,8 @@ export const routing = RouterModule.forRoot([
     { path: 'accountDetailsEdit/:accountName', component: AccountDetailsEditComponent, canActivate: [AuthguardService] },
     { path: 'contactDetails', component: ContactDetailsComponent, canActivate: [AuthguardService] },
     { path: 'opportunityDetails', component: OpportunityDetailsComponent, canActivate: [AuthguardService] },
+    { path: 'opportunityDetailsResult', component: OpportunityDetailsResultComponent, canActivate: [AuthguardService] },
+    { path: 'opportunityDetailsEdit/:opportunityName', component: OpportunityDetailsEditComponent, canActivate: [AuthguardService] },
     { path: 'forbidden', component: ForbiddenAccessComponent, canActivate: [AuthguardService] },
     { path: '404', component: NotFoundComponent, canActivate: [AuthguardService] },
     { path: '**', redirectTo: '/404', canActivate: [AuthguardService] },

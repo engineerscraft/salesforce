@@ -3,8 +3,170 @@
 <div class="page-header">
   <h1>Opportunity Details Search</h1>
 </div>
-<div class="body">
-  <p>
-    Opportunity Management work is in progress...
-  </p>
+
+<div class="body"  [ngClass]="{'disable-scroll' : modalDisplay === true }">
+  <app-spinner *ngIf="processingInProgress"></app-spinner>
+  <div class="row">
+      <a class="search-btn ripple search-btn-fixed" href="javascript:void(0)" (click)="opportunityDetailsSearchForm.ngSubmit.emit()"></a>
+  </div>
+  <div class="row">
+      <a class="circle-btn ripple circle-btn-fixed" href="javascript:void(0)" (click)="createBasicOpportunity()"></a>
+  </div>
+
+  <div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowUpdateMessage()">
+    <div class="modal-small">
+      <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+      <div class="modal-header">
+        <h1>Message</h1>
+      </div>
+      <div class="modal-body">
+        <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+        <div class="group center">
+          <h3>Opportunity Creation is successful !!!</h3>
+          <div style="height:30px;">
+          </div>
+          <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="formGroupSearch" #opportunityDetailsSearchForm="ngForm" (ngSubmit)="search()" method="get" class="loginform width-with-right-margin">
+    <fieldset [disabled]="processingInProgress">
+      <div class="toggle">
+        <!-- Checkbox toggle -->
+        <input type="checkbox" value="selected" id="opportunityInfoCriteria" class="toggle-input" checked>
+        <label for="opportunityInfoCriteria" class="toggle-label">Opportunity Information Criteria</label>
+
+        <div role="toggle" class="toggle-content">
+          <div class="display-table inner-component-width">
+            <div class="row">
+              <div class="cell span_1_of_3">
+                <div class="group">
+                  <input #opportunityName list="opportunityName" class="inputMaterial span_4_of_4" type="text" formControlName="opportunityName" required>
+                  <!-- <datalist id="opportunityName">
+                    <option *ngFor="let opportunityNameSuggestion of autoCompleteSuggestions.opportunityNameSuggestions" value="{{opportunityNameSuggestion.opportunityName}}">
+                  </datalist> -->
+                  <label class="text-input-label">Opportunity Name</label>
+                  <span class="highlight"></span>
+                  <span class="bar span_4_of_4"></span>
+                </div>
+              </div>
+              <div class="cell span_1_of_3">
+                <div class="group">
+                  <input #accountName list="accountName" class="inputMaterial span_4_of_4" type="text" formControlName="accountName" required>
+                  <!-- <datalist id="accountName">
+                    <option *ngFor="let accountNameSuggestion of autoCompleteSuggestions.accountNameSuggestions" value="{{accountNameSuggestion.accountName}}">
+                  </datalist> -->
+                  <label class="text-input-label">Account Name</label>
+                  <span class="highlight"></span>
+                  <span class="bar span_4_of_4"></span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_1_of_3">
+                <div class="group combo-group">
+                  <label class="text-input-label">Opportunity Type</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="opportunityType">
+                  <option value=""></option>
+                  <option value="ExistingBusiness">Existing Business</option>
+                  <option value="NewBusiness">New Business</option>
+                </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_1_of_3">
+                <div class="group combo-group">
+                  <label class="text-input-label">Opportunity Currency</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="opportunityCurrency">
+                      <option value=""></option>
+                      <option value="INR">INR - Indian Rupee</option>
+                      <option value="USD">USD - U.S. Dollar</option>
+                      <option value="AUD">AUD - Australian Dollar</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <button type="submit" class="btn ripple">Search</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowCreateBasicOpportunity()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Create Opportunity</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupLeadCreateForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupLeadCreate" #formGroupLeadCreateForm="ngForm" (ngSubmit)="onLeadInfoCreate()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Opportunity Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="opportunityName" required>
+                  <label class="text-input-label">Opportunity Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="accountName" required>
+                  <label class="text-input-label">Account Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Opportunity Type</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="opportunityType">
+                      <option value="ExistingBusiness">Existing Business</option>
+                      <option value="NewBusiness">New Business</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Opportunity Currency</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="opportunityCurrency">
+                          <option value="INR">INR - Indian Rupee</option>
+                          <option value="USD">USD - U.S. Dollar</option>
+                          <option value="AUD">AUD - Australian Dollar</option>
+                        </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="primaryCampaign" required>
+                  <label class="text-input-label">Primary Campaign Source</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 </div>
