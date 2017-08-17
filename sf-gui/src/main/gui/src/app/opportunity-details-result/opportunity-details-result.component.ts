@@ -20,140 +20,140 @@ export class OpportunityDetailsResultComponent implements OnInit {
     this.searchResult = [
   {
     "opportunityName": "LexCorp - 20 Widgets",
-	"accountName": "Mathews",
+	"accountName": "LexCorp",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": "Andrew Jones"
   },
   {
     "opportunityName": "LexCorp - June Order",
-	"accountName": "Dey",
+	"accountName": "LexCorp",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": "Andrew Jones"
   },
   {
     "opportunityName": "Axis Chemical Co. - August Order",
-	"accountName": "Roy",
+	"accountName": "Axis Chemical Co.",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Axis Chemical Co. - January Order",
-	"accountName": "Bose",
+	"accountName": "Axis Chemical Co.",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Thrift Bank - May Order",
-	"accountName": "Banerjee",
+	"accountName": "Thrift Bank",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Demo, inc. - July Order",
-	"accountName": "Das",
+	"accountName": "Demo, inc.",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Demo, inc. - June Order",
-	"accountName": "Dutta",
+	"accountName": "Demo, inc.",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Mooby Corp - September Order",
-	"accountName": "Sharma",
+	"accountName": "Mooby Corp",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Thrift Bank - 20 Widgets",
-	"accountName": "Dubey",
+	"accountName": "Thrift Bank",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Colonial Movers - February Order",
-	"accountName": "Biswas",
+	"accountName": "Colonial Movers",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": "Wayne Enterprises"
   },
   {
     "opportunityName": "Mooby Corp - 40 Widgets",
-	"accountName": "Roy",
+	"accountName": "Mooby Corp",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Praxis Corporation - 20 Widgets",
-	"accountName": "Jones",
+	"accountName": "Praxis Corporation",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "SpringShield - July Order",
-	"accountName": "Basu",
+	"accountName": "SpringShield",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Colonial Movers - December Order",
-	"accountName": "Dalal",
+	"accountName": "Colonial Movers",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": "Wayne Enterprises"
   },
   {
     "opportunityName": "SpringShield - April Order",
-	"accountName": "Sen",
+	"accountName": "SpringShield",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "ZiffCorp - 30 Widgets",
-	"accountName": "Lobo",
+	"accountName": "ZiffCorp",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Kumatsu Motors - 40 parts",
-	"accountName": "Ray",
+	"accountName": "Kumatsu Motors",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Praxis Corporation - March Order",
-	"accountName": "Bose",
+	"accountName": "Praxis Corporation",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Kumatsu Motors - December Order",
-	"accountName": "Kiran",
+	"accountName": "Kumatsu Motors",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "ZiffCorp - November Order",
-	"accountName": "Mukherjee",
+	"accountName": "ZiffCorp",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
@@ -163,140 +163,140 @@ export class OpportunityDetailsResultComponent implements OnInit {
 this.filteredResult = [
   {
     "opportunityName": "LexCorp - 20 Widgets",
-	"accountName": "Mathews",
+	"accountName": "LexCorp",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": "Andrew Jones"
   },
   {
     "opportunityName": "LexCorp - June Order",
-	"accountName": "Dey",
+	"accountName": "LexCorp",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": "Andrew Jones"
   },
   {
     "opportunityName": "Axis Chemical Co. - August Order",
-	"accountName": "Roy",
+	"accountName": "Axis Chemical Co.",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Axis Chemical Co. - January Order",
-	"accountName": "Bose",
+	"accountName": "Axis Chemical Co.",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Thrift Bank - May Order",
-	"accountName": "Banerjee",
+	"accountName": "Thrift Bank",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Demo, inc. - July Order",
-	"accountName": "Das",
+	"accountName": "Demo, inc.",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Demo, inc. - June Order",
-	"accountName": "Dutta",
+	"accountName": "Demo, inc.",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Mooby Corp - September Order",
-	"accountName": "Sharma",
+	"accountName": "Mooby Corp",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Thrift Bank - 20 Widgets",
-	"accountName": "Dubey",
+	"accountName": "Thrift Bank",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Colonial Movers - February Order",
-	"accountName": "Biswas",
+	"accountName": "Colonial Movers",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": "Wayne Enterprises"
   },
   {
     "opportunityName": "Mooby Corp - 40 Widgets",
-	"accountName": "Roy",
+	"accountName": "Mooby Corp",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Praxis Corporation - 20 Widgets",
-	"accountName": "Jones",
+	"accountName": "Praxis Corporation",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "SpringShield - July Order",
-	"accountName": "Basu",
+	"accountName": "SpringShield",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Colonial Movers - December Order",
-	"accountName": "Dalal",
+	"accountName": "Colonial Movers",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": "Wayne Enterprises"
   },
   {
     "opportunityName": "SpringShield - April Order",
-	"accountName": "Sen",
+	"accountName": "SpringShield",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "ZiffCorp - 30 Widgets",
-	"accountName": "Lobo",
+	"accountName": "ZiffCorp",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Kumatsu Motors - 40 parts",
-	"accountName": "Ray",
+	"accountName": "Kumatsu Motors",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Praxis Corporation - March Order",
-	"accountName": "Bose",
+	"accountName": "Praxis Corporation",
 	"opportunityType": "Existing Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "Kumatsu Motors - December Order",
-	"accountName": "Kiran",
+	"accountName": "Kumatsu Motors",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""
   },
   {
     "opportunityName": "ZiffCorp - November Order",
-	"accountName": "Mukherjee",
+	"accountName": "ZiffCorp",
 	"opportunityType": "New Business",
 	"opportunityCurrency": "INR - Indian Rupee",
 	"primaryCampaign": ""

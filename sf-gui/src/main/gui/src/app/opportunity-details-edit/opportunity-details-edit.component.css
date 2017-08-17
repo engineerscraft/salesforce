@@ -1,0 +1,199 @@
+.name-header {
+    color: #fff;
+    font-family: ElMessiri-Regular;
+    font-size: 2rem;
+    text-align: left;
+    padding: 6rem 8rem 2rem 8rem;
+}
+
+.name-sub-header {
+    color: #fff;
+    font-family: ElMessiri-Regular;
+    font-size: 1rem;
+    text-align: left;
+    padding-left: 8rem;
+    padding-bottom: 0.5rem;
+}
+
+.profile-header {
+    position: absolute;
+    left: 270px;
+    top: 40px;
+    z-index: 5;    
+}
+
+.edit-btn {
+    background: url("../../assets/img/ic_create_white_24px.svg") no-repeat 13px center;
+    width:50px;
+    height: 50px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4ca1af;
+    text-decoration: none;
+    z-index: 100;
+}
+.edit-btn > .material-icons{font-size:20px;}
+
+.edit-btn-fixed {
+    position: fixed;
+    top: 120px;
+    right: 10px;
+}
+
+
+.create-btn{
+    top: 400px;
+    background: url("/assets/img/ic_add_white_24px.svg") no-repeat 13px center;
+    width:50px;
+    height: 50px;
+    border-radius:100%;
+    color:#fff;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none; 
+    background-color: #4ca1af;
+    text-decoration: none;
+    z-index: 24;
+}
+.create-btn > .material-icons{font-size:20px;}
+
+.create-btn-fixed {
+  position: absolute;
+  right: 10px;
+}
+
+li {
+    width: 100%;
+    height: 100px;
+    max-height: 100px;
+    list-style: none;
+    border-bottom: 1px solid #4ca1af;
+    padding: 10px 20px;
+}
+
+li:hover {
+    border-left: 3px solid #4ca1af;
+    background-color: #E3EEFF;
+}
+
+h2 {
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.document-height {
+    height: 80vh;
+    overflow: auto;
+}
+
+.selectedDocument {
+    background-color: #E3EEFF;
+}
+
+.display-table .display-table {
+    padding: 0;
+}
+
+/* Timeline */
+
+.comment {
+    overflow: hidden;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    margin: 10px 0;
+    *zoom: 1;
+    width: 100%;
+}
+
+.input-comment {
+    overflow: hidden;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.comment-img {
+    float: left;
+    margin-right: 23px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.comment-img img { display: block }
+
+.comment-body { overflow: hidden }
+
+.comment .text {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.comment .text p:last-child { margin: 0 }
+
+.comment .attribution {
+    margin: 0.5em 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Decoration */
+
+.comments, .comment { position: relative }
+
+.comments:before, .comment:before, .comment .text:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 65px;
+}
+
+.comments:before {
+    width: 3px;
+    left: 105px;
+    bottom: 0px;
+    background: rgba(0,0,0,0.1);
+}
+
+.comment:before {
+    width: 9px;
+    height: 9px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    margin: 16px 0 0 -6px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
+    background: #ccc;
+}
+
+.comment:hover {
+    /*  cursor: url('../images/FB_CUR.cur');  See the result on http://lab.web-gate.fr/timeline/ */ 
+    cursor: cell; /* This line is for the cursor */
+}
+
+.comment:hover:before { background: #3b5998 }
+
+.comment .text:before {
+    top: 18px;
+    left: 78px;
+    width: 9px;
+    height: 9px;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: #e5e5e5;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}

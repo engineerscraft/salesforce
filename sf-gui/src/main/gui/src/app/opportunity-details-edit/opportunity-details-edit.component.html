@@ -1,3 +1,355 @@
-<p>
-  opportunity-details-edit works!
-</p>
+<app-side-bar></app-side-bar>
+<div class="page-header">
+  <h1>Opportunity Details</h1>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowUpdateMessage()">
+  <div class="modal-small">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Message</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <div class="group center">
+        <h3>Your update request is successful !!!</h3>
+        <div style="height:30px;">
+        </div>
+        <button type="button" class="btn ripple" (click)="closeAllDialog(null)">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="body" [ngClass]="{'disable-scroll' : modalDisplay === true }">
+  <app-spinner *ngIf="processingInProgress"></app-spinner>
+
+  <div class="display-table width-with-right-margin">
+    <div class="row span_4_of_4">
+      <div>
+        <div class="tab_container">
+          <input id="tab1" class="tab-radio" type="radio" name="tabs" value="1" checked/>
+          <label for="tab1" class="tab-header span_1_of_6 cell">Opportunity Information</label>
+
+          <input id="tab2" class="tab-radio" type="radio" name="tabs" value="2" />
+          <label for="tab2" class="tab-header span_1_of_6 cell">Additional Information</label>
+
+          <input id="tab3" class="tab-radio" type="radio" name="tabs" value="3" />
+          <label for="tab3" class="tab-header span_1_of_6 cell">Opportunity Timeline</label>
+
+          <section id="content1" class="tab-content">
+
+            <div class="table span_4_of_4">
+              <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editOpportunityInfo()"></a>
+              <div class="row">
+                <div class="cell">
+                  <label class="text-label">Opportunity Name</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{opportunityName}}</label>
+                </div>
+                <div class="cell">
+                </div>
+                <div class="cell">
+                </div>
+              </div>
+              <div class="row even-row">
+                <div class="cell">
+                  <label class="text-label">Account Name</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{accountName}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Opportunity Type</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{opportunityType}}</label>
+                </div>
+              </div>
+              <div class="row span_4_of_4">
+                <div class="cell">
+                  <label class="text-label">Opportunity Currency</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{opportunityCurrency}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Primary Campaign Source</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{primaryCampaign}}</label>
+                </div>
+              </div>                         
+            </div>
+          </section>
+          <section id="content2" class="tab-content">
+            <div class="table span_4_of_4">
+              <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAdditionalInfo()"></a>
+              <div class="row">
+                <div class="cell">
+                  <label class="text-label">Close Date</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{closeDate}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Opportunity Stage</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{opportunityStage}}</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cell">
+                  <label class="text-label">Opportunity Amount</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{opportunityAmount}}</label>
+                </div>
+                <div class="cell">
+                  <label class="text-label">Lead Source</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{leadSource}}</label>
+                </div>
+              </div>
+              <div class="row">                
+                <div class="cell">
+                  <label class="text-label">Product Type</label>
+                </div>
+                <div class="cell">
+                  <label class="text-value">{{productType}}</label>
+                </div>
+                
+              </div>
+            </div>
+          </section>
+
+          <section class="comments" id="content3" class="tab-content">
+            <div class="table span_4_of_4">
+            <article class="comment">
+              <a class="comment-img" href="#non">
+                <img src="" alt="" width="50" height="50" />
+              </a>
+                
+              <div class="comment-body">
+                <div class="text">
+                  <p>Hello, this is an example comment</p>
+                </div>
+                <p class="attribution">by <a href="javascript:void(0)">Joe Bloggs</a> at 2:20pm, 14th Jul 2017</p>
+              </div>
+            </article>
+            
+            <article class="comment">
+              <a class="comment-img" href="#non">
+              <img src="" alt="" width="50" height="50">
+              </a>
+                
+              <div class="comment-body">
+                <div class="text">
+                  <p>This is a much longer one that will go on for a few lines.</p>
+                  <p>It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</p>
+                </div>
+              <p class="attribution">by <a href="javascript:void(0)">Joe Bloggs</a> at 2:23pm, 4th Aug 2017</p>
+              </div>
+            </article>
+              
+            <article class="comment">
+              <a class="comment-img" href="#non">
+              <img src="" alt="" width="50" height="50">
+              </a>
+                
+              <div class="comment-body">
+                <div class="text">
+                  <p>Originally from <a href="https://cssdeck.com/item/301/timeline-style-blog-comments#comment_289">cssdeck.com</a> this presentation has been updated 
+                  to looks more precisely to the facebook timeline</p>
+                </div>
+              <p class="attribution">by <a href="javascript:void(0)">Luky Vj</a> at 2:44pm, 14th Jul 2017</p>
+              </div>
+            </article>
+
+            <article class="input-comment">          
+              <div class="comment-body">
+                <div class="text">
+                  <textarea rows="3" cols="150" placeholder="Enter your comment here...">
+                  </textarea>
+                </div>
+                <div class="row">
+                  <button type="submit" class="btn ripple">Post</button>
+              </div>
+              </div>
+            </article>
+            </div>
+          </section>​
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditOpportunityInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Opportunity Information</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupBasicInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupBasicInfo" #formGroupBasicInfoForm="ngForm" (ngSubmit)="onOpportunityInfoEdit()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Opportunity Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="opportunityName" required>
+                  <label class="text-input-label">Opportunity Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="accountName" required>
+                  <label class="text-input-label">Account Name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Opportunity Type</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="opportunityType">
+                      <option value="ExistingBusiness">Existing Business</option>
+                      <option value="NewBusiness">New Business</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Opportunity Currency</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="opportunityCurrency">
+                          <option value="INR">INR - Indian Rupee</option>
+                          <option value="USD">USD - U.S. Dollar</option>
+                          <option value="AUD">AUD - Australian Dollar</option>
+                        </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="primaryCampaign" required>
+                  <label class="text-input-label">Primary Campaign Source</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAdditionalInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Additional Information</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAdditionalInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupAdditionalInfo" #formGroupAdditionalInfoForm="ngForm" (ngSubmit)="onAdditionalInfoEdit()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Additional Information</h2>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial span_4_of_4" type="text" formControlName="closeDate" required>
+                  <label class="text-input-label">Close Date</label>
+                  <span class="highlight"></span>
+                  <span class="bar span_4_of_4"></span>
+                  <date-picker (outputEvents)="changeDate($event, 'closeDate')"></date-picker>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="opportunityAmount" required>
+                  <label class="text-input-label">Opportunity Amount</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Lead Source</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="leadSource">
+                        <option value=""></option>
+                        <option value="Advertisement">Advertisement</option>
+                        <option value="Employee Referal">Employee Referal</option>
+                        <option value="External Referal">External Referal</option>
+                        <option value="Partner">Partner</option>
+                        <option value="Public Relations">Public Relations</option>
+                        <option value="Seminar Internal">Seminar Internal</option>
+                        <option value="Seminar Partner">Seminar Partner</option>
+                        <option value="Web">Web</option>
+                        <option value="Other">Other</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Product Type</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="productType">
+                      <option value=""></option>
+                      <option value="Hardware">Hardware</option>
+                      <option value="Software">Software</option>
+                      <option value="Gadgets">Gadgets</option>
+                      <option value="Widgets">Widgets</option>
+                      <option value="Tokens">Tokens</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_4_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Opportunity Stage</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select class="span_4_of_4" formControlName="opportunityStage">
+                        <option value=""></option>
+                        <option value="Prospective">Prospective</option>
+                        <option value="Qualification">Qualification</option>
+                        <option value="Need Analysis">Need Analysis</option>
+                        <option value="Value Proposition">Value Proposition</option>
+                        <option value="Id. Decision Makers">Id. Decision Makers</option>
+                        <option value="Perception Analysis">Perception Analysis</option>
+                        <option value="Proposal or Price Quote">Proposal or Price Quote</option>
+                        <option value="Negotiation or Review">Negotiation or Review</option>
+                        <option value="Closed Won">Closed Won</option>
+                        <option value="Closed Lost">Closed Lost</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
