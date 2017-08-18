@@ -11,6 +11,8 @@ import {AccountDetailsComponent} from './account-details/account-details.compone
 import {AccountDetailsResultComponent} from './account-details-result/account-details-result.component';
 import {AccountDetailsEditComponent} from './account-details-edit/account-details-edit.component';
 import {ContactDetailsComponent} from './contact-details/contact-details.component';
+import {ContactDetailsResultComponent} from './contact-details-result/contact-details-result.component';
+import {ContactDetailsEditComponent} from './contact-details-edit/contact-details-edit.component';
 import {OpportunityDetailsComponent} from './opportunity-details/opportunity-details.component';
 import {OpportunityDetailsResultComponent} from './opportunity-details-result/opportunity-details-result.component';
 import {OpportunityDetailsEditComponent} from './opportunity-details-edit/opportunity-details-edit.component';
@@ -25,6 +27,8 @@ export const routing = RouterModule.forRoot([
     { path: 'accountDetailsResult', component: AccountDetailsResultComponent, canActivate: [AuthguardService] },
     { path: 'accountDetailsEdit/:accountName', component: AccountDetailsEditComponent, canActivate: [AuthguardService] },
     { path: 'contactDetails', component: ContactDetailsComponent, canActivate: [AuthguardService] },
+    { path: 'contactDetailsResult', component: ContactDetailsResultComponent, canActivate: [AuthguardService] },
+    { path: 'contactDetailsEdit/:contactName', component: ContactDetailsEditComponent, canActivate: [AuthguardService] },
     { path: 'opportunityDetails', component: OpportunityDetailsComponent, canActivate: [AuthguardService] },
     { path: 'opportunityDetailsResult', component: OpportunityDetailsResultComponent, canActivate: [AuthguardService] },
     { path: 'opportunityDetailsEdit/:opportunityName', component: OpportunityDetailsEditComponent, canActivate: [AuthguardService] },
