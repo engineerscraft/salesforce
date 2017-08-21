@@ -108,7 +108,7 @@
                   <label class="text-label">Account Currency</label>
                 </div>
                 <div class="cell">
-                  <label class="text-value">{{contactCurrency}}</label>
+                  <label class="text-value">{{accountCurrency}}</label>
                 </div>
                 <div class="cell">
                   <label class="text-label"></label>
@@ -120,7 +120,7 @@
             </div>
           </section>
           <section id="content2" class="tab-content">
-            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAdditionalInfo()"></a>
+            <a class="edit-btn edit-btn-fixed ripple" href="javascript:void(0)" (click)="editAddressInfo()"></a>
             <div class="toggle">
               <input type="checkbox" value="selected" id="mailingAddress" class="toggle-input" checked>
               <label for="mailingAddress" class="toggle-label">Mailing Address</label>
@@ -312,12 +312,12 @@
   <div class="modal-medium">
     <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
     <div class="modal-header">
-      <h1>Edit Lead Information</h1>
+      <h1>Edit Contact Information</h1>
     </div>
     <div class="modal-body">
       <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
       <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupBasicInfoForm.ngSubmit.emit()"></a>
-      <form [formGroup]="formGroupBasicInfo" #formGroupBasicInfoForm="ngForm" (ngSubmit)="onLeadInfoEdit()" method="post">
+      <form [formGroup]="formGroupBasicInfo" #formGroupBasicInfoForm="ngForm" (ngSubmit)="onContactInfoEdit()" method="post">
         <fieldset [disabled]="isProcessingInProgress()">
           <div class="display-table width-with-right-margin">
             <h2 class="group-header">Full Name</h2>
@@ -326,7 +326,7 @@
                 <div class="group combo-group">
                   <label class="text-input-label">Title*</label>
                   <div class="select select-fancy select-fancy-image">
-                    <select formControlName="leadTitle">
+                    <select formControlName="contactTitle">
                       <option value="Dr.">Dr</option>
                       <option value="Mr.">Mr</option>
                       <option value="Miss.">Miss</option>
@@ -339,7 +339,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="leadName" required>
+                  <input class="inputMaterial" formControlName="contactName" required>
                   <label class="text-input-label">First Name</label>
                 </div>
               </div>
@@ -347,7 +347,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="leadMiddleName" required>
+                  <input class="inputMaterial" formControlName="contactMiddleName" required>
                   <label class="text-input-label">Middle Name</label>
                 </div>
               </div>
@@ -355,7 +355,7 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="leadLastName" required>
+                  <input class="inputMaterial" formControlName="contactLastName" required>
                   <label class="text-input-label">Last Name</label>
                 </div>
               </div>
@@ -366,58 +366,41 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="leadEmailId" required>
+                  <input class="inputMaterial" formControlName="contactEmailId" required>
                   <label class="text-input-label">Email Id</label>
                 </div>
               </div>
             </div>
-
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="leadContactNo" required>
+                  <input class="inputMaterial" formControlName="contactNo" required>
                   <label class="text-input-label">Contact Number</label>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="display-table width-with-right-margin">
-            <h2 class="group-header">Lead Information</h2>
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="leadCompany" required>
-                  <label class="text-input-label">Company Name</label>
+                  <input class="inputMaterial" formControlName="contactSkype" required>
+                  <label class="text-input-label">Skype Id</label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="leadWebsite" required>
-                  <label class="text-input-label">Website</label>
+                  <input class="inputMaterial" formControlName="accountName" required>
+                  <label class="text-input-label">Account Name</label>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">Lead Status</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="leadStatus">
-                          <option value="OPEN">Open</option>
-                          <option value="CONTRACTED">Contracted</option>
-                          <option value="QUALIFIED">Qualified</option>
-                          <option value="UNQUALIFIED">Unqualified</option>
-                        </select>
-                  </div>
-                </div>
-              </div>
               <div class="cell span_2_of_4">
                 <div class="group combo-group">
                   <label class="text-input-label">Account Currency</label>
                   <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="leadCurrency">
+                    <select class="span_4_of_4" formControlName="accountCurrency">
                           <option value="INR">INR - Indian Rupee</option>
                           <option value="USD">USD - U.S. Dollar</option>
                           <option value="AUD">AUD - Australian Dollar</option>
@@ -426,10 +409,126 @@
                 </div>
               </div>
             </div>
+          </div>          
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAddressInfo()">
+  <div class="modal-medium">
+    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
+    <div class="modal-header">
+      <h1>Edit Address Details</h1>
+    </div>
+    <div class="modal-body">
+      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
+      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAddressInfoForm.ngSubmit.emit()"></a>
+      <form [formGroup]="formGroupAddressInfo" #formGroupAddressInfoForm="ngForm" (ngSubmit)="onAddressInfoEdit()" method="post">
+        <fieldset [disabled]="isProcessingInProgress()">
+          <div class="display-table width-with-right-margin">
+            <h2 class="group-header">Mailing Address</h2>
+            <div class="cell span_4_of_4" formGroupName="mailing">
+            <div class="row">
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="houseNo">
+                    <label class="text-input-label">House Number</label>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <div class="group">
+                    <input class="inputMaterial" formControlName="streetName">
+                    <label class="text-input-label">Street</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_3_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="area">
+                  <label class="text-input-label">Area</label>
+                </div>
+              </div>
+              <div class="cell span_1_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="pinno">
+                  <label class="text-input-label">PIN / Zip Code</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+                <div class="group">
+                  <input class="inputMaterial" formControlName="region">
+                  <label class="text-input-label">Region</label>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+                <div class="group combo-group">
+                  <label class="text-input-label">Country</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="countryName">
+                      <option value="India">India</option>
+                      <option value="USA">USA</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Germany">Germany</option>
+                      <option value="UAE">UAE</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cell span_2_of_4">
+               <div class="group combo-group">
+                  <label class="text-input-label">State</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="stateName">
+                      <option value="Karnataka">Karnataka</option>
+                      <option value="West Bengal">West Bengal</option>
+                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Maharashtra">Maharashtra</option>
+                      <option value="Tamil Nadu">Tamil Nadu</option>
+                      <option value="Punjab">Punjab</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="cell span_2_of_4">
+               <div class="group combo-group">
+                  <label class="text-input-label">District</label>
+                  <div class="select select-fancy select-fancy-image span_4_of_4">
+                    <select formControlName="districtName">
+                      <option value=""></option>
+                      <option value="Bagalkot">Bagalkot</option>
+                      <option value="Bengaluru Urban">Bengaluru Urban</option>
+                      <option value="Bengaluru Rural">Bengaluru Rural</option>
+                      <option value="Bellary">Bellary</option>
+                      <option value="Gadag">Gadag</option>
+                      <option value="Hassan">Hassan</option>
+                      <option value="Mysuru">Mysuru</option>
+                      <option value="Kollar">Kollar</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
           </div>
           <div class="display-table width-with-right-margin">
-            <h2 class="group-header">Address Information</h2>
-            <div class="cell span_4_of_4" formGroupName="permanent">
+            <h2 class="group-header">Other Address</h2>
+            <div class="cell span_4_of_4" formGroupName="other">
             <div class="row">
               <div class="cell span_1_of_4">
                 <div class="group">
@@ -532,183 +631,6 @@
   </div>
 </div>
 
-<div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAddressDetails()">
-  <div class="modal-medium">
-    <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
-    <div class="modal-header">
-      <h1>Edit Address Details</h1>
-    </div>
-    <div class="modal-body">
-      <a class="modal-close-btn modal-close-btn-fixed ripple" href="javascript:void(0)" (click)="closeAllDialog(null)"></a>
-      <a class="save-btn save-btn-fixed ripple" href="javascript:void(0)" (click)="formGroupAddressDetailsForm.ngSubmit.emit()"></a>
-      <form [formGroup]="formGroupAddressDetails" #formGroupAddressDetailsForm="ngForm" (ngSubmit)="onAddressDetailsUpdate()" method="post">
-        <fieldset [disabled]="isProcessingInProgress()">
-          <div class="display-table width-with-right-margin">
-            <h2 class="group-header">Permanent Address</h2>
-            <div class="cell span_4_of_4" formGroupName="permanent">
-            <div class="row">
-              <div class="cell span_1_of_4">
-                <div class="group">
-                  <div class="group">
-                    <input class="inputMaterial" formControlName="houseNo">
-                    <label class="text-input-label">House Number</label>
-                  </div>
-                </div>
-              </div>
-              <div class="cell span_3_of_4">
-                <div class="group">
-                  <div class="group">
-                    <input class="inputMaterial" formControlName="streetName">
-                    <label class="text-input-label">Street</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell span_3_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="area">
-                  <label class="text-input-label">Area</label>
-                </div>
-              </div>
-              <div class="cell span_1_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="pinno">
-                  <label class="text-input-label">PIN / Zip Code</label>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="region">
-                  <label class="text-input-label">Region</label>
-                </div>
-              </div>
-              <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">Country</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" (change)="onCountryChange(formGroupAddressDetails.controls.permanent.controls['countryId'].value, 'permanent')" formControlName="countryId">
-                      <option value=""></option>
-                      <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">State</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(formGroupAddressDetails.controls.permanent.controls['stateId'].value, 'permanent')">
-                      <option value=""></option>
-                      <option *ngFor="let state of statesPermanent" value="{{state.stateId}}">{{state.stateName}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">District</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="districtId">
-                      <option value=""></option>
-                      <option *ngFor="let distr of districtsPermanent" value="{{distr.districtId}}">{{distr.districtName}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-          </div>
-          <div class="display-table width-with-right-margin">
-            <h2 class="group-header">Present Address</h2>
-            <div class="cell span_4_of_4" formGroupName="present">
-            <div class="row">
-              <div class="cell span_1_of_4">
-                <div class="group">
-                  <div class="group">
-                    <input class="inputMaterial" formControlName="houseNo">
-                    <label class="text-input-label">House Number</label>
-                  </div>
-                </div>
-              </div>
-              <div class="cell span_3_of_4">
-                <div class="group">
-                  <div class="group">
-                    <input class="inputMaterial" formControlName="streetName">
-                    <label class="text-input-label">Street</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell span_3_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="area">
-                  <label class="text-input-label">Area</label>
-                </div>
-              </div>
-              <div class="cell span_1_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="pinno">
-                  <label class="text-input-label">PIN / Zip Code</label>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell span_2_of_4">
-                <div class="group">
-                  <input class="inputMaterial" formControlName="region">
-                  <label class="text-input-label">Region</label>
-                </div>
-              </div>
-              <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">Country</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" (change)="onCountryChange(formGroupAddressDetails.controls.present.controls['countryId'].value, 'present')" formControlName="countryId">
-                      <option value=""></option>
-                      <option *ngFor="let country of countries" value="{{country.countryId}}">{{country.countryName}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">State</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="stateId" (change)="onStateChange(formGroupAddressDetails.controls.present.controls['stateId'].value, 'present')">
-                      <option value=""></option>
-                      <option *ngFor="let state of statesPresent" value="{{state.stateId}}">{{state.stateName}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">District</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="districtId">
-                      <option value=""></option>
-                      <option *ngFor="let distr of districtsPresent" value="{{distr.districtId}}">{{distr.districtName}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-</div>
-
 <div class="modal-backdrop" (click)="closeAllDialog($event)" *ngIf="getShowEditAdditionalInfo()">
   <div class="modal-medium">
     <app-spinner *ngIf="isProcessingInProgress()"></app-spinner>
@@ -725,16 +647,16 @@
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="noOfEmployees" required>
-                  <label class="text-input-label">No Of Employees</label>
+                  <input class="inputMaterial" formControlName="contactFax" required>
+                  <label class="text-input-label">Fax No</label>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="cell span_4_of_4">
                 <div class="group">
-                  <input class="inputMaterial" formControlName="annualRevenue" required>
-                  <label class="text-input-label">Annual Revenue</label>
+                  <input class="inputMaterial" formControlName="contactHomePhone" required>
+                  <label class="text-input-label">Home Phone</label>
                 </div>
               </div>
             </div>
@@ -759,18 +681,12 @@
                 </div>
               </div>
               <div class="cell span_2_of_4">
-                <div class="group combo-group">
-                  <label class="text-input-label">Industry</label>
-                  <div class="select select-fancy select-fancy-image span_4_of_4">
-                    <select class="span_4_of_4" formControlName="industry">
-                      <option value=""></option>
-                      <option value="Banking">Banking</option>
-                      <option value="Agriculture">Agriculture</option>
-                      <option value="Chemical">Chemical</option>
-                      <option value="Communications">Communications</option>
-                      <option value="IT Industry">IT Industry</option>
-                    </select>
-                  </div>
+                <div class="group">
+                  <input class="inputMaterial span_4_of_4" type="text" formControlName="contactBirthday" required>
+                  <label class="text-input-label">BirthDay</label>
+                  <span class="highlight"></span>
+                  <span class="bar span_4_of_4"></span>
+                  <date-picker (outputEvents)="changeDate($event, 'contactBirthday')"></date-picker>
                 </div>
               </div>
             </div>

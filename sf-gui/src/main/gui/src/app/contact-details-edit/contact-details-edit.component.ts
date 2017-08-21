@@ -80,7 +80,7 @@ export class ContactDetailsEditComponent implements OnInit {
       this.contactFax = "4403434";
       this.contactHomePhone = "044567867";
       this.contactBirthday = "03/04/92";
-      this.leadSource = "Banking";
+      this.leadSource = "Web";
       this.description = "This is a possible contact. It has been created to maintain and observe it's growth.";
     } else {
       this.contactTitle = "Dr.";
@@ -148,6 +148,7 @@ export class ContactDetailsEditComponent implements OnInit {
       this.modalDisplay = false;
       this.showUpdateMessage = false;
       this.showEditContactInfo = false;
+      this.showEditAddressInfo = false;
       this.showEditAdditionalInfo = false;
     }
   }
@@ -202,6 +203,24 @@ export class ContactDetailsEditComponent implements OnInit {
 
   getShowEditAdditionalInfo() {
     return this.showEditAdditionalInfo;
+  }
+
+    /**
+   * 
+   * @param event Date change handler for Employee Creation
+   * the labelName guides which field is to be changed
+   * @param labelName 
+   */
+  changeDate(event, labelName) {
+
+    if (labelName === 'contactBirthday') {
+      if (event.type === 'dateChanged') {
+        this.contactBirthday.patchValue({ contactBirthday: event.data.formatted });
+      }
+      if (event.type === 'clear') {
+        this.contactBirthday.patchValue({ contactBirthday: '' });
+      }
+    }
   }
 
 }
