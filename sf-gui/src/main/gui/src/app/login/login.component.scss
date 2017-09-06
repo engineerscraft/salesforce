@@ -1,0 +1,20 @@
+@import "../../styles";
+
+.full-screen {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.login-header-color {
+    color: #ffc107 !important;
+}
+
+.secondary-text-color {
+    color: #fff !important;
+}
+
+.login-card {
+    @extend .card;
+    background-color: rgba(0, 0, 0, 0.4);
+}
