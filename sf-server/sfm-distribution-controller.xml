@@ -6,7 +6,7 @@
 	<fileSets>
 		<fileSet>
 			<directory>src/main/resources/bin</directory>
-			<outputDirectory>hrms</outputDirectory>
+			<outputDirectory>sfm</outputDirectory>
 			<includes>
 				<include>*.sh</include>
 				<include>*.bat</include>
@@ -15,7 +15,7 @@
 		</fileSet>
 		<fileSet>
 			<directory>src/main/resources</directory>
-			<outputDirectory>hrms/config</outputDirectory>
+			<outputDirectory>sfm/config</outputDirectory>
 			<includes>
 				<include>application-prod.properties</include>
 				<include>log4j2.xml</include>
@@ -24,14 +24,14 @@
 		</fileSet>
 		<fileSet>
 			<directory>target</directory>
-			<outputDirectory>hrms/lib</outputDirectory>
+			<outputDirectory>sfm/lib</outputDirectory>
 			<includes>
-				<include>hrms.jar</include>
+				<include>sfm.jar</include>
 			</includes>
 		</fileSet>
 		<fileSet>
 			<directory>src/main/resources</directory>
-			<outputDirectory>hrms/log</outputDirectory>
+			<outputDirectory>sfm/log</outputDirectory>
 			<fileMode>0755</fileMode>
 			<excludes>
 				<exclude>**/*</exclude>

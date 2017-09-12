@@ -12,33 +12,29 @@
 11. Java 1.8 (JAVA_HOME environment variable to be set correctly and JDK bin folder path to be added to PATH environment variable)
 
 # Code Checkout
-1. Go to a folder where you want to checkout the entire hrms folder
-2. Run the command `https://github.com/engineerscraft/hrms.git`
+1. Go to a folder where you want to checkout the entire salesforce folder
+2. Run the command `https://github.com/engineerscraft/salesforce.git`
 
 # Database Setup
 1. Add the bin/ location of the extracted PostgreSQL folder in the environment PATH variable
 2. Open a command prompt and run the following command to initialize a new database: `initdb.exe <filesystem location of the database files>`
 3. Start the database by running the command: `pg_ctl -D <location given in step 2> -l <log file name along with path> start`
 4. At any point of time, the database can be stopped by using the command: `pg_ctl -D <location given in step 2> stop`
-5. Create a new database with the command: `createdb hrmsdb`
-6. login to the database with the command: `psql -d hrmsdb`. 
-7. Run the following set of SQL to setup the schema and user:
+7. Run the following set of SQL to setup the admin user:
 ```
-CREATE SCHEMA HRMS;
-CREATE USER "hrmsapp" WITH CREATEROLE PASSWORD 'hrmsapp';
-CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
+CREATE USER "sysadm" WITH CREATEROLE SUPERUSER CREATEDB PASSWORD 'sysadm';
 ```
-8. Use your favourite client to execute the scripts: hua_setup/all_ddl.sql, hua_setup/all_baseline.sql and hua_setup/all_test_data.sql
+8. Run the maven command `mvn -P dbsetup install`. Before doing this ensure that so session is connected to the DB.
 
 # Environment Setup
-1. Create an environment variable HRMS_HOME and point a directory location where you want to store the log.
+1. Create an environment variable SFM_HOME and point a directory location where you want to store the log.
 2. Create a folder called log under the location.
 
 # Code Build
-1. Go inside the `hrms` folder and run the command `mvn clean install`. Note: For the first time, it will download a lot of stuff and hence it may take quite some time
+1. Go inside the `salesforce` folder and run the command `mvn clean install`. Note: For the first time, it will download a lot of stuff and hence it may take quite some time
 
 # Code Commit
-1. After making the changes, go to the root hrms folder
+1. After making the changes, go to the root salesforce folder
 2. Run the command `git add *` to add any new files you might have created
 3. Run the command `git commit -m <your comment withing double quotes>` to commit the code
 4. Run the command `git push` to push the committed code to the git repository
@@ -60,7 +56,7 @@ CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
 4. There is a tool called 'gitk' (should be available by default), that presents a nice view of the changes done by various commits. 
 
 # Setting Up LDAP
-1. Import the LDIF file hrms\hua_setup\hrms.ldif into the LDAP server using the JXplorer 
+1. Import the LDIF file salesforce\sf-setup\sfm.ldif into the LDAP server using the JXplorer 
    Note: Login details of LDAP
    * Host: localhost
    * Port: 10389
@@ -68,52 +64,52 @@ CREATE USER "sysadm" WITH CREATEROLE SUPERUSER PASSWORD 'sysadm';
    * Password: secret
    * Protocol: LDAPv3
    * Level: User + Password
-2. Users TEST/TEST, HUB1/HUB1, HUB2/HUB2, HUB10/HUB10, HUB42/HUB42 will be created. Here TEST is an ADMIN user and not an employee. HUB1 and HUB42 are SUPERVISOR, HUB10 is an HR, HUB2 is a normal EMPLOYEE.
+2. Users TEST/TEST, TEST1/TEST1 will be created.
    
 # Running the Servers
-1. Open the command terminal, go to the folder hrms\hua-gui\src\main\gui and run the command `npm start`
-2. Open another terminal, go to the folder hrms\hua-server and run the command `mvn spring-boot:run`
+1. Open the command terminal, go to the folder salesforce\sf-gui\src\main\gui and run the command `npm start`
+2. Open another terminal, go to the folder salesforce\sf-server and run the command `mvn spring-boot:run`
 3. Open a web browser and go to the URL http://localhost:4200 and login using the credentials TEST/TEST
 
 # Generate REST API Documentation
-1. Go to location hua-server
+1. Go to location sf-server
 2. Run the command `mvn -P doc install`
 3. The document will ge generated at docs\api
-4. The document will be available at https://engineerscraft.github.io/hrms/api/
+4. The document will be available at https://engineerscraft.github.io/salesforce/api/
 
 # Generate DB Structure Documentation
-1. Go to location hua-server
+1. Go to location sf-server
 2. Run the command `mvn -P doc site`
 3. The document will ge generated at docs\database\schemaspy
-4. The document will be available at https://engineerscraft.github.io/hrms/database/schemaspy/
+4. The document will be available at https://engineerscraft.github.io/salesforce/database/schemaspy/
 
 # Running Integration Tests for APIs
 1. Run the command `mvn -P test integration-test`
 
 # Running with SSL (HTTPS with self-signed certificate)
-1. Run the command `java -jar -Dspring.profiles.active=prod hrms.jar`
+1. Run the command `java -jar -Dspring.profiles.active=prod salesforce.jar`
 2. Open https://localhost:8080 in Chrome and accept the security exception to continue (since self-signed certificate authenticity could not be verified).
-3. To use the self-signed certificate with other applications, such as, Postman, import the certificate (from hua-server/src/main/resources folder) as Trusted Root in OS Credential Store.
+3. To use the self-signed certificate with other applications, such as, Postman, import the certificate (from sf-server/src/main/resources folder) as Trusted Root in OS Credential Store.
 
-# Running the server using script: start_hrms.bat
+# Running the server using script: start_salesforce.bat
 1. Build the distribution packge using: 'mvn clean install'
-2. Inside hrms\hua-server\target directory hrms-distribution.zip and hrms-distribution.tar will be created.
-3. Ship hrms-distribution.zip to desired location.
-4. Extract hrms-distribution.zip which will give you directory structure as tabulated below:
+2. Inside salesforce\sf-server\target directory salesforce-distribution.zip and salesforce-distribution.tar will be created.
+3. Ship salesforce-distribution.zip to desired location.
+4. Extract salesforce-distribution.zip which will give you directory structure as tabulated below:
 
- 	hrms --> config --> Application-prod.properties
+ 	salesforce --> config --> Application-prod.properties
  
- 	hrms --> config --> keystore.p12
+ 	salesforce --> config --> keystore.p12
  
- 	hrms --> config --> log4j2.xml		
+ 	salesforce --> config --> log4j2.xml		
  
- 	hrms --> lib --> hrms.jar		
+ 	salesforce --> lib --> salesforce.jar		
  
- 	hrms --> log  
+ 	salesforce --> log  
  
- 	hrms --> start_hrms.bat
+ 	salesforce --> start_salesforce.bat
  
- 	hrms --> start_hrms.sh  
+ 	salesforce --> start_salesforce.sh  
    
-5. Execute start_hrms.bat to start the application by passing argument (e.g prod). If no argument is passed, the default will be taken as prod.
-   './start_hrms.bat prod'
+5. Execute start_salesforce.bat to start the application by passing argument (e.g prod). If no argument is passed, the default will be taken as prod.
+   './start_salesforce.bat prod'
