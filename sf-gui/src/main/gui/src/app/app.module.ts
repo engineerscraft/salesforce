@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     LoginComponent,
     NewPasswordComponent,
     HeroimageComponent,
-    AppDashboardComponent
+    AppDashboardComponent,
+    NavbarComponent
   ],
   imports: [
     RouterModule.forRoot(
