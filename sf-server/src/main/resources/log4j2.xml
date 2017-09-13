@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration monitorinterval="300" status="info" strict="true">
 	<Properties>
-		<Property name="filePath">${env:HRMS_HOME}/log</Property>
-		<Property name="filename">${env:HRMS_HOME}/log/hrms
+		<Property name="filePath">${env:SFM_HOME}/log</Property>
+		<Property name="filename">${env:SFM_HOME}/log/sfm
 		</Property>
 		<property name="logSize">10 MB</property>
 	</Properties>
@@ -27,7 +27,7 @@
 			</Policies>
 		</RollingFile>
 		<RollingFile name="RollingFileError" fileName="${filename}_error.log"
-			filePattern="${filePath}/sample_error-%d{yyyy-dd-MM}-%i.log"
+			filePattern="${filePath}/sfm_error-%d{yyyy-dd-MM}-%i.log"
 			immediateFlush="true">
 			<PatternLayout>
 				<Pattern>%d{HH:mm:ss,SSS} %p %c{1.}[%L] [%t] %m%n

@@ -11,7 +11,6 @@ import com.salesforce.rest.AuthenticationEndpoint;
 import com.salesforce.rest.ChangePasswordEndpoint;
 import com.salesforce.rest.HealthCheckEndpoint;
 import com.salesforce.rest.PermissionEndpoint;
-import com.salesforce.rest.UserManagementEndpoint;
 
 @ApplicationPath("/resources")
 public class RestConfig extends ResourceConfig {
@@ -22,7 +21,6 @@ public class RestConfig extends ResourceConfig {
                 AuthorizationFilter.class, 
                 HealthCheckEndpoint.class, 
                 PermissionEndpoint.class, 
-                UserManagementEndpoint.class,
                 ChangePasswordEndpoint.class, 
                 MultiPartFeature.class);
     }
