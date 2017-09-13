@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDropdown  } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -38,7 +38,7 @@ const appRoutes: Routes = [
     HttpModule,
     NgbModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [AuthService, NgbDropdown],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

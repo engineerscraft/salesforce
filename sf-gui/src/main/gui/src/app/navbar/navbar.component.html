@@ -1,30 +1,47 @@
 <nav class="navbar navbar-toggleable-xs navbar-expand-md navbar-dark bg-primary">
-  <button [attr.aria-expanded]="!isNavbarCollapsed" (click)="isNavbarCollapsed = !isNavbarCollapsed" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+  <button [attr.aria-expanded]="!isNavbarCollapsed" (click)="isNavbarCollapsed = !isNavbarCollapsed" class="navbar-toggler navbar-toggler-right"
+    type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#">SFM</a>
   <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+      <li class="nav-item dropdown" ngbDropdown>
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+                New
+              </a>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Sales Representative</a>
+          <a class="dropdown-item" href="#">Contact</a>
+          <a class="dropdown-item" href="#">Lead</a>
+        </div>
       </li>
       <li class="nav-item dropdown" ngbDropdown>
         <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-                Dropdown link
+                Search
               </a>
         <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Sales Representative</a>
+          <a class="dropdown-item" href="#">Contact</a>
+          <a class="dropdown-item" href="#">Lead</a>
+          <a class="dropdown-item" href="#">Opportunity</a>
+          <a class="dropdown-item" href="#">Account</a>
         </div>
       </li>
     </ul>
+
+      <div class="dropdown show" ngbDropdown>
+        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          {{division}}
+      </button>
+        <div ngbDropdownMenu class="dropdown-menu pull-right" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" (click)="division = 'All'">All</a>
+          <a class="dropdown-item" (click)="division = 'Middle East & Africa'">Middle East & Africa</a>
+          <a class="dropdown-item" (click)="division = 'Asia Pacific'">Asia Pacific</a>
+        </div>
+      </div>
   </div>
 </nav>
