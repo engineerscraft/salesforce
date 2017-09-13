@@ -38,10 +38,10 @@ public class PermissionEndpoint {
         try {
             List<Permission> permissions = authenticationRepository.retriveViewPermissions(securityContext.getUserPrincipal().getName());
            
-            if (permissions.size() == 0) {
+            /*if (permissions.size() == 0) {
                 logger.debug("No permission given to the user: {}", () -> securityContext.getUserPrincipal().getName());
                 return Response.status(Response.Status.NOT_FOUND).entity(new Message("No permission given to the user")).build();
-            } else
+            } else*/
                 return Response.status(Response.Status.OK).entity(permissions).build();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

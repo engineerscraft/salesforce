@@ -52710,3 +52710,9 @@ INSERT INTO SFM.DISTRICT_MASTER (DISTRICT_ID, DISTRICT_NAME, STATE_ID) VALUES
 (48312, 'Lewisburg', 3976),
 (48313, 'Ravenswood', 3976),
 (48314, 'Summersville', 3976);
+
+
+INSERT INTO SFM.ROLE_MASTER VALUES
+(1, 'ADMIN', 'Administrator Role'),
+(2, 'SALESREP', 'Sales Representative');
+
