@@ -1,0 +1,305 @@
+swagger: '2.0'
+info:
+  description: This is an API documentation for SFM
+  version: 1.0.0
+  title: SFM
+host: 'localhost:8080'
+basePath: /resources
+tags:
+  - name: meta
+    description: Meta/Master Data Access.
+  - name: security
+    description: Everything about the security.
+schemes:
+  - http
+paths:
+  /v1/state:
+    get:
+      tags:
+        - meta
+      summary: Gets List of States for a Given Country
+      description: >-
+        Gets the list of states for a given country. This data will be required
+        while saving the address of the contact.
+      operationId: getStates
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: 'Authorization: Bearer '
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: countryId
+          in: query
+          description: Country for which the list of states will be retrieved.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The list of states are successfully retrieved.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/State'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: 'private, no-store, max-age=300'
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Message'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Message'
+        '404':
+          description: No state found for the given country.
+          schema:
+            $ref: '#/definitions/Message'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Message'
+  /v1/country:
+    get:
+      tags:
+        - meta
+      summary: Returns List of Countries
+      description: Returns list of all countries.
+      operationId: getCountries
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: 'Authorization: Bearer '
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The list of countries is retrieved successfully.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Country'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: 'private, no-store, max-age=300'
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Message'
+        '403':
+          description: User does not have permission to execute this command.
+          schema:
+            $ref: '#/definitions/Message'
+        '404':
+          description: No country is found.
+          schema:
+            $ref: '#/definitions/Message'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Message'
+  /v1/district:
+    get:
+      tags:
+        - meta
+      summary: Returns List of Districts
+      description: Returns list of districts in a given state.
+      operationId: getDistricts
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: 'Authorization: Bearer '
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: stateId
+          in: query
+          description: The id of the state whose districts are to be retrieved.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The districts are successfully retrieved.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/District'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: 'private, no-store, max-age=300'
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Message'
+        '403':
+          description: User does not have permission to execute this command
+          schema:
+            $ref: '#/definitions/Message'
+        '404':
+          description: No district is found for the given state.
+          schema:
+            $ref: '#/definitions/Message'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Message'
+  /v1/status:
+    get:
+      tags:
+        - meta
+      summary: Returns List of Status
+      description: Returns list of status for a given entity.
+      operationId: getStatus
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: 'Authorization: Bearer '
+          in: header
+          description: Access token to be sent for authentication and authorization.
+          required: true
+          type: string
+        - name: entity
+          in: query
+          description: The entity whose status to be retrieved.
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The status successfully retrieved.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Status'
+          headers:
+            Cache-Control:
+              description: Caching
+              type: string
+              default: 'private, no-store, max-age=300'
+        '401':
+          description: The access token expired or the access token is invalid.
+          schema:
+            $ref: '#/definitions/Message'
+        '403':
+          description: User does not have permission to execute this command
+          schema:
+            $ref: '#/definitions/Message'
+        '404':
+          description: No status is found for the given entity.
+          schema:
+            $ref: '#/definitions/Message'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Message'
+definitions:
+  Message:
+    type: object
+    properties:
+      message:
+        type: string
+        description: Detailed Message.
+    required:
+      - message
+  Country:
+    type: object
+    properties:
+      countryId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a country.
+      countryName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the country.
+    required:
+      - countryId
+      - countryName
+  State:
+    type: object
+    properties:
+      stateId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a state.
+      stateName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the state.
+      countryId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a state.
+      countryName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the country.
+    required:
+      - stateId
+      - stateName
+      - countryId
+      - countryName
+  District:
+    type: object
+    properties:
+      districtId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a district.
+      districtName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the district.
+      stateId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a state.
+      stateName:
+        type: string
+        format: varchar
+        maxLength: 32
+        description: Name of the state.
+    required:
+      - districtId
+      - districtName
+      - stateId
+      - stateName
+  Status:
+    type: object
+    properties:
+      pubKey:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: Public Key a status.
+      des:
+        type: string
+        format: varchar
+        maxLength: 20
+        description: Description of the status.
+      color:
+        type: string
+        format: varchar
+        maxLength: 10
+        description: Color of the status required to reflect in GUI.
+    required:
+      - pubKey
+      - des
