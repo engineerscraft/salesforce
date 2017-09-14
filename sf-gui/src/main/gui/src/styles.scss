@@ -1,5 +1,5 @@
 
-$blue: #4ca1af;
+$theme-color: #4ca1af;
 
 $btn-focus-box-outline: 1;
 $custom-btn-focus-box-shadow-width: 0;
@@ -10,6 +10,10 @@ $custom-btn-focus-box-shadow-width: 0;
 
 body {
     background-color: #f3f3f4;
+}
+
+.bg-white {
+  background: #fff;
 }
 
 /****** Ripple Effect *************/
