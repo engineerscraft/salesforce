@@ -12,10 +12,12 @@ import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LeadCreationComponent } from './lead-creation/lead-creation.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'appDashboard', component: AppDashboardComponent }
+  { path: 'appDashboard', component: AppDashboardComponent },
+  { path: 'leadCreation', component: LeadCreationComponent }
 ];
 
 @NgModule({
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     NewPasswordComponent,
     HeroimageComponent,
     AppDashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    LeadCreationComponent
   ],
   imports: [
     RouterModule.forRoot(
