@@ -52716,3 +52716,19 @@ INSERT INTO SFM.ROLE_MASTER VALUES
 (1, 'ADMIN', 'Administrator Role'),
 (2, 'SALESREP', 'Sales Representative');
 
+INSERT INTO SFM.STATUS (STATUS_ID, PUB_KEY, DES, ENTITY, SORT_ORDER) VALUES
+(1, 'CREATED', 'Created', 'LEAD', 1),
+(2, 'CONTACTED', 'Contacted', 'LEAD', 2),
+(3, 'QUALIFIED', 'Qualified', 'LEAD', 3),
+(4, 'UNQUALIFIED', 'Unqualified', 'LEAD', 4),
+(5, 'PROSPECTIVE', 'Prospective', 'OPPORTUNITY', 1),
+(6, 'QUALIFICATION', 'Qualification', 'OPPORTUNITY', 2),
+(7, 'NEEDANALYSIS', 'Need Analysis', 'OPPORTUNITY', 3),
+(8, 'VALUEPROPOSE', 'Value Proposition', 'OPPORTUNITY', 4),
+(9, 'PERCEPANALYSIS', 'Perception Analysis', 'OPPORTUNITY', 5),
+(10, 'PRICEQUOTE', 'Price Quote', 'OPPORTUNITY', 6),
+(11, 'NEGOREVIEW', 'Negotiation/Review', 'OPPORTUNITY', 7),
+(12, 'CLOSEDWON', 'Closed Won', 'OPPORTUNITY', 8),
+(13, 'CLOSEDLOST', 'Closed Lost', 'OPPORTUNITY', 9);
+
+
