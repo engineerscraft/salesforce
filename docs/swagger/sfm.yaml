@@ -31,7 +31,7 @@ paths:
           description: Access token to be sent for authentication and authorization.
           required: true
           type: string
-        - name: countryId
+        - name: cId
           in: query
           description: Country for which the list of states will be retrieved.
           required: true
@@ -124,7 +124,7 @@ paths:
           description: Access token to be sent for authentication and authorization.
           required: true
           type: string
-        - name: stateId
+        - name: sId
           in: query
           description: The id of the state whose districts are to be retrieved.
           required: true
@@ -215,76 +215,107 @@ definitions:
         description: Detailed Message.
     required:
       - message
+  Token:
+    type: object
+    properties:
+      accessToken:
+        type: string
+        format: varchar
+        description: >-
+          The access token to be passed in the Authorization header in all the
+          API calls.
+      refreshToken:
+        type: string
+        format: varchar
+        description: The refresh token to be used to renew the expired access token.
+      userName:
+        type: string
+        format: varchar
+        maxLength: 20
+        description: The username used for login.
+      userDisplayName:
+        type: string
+        format: varchar
+        description: The actual name of the user as stored in the LDAP server.
+    required:
+      - accessToken
+      - refreshToken
+      - userName
+      - userDisplayName
+  Permission:
+    type: object
+    properties:
+      permId:
+        type: integer
+        format: int(32)
+        description: Permission Id.
+      permName:
+        type: string
+        format: varchar
+        maxLength: 50
+        description: The permission name.
+      permType:
+        type: string
+        format: varchar
+        maxLength: 1
+        description: The permission type.
+      resName:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: The resource name of the permission.
   Country:
     type: object
     properties:
-      countryId:
+      cId:
         type: integer
         format: int(32)
         description: Unique identifier of a country.
-      countryName:
+      cName:
         type: string
         format: varchar
         maxLength: 32
         description: Name of the country.
     required:
-      - countryId
-      - countryName
+      - cId
+      - cName
   State:
     type: object
     properties:
-      stateId:
+      sId:
         type: integer
         format: int(32)
         description: Unique identifier of a state.
-      stateName:
+      sName:
         type: string
         format: varchar
         maxLength: 32
         description: Name of the state.
-      countryId:
-        type: integer
-        format: int(32)
-        description: Unique identifier of a state.
-      countryName:
-        type: string
-        format: varchar
-        maxLength: 32
-        description: Name of the country.
     required:
-      - stateId
-      - stateName
-      - countryId
-      - countryName
+      - sId
+      - sName
   District:
     type: object
     properties:
-      districtId:
+      dId:
         type: integer
         format: int(32)
         description: Unique identifier of a district.
-      districtName:
+      dName:
         type: string
         format: varchar
         maxLength: 32
         description: Name of the district.
-      stateId:
-        type: integer
-        format: int(32)
-        description: Unique identifier of a state.
-      stateName:
-        type: string
-        format: varchar
-        maxLength: 32
-        description: Name of the state.
     required:
-      - districtId
-      - districtName
-      - stateId
-      - stateName
+      - dId
+      - dName
   Status:
     type: object
     properties:
+      statusId:
+        type: integer
+        format: int(32)
+        description: Status Id of the corressponding status.
       pubKey:
         type: string
         format: varchar
@@ -301,5 +332,305 @@ definitions:
         maxLength: 10
         description: Color of the status required to reflect in GUI.
     required:
+      - statusId
       - pubKey
       - des
+  Lead:
+    type: object
+    properties:
+      leadId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a lead.
+      pubKey:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: Public Key of the lead.
+      title:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Title of the lead.
+      totalProdQuote:
+        type: number
+        format: double
+        description: Total quote of the product.
+      discAmt:
+        type: number
+        format: double
+        description: Discount amount of the product.
+      discPct:
+        type: number
+        format: double
+        description: Discount pct of the product.
+      quotePrice:
+        type: number
+        format: double
+        description: Quote price.
+      statusId:
+        type: integer
+        format: int(32)
+        description: Status Id of the lead status.
+      divId:
+        type: integer
+        format: int(32)
+        description: Division Id of the lead.
+      crtdBy:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: User creating the lead.
+      crtdOn:
+        type: string
+        format: date-time
+        maxLength: 15
+        description: Creation date time of the lead.
+      modBy:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: User modifying the lead.
+      modOn:
+        type: string
+        format: date-time
+        maxLength: 15
+        description: Modifying date time of the lead.
+    required:
+      - leadId
+      - pubKey
+      - title
+      - totalProdQuote
+      - discAmt
+      - discPct
+      - quotePrice
+      - statusId
+      - divId
+  Opportunity:
+    type: object
+    properties:
+      oppId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of an opportunity.
+      pubKey:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: Public Key of the opportunity.
+      title:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Title of the opportunity.
+      totalProdQuote:
+        type: number
+        format: double
+        description: Total quote of the product.
+      discAmt:
+        type: number
+        format: double
+        description: Discount amount of the product.
+      discPct:
+        type: number
+        format: double
+        description: Discount pct of the product.
+      quotePrice:
+        type: number
+        format: double
+        description: Quote price.
+      soldPrice:
+        type: number
+        format: double
+        description: Quote price.
+      statusId:
+        type: integer
+        format: int(32)
+        description: Status Id of the opportunity status.
+      divId:
+        type: integer
+        format: int(32)
+        description: Division Id of the opportunity.
+      accId:
+        type: integer
+        format: int(32)
+        description: Account Id of the opportunity.
+      leadId:
+        type: integer
+        format: int(32)
+        description: Lead Id of the opportunity.
+      crtdBy:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: User creating the opportunity.
+      crtdOn:
+        type: string
+        format: date-time
+        maxLength: 15
+        description: Creation date time of the opportunity.
+      modBy:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: User modifying the opportunity.
+      modOn:
+        type: string
+        format: date-time
+        maxLength: 15
+        description: Modifying date time of the opportunity.
+    required:
+      - oppId
+      - pubKey
+      - title
+      - totalProdQuote
+      - discAmt
+      - discPct
+      - quotePrice
+      - soldPrice
+      - statusId
+      - divId
+      - accId
+      - leadId
+  Account:
+    type: object
+    properties:
+      accId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of an account.
+      pubKey:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: Public Key of the account.
+      title:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Title of the account.
+      statusId:
+        type: integer
+        format: int(32)
+        description: Status Id of the account status.
+      divId:
+        type: integer
+        format: int(32)
+        description: Division Id of the account.
+      crtdBy:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: User creating the account.
+      crtdOn:
+        type: string
+        format: date-time
+        maxLength: 15
+        description: Creation date time of the account.
+      modBy:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: User modifying the account.
+      modOn:
+        type: string
+        format: date-time
+        maxLength: 15
+        description: Modifying date time of the account.
+    required:
+      - accId
+      - pubKey
+      - title
+      - statusId
+      - divId
+  Contact:
+    type: object
+    properties:
+      coId:
+        type: integer
+        format: int(32)
+        description: Unique identifier of a contact.
+      pubKey:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: Public Key of the contact.
+      statusId:
+        type: integer
+        format: int(32)
+        description: Status Id of the contact status.
+      firstName:
+        type: string
+        format: varchar
+        maxLength: 60
+        description: First Name of the contact.
+      middleName:
+        type: string
+        format: varchar
+        maxLength: 60
+        description: Middle Name of the contact.
+      lastName:
+        type: string
+        format: varchar
+        maxLength: 60
+        description: Last Name of the contact.
+      company:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Company Name of the contact.
+      designation:
+        type: string
+        format: varchar
+        maxLength: 50
+        description: Designation of the contact.
+      email:
+        type: string
+        format: varchar
+        maxLength: 100
+        description: Email Address of the contact.
+      extn:
+        type: string
+        format: varchar
+        maxLength: 10
+        description: Extension number of the contact.
+      land:
+        type: string
+        format: varchar
+        maxLength: 20
+        description: Landline number of the contact.
+      mob:
+        type: string
+        format: varchar
+        maxLength: 20
+        description: Mobile number of the contact.
+      crtdBy:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: User creating the contact.
+      crtdOn:
+        type: string
+        format: date-time
+        maxLength: 15
+        description: Creation date time of the contact.
+      modBy:
+        type: string
+        format: varchar
+        maxLength: 15
+        description: User modifying the contact.
+      modOn:
+        type: string
+        format: date-time
+        maxLength: 15
+        description: Modifying date time of the contact.
+    required:
+      - coId
+      - pubKey
+      - statusId
+      - firstName
+      - lastName
+      - company
+      - designation
+      - email
+      - mob
