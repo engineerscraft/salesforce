@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.salesforce.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,68 +10,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class District {
 
-    private int districtId;
-    private String districtName;
-    private int stateId;
-    private String stateName;
+    private int dId;
+    private String dName;
 
     /**
-     * @return the districtId
+     * @return the dId
      */
-    public int getDistrictId() {
-        return districtId;
+    public int getdId() {
+        return dId;
     }
 
     /**
-     * @param districtId
-     *            the districtId to set
+     * @param dId the dId to set
      */
-    public void setDistrictId(int districtId) {
-        this.districtId = districtId;
+    public void setdId(int dId) {
+        this.dId = dId;
     }
 
     /**
-     * @return the districtName
+     * @return the dName
      */
-    public String getDistrictName() {
-        return districtName;
+    public String getdName() {
+        return dName;
     }
 
     /**
-     * @param districtName
-     *            the districtName to set
+     * @param dName the dName to set
      */
-    public void setDistrictName(String districtName) {
-        this.districtName = districtName;
-    }
-
-    /**
-     * @return the stateId
-     */
-    public int getStateId() {
-        return stateId;
-    }
-
-    /**
-     * @param stateId
-     *            the stateId to set
-     */
-    public void setStateId(int stateId) {
-        this.stateId = stateId;
-    }
-
-    /**
-     * @return the stateName
-     */
-    public String getStateName() {
-        return stateName;
-    }
-
-    /**
-     * @param stateName the stateName to set
-     */
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
+    public void setdName(String dName) {
+        this.dName = dName;
     }
 
     /* (non-Javadoc)
@@ -82,7 +46,6 @@ public class District {
      */
     @Override
     public String toString() {
-        return "District [districtId=" + districtId + ", districtName=" + districtName + ", stateId=" + stateId + ", stateName=" + stateName + "]";
+        return "District [dId=" + dId + ", dName=" + dName + "]";
     }
-
 }

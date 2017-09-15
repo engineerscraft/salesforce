@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.salesforce.rest;
 
 import java.util.List;
@@ -40,12 +37,12 @@ public class DistrictResource {
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Secured(Privilege.DEFAULT)
-    public Response getDistrict(@QueryParam("stateId") @Min(1) int stateId) {
+    public Response getDistrict(@QueryParam("sId") @Min(1) int sId) {
         List<District> districts;
         try {
-            districts = districtRepository.getDistrictsByStateId(stateId);
+            districts = districtRepository.getDistrictsByStateId(sId);
             if (districts.isEmpty()) {
-                logger.error("No district is found for the given state.: {}", () -> stateId);
+                logger.error("No district is found for the given state.: {}", () -> sId);
                 return Response.status(Response.Status.NOT_FOUND).entity(new Message("No district is found for the given state.")).build();
             } else
                 return Response.status(Response.Status.OK).entity(districts).build();

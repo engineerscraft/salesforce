@@ -39,14 +39,14 @@ public class StateResource {
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Secured(Privilege.DEFAULT)
-    public Response getState(@QueryParam("countryId") @Min(1) int countryId) throws Exception {
+    public Response getState(@QueryParam("cId") @Min(1) int cId) throws Exception {
         List<State> states;
         try {
-            states = stateRepository.getStateByCountryId(countryId);
+            states = stateRepository.getStateByCountryId(cId);
 
             /* If countryId doesn't return any values */
             if (states.isEmpty()) {
-                logger.error("No state is found for countryId: {}", () -> countryId);
+                logger.error("No state is found for countryId: {}", () -> cId);
                 return Response.status(Response.Status.NOT_FOUND).entity(new Message("No state found for the given country.")).build();
             }
 

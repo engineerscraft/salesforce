@@ -9,42 +9,44 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Country {
-    private int countryId;
-    private String countryName;
+
+    private int cId;
+    private String cName;
 
     /**
-     * @return the countryId
+     * @return the cId
      */
-    public int getCountryId() {
-        return countryId;
+    public int getcId() {
+        return cId;
     }
 
     /**
-     * @param countryId
-     *            the countryId to set
+     * @param cId the cId to set
      */
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
+    public void setcId(int cId) {
+        this.cId = cId;
     }
 
     /**
-     * @return the countryName
+     * @return the cName
      */
-    public String getCountryName() {
-        return countryName;
+    public String getcName() {
+        return cName;
     }
 
     /**
-     * @param countryName
-     *            the countryName to set
+     * @param cName the cName to set
      */
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setcName(String cName) {
+        this.cName = cName;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
-        return "Country [countryId=" + countryId + ", countryName=" + countryName + "]";
+        return "Country [cId=" + cId + ", cName=" + cName + "]";
     }
 
 }

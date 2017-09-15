@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.salesforce.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,65 +10,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class State {
 
-    private int countryId;
-    private String countryName;
-    private int stateId;
-    private String stateName;
+    private int sId;
+    private String sName;
 
     /**
-     * @return the stateId
+     * @return the sId
      */
-    public int getStateId() {
-        return stateId;
+    public int getsId() {
+        return sId;
     }
 
     /**
-     * @param stateId the stateId to set
+     * @param sId the sId to set
      */
-    public void setStateId(int stateId) {
-        this.stateId = stateId;
+    public void setsId(int sId) {
+        this.sId = sId;
     }
 
     /**
-     * @return the stateName
+     * @return the sName
      */
-    public String getStateName() {
-        return stateName;
+    public String getsName() {
+        return sName;
     }
 
     /**
-     * @param stateName the stateName to set
+     * @param sName the sName to set
      */
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
-    }
-
-    /**
-     * @return the countryId
-     */
-    public int getCountryId() {
-        return countryId;
-    }
-
-    /**
-     * @param countryId the countryId to set
-     */
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
-
-    /**
-     * @return the countryName
-     */
-    public String getCountryName() {
-        return countryName;
-    }
-
-    /**
-     * @param countryName the countryName to set
-     */
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setsName(String sName) {
+        this.sName = sName;
     }
 
     /* (non-Javadoc)
@@ -79,7 +46,7 @@ public class State {
      */
     @Override
     public String toString() {
-        return "State [countryId=" + countryId + ", countryName=" + countryName + ", stateId=" + stateId + ", stateName=" + stateName + "]";
+        return "State [sId=" + sId + ", sName=" + sName + "]";
     }
 
 }
