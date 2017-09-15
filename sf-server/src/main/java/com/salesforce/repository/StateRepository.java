@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.salesforce.repository;
 
 import java.util.List;
@@ -33,11 +30,11 @@ public class StateRepository {
     @Value("${sql.state.get.byCountryId}")
     private String stateGetByCountryIdSql;
 
-    public List<State> getStateByCountryId(int countryId) {
+    public List<State> getStateByCountryId(int cId) {
 
-        Object[] args = { countryId };
+        Object[] args = { cId };
         logger.info(sqlMarker, stateGetByCountryIdSql);
-        logger.info(sqlMarker, "Params {}", () -> countryId);
+        logger.info(sqlMarker, "Params {}", () -> cId);
         List<State> states = (List<State>) jdbcTemplate.query(stateGetByCountryIdSql, args, new StateRowMapper());
         logger.debug("Retrieved states: {}", () -> states);
         return states;

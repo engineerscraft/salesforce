@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.salesforce.repository;
 
 import java.util.List;
@@ -34,11 +31,11 @@ public class DistrictRepository {
     @Value("${sql.district.get.byStateId}")
     private String districtGetByStateIdSql;
 
-    public List<District> getDistrictsByStateId(int districtId) {
+    public List<District> getDistrictsByStateId(int sId) {
 
-        Object[] args = { districtId };
+        Object[] args = { sId };
         logger.info(sqlMarker, districtGetByStateIdSql);
-        logger.info(sqlMarker, "Params {}", () -> districtId);
+        logger.info(sqlMarker, "Params {}", () -> sId);
         List<District> districts = (List<District>) jdbcTemplate.query(districtGetByStateIdSql, args, new DistrictRowMapper());
         logger.debug("Retrieved districts: {}", () -> districts);
         return districts;
