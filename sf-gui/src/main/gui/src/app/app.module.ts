@@ -17,6 +17,7 @@ import { ContactCreationComponent } from './contact-creation/contact-creation.co
 import { SalesrepCreationComponent } from './salesrep-creation/salesrep-creation.component';
 import { OpportunityCreationComponent } from './opportunity-creation/opportunity-creation.component';
 import { AccountCreationComponent } from './account-creation/account-creation.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
   { path: 'opportunityCreation', component: OpportunityCreationComponent },
   { path: 'accountCreation', component: AccountCreationComponent },
+  { path: 'contacts', component: ContactsComponent }
 ];
 
 @NgModule({
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     ContactCreationComponent,
     SalesrepCreationComponent,
     OpportunityCreationComponent,
-    AccountCreationComponent
+    AccountCreationComponent,
+    ContactsComponent
   ],
   imports: [
     RouterModule.forRoot(

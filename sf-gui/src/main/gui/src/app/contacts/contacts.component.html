@@ -1,0 +1,16 @@
+<div class="full-screen">
+  <app-navbar></app-navbar>
+  <div class="row my-4 mx-2">
+    <div class="mx-auto col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
+      <div [ngSwitch]="search">
+        <div *ngSwitchCase="'advanced'">
+          <p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Simple Search</a></p>
+        </div>
+        <div *ngSwitchCase="'simple'">
+          <input type="text" class="form-control" id="search" aria-describedby="search" placeholder="Search">
+          <p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Advanced Search</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

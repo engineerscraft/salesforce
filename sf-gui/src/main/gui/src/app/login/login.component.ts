@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       .finally(() => { this.flags.isProcessingInProgress = false; })
       .subscribe(
         res => {
-          this.router.navigate(['appDashboard']);
+          this.router.navigate(['home']);
         },
         err => {
           localStorage.clear();
