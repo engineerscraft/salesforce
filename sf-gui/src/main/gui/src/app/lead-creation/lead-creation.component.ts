@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeadCreationComponent implements OnInit {
 
+  private attr = '';
+  
   constructor() { }
 
   ngOnInit() {

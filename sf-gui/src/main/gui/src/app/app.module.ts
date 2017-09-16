@@ -13,11 +13,19 @@ import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LeadCreationComponent } from './lead-creation/lead-creation.component';
+import { ContactCreationComponent } from './contact-creation/contact-creation.component';
+import { SalesrepCreationComponent } from './salesrep-creation/salesrep-creation.component';
+import { OpportunityCreationComponent } from './opportunity-creation/opportunity-creation.component';
+import { AccountCreationComponent } from './account-creation/account-creation.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'appDashboard', component: AppDashboardComponent },
-  { path: 'leadCreation', component: LeadCreationComponent }
+  { path: 'home', component: AppDashboardComponent },
+  { path: 'leadCreation', component: LeadCreationComponent },
+  { path: 'contactCreation', component: ContactCreationComponent },
+  { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
+  { path: 'opportunityCreation', component: OpportunityCreationComponent },
+  { path: 'accountCreation', component: AccountCreationComponent },
 ];
 
 @NgModule({
@@ -28,7 +36,11 @@ const appRoutes: Routes = [
     HeroimageComponent,
     AppDashboardComponent,
     NavbarComponent,
-    LeadCreationComponent
+    LeadCreationComponent,
+    ContactCreationComponent,
+    SalesrepCreationComponent,
+    OpportunityCreationComponent,
+    AccountCreationComponent
   ],
   imports: [
     RouterModule.forRoot(
