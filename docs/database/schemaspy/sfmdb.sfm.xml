@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <database name="sfmdb" schema="sfm" type="PostgreSQL - 9.6.3">
    <tables>
-      <table name="access_token" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="access_token" numRows="1" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="access_id" nullable="false" remarks="" size="19" type="int8"/>
          <column autoUpdated="false" digits="0" id="1" name="insert_date" nullable="false" remarks="" size="22" type="timestamp"/>
          <column autoUpdated="false" digits="0" id="2" name="user_name" nullable="false" remarks="" size="30" type="varchar"/>
@@ -206,14 +206,14 @@
          </column>
          <column autoUpdated="false" digits="0" id="1" name="addr_line_1" nullable="true" remarks="" size="200" type="varchar"/>
          <column autoUpdated="false" digits="0" id="2" name="addr_line_2" nullable="true" remarks="" size="200" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="3" name="district_id" nullable="true" remarks="" size="5" type="int2">
-            <parent column="district_id" foreignKey="contact_attr_district_id_fkey" implied="false" onDeleteCascade="false" table="district_master"/>
+         <column autoUpdated="false" digits="0" id="3" name="d_id" nullable="true" remarks="" size="5" type="int2">
+            <parent column="d_id" foreignKey="contact_attr_d_id_fkey" implied="false" onDeleteCascade="false" table="district"/>
          </column>
-         <column autoUpdated="false" digits="0" id="4" name="state_id" nullable="true" remarks="" size="5" type="int2">
-            <parent column="state_id" foreignKey="contact_attr_state_id_fkey" implied="false" onDeleteCascade="false" table="state_master"/>
+         <column autoUpdated="false" digits="0" id="4" name="s_id" nullable="true" remarks="" size="5" type="int2">
+            <parent column="s_id" foreignKey="contact_attr_s_id_fkey" implied="false" onDeleteCascade="false" table="state"/>
          </column>
-         <column autoUpdated="false" digits="0" id="5" name="country_id" nullable="true" remarks="" size="5" type="int2">
-            <parent column="country_id" foreignKey="contact_attr_country_id_fkey" implied="false" onDeleteCascade="false" table="country_master"/>
+         <column autoUpdated="false" digits="0" id="5" name="c_id" nullable="true" remarks="" size="5" type="int2">
+            <parent column="c_id" foreignKey="contact_attr_c_id_fkey" implied="false" onDeleteCascade="false" table="country"/>
          </column>
          <column autoUpdated="false" digits="0" id="6" name="zip_code" nullable="true" remarks="" size="15" type="varchar"/>
          <column autoUpdated="false" digits="0" id="7" name="note" nullable="true" remarks="" size="2000" type="varchar"/>
@@ -226,28 +226,28 @@
             <column ascending="true" name="co_id"/>
          </index>
       </table>
-      <table name="country_master" numRows="246" remarks="" schema="sfm" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="country_id" nullable="false" remarks="" size="10" type="int4">
-            <child column="country_id" foreignKey="contact_attr_country_id_fkey" implied="false" onDeleteCascade="false" table="contact_attr"/>
-            <child column="country_id" foreignKey="state_master_country_id_fkey" implied="false" onDeleteCascade="false" table="state_master"/>
+      <table name="country" numRows="246" remarks="" schema="sfm" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="c_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="c_id" foreignKey="contact_attr_c_id_fkey" implied="false" onDeleteCascade="false" table="contact_attr"/>
+            <child column="c_id" foreignKey="state_c_id_fkey" implied="false" onDeleteCascade="false" table="state"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="country_name" nullable="false" remarks="" size="50" type="varchar"/>
-         <primaryKey column="country_id" sequenceNumberInPK="1"/>
-         <index name="country_master_pkey" unique="true">
-            <column ascending="true" name="country_id"/>
+         <column autoUpdated="false" digits="0" id="1" name="c_name" nullable="false" remarks="" size="50" type="varchar"/>
+         <primaryKey column="c_id" sequenceNumberInPK="1"/>
+         <index name="country_pkey" unique="true">
+            <column ascending="true" name="c_id"/>
          </index>
       </table>
-      <table name="district_master" numRows="48314" remarks="" schema="sfm" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="district_id" nullable="false" remarks="" size="10" type="int4">
-            <child column="district_id" foreignKey="contact_attr_district_id_fkey" implied="false" onDeleteCascade="false" table="contact_attr"/>
+      <table name="district" numRows="48314" remarks="" schema="sfm" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="d_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="d_id" foreignKey="contact_attr_d_id_fkey" implied="false" onDeleteCascade="false" table="contact_attr"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="district_name" nullable="false" remarks="" size="32" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="state_id" nullable="false" remarks="" size="10" type="int4">
-            <parent column="state_id" foreignKey="district_master_state_id_fkey" implied="false" onDeleteCascade="false" table="state_master"/>
+         <column autoUpdated="false" digits="0" id="1" name="d_name" nullable="false" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="s_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="s_id" foreignKey="district_s_id_fkey" implied="false" onDeleteCascade="false" table="state"/>
          </column>
-         <primaryKey column="district_id" sequenceNumberInPK="1"/>
-         <index name="district_master_pkey" unique="true">
-            <column ascending="true" name="district_id"/>
+         <primaryKey column="d_id" sequenceNumberInPK="1"/>
+         <index name="district_pkey" unique="true">
+            <column ascending="true" name="d_id"/>
          </index>
       </table>
       <table name="division" numRows="0" remarks="" schema="sfm" type="TABLE">
@@ -542,19 +542,19 @@
             <column ascending="true" name="entry_id"/>
          </index>
       </table>
-      <table name="permission_master" numRows="0" remarks="" schema="sfm" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="permission_id" nullable="false" remarks="" size="10" type="int4">
-            <child column="permission_id" foreignKey="role_permission_permission_id_fkey" implied="false" onDeleteCascade="false" table="role_permission"/>
+      <table name="permission" numRows="0" remarks="" schema="sfm" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="perm_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="perm_id" foreignKey="role_perm_perm_id_fkey" implied="false" onDeleteCascade="false" table="role_perm"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="permission_name" nullable="false" remarks="" size="50" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="permission_type" nullable="false" remarks="" size="1" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="3" name="resource_name" nullable="false" remarks="" size="100" type="varchar"/>
-         <primaryKey column="permission_id" sequenceNumberInPK="1"/>
-         <index name="permission_master_pkey" unique="true">
-            <column ascending="true" name="permission_id"/>
+         <column autoUpdated="false" digits="0" id="1" name="perm_name" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="perm_type" nullable="false" remarks="" size="1" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="res_name" nullable="false" remarks="" size="100" type="varchar"/>
+         <primaryKey column="perm_id" sequenceNumberInPK="1"/>
+         <index name="permission_pkey" unique="true">
+            <column ascending="true" name="perm_id"/>
          </index>
-         <index name="permission_master_permission_name_key" unique="true">
-            <column ascending="true" name="permission_name"/>
+         <index name="permission_perm_name_key" unique="true">
+            <column ascending="true" name="perm_name"/>
          </index>
       </table>
       <table name="product" numRows="0" remarks="" schema="sfm" type="TABLE">
@@ -580,29 +580,29 @@
             <column ascending="true" name="pub_key"/>
          </index>
       </table>
-      <table name="role_master" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="role" numRows="2" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="role_id" nullable="false" remarks="" size="10" type="int4">
-            <child column="role_id" foreignKey="role_permission_role_id_fkey" implied="false" onDeleteCascade="false" table="role_permission"/>
+            <child column="role_id" foreignKey="role_perm_role_id_fkey" implied="false" onDeleteCascade="false" table="role_perm"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="role_name" nullable="false" remarks="" size="30" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="role_description" nullable="false" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="role_des" nullable="false" remarks="" size="60" type="varchar"/>
          <primaryKey column="role_id" sequenceNumberInPK="1"/>
-         <index name="role_master_pkey" unique="true">
+         <index name="role_pkey" unique="true">
             <column ascending="true" name="role_id"/>
          </index>
       </table>
-      <table name="role_permission" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="role_perm" numRows="0" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="role_id" nullable="false" remarks="" size="10" type="int4">
-            <parent column="role_id" foreignKey="role_permission_role_id_fkey" implied="false" onDeleteCascade="false" table="role_master"/>
+            <parent column="role_id" foreignKey="role_perm_role_id_fkey" implied="false" onDeleteCascade="false" table="role"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="permission_id" nullable="false" remarks="" size="10" type="int4">
-            <parent column="permission_id" foreignKey="role_permission_permission_id_fkey" implied="false" onDeleteCascade="false" table="permission_master"/>
+         <column autoUpdated="false" digits="0" id="1" name="perm_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="perm_id" foreignKey="role_perm_perm_id_fkey" implied="false" onDeleteCascade="false" table="permission"/>
          </column>
          <primaryKey column="role_id" sequenceNumberInPK="1"/>
-         <primaryKey column="permission_id" sequenceNumberInPK="2"/>
-         <index name="role_permission_pkey" unique="true">
+         <primaryKey column="perm_id" sequenceNumberInPK="2"/>
+         <index name="role_perm_pkey" unique="true">
             <column ascending="true" name="role_id"/>
-            <column ascending="true" name="permission_id"/>
+            <column ascending="true" name="perm_id"/>
          </index>
       </table>
       <table name="sales_rep" numRows="0" remarks="" schema="sfm" type="TABLE">
@@ -645,21 +645,21 @@
          <column autoUpdated="false" digits="0" id="4" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
          <column autoUpdated="false" digits="6" id="5" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
       </table>
-      <table name="state_master" numRows="4120" remarks="" schema="sfm" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="state_id" nullable="false" remarks="" size="10" type="int4">
-            <child column="state_id" foreignKey="contact_attr_state_id_fkey" implied="false" onDeleteCascade="false" table="contact_attr"/>
-            <child column="state_id" foreignKey="district_master_state_id_fkey" implied="false" onDeleteCascade="false" table="district_master"/>
+      <table name="state" numRows="4120" remarks="" schema="sfm" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="s_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="s_id" foreignKey="contact_attr_s_id_fkey" implied="false" onDeleteCascade="false" table="contact_attr"/>
+            <child column="s_id" foreignKey="district_s_id_fkey" implied="false" onDeleteCascade="false" table="district"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="state_name" nullable="false" remarks="" size="32" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="country_id" nullable="false" remarks="" size="10" type="int4">
-            <parent column="country_id" foreignKey="state_master_country_id_fkey" implied="false" onDeleteCascade="false" table="country_master"/>
+         <column autoUpdated="false" digits="0" id="1" name="s_name" nullable="false" remarks="" size="32" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="c_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="c_id" foreignKey="state_c_id_fkey" implied="false" onDeleteCascade="false" table="country"/>
          </column>
-         <primaryKey column="state_id" sequenceNumberInPK="1"/>
-         <index name="state_master_pkey" unique="true">
-            <column ascending="true" name="state_id"/>
+         <primaryKey column="s_id" sequenceNumberInPK="1"/>
+         <index name="state_pkey" unique="true">
+            <column ascending="true" name="s_id"/>
          </index>
       </table>
-      <table name="status" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="status" numRows="13" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="status_id" nullable="false" remarks="" size="5" type="int2">
             <child column="status_id" foreignKey="account_status_id_fkey" implied="false" onDeleteCascade="false" table="account"/>
             <child column="status_id" foreignKey="contact_status_id_fkey" implied="false" onDeleteCascade="false" table="contact"/>

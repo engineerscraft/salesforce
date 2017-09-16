@@ -117,7 +117,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>district_id</td>
+ <td class='detail'>d_id</td>
  <td class='detail'>int2</td>
  <td class='detail' align='right'>5</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -127,16 +127,16 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="contact_attr.district_id refs district_master.district_id via contact_attr_district_id_fkey"><a href='district_master.html'>district_master</a><span class='relatedKey'>.district_id</span>
+    <td class='relatedTable' title="contact_attr.d_id refs district.d_id via contact_attr_d_id_fkey"><a href='district.html'>district</a><span class='relatedKey'>.d_id</span>
     </td>
-    <td class='constraint'>contact_attr_district_id_fkey</td>
+    <td class='constraint'>contact_attr_d_id_fkey</td>
    </tr>
   </table>
  </td>
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>state_id</td>
+ <td class='detail'>s_id</td>
  <td class='detail'>int2</td>
  <td class='detail' align='right'>5</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -146,16 +146,16 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="contact_attr.state_id refs state_master.state_id via contact_attr_state_id_fkey"><a href='state_master.html'>state_master</a><span class='relatedKey'>.state_id</span>
+    <td class='relatedTable' title="contact_attr.s_id refs state.s_id via contact_attr_s_id_fkey"><a href='state.html'>state</a><span class='relatedKey'>.s_id</span>
     </td>
-    <td class='constraint'>contact_attr_state_id_fkey</td>
+    <td class='constraint'>contact_attr_s_id_fkey</td>
    </tr>
   </table>
  </td>
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>country_id</td>
+ <td class='detail'>c_id</td>
  <td class='detail'>int2</td>
  <td class='detail' align='right'>5</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -165,9 +165,9 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="contact_attr.country_id refs country_master.country_id via contact_attr_country_id_fkey"><a href='country_master.html'>country_master</a><span class='relatedKey'>.country_id</span>
+    <td class='relatedTable' title="contact_attr.c_id refs country.c_id via contact_attr_c_id_fkey"><a href='country.html'>country</a><span class='relatedKey'>.c_id</span>
     </td>
-    <td class='constraint'>contact_attr_country_id_fkey</td>
+    <td class='constraint'>contact_attr_c_id_fkey</td>
    </tr>
   </table>
  </td>
@@ -240,7 +240,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Tue Sep 12 22:20 AST 2017
+<p/>Table contained 0 rows at Sat Sep 16 10:22 AST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -270,21 +270,21 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <a name='graph'><img src='../graphs/contact_attr.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
 <area shape="rect" id="node1" href="contact_attr.html#" title="contact_attr" alt="" coords="223,463,447,815"/>
-<area shape="rect" id="node2" href="contact.html#graph" title="contact" alt="" coords="23,5,157,448"/>
-<area shape="rect" id="node3" href="country_master.html#graph" title="country_master" alt="" coords="21,781,159,888"/>
-<area shape="rect" id="node4" href="district_master.html#graph" title="district_master" alt="" coords="5,472,175,603"/>
-<area shape="rect" id="node5" href="state_master.html#graph" title="state_master" alt="" coords="9,627,171,757"/>
+<area shape="rect" id="node2" href="country.html#graph" title="country" alt="" coords="21,781,159,888"/>
+<area shape="rect" id="node3" href="contact.html#graph" title="contact" alt="" coords="23,5,157,448"/>
+<area shape="rect" id="node4" href="district.html#graph" title="district" alt="" coords="5,472,175,603"/>
+<area shape="rect" id="node5" href="state.html#graph" title="state" alt="" coords="9,627,171,757"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="account_contact.html#graph" title="account_contact" alt="" coords="435,5,573,64"/>
-<area shape="rect" id="node2" href="contact.html#graph" title="contact" alt="" coords="193,64,326,507"/>
-<area shape="rect" id="node3" href="status.html#graph" title="status" alt="" coords="5,136,127,195"/>
-<area shape="rect" id="node4" href="contact_attr.html#" title="contact_attr" alt="" coords="392,521,616,873"/>
-<area shape="rect" id="node5" href="country_master.html#graph" title="country_master" alt="" coords="191,840,328,947"/>
-<area shape="rect" id="node6" href="district_master.html#graph" title="district_master" alt="" coords="175,531,344,661"/>
-<area shape="rect" id="node7" href="state_master.html#graph" title="state_master" alt="" coords="179,685,340,816"/>
-<area shape="rect" id="node8" href="lead_contact.html#graph" title="lead_contact" alt="" coords="443,88,565,147"/>
-<area shape="rect" id="node9" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="425,171,583,229"/>
+<area shape="rect" id="node1" href="account_contact.html#graph" title="account_contact" alt="" coords="443,5,581,64"/>
+<area shape="rect" id="node2" href="contact.html#graph" title="contact" alt="" coords="201,64,334,507"/>
+<area shape="rect" id="node3" href="status.html#graph" title="status" alt="" coords="5,136,135,195"/>
+<area shape="rect" id="node4" href="contact_attr.html#" title="contact_attr" alt="" coords="400,521,624,873"/>
+<area shape="rect" id="node5" href="country.html#graph" title="country" alt="" coords="199,840,336,947"/>
+<area shape="rect" id="node6" href="district.html#graph" title="district" alt="" coords="183,531,352,661"/>
+<area shape="rect" id="node7" href="state.html#graph" title="state" alt="" coords="187,685,348,816"/>
+<area shape="rect" id="node8" href="lead_contact.html#graph" title="lead_contact" alt="" coords="451,88,573,147"/>
+<area shape="rect" id="node9" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="433,171,591,229"/>
 </map>
 </td></tr></table>
 </div>

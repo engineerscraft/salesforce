@@ -1,12 +1,12 @@
 status
 division
 product
-country_master
-permission_master
-role_master
+country
+permission
+role
 lead
 account
-state_master
+state
 opportunity
 lead_attachment
 sales_rep
@@ -14,7 +14,7 @@ account_attachment
 opportunity_attachment
 contact
 opportunity_timeline
-district_master
+district
 account_attr
 lead_attr
 opportunity_attr
@@ -23,7 +23,7 @@ lead_contact
 lead_prod
 opportunity_contact
 opportunity_prod
-role_permission
+role_perm
 lead_timeline
 account_contact
 account_prod

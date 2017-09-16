@@ -5,7 +5,7 @@ contact_attr
 account_prod
 account_contact
 lead_timeline
-role_permission
+role_perm
 opportunity_prod
 opportunity_contact
 lead_prod
@@ -14,7 +14,7 @@ sales_rep_profile
 opportunity_attr
 lead_attr
 account_attr
-district_master
+district
 opportunity_timeline
 contact
 opportunity_attachment
@@ -22,12 +22,12 @@ account_attachment
 sales_rep
 lead_attachment
 opportunity
-state_master
+state
 account
 lead
-role_master
-permission_master
-country_master
+role
+permission
+country
 product
 division
 status

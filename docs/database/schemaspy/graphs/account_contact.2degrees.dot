@@ -14,22 +14,22 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "account_attachment":"account_attachment.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowodot arrowhead=none];
+  "account":"div_id":w -> "division":"division.heading":e [arrowtail=crowtee arrowhead=none];
+  "account":"status_id":w -> "status":"status.heading":e [arrowtail=crowtee arrowhead=none];
+  "account_attachment":"account_attachment.heading":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
   "account_attr":"account_attr.heading":w -> "account":"acc_id":e [arrowtail=tee arrowhead=none];
   "account_contact":"acc_id":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
   "account_contact":"co_id":w -> "contact":"co_id":e [arrowtail=crowtee arrowhead=none];
   "account_contact":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
   "account_contact":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
-  "account_prod":"account_prod.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowtee arrowhead=none];
-  "account_timeline":"account_timeline.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowodot arrowhead=none];
+  "account_prod":"account_prod.heading":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
+  "account_timeline":"account_timeline.heading":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
   "contact_attr":"contact_attr.heading":w -> "contact":"co_id":e [arrowtail=tee arrowhead=none];
   "lead_attachment":"lead_attachment.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
   "lead_attr":"lead_attr.heading":w -> "lead":"lead.heading":e [arrowtail=tee arrowhead=none];
-  "lead_contact":"lead_contact.heading":w -> "contact":"co_id":e [arrowtail=crowtee arrowhead=none];
+  "lead_contact":"lead_contact.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
   "lead_prod":"lead_prod.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
   "lead_timeline":"lead_timeline.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
-  "opportunity":"opportunity.heading":w -> "division":"division.heading":e [arrowtail=crowtee arrowhead=none];
-  "opportunity":"opportunity.heading":w -> "status":"status.heading":e [arrowtail=crowtee arrowhead=none];
   "opportunity_attachment":"opportunity_attachment.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowtee arrowhead=none];
   "opportunity_attr":"opportunity_attr.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=tee arrowhead=none];
   "opportunity_contact":"opportunity_contact.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowtee arrowhead=none];
@@ -290,7 +290,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">status</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
     </TABLE>>
     URL="status.html#graph"
     tooltip="status"

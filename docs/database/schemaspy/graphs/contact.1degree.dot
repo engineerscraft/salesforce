@@ -68,9 +68,9 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="co_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">co_id</TD></TR>
       <TR><TD PORT="addr_line_1" COLSPAN="3" ALIGN="LEFT">addr_line_1</TD></TR>
       <TR><TD PORT="addr_line_2" COLSPAN="3" ALIGN="LEFT">addr_line_2</TD></TR>
-      <TR><TD PORT="district_id" COLSPAN="3" ALIGN="LEFT">district_id</TD></TR>
-      <TR><TD PORT="state_id" COLSPAN="3" ALIGN="LEFT">state_id</TD></TR>
-      <TR><TD PORT="country_id" COLSPAN="3" ALIGN="LEFT">country_id</TD></TR>
+      <TR><TD PORT="d_id" COLSPAN="3" ALIGN="LEFT">d_id</TD></TR>
+      <TR><TD PORT="s_id" COLSPAN="3" ALIGN="LEFT">s_id</TD></TR>
+      <TR><TD PORT="c_id" COLSPAN="3" ALIGN="LEFT">c_id</TD></TR>
       <TR><TD PORT="zip_code" COLSPAN="3" ALIGN="LEFT">zip_code</TD></TR>
       <TR><TD PORT="note" COLSPAN="3" ALIGN="LEFT">note</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
@@ -122,7 +122,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="color" COLSPAN="3" ALIGN="LEFT">color</TD></TR>
       <TR><TD PORT="entity" COLSPAN="3" ALIGN="LEFT">entity</TD></TR>
       <TR><TD PORT="sort_order" COLSPAN="3" ALIGN="LEFT">sort_order</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
     </TABLE>>
     URL="status.html#graph"
     tooltip="status"
