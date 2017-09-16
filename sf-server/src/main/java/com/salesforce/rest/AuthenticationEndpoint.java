@@ -1,12 +1,18 @@
 package com.salesforce.rest;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,10 +20,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.AuthenticationException;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.salesforce.model.Message;
+import com.salesforce.model.Division;
 import com.salesforce.model.LoginDetails;
+import com.salesforce.model.Message;
 import com.salesforce.model.Token;
+import com.salesforce.privileges.Privilege;
 import com.salesforce.repository.AuthenticationRepository;
+import com.salesforce.security.Secured;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -30,6 +39,9 @@ public class AuthenticationEndpoint {
 
     @Autowired
     private AuthenticationRepository authenticationRepository;
+
+    @Context
+    private SecurityContext securityContext;
 
     @POST
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -59,6 +71,28 @@ public class AuthenticationEndpoint {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
 
+    }
+
+    @GET
+    @Path("/division")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Secured(Privilege.DEFAULT)
+    public Response getDivisionByRole() {
+        List<Division> division;
+        try {
+            String username = securityContext.getUserPrincipal().getName();
+            division = authenticationRepository.getDivisionByRole(username);
+            if (division.isEmpty()) {
+                logger.error("No division is found.");
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No division is found.")).build();
+            }
+            /* If data presents in DB */
+            else
+                return Response.status(Response.Status.OK).entity(division).build();
+        } catch (Exception e) {
+            logger.error("The divisions could not be retrieved", e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+        }
     }
 
 }

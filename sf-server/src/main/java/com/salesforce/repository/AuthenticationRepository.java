@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.naming.NamingException;
-import javax.naming.directory.Attribute;
-import javax.naming.directory.BasicAttribute;
-import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.ws.rs.NotAuthorizedException;
 
@@ -30,9 +27,11 @@ import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.stereotype.Component;
 
+import com.salesforce.model.Division;
 import com.salesforce.model.PasswordChangeDetails;
 import com.salesforce.model.Permission;
 import com.salesforce.model.Token;
+import com.salesforce.rowmapper.DivisionRowMapper;
 import com.salesforce.rowmapper.PermissionRowMapper;
 
 import io.jsonwebtoken.Claims;
@@ -77,6 +76,9 @@ public class AuthenticationRepository {
 
     @Value("${sql.viewPermission}")
     private String viewPermissionSql;
+
+    @Value("${sql.division.getAll.byRole}")
+    private String divisionListSql;
 
     @Autowired
     private LdapContextSource contextSource;
@@ -183,6 +185,19 @@ public class AuthenticationRepository {
         List<Permission> permissions = namedParameterJdbcTemplate.query(viewPermissionSql, paramMap, new PermissionRowMapper());
         logger.debug("Module name {}", () -> permissions);
         return permissions;
+    }
+
+    public List<Division> getDivisionByRole(String username) {
+        List<String> userRoles = retrieveRoles(username);
+        logger.debug("User roles {}", () -> userRoles);
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("roleList", userRoles);
+        logger.info(sqlMarker, namedParameterJdbcTemplate);
+        logger.info(sqlMarker, "Params {}", () -> paramMap.get("roleList"));
+        logger.info(sqlMarker, divisionListSql);
+        List<Division> division = namedParameterJdbcTemplate.query(divisionListSql, paramMap, new DivisionRowMapper());
+        logger.debug("Module name {}", () -> division);
+        return division;
     }
 
     private String digestSHA(final String password) {
