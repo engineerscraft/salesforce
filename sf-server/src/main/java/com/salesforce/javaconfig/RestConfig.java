@@ -13,6 +13,7 @@ import com.salesforce.rest.CountryResource;
 import com.salesforce.rest.DistrictResource;
 import com.salesforce.rest.HealthCheckEndpoint;
 import com.salesforce.rest.PermissionEndpoint;
+import com.salesforce.rest.ProductResource;
 import com.salesforce.rest.StateResource;
 import com.salesforce.rest.StatusResource;
 
@@ -20,6 +21,6 @@ import com.salesforce.rest.StatusResource;
 public class RestConfig extends ResourceConfig {
     public RestConfig() {
         registerClasses(AuthenticationEndpoint.class, AuthenticationFilter.class, AuthorizationFilter.class, HealthCheckEndpoint.class, PermissionEndpoint.class, ChangePasswordEndpoint.class, MultiPartFeature.class, StatusResource.class, CountryResource.class,
-                DistrictResource.class, StateResource.class);
+                DistrictResource.class, StateResource.class, ProductResource.class);
     }
 }
