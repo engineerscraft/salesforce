@@ -32,16 +32,17 @@
       </li>
     </ul>
 
-      <div class="dropdown show" ngbDropdown>
-        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle text-white" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
+    <div class="dropdown show" ngbDropdown>
+      <button ngbDropdownToggle class="btn btn-primary dropdown-toggle text-white" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
           {{division}}
       </button>
-        <div ngbDropdownMenu class="dropdown-menu pull-right" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" (click)="division = 'All'">All</a>
-          <a class="dropdown-item" (click)="division = 'Middle East & Africa'">Middle East & Africa</a>
-          <a class="dropdown-item" (click)="division = 'Asia Pacific'">Asia Pacific</a>
-        </div>
+      <div ngbDropdownMenu class="dropdown-menu pull-right" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" (click)="division = 'All'">All</a>
+        <a class="dropdown-item" (click)="division = 'Middle East & Africa'">Middle East & Africa</a>
+        <a class="dropdown-item" (click)="division = 'Asia Pacific'">Asia Pacific</a>
       </div>
+    </div>
+    <button class="btn btn-primary ml-md-4" (click)="logOff()"><i class="fa fa-sign-out text-white" aria-hidden="true"></i></button>
   </div>
 </nav>

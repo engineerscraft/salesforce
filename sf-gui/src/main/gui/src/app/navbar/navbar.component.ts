@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +11,13 @@ export class NavbarComponent implements OnInit {
   private isNavbarCollapsed = true;
   private division = "All";
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit() {
+  }
+
+  public logOff() {
+    localStorage.clear();
+    this.router.navigate([""]);
   }
 }
