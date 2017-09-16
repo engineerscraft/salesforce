@@ -25,8 +25,6 @@ const appRoutes: Routes = [
   { path: 'leadCreation', component: LeadCreationComponent },
   { path: 'contactCreation', component: ContactCreationComponent },
   { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
-  { path: 'opportunityCreation', component: OpportunityCreationComponent },
-  { path: 'accountCreation', component: AccountCreationComponent },
   { path: 'contacts', component: ContactsComponent }
 ];
 
@@ -41,8 +39,6 @@ const appRoutes: Routes = [
     LeadCreationComponent,
     ContactCreationComponent,
     SalesrepCreationComponent,
-    OpportunityCreationComponent,
-    AccountCreationComponent,
     ContactsComponent
   ],
   imports: [

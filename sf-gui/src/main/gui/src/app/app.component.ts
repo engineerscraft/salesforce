@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'Nectar Salesforce';
 
   constructor() {
-    localStorage.clear();
+
   }
 
   getUserName() {

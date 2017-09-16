@@ -3,7 +3,7 @@
     type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">SFM</a>
+  <a class="navbar-brand" [routerLink]="['/home']">SFM</a>
   <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown" ngbDropdown>
@@ -12,9 +12,9 @@
                 New
               </a>
         <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Sales Representative</a>
-          <a class="dropdown-item" href="#">Contact</a>
-          <a class="dropdown-item" href="#">Lead</a>
+          <a class="dropdown-item" [routerLink]="['/salesrepCreation']">Sales Representative</a>
+          <a class="dropdown-item" [routerLink]="['/contactCreation']">Contact</a>
+          <a class="dropdown-item" [routerLink]="['/leadCreation']">Lead</a>
         </div>
       </li>
       <li class="nav-item dropdown" ngbDropdown>
@@ -23,17 +23,17 @@
                 Search
               </a>
         <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Sales Representative</a>
-          <a class="dropdown-item" href="#">Contact</a>
-          <a class="dropdown-item" href="#">Lead</a>
-          <a class="dropdown-item" href="#">Opportunity</a>
-          <a class="dropdown-item" href="#">Account</a>
+          <a class="dropdown-item" [routerLink]="['/salesreps']">Sales Representative</a>
+          <a class="dropdown-item" [routerLink]="['/contacts']">Contact</a>
+          <a class="dropdown-item" [routerLink]="['/leads']">Lead</a>
+          <a class="dropdown-item" [routerLink]="['/opportunities']">Opportunity</a>
+          <a class="dropdown-item" [routerLink]="['/accounts']">Account</a>
         </div>
       </li>
     </ul>
 
       <div class="dropdown show" ngbDropdown>
-        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+        <button ngbDropdownToggle class="btn btn-primary dropdown-toggle text-white" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           {{division}}
       </button>
