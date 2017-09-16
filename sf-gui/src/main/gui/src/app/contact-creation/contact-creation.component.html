@@ -1,14 +1,15 @@
 <div class="full-screen">
   <div class="row my-md-4 my-sm-0 mx-md-4 mx-0 px-md-4 px-sm-0">
-    <div class="card card-shadow bg-primary mx-md-4 mx-sm-0 my-md-4 my-sm-0 pb-4 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div class="card card-shadow bg-primary mx-md-2 mx-sm-0 my-md-4 my-sm-0 pb-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
       <form>
         <div class="card-block">
           <h1 class="display-4 text-white ml-4 my-3">Contact Creation</h1>
           <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
             <div class="card-block">
               <div class="form-group">
-                <label for="title">First Name</label>
-                <input (focus)="attr = 'fName'" type="text" class="form-control" id="fname" aria-describedby="fnameHelp" placeholder="First name of the contact">
+                <label for="title">First Name <span class="text-danger">*</span></label>
+                <input (focus)="attr = 'fName'" type="text" class="form-control" id="fname" aria-describedby="fnameHelp" placeholder="First name of the contact"
+                  required>
               </div>
               <div class="form-group">
                 <label for="mName">Middle Name</label>
@@ -19,25 +20,25 @@
                 <input (focus)="attr = 'lName'" type="text" class="form-control" id="lName" placeholder="Last name of the contact">
               </div>
               <div class="form-group">
-                <label for="company">Company</label>
-                <input (focus)="attr = 'company'" type="text" class="form-control" id="company" placeholder="Name of the company">
+                <label for="company">Company <span class="text-danger">*</span></label>
+                <input (focus)="attr = 'company'" type="text" class="form-control" id="company" placeholder="Name of the company" required>
               </div>
               <div class="form-group">
-                <label for="desig">Designation</label>
-                <input (focus)="attr = 'desig'" type="text" class="form-control" id="desig" placeholder="Designation of the contact">
+                <label for="desig">Designation <span class="text-danger">*</span></label>
+                <input (focus)="attr = 'desig'" type="text" class="form-control" id="desig" placeholder="Designation of the contact" required>
               </div>
             </div>
           </div>
           <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
-              <div class="card-block">
-  
+            <div class="card-block">
+
               <div class="form-group">
-                <label for="email">Email</label>
-                <input (focus)="attr = 'email'" type="email" class="form-control" id="email" placeholder="Email of the contact">
+                <label for="email">Email <span class="text-danger">*</span></label>
+                <input (focus)="attr = 'email'" type="email" class="form-control" id="email" placeholder="Email of the contact" required>
               </div>
               <div class="form-group">
-                <label for="mob">Mobile</label>
-                <input (focus)="attr = 'mob'" type="text" class="form-control" id="mob" placeholder="Mobile number of the contact">
+                <label for="mob">Mobile <span class="text-danger">*</span></label>
+                <input (focus)="attr = 'mob'" type="text" class="form-control" id="mob" placeholder="Mobile number of the contact" required>
               </div>
               <div class="form-group">
                 <label for="land">Telephone</label>
@@ -55,58 +56,60 @@
         </div>
       </form>
     </div>
-    <div *ngIf="attr==='fName'" id="fNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> First Name</h2>
-      <div class="card-block">
-        The first name of the contact.
+    <div class="d-none d-lg-block help-text">
+      <div *ngIf="attr==='fName'" id="fNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> First Name</h2>
+        <div class="card-block">
+          The first name of the contact.
+        </div>
       </div>
-    </div>
-    <div *ngIf="attr==='mName'" id="mNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Middle Name</h2>
-      <div class="card-block">
-        The middle name of the contact (if any).
+      <div *ngIf="attr==='mName'" id="mNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Middle Name</h2>
+        <div class="card-block">
+          The middle name of the contact (if any).
+        </div>
       </div>
-    </div>
-    <div *ngIf="attr==='lName'" id="lNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Last Name</h2>
-      <div class="card-block">
-        The last name of the contact (if any).
+      <div *ngIf="attr==='lName'" id="lNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Last Name</h2>
+        <div class="card-block">
+          The last name of the contact (if any).
+        </div>
       </div>
-    </div>
-    <div *ngIf="attr==='company'" id="companyHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Company</h2>
-      <div class="card-block">
-        The Company which the contact works for.
+      <div *ngIf="attr==='company'" id="companyHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Company</h2>
+        <div class="card-block">
+          The Company which the contact works for.
+        </div>
       </div>
-    </div>
-    <div *ngIf="attr==='desig'" id="desigHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Designation</h2>
-      <div class="card-block">
-        The designation of the contact in the company he/she works for.
+      <div *ngIf="attr==='desig'" id="desigHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Designation</h2>
+        <div class="card-block">
+          The designation of the contact in the company he/she works for.
+        </div>
       </div>
-    </div>
-    <div *ngIf="attr==='email'" id="emailHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Email</h2>
-      <div class="card-block">
-        The official email of the contact where he/she can be contacted.
+      <div *ngIf="attr==='email'" id="emailHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Email</h2>
+        <div class="card-block">
+          The official email of the contact where he/she can be contacted.
+        </div>
       </div>
-    </div>
-    <div *ngIf="attr==='mob'" id="mbHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Mobile</h2>
-      <div class="card-block">
-        The mobile number of the contact where he/she can be contacted.
+      <div *ngIf="attr==='mob'" id="mbHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Mobile</h2>
+        <div class="card-block">
+          The mobile number of the contact where he/she can be contacted.
+        </div>
       </div>
-    </div>
-    <div *ngIf="attr==='land'" id="landHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Telephone</h2>
-      <div class="card-block">
-        The land line number of the contact where he/she can be contacted.
+      <div *ngIf="attr==='land'" id="landHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Telephone</h2>
+        <div class="card-block">
+          The land line number of the contact where he/she can be contacted.
+        </div>
       </div>
-    </div>
-    <div *ngIf="attr==='extn'" id="extnHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-      <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Extension</h2>
-      <div class="card-block">
-        The extension number of the contact where he/she can be contacted.
+      <div *ngIf="attr==='extn'" id="extnHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Extension</h2>
+        <div class="card-block">
+          The extension number of the contact where he/she can be contacted.
+        </div>
       </div>
     </div>
   </div>
