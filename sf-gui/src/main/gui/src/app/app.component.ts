@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Nectar Salesforce';
+
+  constructor() {
+    localStorage.clear();
+  }
+
+  getUserName() {
+    return localStorage.getItem("userName");
+  }
+
 }
