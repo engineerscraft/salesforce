@@ -15,8 +15,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LeadCreationComponent } from './lead-creation/lead-creation.component';
 import { ContactCreationComponent } from './contact-creation/contact-creation.component';
 import { SalesrepCreationComponent } from './salesrep-creation/salesrep-creation.component';
-import { OpportunityCreationComponent } from './opportunity-creation/opportunity-creation.component';
-import { AccountCreationComponent } from './account-creation/account-creation.component';
 import { ContactsComponent } from './contacts/contacts.component';
 
 const appRoutes: Routes = [
