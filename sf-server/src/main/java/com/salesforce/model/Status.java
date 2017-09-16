@@ -10,9 +10,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Status {
 
+    private int statusId;
     private String pubKey;
     private String des;
     private String color;
+
+    /**
+     * @return the statusId
+     */
+    public int getStatusId() {
+        return statusId;
+    }
+
+    /**
+     * @param statusId the statusId to set
+     */
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
 
     /**
      * @return the pubKey
@@ -61,7 +76,7 @@ public class Status {
      */
     @Override
     public String toString() {
-        return "Status [pubKey=" + pubKey + ", des=" + des + ", color=" + color + "]";
+        return "Status [statusId=" + statusId + ", pubKey=" + pubKey + ", des=" + des + ", color=" + color + "]";
     }
 
 }
