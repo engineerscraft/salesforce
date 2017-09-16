@@ -10,7 +10,6 @@ state
 opportunity
 lead_attachment
 sales_rep
-account_attachment
 opportunity_attachment
 contact
 opportunity_timeline
@@ -25,6 +24,7 @@ opportunity_contact
 opportunity_prod
 role_perm
 lead_timeline
+account_attachment
 account_contact
 account_prod
 contact_attr

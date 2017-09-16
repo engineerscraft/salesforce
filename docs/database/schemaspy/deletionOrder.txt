@@ -4,6 +4,7 @@ account_timeline
 contact_attr
 account_prod
 account_contact
+account_attachment
 lead_timeline
 role_perm
 opportunity_prod
@@ -18,7 +19,6 @@ district
 opportunity_timeline
 contact
 opportunity_attachment
-account_attachment
 sales_rep
 lead_attachment
 opportunity

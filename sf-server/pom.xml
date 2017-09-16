@@ -287,6 +287,7 @@
                                     <srcFiles>
                                         <srcFile>../sf-setup/all_ddl.sql</srcFile>
                                         <srcFile>../sf-setup/all_baseline.sql</srcFile>
+										<srcFile>../sf-setup/all_testdata.sql</srcFile>
                                     </srcFiles>
                                 </configuration>
                             </execution>

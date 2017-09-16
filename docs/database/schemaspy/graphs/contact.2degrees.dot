@@ -14,17 +14,17 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "account":"account.heading":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
+  "account_contact":"acc_id":w -> "account":"account.heading":e [arrowtail=crowtee arrowhead=none];
   "account_contact":"co_id":w -> "contact":"co_id.type":e [arrowtail=crowtee arrowhead=none];
+  "account_contact":"lead_id":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
   "contact":"status_id":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
   "contact_attr":"c_id":w -> "country":"country.heading":e [arrowtail=crowodot arrowhead=none];
   "contact_attr":"co_id":w -> "contact":"co_id.type":e [arrowtail=tee arrowhead=none];
   "contact_attr":"d_id":w -> "district":"district.heading":e [arrowtail=crowodot arrowhead=none];
   "contact_attr":"s_id":w -> "state":"state.heading":e [arrowtail=crowodot arrowhead=none];
   "lead_contact":"co_id":w -> "contact":"co_id.type":e [arrowtail=crowtee arrowhead=none];
-  "lead_contact":"lead_id":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
-  "opportunity":"opportunity.heading":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_contact":"co_id":w -> "contact":"co_id.type":e [arrowtail=crowtee arrowhead=none];
+  "opportunity_contact":"opp_id":w -> "opportunity":"opportunity.heading":e [arrowtail=crowtee arrowhead=none];
   "sales_rep":"sales_rep.heading":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
   "account" [
     label=<
@@ -63,7 +63,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="middle_name" COLSPAN="2" ALIGN="LEFT">middle_name</TD><TD PORT="middle_name.type" ALIGN="LEFT">varchar[60]</TD></TR>
       <TR><TD PORT="last_name" COLSPAN="2" ALIGN="LEFT">last_name</TD><TD PORT="last_name.type" ALIGN="LEFT">varchar[60]</TD></TR>
       <TR><TD PORT="company" COLSPAN="2" ALIGN="LEFT">company</TD><TD PORT="company.type" ALIGN="LEFT">varchar[100]</TD></TR>
-      <TR><TD PORT="designation" COLSPAN="2" ALIGN="LEFT">designation</TD><TD PORT="designation.type" ALIGN="LEFT">varchar[50]</TD></TR>
+      <TR><TD PORT="desig" COLSPAN="2" ALIGN="LEFT">desig</TD><TD PORT="desig.type" ALIGN="LEFT">varchar[50]</TD></TR>
       <TR><TD PORT="email" COLSPAN="2" ALIGN="LEFT">email</TD><TD PORT="email.type" ALIGN="LEFT">varchar[100]</TD></TR>
       <TR><TD PORT="extn" COLSPAN="2" ALIGN="LEFT">extn</TD><TD PORT="extn.type" ALIGN="LEFT">varchar[10]</TD></TR>
       <TR><TD PORT="land" COLSPAN="2" ALIGN="LEFT">land</TD><TD PORT="land.type" ALIGN="LEFT">varchar[20]</TD></TR>
@@ -72,7 +72,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="2" ALIGN="LEFT">crtd_on</TD><TD PORT="crtd_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="2" ALIGN="LEFT">mod_by</TD><TD PORT="mod_by.type" ALIGN="LEFT">varchar[15]</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="2" ALIGN="LEFT">mod_on</TD><TD PORT="mod_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="contact.html#"
     tooltip="contact"
@@ -120,7 +120,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="lead.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 &gt;</TD></TR>
     </TABLE>>
     URL="lead.html#graph"
     tooltip="lead"

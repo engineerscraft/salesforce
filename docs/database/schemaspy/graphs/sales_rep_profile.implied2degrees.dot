@@ -22,6 +22,9 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="sales_rep.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">sales_rep</TD></TR>
       <TR><TD PORT="sales_rep_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">sales_rep_id</TD></TR>
       <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
+      <TR><TD PORT="first_name" COLSPAN="3" ALIGN="LEFT">first_name</TD></TR>
+      <TR><TD PORT="middle_name" COLSPAN="3" ALIGN="LEFT">middle_name</TD></TR>
+      <TR><TD PORT="last_name" COLSPAN="3" ALIGN="LEFT">last_name</TD></TR>
       <TR><TD PORT="sup_id" COLSPAN="3" ALIGN="LEFT">sup_id</TD></TR>
       <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
       <TR><TD PORT="extn" COLSPAN="3" ALIGN="LEFT">extn</TD></TR>

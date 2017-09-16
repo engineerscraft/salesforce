@@ -1,5 +1,5 @@
 // dot 2.38.0 on Windows 7 6.1
-digraph "twoDegreesRelationshipsGraph" {
+digraph "impliedTwoDegreesRelationshipsGraph" {
   graph [
     rankdir="RL"
     bgcolor="#f7f7f7"
@@ -14,16 +14,14 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "account_attachment":"account_attachment.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowodot arrowhead=none];
-  "account_attr":"account_attr.heading":w -> "account":"acc_id":e [arrowtail=tee arrowhead=none];
-  "account_contact":"acc_id":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
-  "account_contact":"co_id":w -> "contact":"co_id":e [arrowtail=crowtee arrowhead=none];
-  "account_contact":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
-  "account_contact":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
+  "account_attachment":"acc_id":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
+  "account_attachment":"att_id":w -> "lead_attachment":"att_id":e [arrowtail=tee arrowhead=none style=dashed];
+  "account_attachment":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowodot arrowhead=none];
+  "account_attachment":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowodot arrowhead=none];
+  "account_attr":"account_attr.heading":w -> "account":"account.heading":e [arrowtail=tee arrowhead=none];
+  "account_contact":"account_contact.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowtee arrowhead=none];
   "account_prod":"account_prod.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowtee arrowhead=none];
   "account_timeline":"account_timeline.heading":w -> "opportunity":"opportunity.heading":e [arrowtail=crowodot arrowhead=none];
-  "contact_attr":"contact_attr.heading":w -> "contact":"co_id":e [arrowtail=tee arrowhead=none];
-  "lead_attachment":"lead_attachment.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
   "lead_attr":"lead_attr.heading":w -> "lead":"lead.heading":e [arrowtail=tee arrowhead=none];
   "lead_contact":"lead_contact.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
   "lead_prod":"lead_prod.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
@@ -55,11 +53,21 @@ digraph "twoDegreesRelationshipsGraph" {
   ];
   "account_attachment" [
     label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+    <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="account_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_attachment</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD PORT="att_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">att_id</TD><TD PORT="att_id.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="acc_id" COLSPAN="2" ALIGN="LEFT">acc_id</TD><TD PORT="acc_id.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="opp_id" COLSPAN="2" ALIGN="LEFT">opp_id</TD><TD PORT="opp_id.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="lead_id" COLSPAN="2" ALIGN="LEFT">lead_id</TD><TD PORT="lead_id.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="title" COLSPAN="2" ALIGN="LEFT">title</TD><TD PORT="title.type" ALIGN="LEFT">varchar[100]</TD></TR>
+      <TR><TD PORT="att" COLSPAN="2" ALIGN="LEFT">att</TD><TD PORT="att.type" ALIGN="LEFT">text[2147483647]</TD></TR>
+      <TR><TD PORT="crtd_by" COLSPAN="2" ALIGN="LEFT">crtd_by</TD><TD PORT="crtd_by.type" ALIGN="LEFT">varchar[15]</TD></TR>
+      <TR><TD PORT="crtd_on" COLSPAN="2" ALIGN="LEFT">crtd_on</TD><TD PORT="crtd_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
+      <TR><TD PORT="mod_by" COLSPAN="2" ALIGN="LEFT">mod_by</TD><TD PORT="mod_by.type" ALIGN="LEFT">varchar[15]</TD></TR>
+      <TR><TD PORT="mod_on" COLSPAN="2" ALIGN="LEFT">mod_on</TD><TD PORT="mod_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 &gt;</TD></TR>
     </TABLE>>
-    URL="account_attachment.html#graph"
+    URL="account_attachment.html#"
     tooltip="account_attachment"
   ];
   "account_attr" [
@@ -73,19 +81,11 @@ digraph "twoDegreesRelationshipsGraph" {
   ];
   "account_contact" [
     label=<
-    <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="account_contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_contact</TD></TR>
-      <TR><TD PORT="acc_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">acc_id</TD><TD PORT="acc_id.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="co_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">co_id</TD><TD PORT="co_id.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD><TD PORT="lead_id.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD><TD PORT="opp_id.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="crtd_by" COLSPAN="2" ALIGN="LEFT">crtd_by</TD><TD PORT="crtd_by.type" ALIGN="LEFT">varchar[15]</TD></TR>
-      <TR><TD PORT="crtd_on" COLSPAN="2" ALIGN="LEFT">crtd_on</TD><TD PORT="crtd_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
-      <TR><TD PORT="mod_by" COLSPAN="2" ALIGN="LEFT">mod_by</TD><TD PORT="mod_by.type" ALIGN="LEFT">varchar[15]</TD></TR>
-      <TR><TD PORT="mod_on" COLSPAN="2" ALIGN="LEFT">mod_on</TD><TD PORT="mod_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
-    URL="account_contact.html#"
+    URL="account_contact.html#graph"
     tooltip="account_contact"
   ];
   "account_prod" [
@@ -105,40 +105,6 @@ digraph "twoDegreesRelationshipsGraph" {
     </TABLE>>
     URL="account_timeline.html#graph"
     tooltip="account_timeline"
-  ];
-  "contact" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">contact</TD></TR>
-      <TR><TD PORT="co_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">co_id</TD></TR>
-      <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
-      <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
-      <TR><TD PORT="first_name" COLSPAN="3" ALIGN="LEFT">first_name</TD></TR>
-      <TR><TD PORT="middle_name" COLSPAN="3" ALIGN="LEFT">middle_name</TD></TR>
-      <TR><TD PORT="last_name" COLSPAN="3" ALIGN="LEFT">last_name</TD></TR>
-      <TR><TD PORT="company" COLSPAN="3" ALIGN="LEFT">company</TD></TR>
-      <TR><TD PORT="desig" COLSPAN="3" ALIGN="LEFT">desig</TD></TR>
-      <TR><TD PORT="email" COLSPAN="3" ALIGN="LEFT">email</TD></TR>
-      <TR><TD PORT="extn" COLSPAN="3" ALIGN="LEFT">extn</TD></TR>
-      <TR><TD PORT="land" COLSPAN="3" ALIGN="LEFT">land</TD></TR>
-      <TR><TD PORT="mob" COLSPAN="3" ALIGN="LEFT">mob</TD></TR>
-      <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
-      <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
-      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
-      <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
-    </TABLE>>
-    URL="contact.html#graph"
-    tooltip="contact"
-  ];
-  "contact_attr" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="contact_attr.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">contact_attr</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="contact_attr.html#graph"
-    tooltip="contact_attr"
   ];
   "division" [
     label=<
@@ -175,7 +141,15 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="lead_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead_attachment</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD PORT="att_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">att_id</TD></TR>
+      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
+      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
+      <TR><TD PORT="att" COLSPAN="3" ALIGN="LEFT">att</TD></TR>
+      <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
+      <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
+      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
+      <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="lead_attachment.html#graph"
     tooltip="lead_attachment"

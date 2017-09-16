@@ -33,7 +33,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">contact</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="contact.html#graph"
     tooltip="contact"
@@ -42,7 +42,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="lead.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 &gt;</TD></TR>
     </TABLE>>
     URL="lead.html#graph"
     tooltip="lead"
@@ -62,6 +62,9 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="sales_rep.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">sales_rep</TD></TR>
       <TR><TD PORT="sales_rep_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">sales_rep_id</TD><TD PORT="sales_rep_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="pub_key" COLSPAN="2" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD><TD PORT="pub_key.type" ALIGN="LEFT">varchar[15]</TD></TR>
+      <TR><TD PORT="first_name" COLSPAN="2" ALIGN="LEFT">first_name</TD><TD PORT="first_name.type" ALIGN="LEFT">varchar[60]</TD></TR>
+      <TR><TD PORT="middle_name" COLSPAN="2" ALIGN="LEFT">middle_name</TD><TD PORT="middle_name.type" ALIGN="LEFT">varchar[60]</TD></TR>
+      <TR><TD PORT="last_name" COLSPAN="2" ALIGN="LEFT">last_name</TD><TD PORT="last_name.type" ALIGN="LEFT">varchar[60]</TD></TR>
       <TR><TD PORT="sup_id" COLSPAN="2" ALIGN="LEFT">sup_id</TD><TD PORT="sup_id.type" ALIGN="LEFT">int4[10]</TD></TR>
       <TR><TD PORT="status_id" COLSPAN="2" ALIGN="LEFT">status_id</TD><TD PORT="status_id.type" ALIGN="LEFT">int2[5]</TD></TR>
       <TR><TD PORT="extn" COLSPAN="2" ALIGN="LEFT">extn</TD><TD PORT="extn.type" ALIGN="LEFT">varchar[10]</TD></TR>

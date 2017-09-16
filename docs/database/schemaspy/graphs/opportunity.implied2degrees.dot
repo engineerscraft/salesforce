@@ -14,26 +14,26 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
+  "account_attachment":"account_attachment.heading":w -> "lead_attachment":"lead_attachment.heading":e [arrowtail=tee arrowhead=none style=dashed];
   "account_attachment":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=crowodot arrowhead=none];
   "account_attr":"account_attr.heading":w -> "account":"account.heading":e [arrowtail=tee arrowhead=none];
   "account_contact":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=crowtee arrowhead=none];
   "account_prod":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=crowtee arrowhead=none];
-  "account_prod":"account_prod.heading":w -> "product":"product.heading":e [arrowtail=crowtee arrowhead=none style=dashed];
-  "account_timeline":"account_timeline.heading":w -> "lead_attachment":"lead_attachment.heading":e [arrowtail=crowodot arrowhead=none style=dashed];
   "account_timeline":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=crowodot arrowhead=none];
+  "contact":"contact.heading":w -> "status":"status.heading":e [arrowtail=crowtee arrowhead=none];
   "lead_attr":"lead_attr.heading":w -> "lead":"lead.heading":e [arrowtail=tee arrowhead=none];
   "lead_contact":"lead_contact.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
   "lead_prod":"lead_prod.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
-  "lead_timeline":"lead_timeline.heading":w -> "lead":"lead.heading":e [arrowtail=crowtee arrowhead=none];
+  "lead_timeline":"lead_timeline.heading":w -> "opportunity_timeline":"opportunity_timeline.heading":e [arrowtail=tee arrowhead=none style=dashed];
   "opportunity":"acc_id":w -> "account":"acc_id":e [arrowtail=crowodot arrowhead=none style=dashed];
   "opportunity":"div_id":w -> "division":"div_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowodot arrowhead=none];
   "opportunity":"status_id":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_attachment":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=crowtee arrowhead=none];
   "opportunity_attr":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=tee arrowhead=none];
-  "opportunity_contact":"co_id":w -> "contact":"contact.heading":e [arrowtail=crowtee arrowhead=none];
   "opportunity_contact":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=crowtee arrowhead=none];
   "opportunity_prod":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=crowtee arrowhead=none];
+  "opportunity_prod":"prod_id":w -> "product":"product.heading":e [arrowtail=crowtee arrowhead=none];
   "opportunity_timeline":"opp_id":w -> "opportunity":"opp_id.type":e [arrowtail=crowtee arrowhead=none];
   "sales_rep":"sales_rep.heading":w -> "status":"status.heading":e [arrowtail=crowtee arrowhead=none];
   "account" [
@@ -68,7 +68,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="account_attachment.html#graph"
     tooltip="account_attachment"
@@ -115,7 +115,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="account_prod.html#graph"
     tooltip="account_prod"
@@ -134,7 +134,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 5</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="account_timeline.html#graph"
     tooltip="account_timeline"
@@ -143,7 +143,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">contact</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="contact.html#graph"
     tooltip="contact"
@@ -159,7 +159,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="division.html#graph"
     tooltip="division"
@@ -181,7 +181,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 &gt;</TD></TR>
     </TABLE>>
     URL="lead.html#graph"
     tooltip="lead"
@@ -190,7 +190,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="lead_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead_attachment</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="lead_attachment.html#graph"
     tooltip="lead_attachment"
@@ -226,7 +226,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="lead_timeline.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead_timeline</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="lead_timeline.html#graph"
     tooltip="lead_timeline"
@@ -332,7 +332,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="opportunity_timeline.html#graph"
     tooltip="opportunity_timeline"
@@ -341,7 +341,7 @@ digraph "impliedTwoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="product.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">product</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">10 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="product.html#graph"
     tooltip="product"

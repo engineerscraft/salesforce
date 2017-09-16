@@ -16,13 +16,13 @@ digraph "twoDegreesRelationshipsGraph" {
   ];
   "contact_attr":"c_id":w -> "country":"c_id.type":e [arrowtail=crowodot arrowhead=none];
   "contact_attr":"contact_attr.heading":w -> "contact":"contact.heading":e [arrowtail=tee arrowhead=none];
-  "contact_attr":"contact_attr.heading":w -> "district":"district.heading":e [arrowtail=crowodot arrowhead=none];
+  "district":"district.heading":w -> "state":"state.heading":e [arrowtail=crowtee arrowhead=none];
   "state":"c_id":w -> "country":"c_id.type":e [arrowtail=crowtee arrowhead=none];
   "contact" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">contact</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="contact.html#graph"
     tooltip="contact"
