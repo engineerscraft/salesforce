@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { NgbModule, NgbDropdown  } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { LeadCreationComponent } from './lead-creation/lead-creation.component';
 import { ContactCreationComponent } from './contact-creation/contact-creation.component';
 import { SalesrepCreationComponent } from './salesrep-creation/salesrep-creation.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { HelpGadgetComponent } from './help-gadget/help-gadget.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     LeadCreationComponent,
     ContactCreationComponent,
     SalesrepCreationComponent,
-    ContactsComponent
+    ContactsComponent,
+    HelpGadgetComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -48,7 +51,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [AuthService, NgbDropdown],
   bootstrap: [AppComponent]

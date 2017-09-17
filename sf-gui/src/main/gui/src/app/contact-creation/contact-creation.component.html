@@ -57,60 +57,15 @@
       </form>
     </div>
     <div class="d-none d-lg-block help-text">
-      <div *ngIf="attr==='fName'" id="fNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> First Name</h2>
-        <div class="card-block">
-          The first name of the contact.
-        </div>
-      </div>
-      <div *ngIf="attr==='mName'" id="mNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Middle Name</h2>
-        <div class="card-block">
-          The middle name of the contact (if any).
-        </div>
-      </div>
-      <div *ngIf="attr==='lName'" id="lNameHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Last Name</h2>
-        <div class="card-block">
-          The last name of the contact (if any).
-        </div>
-      </div>
-      <div *ngIf="attr==='company'" id="companyHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Company</h2>
-        <div class="card-block">
-          The Company which the contact works for.
-        </div>
-      </div>
-      <div *ngIf="attr==='desig'" id="desigHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Designation</h2>
-        <div class="card-block">
-          The designation of the contact in the company he/she works for.
-        </div>
-      </div>
-      <div *ngIf="attr==='email'" id="emailHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Email</h2>
-        <div class="card-block">
-          The official email of the contact where he/she can be contacted.
-        </div>
-      </div>
-      <div *ngIf="attr==='mob'" id="mbHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Mobile</h2>
-        <div class="card-block">
-          The mobile number of the contact where he/she can be contacted.
-        </div>
-      </div>
-      <div *ngIf="attr==='land'" id="landHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Telephone</h2>
-        <div class="card-block">
-          The land line number of the contact where he/she can be contacted.
-        </div>
-      </div>
-      <div *ngIf="attr==='extn'" id="extnHelp" class="card card-shadow height-100 bg-daccent text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-        <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Extension</h2>
-        <div class="card-block">
-          The extension number of the contact where he/she can be contacted.
-        </div>
-      </div>
+      <app-help-gadget *ngIf="attr==='fName'" [helpHeader]="'First Name'" [helpText]="'The first name of the contact.'"></app-help-gadget>
+      <app-help-gadget *ngIf="attr==='mName'" [helpHeader]="'Middle Name'" [helpText]="'The middle name of the contact (if any).'"></app-help-gadget>
+      <app-help-gadget *ngIf="attr==='lName'" [helpHeader]="'Last Name'" [helpText]="'The last name of the contact (if any).'"></app-help-gadget>
+      <app-help-gadget *ngIf="attr==='company'" [helpHeader]="'Company'" [helpText]="'The Company which the contact works for.'"></app-help-gadget>
+      <app-help-gadget *ngIf="attr==='desig'" [helpHeader]="'Designation'" [helpText]="'The designation of the contact in the company he/she works for.'"></app-help-gadget>
+      <app-help-gadget *ngIf="attr==='email'" [helpHeader]="'Email'" [helpText]="'The official email of the contact where he/she can be contacted.'"></app-help-gadget>
+      <app-help-gadget *ngIf="attr==='mob'" [helpHeader]="'Mobile'" [helpText]="'The mobile number of the contact where he/she can be contacted.'"></app-help-gadget>
+      <app-help-gadget *ngIf="attr==='land'" [helpHeader]="'Telephone'" [helpText]="'The land line number of the contact where he/she can be contacted.'"></app-help-gadget>
+      <app-help-gadget *ngIf="attr==='extn'" [helpHeader]="'Extension'" [helpText]="'Extension number of the contact'"></app-help-gadget>
     </div>
   </div>
 </div>

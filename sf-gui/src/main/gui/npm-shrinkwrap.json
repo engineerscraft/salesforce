@@ -2,6 +2,11 @@
   "name": "sf-gui",
   "version": "0.0.0",
   "dependencies": {
+    "@angular/animations": {
+      "version": "4.3.5",
+      "from": "@angular/animations@4.3.5",
+      "resolved": "https://registry.npmjs.org/@angular/animations/-/animations-4.3.5.tgz"
+    },
     "@angular/cli": {
       "version": "1.0.0",
       "from": "@angular/cli@1.0.0",
