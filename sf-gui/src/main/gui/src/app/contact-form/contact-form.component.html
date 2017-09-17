@@ -66,19 +66,21 @@
           <div class="form-group">
             <label for="cId">Country</label>
             <select (focus)="attr = 'country'" class="form-control py-0" id="cId" #cId (change)="onCountryChange(cId.value)">
-              <option value=""></option>
+              <option value="">--Country--</option>
               <option *ngFor="let country of locationLists.countries" value="{{country.cId}}">{{country.cName}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="sId">State</label>
             <select (focus)="attr = 'state'" class="form-control py-0" id="sId" #sId (change)="onStateChange(sId.value)">
+                <option value="">--State--</option>
                 <option *ngFor="let state of locationLists.states" value="{{state.sId}}">{{state.sName}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="dId">District</label>
             <select (focus)="attr = 'district'" class="form-control py-0" id="dId">
+                <option value="">--City--</option>
                 <option *ngFor="let district of locationLists.districts" value="{{district.dId}}">{{district.dName}}</option>
             </select>
           </div>
@@ -92,7 +94,7 @@
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Additional Notes</h6>
           <div class="form-group">
-            <label for="note">Note</label>
+            <label for="note">Notes</label>
             <textarea (focus)="attr = 'note'" rows="5" type="text" class="form-control" id="note" placeholder="Note about the contact"></textarea>
           </div>
         </div>
@@ -104,13 +106,8 @@
   </form>
 </div>
 <div class="d-none d-lg-block help-text">
-  <app-help-gadget *ngIf="attr==='fName'" [helpHeader]="'First Name'" [helpText]="'The first name of the contact.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='mName'" [helpHeader]="'Middle Name'" [helpText]="'The middle name of the contact (if any).'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='lName'" [helpHeader]="'Last Name'" [helpText]="'The last name of the contact (if any).'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='company'" [helpHeader]="'Company'" [helpText]="'The Company which the contact works for.'"></app-help-gadget>
+  <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Contact'" [helpText]="'Contacts are the people that you market to, sell to, support, etc. They are the people you interact with to get the business. Capture as much details about them as you can. You can use the Notes field for any additional information which do not fit into any other available fields'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='company'" [helpHeader]="'Company'" [helpText]="'The company which the contact works for.'"></app-help-gadget>
   <app-help-gadget *ngIf="attr==='desig'" [helpHeader]="'Designation'" [helpText]="'The designation of the contact in the company he/she works for.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='email'" [helpHeader]="'Email'" [helpText]="'The official email of the contact where he/she can be contacted.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='mob'" [helpHeader]="'Mobile'" [helpText]="'The mobile number of the contact where he/she can be contacted.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='land'" [helpHeader]="'Telephone'" [helpText]="'The land line number of the contact where he/she can be contacted.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='extn'" [helpHeader]="'Extension'" [helpText]="'Extension number of the contact'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='note'" [helpHeader]="'Notes'" [helpText]="'Use this space to capture any additional information about the contact that do not fit into any of the other fields.'"></app-help-gadget>
 </div>

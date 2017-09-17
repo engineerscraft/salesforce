@@ -32,6 +32,7 @@ export class ContactFormComponent implements OnInit {
   @Input() method = 'post';
 
   private contactFormGroup: FormGroup;
+  private attr = '';
   private buttonName = 'Create';
   private locationLists = { countries: Array(), states: Array(), districts: Array() };
 
