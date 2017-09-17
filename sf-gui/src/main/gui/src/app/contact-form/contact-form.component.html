@@ -100,13 +100,13 @@
         </div>
       </div>
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
-        <button type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
+        <button [disabled]="!contactFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
       </div>
     </div>
   </form>
 </div>
 <div class="d-none d-lg-block help-text">
-  <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Contact'" [helpText]="'Contacts are the people that you market to, sell to, support, etc. They are the people you interact with to get the business. Capture as much details about them as you can. You can use the Notes field for any additional information which do not fit into any other available fields'"></app-help-gadget>
+  <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Contact'" [helpText]="'Contacts are the people that you market to, sell to, support, etc. They are the people you interact with to get the business. Capture as much details about them as you can. You can use the Notes field for any additional information which do not fit into any other available fields.'"></app-help-gadget>
   <app-help-gadget *ngIf="attr==='company'" [helpHeader]="'Company'" [helpText]="'The company which the contact works for.'"></app-help-gadget>
   <app-help-gadget *ngIf="attr==='desig'" [helpHeader]="'Designation'" [helpText]="'The designation of the contact in the company he/she works for.'"></app-help-gadget>
   <app-help-gadget *ngIf="attr==='note'" [helpHeader]="'Notes'" [helpText]="'Use this space to capture any additional information about the contact that do not fit into any of the other fields.'"></app-help-gadget>
