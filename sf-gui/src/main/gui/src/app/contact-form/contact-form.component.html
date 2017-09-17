@@ -1,0 +1,116 @@
+<div class="card card-shadow bg-primary pb-4">
+  <form [formGroup]="contactFormGroup" (ngSubmit)="submit()">
+    <div class="card-block">
+      <h1 class="display-4 text-white ml-4 my-3">Contact Creation</h1>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Basic Information</h6>
+          <div *ngIf="pubKey !== ''" class="form-group">
+            <label for="pubKey">Public Key</label>
+            <input (focus)="attr = 'pubKey'" type="text" class="form-control" id="pubKey" required readonly>
+          </div>
+          <div class="form-group">
+            <label for="fName">First Name <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'fName'" type="text" class="form-control" id="fname" placeholder="First name of the contact" required>
+          </div>
+          <div class="form-group">
+            <label for="mName">Middle Name</label>
+            <input (focus)="attr = 'mName'" type="text" class="form-control" id="mName" placeholder="Middle name of the contact">
+          </div>
+          <div class="form-group">
+            <label for="lName">Last Name</label>
+            <input (focus)="attr = 'lName'" type="text" class="form-control" id="lName" placeholder="Last name of the contact">
+          </div>
+          <div class="form-group">
+            <label for="company">Company <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'company'" type="text" class="form-control" id="company" placeholder="Name of the company" required>
+          </div>
+          <div class="form-group">
+            <label for="desig">Designation <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'desig'" type="text" class="form-control" id="desig" placeholder="Designation of the contact" required>
+          </div>
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Contact Information</h6>
+          <div class="form-group">
+            <label for="email">Email <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'email'" type="email" class="form-control" id="email" placeholder="Email of the contact" required>
+          </div>
+          <div class="form-group">
+            <label for="mob">Mobile <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'mob'" type="text" class="form-control" id="mob" placeholder="Mobile number of the contact" required>
+          </div>
+          <div class="form-group">
+            <label for="land">Telephone</label>
+            <input (focus)="attr = 'land'" type="text" class="form-control" id="land" placeholder="Land line number of the contact">
+          </div>
+          <div class="form-group">
+            <label for="extn">Extension</label>
+            <input (focus)="attr = 'extn'" type="text" class="form-control" id="extn" placeholder="Extension number of the contact">
+          </div>
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Address</h6>
+          <div class="form-group">
+            <label for="addrLine1">Address Line 1</label>
+            <input (focus)="attr = 'addrLine1'" type="text" class="form-control" id="addrLine1" placeholder="Address Line 1 of the contact">
+          </div>
+          <div class="form-group">
+            <label for="addrLine1">Address Line 2</label>
+            <input (focus)="attr = 'addrLine2'" type="text" class="form-control" id="addrLine2" placeholder="Address Line 2 of the contact">
+          </div>
+          <div class="form-group">
+            <label for="cId">Country</label>
+            <select (focus)="attr = 'country'" class="form-control py-0" id="cId" #cId (change)="onCountryChange(cId.value)">
+              <option value=""></option>
+              <option *ngFor="let country of locationLists.countries" value="{{country.cId}}">{{country.cName}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sId">State</label>
+            <select (focus)="attr = 'state'" class="form-control py-0" id="sId" #sId (change)="onStateChange(sId.value)">
+                <option *ngFor="let state of locationLists.states" value="{{state.sId}}">{{state.sName}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dId">District</label>
+            <select (focus)="attr = 'district'" class="form-control py-0" id="dId">
+                <option *ngFor="let district of locationLists.districts" value="{{district.dId}}">{{district.dName}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input (focus)="attr = 'zipCode'" type="text" class="form-control" id="zipCode" placeholder="Zip code or Postal code of the address">
+          </div>
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Additional Notes</h6>
+          <div class="form-group">
+            <label for="note">Note</label>
+            <textarea (focus)="attr = 'note'" rows="5" type="text" class="form-control" id="note" placeholder="Note about the contact"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
+        <button type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="d-none d-lg-block help-text">
+  <app-help-gadget *ngIf="attr==='fName'" [helpHeader]="'First Name'" [helpText]="'The first name of the contact.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='mName'" [helpHeader]="'Middle Name'" [helpText]="'The middle name of the contact (if any).'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='lName'" [helpHeader]="'Last Name'" [helpText]="'The last name of the contact (if any).'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='company'" [helpHeader]="'Company'" [helpText]="'The Company which the contact works for.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='desig'" [helpHeader]="'Designation'" [helpText]="'The designation of the contact in the company he/she works for.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='email'" [helpHeader]="'Email'" [helpText]="'The official email of the contact where he/she can be contacted.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='mob'" [helpHeader]="'Mobile'" [helpText]="'The mobile number of the contact where he/she can be contacted.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='land'" [helpHeader]="'Telephone'" [helpText]="'The land line number of the contact where he/she can be contacted.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='extn'" [helpHeader]="'Extension'" [helpText]="'Extension number of the contact'"></app-help-gadget>
+</div>

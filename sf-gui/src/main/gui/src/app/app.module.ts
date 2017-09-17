@@ -9,6 +9,10 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { AuthService } from './auth.service';
+import { HttpService } from './http.service';
+import { CountryService } from './country.service';
+import { StateService } from './state.service';
+import { DistrictService } from './district.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
@@ -18,6 +22,7 @@ import { ContactCreationComponent } from './contact-creation/contact-creation.co
 import { SalesrepCreationComponent } from './salesrep-creation/salesrep-creation.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HelpGadgetComponent } from './help-gadget/help-gadget.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -40,7 +45,8 @@ const appRoutes: Routes = [
     ContactCreationComponent,
     SalesrepCreationComponent,
     ContactsComponent,
-    HelpGadgetComponent
+    HelpGadgetComponent,
+    ContactFormComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -54,7 +60,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [AuthService, NgbDropdown],
+  providers: [AuthService, NgbDropdown, HttpService, CountryService, StateService, DistrictService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
