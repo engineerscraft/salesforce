@@ -1,6 +1,8 @@
 DROP ROLE IF EXISTS "sfmapp";
 CREATE USER "sfmapp" WITH CREATEROLE PASSWORD 'sfmapp';
 
+CREATE EXTENSION pg_trgm;
+
 CREATE TABLE SFM.APP_SEQUENCE (
   SEQ_NAME VARCHAR(20) PRIMARY KEY,
   SEQ_VALUE BIGINT CHECK (SEQ_VALUE > 0) NOT NULL
@@ -417,6 +419,21 @@ CREATE TABLE SFM.DIV_ROLE (
 	FOREIGN KEY(DIV_ID) REFERENCES SFM.DIVISION(DIV_ID),	
 	FOREIGN KEY(ROLE_ID) REFERENCES SFM.ROLE(ROLE_ID)
 );
+
+create or replace FUNCTION sfm.f_immutable_concat_ws_ten_var(s1 varchar, s2 varchar, s3 varchar, s4 varchar, s5 varchar, s6 varchar, s7 varchar, s8 varchar, s9 varchar, s10 varchar)
+RETURNS varchar AS
+$func$
+SELECT concat_ws(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10)
+$func$ LANGUAGE sql IMMUTABLE;
+
+CREATE INDEX contact_all_trg_idx ON sfm.contact
+USING gin(to_tsvector('english',(sfm.f_immutable_concat_ws_ten_var(pub_key, f_name, m_name, l_name, company, desig, email, land, mob, null))));
+
+create index name_idx on sfm.contact(f_name, m_name, l_name);
+create index company_idx on sfm.contact(company);
+create index desig_idx on sfm.contact(desig);
+create index email_idx on sfm.contact(email);
+create index mob_idx on sfm.contact(mob);
 
 CREATE SEQUENCE SFM.ACCESS_ID_SEQ START WITH 1 INCREMENT BY 1 CACHE 5 CYCLE;
 
