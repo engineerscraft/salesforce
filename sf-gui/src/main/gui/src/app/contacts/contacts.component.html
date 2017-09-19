@@ -6,10 +6,26 @@
           <p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Simple Search</a></p>
         </div>
         <div *ngSwitchCase="'simple'">
-          <input type="text" class="form-control" id="search" aria-describedby="search" placeholder="Search">
+          <form [formGroup]="contactSearchFormGroup">
+            <input type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
+              placeholder="Search" required>
+          </form>
           <p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Advanced Search</a></p>
         </div>
       </div>
+    </div>
+  </div>
+  <div [ngSwitch]="message">
+    <div *ngSwitchCase="''">
+      <div *ngFor="let quadruple of contactQuadruples" class="row my-4 mx-2">
+        <app-contact-card *ngFor="let contact of quadruple" class="mx-auto col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12" pubKey="{{contact.pubKey}}"
+          fName="{{contact.fName}}" mName="{{contact.mName}}" lName="{{contact.lName}}" email="{{contact.email}}" desig="{{contact.desig}}"
+          company="{{contact.company}}" mob="{{contact.mob}}" land="{{contact.land}}" extn="{{contact.extn}}" pubKey="{{contact.pubKey}}">
+        </app-contact-card>
+      </div>
+    </div>
+    <div *ngSwitchCase="'No contact found'">
+      <p class="text-center">No contact found</p>
     </div>
   </div>
 </div>

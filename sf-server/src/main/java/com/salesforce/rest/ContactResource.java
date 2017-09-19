@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -19,7 +19,7 @@ import com.salesforce.privileges.Privilege;
 import com.salesforce.repository.ContactRepository;
 import com.salesforce.security.Secured;
 
-@Path("v1")
+@Path("v1/contact")
 public class ContactResource {
 
     private static final Logger logger = LogManager.getLogger(ContactResource.class);
@@ -28,16 +28,16 @@ public class ContactResource {
     private ContactRepository contactRepository;
 
     @GET
-    @Path("/contacts/{searchString}/{startPosition}")
+    @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Secured(Privilege.DEFAULT)
-    public Response getContactPage(@PathParam("searchString") String searchString, @PathParam("startPosition") long startPosition) {
+    public Response getContactPage(@QueryParam("searchString") String searchString, @QueryParam("startPosition") long startPosition) {
         List<ContactSummary> contacts;
         try {
             contacts = contactRepository.getContactPage(searchString, startPosition);
             if(contacts.size() == 0) {
                logger.error("No contact forund for searchString: {} and startPosition: {}", () -> searchString, () -> startPosition);
-               return Response.status(Response.Status.NOT_FOUND).entity(new Message("No contact forund.")).build();
+               return Response.status(Response.Status.NOT_FOUND).entity(new Message("No contact found")).build();
             }
             return Response.status(Response.Status.OK).entity(contacts).build();
         } catch (Exception e) {

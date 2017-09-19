@@ -13,6 +13,7 @@ import { HttpService } from './http.service';
 import { CountryService } from './country.service';
 import { StateService } from './state.service';
 import { DistrictService } from './district.service';
+import { ContactService } from './contact.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
@@ -23,6 +24,7 @@ import { SalesrepCreationComponent } from './salesrep-creation/salesrep-creation
 import { ContactsComponent } from './contacts/contacts.component';
 import { HelpGadgetComponent } from './help-gadget/help-gadget.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ContactCardComponent } from './contact-card/contact-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     SalesrepCreationComponent,
     ContactsComponent,
     HelpGadgetComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    ContactCardComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -60,7 +63,15 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [AuthService, NgbDropdown, HttpService, CountryService, StateService, DistrictService],
+  providers: [
+    AuthService, 
+    NgbDropdown, 
+    HttpService, 
+    CountryService, 
+    StateService, 
+    DistrictService,
+    ContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
