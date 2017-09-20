@@ -1,5 +1,8 @@
 package com.salesforce.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Contact {
 
     private ContactSummary contactSummary;
