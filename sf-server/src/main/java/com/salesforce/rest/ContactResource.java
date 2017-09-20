@@ -55,7 +55,7 @@ public class ContactResource {
     }
 
     @POST
-    @Path("/contacts")
+    @Path("/")
     @Secured(Privilege.DEFAULT)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
