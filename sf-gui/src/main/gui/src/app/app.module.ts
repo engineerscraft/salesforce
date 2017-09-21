@@ -25,6 +25,9 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { HelpGadgetComponent } from './help-gadget/help-gadget.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { ContactCardComponent } from './contact-card/contact-card.component';
+import { SalesrepCardComponent } from './salesrep-card/salesrep-card.component';
+import { SalesrepFormComponent } from './salesrep-form/salesrep-form.component';
+import { SalesrepsComponent } from './salesreps/salesreps.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -49,7 +52,10 @@ const appRoutes: Routes = [
     ContactsComponent,
     HelpGadgetComponent,
     ContactFormComponent,
-    ContactCardComponent
+    ContactCardComponent,
+    SalesrepCardComponent,
+    SalesrepFormComponent,
+    SalesrepsComponent
   ],
   imports: [
     RouterModule.forRoot(
