@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.naming.NamingException;
+import javax.naming.directory.Attribute;
+import javax.naming.directory.BasicAttribute;
+import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.ws.rs.NotAuthorizedException;
 
@@ -30,6 +33,7 @@ import org.springframework.stereotype.Component;
 import com.salesforce.model.Division;
 import com.salesforce.model.PasswordChangeDetails;
 import com.salesforce.model.Permission;
+import com.salesforce.model.SalesRep;
 import com.salesforce.model.Token;
 import com.salesforce.rowmapper.DivisionRowMapper;
 import com.salesforce.rowmapper.PermissionRowMapper;
@@ -102,6 +106,56 @@ public class AuthenticationRepository {
         DirContextOperations context = ldapTemplate.lookupContext("cn=" + username + ",ou=users");
         context.setAttributeValue("userPassword", digestSHA(pwdDetails.getNewPassword()));
         ldapTemplate.modifyAttributes(context);
+    }
+
+    /**
+     * Get the full name to be used in LDAP
+     * 
+     * @param salesRep
+     * @return
+     */
+    private String getFullName(SalesRep salesRep) {
+        String fullName = String.format("%s %s %s", salesRep.getfName(), salesRep.getmName() == null ? "" : salesRep.getmName(), salesRep.getlName());
+        return fullName;
+    }
+
+    /**
+     * Create new user in LDAP
+     * 
+     * @param salesRepPubKey
+     * @param salesRep
+     * @throws Exception
+     */
+    public void createUser(String salesRepPubKey, SalesRep salesRep) throws Exception {
+        try {
+            String fullName = this.getFullName(salesRep);
+            Attribute sn = new BasicAttribute("sn", fullName);
+            Attribute password = new BasicAttribute("userPassword", salesRepPubKey);
+            Attribute displayName = new BasicAttribute("displayName", fullName);
+
+            Attribute oc = new BasicAttribute("objectClass");
+            oc.add("top");
+            oc.add("person");
+            oc.add("organizationalPerson");
+            oc.add("inetOrgPerson");
+
+            BasicAttributes personEntry = new BasicAttributes();
+            personEntry.put(sn);
+            personEntry.put(password);
+            personEntry.put(displayName);
+
+            personEntry.put(oc);
+            String relativeDn = String.format("cn=%s,ou=users", salesRepPubKey);
+
+            ldapTemplate.bind(relativeDn, null, personEntry);
+
+            // add the required roles to the new entry
+            this.addRole("SALESREP", relativeDn);
+
+        } catch (Exception e) {
+            logger.error("User creation failed", e);
+            throw e;
+        }
     }
 
     private void addRole(String role, String relativeDn) throws Exception {

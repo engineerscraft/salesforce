@@ -25,6 +25,9 @@ public class SalesRepRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private AuthenticationRepository authRepo;
+
     @Value("${sql.getSeq.byName}")
     private String getSalesRepSequence;
 
@@ -49,6 +52,9 @@ public class SalesRepRepository {
                 () -> salesRep.getStatusId(), () -> salesRep.getExtn(), () -> salesRep.getLand(), () -> salesRep.getMob(), () -> salesRep.getEmail(), () -> salesRep.getDoj(), () -> salesRep.getDesig(), () -> username);
         jdbcTemplate.update(salesRepTableInsert, new Object[] { salesRepId, salesRep.getPubKey(), salesRep.getfName(), salesRep.getmName(), salesRep.getlName(), salesRep.getSupId(), salesRep.getStatusId(), salesRep.getExtn(), salesRep.getLand(),
                 salesRep.getMob(), salesRep.getEmail(), salesRep.getDoj(), salesRep.getDesig(), username });
+
+        // create LDAP user
+        authRepo.createUser(salesRep.getPubKey(), salesRep);
 
         String message = "Sales Representative created with ID: " + salesRepId.toString();
         return message;
