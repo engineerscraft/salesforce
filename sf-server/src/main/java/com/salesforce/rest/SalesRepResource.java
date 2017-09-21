@@ -1,9 +1,13 @@
 package com.salesforce.rest;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -33,6 +37,25 @@ public class SalesRepResource {
 
     @Context
     private SecurityContext securityContext;
+
+    @GET
+    @Path("/")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Secured(Privilege.DEFAULT)
+    public Response getSalesRepPage(@QueryParam("searchString") String searchString, @QueryParam("startPosition") long startPosition) {
+        List<SalesRep> salesReps;
+        try {
+            salesReps = salesRepRepository.getSalesRepPage(searchString, startPosition);
+            if (salesReps.size() == 0) {
+                logger.error("No sales representative found for searchString: {} and startPosition: {}", () -> searchString, () -> startPosition);
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No sales representative found")).build();
+            }
+            return Response.status(Response.Status.OK).entity(salesReps).build();
+        } catch (Exception e) {
+            logger.error("The contacts could not be searched", e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+        }
+    }
 
     /**
      * @param salesRep

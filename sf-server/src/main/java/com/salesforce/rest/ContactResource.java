@@ -44,7 +44,7 @@ public class ContactResource {
         try {
             contacts = contactRepository.getContactPage(searchString, startPosition);
             if (contacts.size() == 0) {
-                logger.error("No contact forund for searchString: {} and startPosition: {}", () -> searchString, () -> startPosition);
+                logger.error("No contact found for searchString: {} and startPosition: {}", () -> searchString, () -> startPosition);
                 return Response.status(Response.Status.NOT_FOUND).entity(new Message("No contact found")).build();
             }
             return Response.status(Response.Status.OK).entity(contacts).build();
