@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +53,8 @@ public class SalesRepResource {
             }
             return Response.status(Response.Status.OK).entity(salesReps).build();
         } catch (Exception e) {
-            logger.error("The contacts could not be searched", e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+            logger.error("The sales representative could not be searched", e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ExceptionUtils.getStackTrace(e).substring(0, 300))).build();
         }
     }
 
@@ -73,7 +74,7 @@ public class SalesRepResource {
             return Response.status(Response.Status.OK).entity(new Message(message)).build();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(ExceptionUtils.getStackTrace(e).substring(0, 300))).build();
         }
     }
 }
