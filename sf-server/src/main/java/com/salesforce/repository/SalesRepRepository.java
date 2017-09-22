@@ -1,5 +1,7 @@
 package com.salesforce.repository;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.salesforce.model.SalesRep;
+import com.salesforce.rowmapper.SalesRepRowMapper;
 import com.salesforce.utils.ApplicationUtils;
 
 /**
@@ -25,6 +28,15 @@ public class SalesRepRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private AuthenticationRepository authRepo;
+
+    @Value("${sql.salesRep.page}")
+    private String salesRepPageSql;
+
+    @Value("${salesRep.pagesize}")
+    private Long salesRepPageSize;
+
     @Value("${sql.getSeq.byName}")
     private String getSalesRepSequence;
 
@@ -33,6 +45,15 @@ public class SalesRepRepository {
 
     @Value("${sql.salesRepTable.insert}")
     private String salesRepTableInsert;
+
+    public List<SalesRep> getSalesRepPage(String searchString, long startPosition) {
+        Object[] args = { searchString, '%' + searchString + '%', searchString, salesRepPageSize, startPosition };
+        logger.info(sqlMarker, salesRepPageSql);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> searchString, () -> '%' + searchString + '%', () -> searchString, () -> salesRepPageSize, () -> startPosition);
+        List<SalesRep> salesReps = (List<SalesRep>) jdbcTemplate.query(salesRepPageSql, args, new SalesRepRowMapper());
+        logger.debug("Retrieved countries: {}", () -> salesReps);
+        return salesReps;
+    }
 
     /**
      * @param salesRep
@@ -49,6 +70,9 @@ public class SalesRepRepository {
                 () -> salesRep.getStatusId(), () -> salesRep.getExtn(), () -> salesRep.getLand(), () -> salesRep.getMob(), () -> salesRep.getEmail(), () -> salesRep.getDoj(), () -> salesRep.getDesig(), () -> username);
         jdbcTemplate.update(salesRepTableInsert, new Object[] { salesRepId, salesRep.getPubKey(), salesRep.getfName(), salesRep.getmName(), salesRep.getlName(), salesRep.getSupId(), salesRep.getStatusId(), salesRep.getExtn(), salesRep.getLand(),
                 salesRep.getMob(), salesRep.getEmail(), salesRep.getDoj(), salesRep.getDesig(), username });
+
+        // create LDAP user
+        authRepo.createUser(salesRep.getPubKey(), salesRep);
 
         String message = "Sales Representative created with ID: " + salesRepId.toString();
         return message;

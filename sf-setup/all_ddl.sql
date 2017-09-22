@@ -431,6 +431,15 @@ create index desig_idx on sfm.contact(desig);
 create index email_idx on sfm.contact(email);
 create index mob_idx on sfm.contact(mob);
 
+
+CREATE INDEX salesrep_all_trg_idx ON sfm.sales_rep
+USING gin(to_tsvector('english',(sfm.f_immutable_concat_ws_ten_var(pub_key, f_name, m_name, l_name, land, mob,  email, desig, null, null))));
+
+create index salesrep_name_idx on sfm.sales_rep(f_name, m_name, l_name);
+create index salesrep_desig_idx on sfm.sales_rep(desig);
+create index salesrep_email_idx on sfm.sales_rep(email);
+create index salesrep_mob_idx on sfm.sales_rep(mob);
+
 CREATE SEQUENCE SFM.ACCESS_ID_SEQ START WITH 1 INCREMENT BY 1 CACHE 5 CYCLE;
 
 GRANT ALL ON SCHEMA SFM TO "sfmapp";
