@@ -12,4 +12,9 @@ export class ContactService {
     return this.httpService.callHttpGet("/resources/v1/contact?searchString=" + searchString + "&startPosition=" + startPosition)
       .map(res => res.json())
   }
+
+  createContact(contact) {
+    return this.httpService.callHttpPost("/resources/v1/contact", contact)
+      .map(res => res.json())
+  }
 }

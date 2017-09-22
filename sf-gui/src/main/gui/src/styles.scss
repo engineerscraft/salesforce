@@ -9,6 +9,14 @@ $link-color: #4b465d;
 $lightaccent: #a7866c;
 $darkaccent: #8d5b6a;
 
+.alert-position {
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
 .bg-laccent { 
   background-color: $lightaccent !important;
 }
