@@ -106,7 +106,8 @@ export class ContactFormComponent implements OnInit {
 
         },
         err => {
-          this.message = err.json()["message"];
+          this.message = err.status + " : " + err.statusText;
+          this.message = this.message + " : " + err.json()["message"];
         });
     }
   }

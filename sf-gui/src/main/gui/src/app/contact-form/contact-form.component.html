@@ -1,6 +1,6 @@
 <div class="card card-shadow bg-primary pb-4">
     <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
-        <strong>Contact could not be created. {{message}}</strong>
+        <strong>{{message}}</strong>
     </div>
     <form [formGroup]="contactFormGroup" (ngSubmit)="submit()">
     <div class="card-block">
