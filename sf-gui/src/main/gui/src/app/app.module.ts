@@ -14,6 +14,7 @@ import { CountryService } from './country.service';
 import { StateService } from './state.service';
 import { DistrictService } from './district.service';
 import { ContactService } from './contact.service';
+import { SalesrepService } from './salesrep.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
   { path: 'leadCreation', component: LeadCreationComponent },
   { path: 'contactCreation', component: ContactCreationComponent },
   { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
-  { path: 'contacts', component: ContactsComponent }
+  { path: 'contacts', component: ContactsComponent },
+  { path: 'salesreps', component: SalesrepsComponent }
 ];
 
 @NgModule({
@@ -76,7 +78,8 @@ const appRoutes: Routes = [
     CountryService, 
     StateService, 
     DistrictService,
-    ContactService
+    ContactService,
+    SalesrepService
   ],
   bootstrap: [AppComponent]
 })
