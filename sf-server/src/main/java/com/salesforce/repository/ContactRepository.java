@@ -67,11 +67,11 @@ public class ContactRepository {
         Integer contactId = generateContactId();
         if (contact.getContactSummary() != null) {
             logger.info(sqlMarker, contactTableInsert);
-            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> contactId, () -> contact.getContactSummary().getPubKey(), () -> contact.getContactSummary().getfName(), () -> contact.getContactSummary().getmName(),
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> contactId, () -> contactId, () -> contact.getContactSummary().getfName(), () -> contact.getContactSummary().getmName(),
                     () -> contact.getContactSummary().getlName(), () -> contact.getContactSummary().getCompany(), () -> contact.getContactSummary().getDesig(), () -> contact.getContactSummary().getEmail(), () -> contact.getContactSummary().getExtn(),
                     () -> contact.getContactSummary().getLand(), () -> contact.getContactSummary().getMob(), () -> username);
             jdbcTemplate.update(contactTableInsert,
-                    new Object[] { contactId, contact.getContactSummary().getPubKey(), contact.getContactSummary().getfName(), contact.getContactSummary().getmName(), contact.getContactSummary().getlName(), contact.getContactSummary().getCompany(),
+                    new Object[] { contactId, contactId, contact.getContactSummary().getfName(), contact.getContactSummary().getmName(), contact.getContactSummary().getlName(), contact.getContactSummary().getCompany(),
                             contact.getContactSummary().getDesig(), contact.getContactSummary().getEmail(), contact.getContactSummary().getExtn(), contact.getContactSummary().getLand(), contact.getContactSummary().getMob(), username });
 
             logger.info(sqlMarker, contactAttrTableInsert);

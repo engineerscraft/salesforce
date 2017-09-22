@@ -11,9 +11,9 @@ public class Contact {
     private String dName;
     private String sName;
     private String cName;
-    private int dId;
-    private int sId;
-    private int cId;
+    private Integer dId;
+    private Integer sId;
+    private Integer cId;
     private String zipCode;
     private String note;
 
@@ -104,42 +104,42 @@ public class Contact {
     /**
      * @return the dId
      */
-    public int getdId() {
+    public Integer getdId() {
         return dId;
     }
 
     /**
      * @param dId the dId to set
      */
-    public void setdId(int dId) {
+    public void setdId(Integer dId) {
         this.dId = dId;
     }
 
     /**
      * @return the sId
      */
-    public int getsId() {
+    public Integer getsId() {
         return sId;
     }
 
     /**
      * @param sId the sId to set
      */
-    public void setsId(int sId) {
+    public void setsId(Integer sId) {
         this.sId = sId;
     }
 
     /**
      * @return the cId
      */
-    public int getcId() {
+    public Integer getcId() {
         return cId;
     }
 
     /**
      * @param cId the cId to set
      */
-    public void setcId(int cId) {
+    public void setcId(Integer cId) {
         this.cId = cId;
     }
 
