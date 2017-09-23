@@ -49,3 +49,8 @@ UPDATE SFM.APP_SEQUENCE SET SEQ_VALUE=101 WHERE SEQ_NAME='SALES_REP_SEQ';
 UPDATE SFM.APP_SEQUENCE SET SEQ_VALUE=101 WHERE SEQ_NAME='CONTACT_SEQ';
 
 UPDATE SFM.APP_SEQUENCE SET SEQ_VALUE=101 WHERE SEQ_NAME='LEAD_SEQ';
+
+insert into sfm.contact_attr
+select co_id,'DLF IT Park II, Action Area II', 'Rajarhat', 5583,41,101,700156,null,'TEST',current_timestamp, null,null from sfm.contact;
+
+update sfm.contact set pub_key='CO'||LPAD(co_id::text, 8, '0');
