@@ -104,7 +104,9 @@
         </div>
       </div>
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
+          
         <button [disabled]="!contactFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
+        <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-primary float-right text-white ripple">Cancel</button>
       </div>
     </div>
   </form>

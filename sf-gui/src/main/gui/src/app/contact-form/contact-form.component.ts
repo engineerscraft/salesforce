@@ -33,8 +33,12 @@ export class ContactFormComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+
+    if(this.mode === "View")
+      this.readOnly = true;
+
     this.contactFormGroup = this.formBuilder.group({
-      
+
       contactSummary: this.formBuilder.group({
         coId: [''],
         pubKey: [''],
@@ -68,6 +72,12 @@ export class ContactFormComponent implements OnInit {
         .subscribe(
         res => {
           this.contactFormGroup.setValue(res);
+          if(this.contactFormGroup.value.cId) {
+            this.onCountryChange(this.contactFormGroup.value.cId);
+          }
+          if(this.contactFormGroup.value.sId) {
+            this.onStateChange(this.contactFormGroup.value.sId);
+          }
         },
         err => {
           this.message = err.status + " : " + err.statusText;
@@ -85,6 +95,7 @@ export class ContactFormComponent implements OnInit {
       res => {
         this.locationLists.countries = res;
       });
+
 
     if (this.mode === 'View') {
 
@@ -110,30 +121,45 @@ export class ContactFormComponent implements OnInit {
   }
 
   submit() {
+    this.message = '';
     if (this.mode === 'Create') {
       this.contactService.createContact(this.contactFormGroup.value)
         .subscribe(
         res => {
-          this.router.navigate(['contactDetails/'+res.pubKey]);
+          this.router.navigate(['contactDetails/' + res.pubKey]);
         },
         err => {
           this.message = err.status + " : " + err.statusText;
           this.message = this.message + " : " + err.json()["message"];
         });
-    } else if(this.mode === 'View') {
-      console.log("in View block");
+    } else if (this.mode === 'View') {
       this.readOnly = null;
       this.buttonName = 'Save';
       this.mode = 'Modify';
-    } else if(this.mode === 'Modify') {
-      this.readOnly = true;
-      this.buttonName = 'Modify';
-      this.mode = 'View';      
+    } else if (this.mode === 'Modify') {
+      this.contactService.updateContact(this.pubKey, this.contactFormGroup.value)
+        .subscribe(
+        res => {
+          this.readOnly = true;
+          this.buttonName = 'Modify';
+          this.mode = 'View';
+        },
+        err => {
+          this.message = err.status + " : " + err.statusText;
+          this.message = this.message + " : " + err.json()["message"];
+        }
+        );
     }
   }
 
   dismissAlert() {
     this.message = undefined;
+  }
+
+  cancel() {
+    this.readOnly = true;
+    this.buttonName = 'Modify';
+    this.mode = 'View';
   }
 
 }

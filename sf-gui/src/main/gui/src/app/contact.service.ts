@@ -22,4 +22,9 @@ export class ContactService {
     return this.httpService.callHttpGet("/resources/v1/contact/" + pubKey)
       .map(res => res.json())
   }
+
+  updateContact(pubKey, contact) {
+    return this.httpService.callHttpPut("/resources/v1/contact/" + pubKey, contact)
+      .map(res => res.json())  
+  }
 }

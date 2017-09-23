@@ -18,7 +18,7 @@ export class HelpGadgetComponent implements OnInit {
 
   @Input() helpHeader = ''; 
   @Input() helpText = '';
-  @Input() background = 'bg-primary'
+  @Input() background = 'bg-success'
 
   private state = 'invisible';
   

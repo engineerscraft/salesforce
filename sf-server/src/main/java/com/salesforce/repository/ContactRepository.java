@@ -52,6 +52,12 @@ public class ContactRepository {
     @Value("${sql.contact.select}")
     private String contactSelect;
 
+    @Value("${sql.contact.update}")
+    private String contactUpdate;
+
+    @Value("${sql.contactAttr.update}")
+    private String contactAttrUpdate;
+
     public List<ContactSummary> getContactPage(String searchString, long startPosition) {
         Object[] args = { searchString, '%' + searchString + '%', searchString, contactPageSize, startPosition };
         logger.info(sqlMarker, contactPageSql);
@@ -83,7 +89,7 @@ public class ContactRepository {
                     () -> contact.getNote(), () -> username);
             jdbcTemplate.update(contactAttrTableInsert, new Object[] { contactId, contact.getAddrLine1(), contact.getAddrLine2(), contact.getdId(), contact.getsId(), contact.getcId(), contact.getZipCode(), contact.getNote(), username });
             PublicKey pubKey = new PublicKey();
-            pubKey.setPubKey("CO"+String.format("%08d", contactId));
+            pubKey.setPubKey("CO" + String.format("%08d", contactId));
             return pubKey;
         } else {
             throw new Exception("Contact cannot be created as basic contact data is missing...");
@@ -117,5 +123,28 @@ public class ContactRepository {
         Contact contact = jdbcTemplate.queryForObject(contactSelect, args, new ContactRowMapper());
         logger.debug("Retrieved contact: {}", () -> contact);
         return contact;
+    }
+
+    @Transactional
+    public PublicKey updateContact(String pubKey, Contact contact, String username) throws Exception{
+        if (contact.getContactSummary() != null) {
+            logger.info(sqlMarker, contactUpdate);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> contact.getContactSummary().getfName(), () -> contact.getContactSummary().getmName(), () -> contact.getContactSummary().getlName(),
+                    () -> contact.getContactSummary().getCompany(), () -> contact.getContactSummary().getDesig(), () -> contact.getContactSummary().getEmail(), () -> contact.getContactSummary().getMob(), () -> contact.getContactSummary().getLand(),
+                    () -> contact.getContactSummary().getExtn(), () -> username, () -> pubKey);
+            jdbcTemplate.update(contactUpdate, new Object[] { contact.getContactSummary().getfName(), contact.getContactSummary().getmName(), contact.getContactSummary().getlName(), contact.getContactSummary().getCompany(),
+                    contact.getContactSummary().getDesig(), contact.getContactSummary().getEmail(), contact.getContactSummary().getMob(), contact.getContactSummary().getLand(), contact.getContactSummary().getExtn(), username, pubKey });
+
+            logger.info(sqlMarker, contactAttrUpdate);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> contact.getAddrLine1(), () -> contact.getAddrLine2(), () -> contact.getdId(), () -> contact.getsId(), () -> contact.getcId(), () -> contact.getZipCode(),
+                    () -> contact.getNote(), () -> username, () -> pubKey);
+            jdbcTemplate.update(contactAttrUpdate,
+                    new Object[] { contact.getAddrLine1(), contact.getAddrLine2(), contact.getdId(), contact.getsId(), contact.getcId(), contact.getZipCode(), contact.getNote(), username, pubKey });
+            PublicKey pubKeyObj = new PublicKey();
+            pubKeyObj.setPubKey(pubKey);
+            return pubKeyObj;
+        } else {
+            throw new Exception("Contact cannot be created as basic contact data is missing...");
+        }
     }
 }
