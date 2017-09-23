@@ -21,7 +21,7 @@
   </div>
   <div [ngSwitch]="message">
     <div *ngSwitchCase="''">
-      <nav *ngIf="contactQuadruples" class="row h-100 justify-content-center align-items-center">
+      <nav *ngIf="contactQuadruples" class="row col-12 h-100 justify-content-center align-items-center">
         <ul class="pagination">
           <li class="page-item">
             <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="previous()">
@@ -43,7 +43,7 @@
           company="{{contact.company}}" mob="{{contact.mob}}" land="{{contact.land}}" extn="{{contact.extn}}" pubKey="{{contact.pubKey}}">
         </app-contact-card>
       </div>
-      <nav *ngIf="contactQuadruples" class="row h-100 justify-content-center align-items-center">
+      <nav *ngIf="contactQuadruples" class="row col-12 h-100 justify-content-center align-items-center">
         <ul class="pagination">
           <li class="page-item">
             <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="previous()">
