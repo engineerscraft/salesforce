@@ -22,6 +22,7 @@ export class ContactFormComponent implements OnInit {
   private locationLists = { countries: Array(), states: Array(), districts: Array() };
   private message = '';
   private pubKey;
+  private formTitle = 'Contact Creation';
 
 
   constructor(private formBuilder: FormBuilder,
@@ -34,8 +35,10 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit() {
 
-    if(this.mode === "View")
+    if(this.mode === "View") {
       this.readOnly = true;
+      this.formTitle = 'Contact Details';
+    }
 
     this.contactFormGroup = this.formBuilder.group({
 
