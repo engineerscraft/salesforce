@@ -6,6 +6,10 @@
           <p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Simple Search</a></p>
         </div>
         <div *ngSwitchCase="'simple'">
+          <div *ngIf="paginationMessage" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+            <strong>{{paginationMessage}}</strong>
+          </div>
+
           <form [formGroup]="contactSearchFormGroup">
             <input type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
               placeholder="Search" required>
@@ -17,12 +21,44 @@
   </div>
   <div [ngSwitch]="message">
     <div *ngSwitchCase="''">
+      <nav *ngIf="contactQuadruples" class="row h-100 justify-content-center align-items-center">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="previous()">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+          </li>
+        </ul>
+      </nav>
       <div *ngFor="let quadruple of contactQuadruples" class="row my-4 mx-2">
         <app-contact-card *ngFor="let contact of quadruple" class="mx-auto col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12" pubKey="{{contact.pubKey}}"
           fName="{{contact.fName}}" mName="{{contact.mName}}" lName="{{contact.lName}}" email="{{contact.email}}" desig="{{contact.desig}}"
           company="{{contact.company}}" mob="{{contact.mob}}" land="{{contact.land}}" extn="{{contact.extn}}" pubKey="{{contact.pubKey}}">
         </app-contact-card>
       </div>
+      <nav *ngIf="contactQuadruples" class="row h-100 justify-content-center align-items-center">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="previous()">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+          </li>
+        </ul>
+      </nav>
     </div>
     <div *ngSwitchCase="'No contact found'">
       <p class="text-center">No contact found</p>

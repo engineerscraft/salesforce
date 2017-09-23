@@ -25,6 +25,10 @@ $darkaccent: #8d5b6a;
   background-color: $darkaccent !important;
 }
 
+.bg-primary {
+  background-color: $blue !important;
+}
+
 .display-5 {
   @extend .display-4;
   font-size: 2rem !important;
