@@ -51,7 +51,7 @@ public class SalesRepRepository {
         logger.info(sqlMarker, salesRepPageSql);
         logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> searchString, () -> '%' + searchString + '%', () -> searchString, () -> salesRepPageSize, () -> startPosition);
         List<SalesRep> salesReps = (List<SalesRep>) jdbcTemplate.query(salesRepPageSql, args, new SalesRepRowMapper());
-        logger.debug("Retrieved countries: {}", () -> salesReps);
+        logger.debug("Retrieved sales representatives: {}", () -> salesReps);
         return salesReps;
     }
 
@@ -94,7 +94,7 @@ public class SalesRepRepository {
         logger.info(sqlMarker, "Params {} {}", () -> newSalesRepId, () -> ApplicationUtils.SALES_REP_SEQ_NAME);
         jdbcTemplate.update(updateSalesRepSequence, new Object[] { newSalesRepId, ApplicationUtils.SALES_REP_SEQ_NAME });
 
-        logger.debug("Contact ID generated: {}", () -> fetchedSalesRepId);
+        logger.debug("Sales Representative ID generated: {}", () -> fetchedSalesRepId);
         return fetchedSalesRepId;
     }
 

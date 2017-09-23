@@ -57,7 +57,7 @@ public class ContactRepository {
         logger.info(sqlMarker, contactPageSql);
         logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> searchString, () -> '%' + searchString + '%', () -> searchString, () -> contactPageSize, () -> startPosition);
         List<ContactSummary> contacts = (List<ContactSummary>) jdbcTemplate.query(contactPageSql, args, new ContactSummaryRowMapper());
-        logger.debug("Retrieved countries: {}", () -> contacts);
+        logger.debug("Retrieved contacts: {}", () -> contacts);
         return contacts;
     }
 
@@ -75,9 +75,8 @@ public class ContactRepository {
             logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> contactId, () -> contactId, () -> contact.getContactSummary().getfName(), () -> contact.getContactSummary().getmName(),
                     () -> contact.getContactSummary().getlName(), () -> contact.getContactSummary().getCompany(), () -> contact.getContactSummary().getDesig(), () -> contact.getContactSummary().getEmail(), () -> contact.getContactSummary().getExtn(),
                     () -> contact.getContactSummary().getLand(), () -> contact.getContactSummary().getMob(), () -> username);
-            jdbcTemplate.update(contactTableInsert,
-                    new Object[] { contactId, contactId, contact.getContactSummary().getfName(), contact.getContactSummary().getmName(), contact.getContactSummary().getlName(), contact.getContactSummary().getCompany(),
-                            contact.getContactSummary().getDesig(), contact.getContactSummary().getEmail(), contact.getContactSummary().getExtn(), contact.getContactSummary().getLand(), contact.getContactSummary().getMob(), username });
+            jdbcTemplate.update(contactTableInsert, new Object[] { contactId, contactId, contact.getContactSummary().getfName(), contact.getContactSummary().getmName(), contact.getContactSummary().getlName(), contact.getContactSummary().getCompany(),
+                    contact.getContactSummary().getDesig(), contact.getContactSummary().getEmail(), contact.getContactSummary().getExtn(), contact.getContactSummary().getLand(), contact.getContactSummary().getMob(), username });
 
             logger.info(sqlMarker, contactAttrTableInsert);
             logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> contactId, () -> contact.getAddrLine1(), () -> contact.getAddrLine2(), () -> contact.getdId(), () -> contact.getsId(), () -> contact.getcId(), () -> contact.getZipCode(),
