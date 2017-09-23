@@ -4,6 +4,7 @@ import { CountryService } from '../country.service';
 import { StateService } from '../state.service';
 import { DistrictService } from '../district.service';
 import { ContactService } from '../contact.service';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -12,60 +13,68 @@ import { ContactService } from '../contact.service';
 })
 export class ContactFormComponent implements OnInit {
 
-  @Input() coId;
-  @Input() pubKey;
-  @Input() fName;
-  @Input() mName;
-  @Input() lName;
-  @Input() company;
-  @Input() desig;
-  @Input() email;
-  @Input() mob;
-  @Input() land;
-  @Input() extn;
-  @Input() addrLine1;
-  @Input() addrLine2;
-  @Input() cId;
-  @Input() sId;
-  @Input() dId;
-  @Input() zipCode;
-  @Input() note;
-  @Input() method = 'post';
+  @Input() readOnly: boolean = null;
+  @Input() mode = "Create";
 
   private contactFormGroup: FormGroup;
   private attr = '';
   private buttonName = 'Create';
   private locationLists = { countries: Array(), states: Array(), districts: Array() };
   private message = '';
+  private pubKey;
+
 
   constructor(private formBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute,
     private countryService: CountryService,
     private stateService: StateService,
     private districtService: DistrictService,
-    private contactService: ContactService) { }
+    private contactService: ContactService,
+    private router: Router) { }
 
   ngOnInit() {
     this.contactFormGroup = this.formBuilder.group({
-      coId: [this.coId],
+      
       contactSummary: this.formBuilder.group({
-        pubKey: [this.pubKey],
-        fName: [this.fName, [Validators.required]],
-        mName: [this.mName],
-        lName: [this.lName],
-        company: [this.company],
-        desig: [this.desig, [Validators.required]],
-        email: [this.email, [Validators.required]],
-        mob: [this.mob, [Validators.required]],
-        land: [this.land],
-        extn: [this.extn]}),
-      addrLine1: [this.addrLine1],
-      addrLine2: [this.addrLine2],
-      cId: [this.cId],
-      sId: [this.sId],
-      dId: [this.dId],
-      zipCode: [this.zipCode],
-      note: [this.note]
+        coId: [''],
+        pubKey: [''],
+        fName: ['', [Validators.required]],
+        mName: [''],
+        lName: [''],
+        company: [''],
+        desig: ['', [Validators.required]],
+        email: ['', [Validators.required]],
+        mob: ['', [Validators.required]],
+        land: [''],
+        extn: ['']
+      }),
+      addrLine1: [''],
+      addrLine2: [''],
+      cId: [''],
+      sId: [''],
+      dId: [''],
+      zipCode: [''],
+      note: ['']
     });
+
+    this.activatedRoute
+      .paramMap
+      .subscribe(params => {
+        this.pubKey = params.get('pubKey');
+      });
+
+    if (this.pubKey) {
+      this.contactService.readContact(this.pubKey)
+        .subscribe(
+        res => {
+          this.contactFormGroup.setValue(res);
+        },
+        err => {
+          this.message = err.status + " : " + err.statusText;
+          this.message = this.message + " : " + err.json()["message"];
+        }
+        );
+    }
 
     if (this.pubKey) {
       this.buttonName = 'Modify';
@@ -76,6 +85,10 @@ export class ContactFormComponent implements OnInit {
       res => {
         this.locationLists.countries = res;
       });
+
+    if (this.mode === 'View') {
+
+    }
   }
 
   onCountryChange(cId) {
@@ -97,18 +110,25 @@ export class ContactFormComponent implements OnInit {
   }
 
   submit() {
-    if (this.coId) {
-
-    } else {
+    if (this.mode === 'Create') {
       this.contactService.createContact(this.contactFormGroup.value)
         .subscribe(
         res => {
-
+          this.router.navigate(['contactDetails/'+res.pubKey]);
         },
         err => {
           this.message = err.status + " : " + err.statusText;
           this.message = this.message + " : " + err.json()["message"];
         });
+    } else if(this.mode === 'View') {
+      console.log("in View block");
+      this.readOnly = null;
+      this.buttonName = 'Save';
+      this.mode = 'Modify';
+    } else if(this.mode === 'Modify') {
+      this.readOnly = true;
+      this.buttonName = 'Modify';
+      this.mode = 'View';      
     }
   }
 

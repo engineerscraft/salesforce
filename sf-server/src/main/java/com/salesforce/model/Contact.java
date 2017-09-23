@@ -8,9 +8,6 @@ public class Contact {
     private ContactSummary contactSummary;
     private String addrLine1;
     private String addrLine2;
-    private String dName;
-    private String sName;
-    private String cName;
     private Integer dId;
     private Integer sId;
     private Integer cId;
@@ -57,48 +54,6 @@ public class Contact {
      */
     public void setAddrLine2(String addrLine2) {
         this.addrLine2 = addrLine2;
-    }
-
-    /**
-     * @return the dName
-     */
-    public String getdName() {
-        return dName;
-    }
-
-    /**
-     * @param dName the dName to set
-     */
-    public void setdName(String dName) {
-        this.dName = dName;
-    }
-
-    /**
-     * @return the sName
-     */
-    public String getsName() {
-        return sName;
-    }
-
-    /**
-     * @param sName the sName to set
-     */
-    public void setsName(String sName) {
-        this.sName = sName;
-    }
-
-    /**
-     * @return the cName
-     */
-    public String getcName() {
-        return cName;
-    }
-
-    /**
-     * @param cName the cName to set
-     */
-    public void setcName(String cName) {
-        this.cName = cName;
     }
 
     /**
@@ -176,7 +131,7 @@ public class Contact {
      */
     @Override
     public String toString() {
-        return "Contact [contactSummary=" + contactSummary + ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", dName=" + dName + ", sName=" + sName + ", cName=" + cName + ", dId=" + dId + ", sId=" + sId + ", cId=" + cId + ", zipCode=" + zipCode
+        return "Contact [contactSummary=" + contactSummary + ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", dId=" + dId + ", sId=" + sId + ", cId=" + cId + ", zipCode=" + zipCode
                 + ", note=" + note + "]";
     }
 }

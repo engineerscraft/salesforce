@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.salesforce.model.Contact;
 import com.salesforce.model.ContactSummary;
+import com.salesforce.model.PublicKey;
+import com.salesforce.rowmapper.ContactRowMapper;
 import com.salesforce.rowmapper.ContactSummaryRowMapper;
 import com.salesforce.utils.ApplicationUtils;
 
@@ -47,6 +49,9 @@ public class ContactRepository {
     @Value("${sql.contactAttrTable.insert}")
     private String contactAttrTableInsert;
 
+    @Value("${sql.contact.select}")
+    private String contactSelect;
+
     public List<ContactSummary> getContactPage(String searchString, long startPosition) {
         Object[] args = { searchString, '%' + searchString + '%', searchString, contactPageSize, startPosition };
         logger.info(sqlMarker, contactPageSql);
@@ -63,7 +68,7 @@ public class ContactRepository {
      * @throws Exception
      */
     @Transactional
-    public String createContact(Contact contact, String username) throws Exception {
+    public PublicKey createContact(Contact contact, String username) throws Exception {
         Integer contactId = generateContactId();
         if (contact.getContactSummary() != null) {
             logger.info(sqlMarker, contactTableInsert);
@@ -78,9 +83,9 @@ public class ContactRepository {
             logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> contactId, () -> contact.getAddrLine1(), () -> contact.getAddrLine2(), () -> contact.getdId(), () -> contact.getsId(), () -> contact.getcId(), () -> contact.getZipCode(),
                     () -> contact.getNote(), () -> username);
             jdbcTemplate.update(contactAttrTableInsert, new Object[] { contactId, contact.getAddrLine1(), contact.getAddrLine2(), contact.getdId(), contact.getsId(), contact.getcId(), contact.getZipCode(), contact.getNote(), username });
-
-            String message = "Contact created with ID: " + contactId.toString();
-            return message;
+            PublicKey pubKey = new PublicKey();
+            pubKey.setPubKey("CO"+String.format("%08d", contactId));
+            return pubKey;
         } else {
             throw new Exception("Contact cannot be created as basic contact data is missing...");
         }
@@ -106,4 +111,12 @@ public class ContactRepository {
         return fetchedContactId;
     }
 
+    public Contact getContact(String pubKey) {
+        Object[] args = { pubKey };
+        logger.info(sqlMarker, contactSelect);
+        logger.info(sqlMarker, "Params {}", () -> pubKey);
+        Contact contact = jdbcTemplate.queryForObject(contactSelect, args, new ContactRowMapper());
+        logger.debug("Retrieved contact: {}", () -> contact);
+        return contact;
+    }
 }

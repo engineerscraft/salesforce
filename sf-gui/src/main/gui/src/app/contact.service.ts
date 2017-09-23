@@ -17,4 +17,9 @@ export class ContactService {
     return this.httpService.callHttpPost("/resources/v1/contact", contact)
       .map(res => res.json())
   }
+
+  readContact(pubKey) {
+    return this.httpService.callHttpGet("/resources/v1/contact/" + pubKey)
+      .map(res => res.json())
+  }
 }
