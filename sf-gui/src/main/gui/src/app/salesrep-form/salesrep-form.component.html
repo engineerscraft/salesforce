@@ -1,113 +1,96 @@
 <div class="card card-shadow bg-primary pb-4">
-    <form [formGroup]="contactFormGroup" (ngSubmit)="submit()">
-      <div class="card-block">
-        <h1 class="display-4 text-white ml-4 my-3">Contact Creation</h1>
-        <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
-          <div class="card-block">
-            <h6 class="card-title mb-4 text-center text-muted">Basic Information</h6>
-            <div *ngIf="pubKey !== ''" class="form-group">
-              <label for="pubKey">Public Key</label>
-              <input (focus)="attr = 'pubKey'" type="text" class="form-control" id="pubKey" required readonly>
-            </div>
-            <div class="form-group">
-              <label for="fName">First Name <span class="text-danger">*</span></label>
-              <input (focus)="attr = 'fName'" type="text" class="form-control" id="fname" placeholder="First name of the contact" required>
-            </div>
-            <div class="form-group">
-              <label for="mName">Middle Name</label>
-              <input (focus)="attr = 'mName'" type="text" class="form-control" id="mName" placeholder="Middle name of the contact">
-            </div>
-            <div class="form-group">
-              <label for="lName">Last Name</label>
-              <input (focus)="attr = 'lName'" type="text" class="form-control" id="lName" placeholder="Last name of the contact">
-            </div>
-            <div class="form-group">
-              <label for="company">Company <span class="text-danger">*</span></label>
-              <input (focus)="attr = 'company'" type="text" class="form-control" id="company" placeholder="Name of the company" required>
-            </div>
-            <div class="form-group">
-              <label for="desig">Designation <span class="text-danger">*</span></label>
-              <input (focus)="attr = 'desig'" type="text" class="form-control" id="desig" placeholder="Designation of the contact" required>
-            </div>
+    <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
+        <strong>{{message}}</strong>
+    </div>
+    <form [formGroup]="salesrepFormGroup" (ngSubmit)="submit()">
+    <div class="card-block">
+      <h1 class="display-4 text-white ml-4 my-3">{{formTitle}}</h1>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Basic Information</h6>
+          <div *ngIf="pubKey" class="form-group" >
+            <label for="pubKey">Public Key</label>
+            <input (focus)="attr = 'pubKey'" type="text" formControlName="pubKey" class="form-control" id="pubKey" required readonly>
           </div>
-        </div>
-        <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
-          <div class="card-block">
-            <h6 class="card-title mb-4 text-center text-muted">Contact Information</h6>
-            <div class="form-group">
-              <label for="email">Email <span class="text-danger">*</span></label>
-              <input (focus)="attr = 'email'" type="email" class="form-control" id="email" placeholder="Email of the contact" required>
-            </div>
-            <div class="form-group">
-              <label for="mob">Mobile <span class="text-danger">*</span></label>
-              <input (focus)="attr = 'mob'" type="text" class="form-control" id="mob" placeholder="Mobile number of the contact" required>
-            </div>
-            <div class="form-group">
-              <label for="land">Telephone</label>
-              <input (focus)="attr = 'land'" type="text" class="form-control" id="land" placeholder="Land line number of the contact">
-            </div>
-            <div class="form-group">
-              <label for="extn">Extension</label>
-              <input (focus)="attr = 'extn'" type="text" class="form-control" id="extn" placeholder="Extension number of the contact">
-            </div>
+          <div class="form-group" >
+            <label for="fName">First Name <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'fName'" type="text" formControlName="fName" class="form-control" id="fname" placeholder="First name of the Sales Representative" [readOnly]="readOnly" required>
           </div>
-        </div>
-        <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
-          <div class="card-block">
-            <h6 class="card-title mb-4 text-center text-muted">Address</h6>
-            <div class="form-group">
-              <label for="addrLine1">Address Line 1</label>
-              <input (focus)="attr = 'addrLine1'" type="text" class="form-control" id="addrLine1" placeholder="Address Line 1 of the contact">
-            </div>
-            <div class="form-group">
-              <label for="addrLine1">Address Line 2</label>
-              <input (focus)="attr = 'addrLine2'" type="text" class="form-control" id="addrLine2" placeholder="Address Line 2 of the contact">
-            </div>
-            <div class="form-group">
-              <label for="cId">Country</label>
-              <select (focus)="attr = 'country'" class="form-control py-0" id="cId" #cId (change)="onCountryChange(cId.value)">
-                <option value="">--Country--</option>
-                <option *ngFor="let country of locationLists.countries" value="{{country.cId}}">{{country.cName}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="sId">State</label>
-              <select (focus)="attr = 'state'" class="form-control py-0" id="sId" #sId (change)="onStateChange(sId.value)">
-                  <option value="">--State--</option>
-                  <option *ngFor="let state of locationLists.states" value="{{state.sId}}">{{state.sName}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="dId">District</label>
-              <select (focus)="attr = 'district'" class="form-control py-0" id="dId">
-                  <option value="">--City--</option>
-                  <option *ngFor="let district of locationLists.districts" value="{{district.dId}}">{{district.dName}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="zipCode">Zip Code</label>
-              <input (focus)="attr = 'zipCode'" type="text" class="form-control" id="zipCode" placeholder="Zip code or Postal code of the address">
-            </div>
+          <div class="form-group" >
+            <label for="mName">Middle Name</label>
+            <input (focus)="attr = 'mName'" type="text" formControlName="mName" class="form-control" id="mName" placeholder="Middle name of the Sales Representative" [readOnly]="readOnly">
           </div>
-        </div>
-        <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
-          <div class="card-block">
-            <h6 class="card-title mb-4 text-center text-muted">Additional Notes</h6>
-            <div class="form-group">
-              <label for="note">Notes</label>
-              <textarea (focus)="attr = 'note'" rows="5" type="text" class="form-control" id="note" placeholder="Note about the contact"></textarea>
-            </div>
+          <div class="form-group" >
+            <label for="lName">Last Name</label>
+            <input (focus)="attr = 'lName'" type="text" formControlName="lName" class="form-control" id="lName" placeholder="Last name of the Sales Representative" [readOnly]="readOnly">
           </div>
-        </div>
-        <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
-          <button [disabled]="!contactFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
+          <div class="form-group" >
+            <label for="desig">Designation <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'desig'" type="text" formControlName="desig" class="form-control" id="desig" placeholder="Designation of the Sales Representative"
+              required [readOnly]="readOnly">
+          </div>
+          <div class="form-group" >
+            <label for="supPubKey">Supervisor Public Key <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'supPubKey'" type="text" formControlName="supPubKey" class="form-control" id="supPubKey" placeholder="Supervisor's Public Key"
+              required [readOnly]="readOnly">
+          </div>            
         </div>
       </div>
-    </form>
-  </div>
-  <div class="d-none d-lg-block help-text">
-    <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Contact'" [helpText]="'Contacts are the people that you market to, sell to, support, etc. They are the people you interact with to get the business. Capture as much details about them as you can. You can use the Notes field for any additional information which do not fit into any other available fields.'"></app-help-gadget>
-    <app-help-gadget *ngIf="attr==='company'" [helpHeader]="'Company'" [helpText]="'The company which the contact works for.'"></app-help-gadget>
-    <app-help-gadget *ngIf="attr==='desig'" [helpHeader]="'Designation'" [helpText]="'The designation of the contact in the company he/she works for.'"></app-help-gadget>
-    <app-help-gadget *ngIf="attr==='note'" [helpHeader]="'Notes'" [helpText]="'Use this space to capture any additional information about the contact that do not fit into any of the other fields.'"></app-help-gadget>
-  </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Sales Representative Information</h6>
+          <div class="form-group" >
+            <label for="email">Email <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'email'" type="email" formControlName="email" class="form-control" id="email" placeholder="Email of the Sales Representative"
+              required [readOnly]="readOnly">
+          </div>
+          <div class="form-group" >
+            <label for="mob">Mobile <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'mob'" type="text" formControlName="mob" class="form-control" id="mob" placeholder="Mobile number of the Sales Representative"
+              required [readOnly]="readOnly">
+          </div>
+          <div class="form-group" >
+            <label for="land">Telephone</label>
+            <input (focus)="attr = 'land'" type="text" formControlName="land" class="form-control" id="land" placeholder="Land line number of the Sales Representative" [readOnly]="readOnly">
+          </div>
+          <div class="form-group" >
+            <label for="extn">Extension</label>
+            <input (focus)="attr = 'extn'" type="text" formControlName="extn" class="form-control" id="extn" placeholder="Extension number of the Sales Representative" [readOnly]="readOnly">
+          </div>
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Additional Information</h6>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select (focus)="attr = 'status'" formControlName="status" class="form-control py-0" id="status" #status [attr.disabled]="readOnly">
+              <option value="1">Active</option>
+              <option value="2">Deactivated</option>
+            </select>
+          </div>         
+          <div class="form-group">
+            <label for="doj">Date of Joining</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                    formControlName="doj" [(ngModel)]="doj" ngbDatepicker #d="ngbDatepicker">
+              <button class="input-group-addon" (click)="d.toggle()" type="button">
+                <img src="/assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
+          
+        <button [disabled]="!salesrepFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
+        <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-primary float-right text-white ripple">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="d-none d-lg-block help-text">
+  <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Sales Representative'" [helpText]="'Sales Representatives sell retail products, goods and services to customers. Sales Representatives work with customers to find what they want, create solutions and ensure a smooth sales process. Sales Representatives will work to find new sales leads, through business directories, client referrals, etc.'"></app-help-gadget>  
+  <app-help-gadget *ngIf="attr==='desig'" [helpHeader]="'Designation'" [helpText]="'The designation of the Sales Representative in the company he/she works for.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='supPubKey'" [helpHeader]="'Supervisor Public Key'" [helpText]="'The Supervisor Name/Public Key under which the sales representative is working in the company.'"></app-help-gadget>
+</div>

@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.salesforce.model.PublicKey;
 import com.salesforce.model.SalesRep;
 import com.salesforce.rowmapper.SalesRepRowMapper;
 import com.salesforce.utils.ApplicationUtils;
@@ -46,6 +47,12 @@ public class SalesRepRepository {
     @Value("${sql.salesRepTable.insert}")
     private String salesRepTableInsert;
 
+    @Value("${sql.salesRep.select}")
+    private String salesRepSelect;
+
+    @Value("${sql.salesRep.update}")
+    private String salesRepUpdate;
+
     public List<SalesRep> getSalesRepPage(String searchString, long startPosition) {
         Object[] args = { searchString, '%' + searchString + '%', searchString, salesRepPageSize, startPosition };
         logger.info(sqlMarker, salesRepPageSql);
@@ -62,20 +69,26 @@ public class SalesRepRepository {
      * @throws Exception
      */
     @Transactional
-    public String createSalesRep(SalesRep salesRep, String username) throws Exception {
-        Integer salesRepId = generateSalesRepId();
+    public PublicKey createSalesRep(SalesRep salesRep, String username) throws Exception {
+        if (salesRep != null) {
+            Integer salesRepId = generateSalesRepId();
 
-        logger.info(sqlMarker, salesRepTableInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> salesRepId, () -> salesRep.getPubKey(), () -> salesRep.getfName(), () -> salesRep.getmName(), () -> salesRep.getlName(), () -> salesRep.getSupId(),
-                () -> salesRep.getStatusId(), () -> salesRep.getExtn(), () -> salesRep.getLand(), () -> salesRep.getMob(), () -> salesRep.getEmail(), () -> salesRep.getDoj(), () -> salesRep.getDesig(), () -> username);
-        jdbcTemplate.update(salesRepTableInsert, new Object[] { salesRepId, salesRep.getPubKey(), salesRep.getfName(), salesRep.getmName(), salesRep.getlName(), salesRep.getSupId(), salesRep.getStatusId(), salesRep.getExtn(), salesRep.getLand(),
-                salesRep.getMob(), salesRep.getEmail(), salesRep.getDoj(), salesRep.getDesig(), username });
+            logger.info(sqlMarker, salesRepTableInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> salesRepId, () -> salesRepId, () -> salesRep.getfName(), () -> salesRep.getmName(), () -> salesRep.getlName(), () -> salesRep.getSupPubKey(),
+                    () -> salesRep.getStatusId(), () -> salesRep.getExtn(), () -> salesRep.getLand(), () -> salesRep.getMob(), () -> salesRep.getEmail(), () -> salesRep.getDoj(), () -> salesRep.getDesig(), () -> username);
+            jdbcTemplate.update(salesRepTableInsert, new Object[] { salesRepId, salesRepId, salesRep.getfName(), salesRep.getmName(), salesRep.getlName(), salesRep.getSupPubKey(), salesRep.getStatusId(), salesRep.getExtn(), salesRep.getLand(),
+                    salesRep.getMob(), salesRep.getEmail(), salesRep.getDoj(), salesRep.getDesig(), username });
 
-        // create LDAP user
-        authRepo.createUser(salesRep.getPubKey(), salesRep);
+            PublicKey pubKey = new PublicKey();
+            pubKey.setPubKey("CO" + String.format("%08d", salesRepId));
 
-        String message = "Sales Representative created with ID: " + salesRepId.toString();
-        return message;
+            // create LDAP user
+            authRepo.createUser(pubKey.getPubKey(), salesRep);
+
+            return pubKey;
+        } else {
+            throw new Exception("Sales Representative cannot be created as data is missing...");
+        }
     }
 
     /**
@@ -96,6 +109,32 @@ public class SalesRepRepository {
 
         logger.debug("Sales Representative ID generated: {}", () -> fetchedSalesRepId);
         return fetchedSalesRepId;
+    }
+
+    public SalesRep getSalesRep(String pubKey) {
+        Object[] args = { pubKey };
+        logger.info(sqlMarker, salesRepSelect);
+        logger.info(sqlMarker, "Params {}", () -> pubKey);
+        SalesRep salesRep = jdbcTemplate.queryForObject(salesRepSelect, args, new SalesRepRowMapper());
+        logger.debug("Retrieved Sales Representative: {}", () -> salesRep);
+        return salesRep;
+    }
+
+    @Transactional
+    public PublicKey updateSalesRep(String pubKey, SalesRep salesRep, String username) throws Exception {
+        if (salesRep != null) {
+            logger.info(sqlMarker, salesRepUpdate);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> salesRep.getfName(), () -> salesRep.getmName(), () -> salesRep.getlName(), () -> salesRep.getSupPubKey(), () -> salesRep.getStatusId(), () -> salesRep.getExtn(),
+                    () -> salesRep.getLand(), () -> salesRep.getMob(), () -> salesRep.getEmail(), () -> salesRep.getDoj(), () -> salesRep.getDesig(), () -> username, () -> pubKey);
+            jdbcTemplate.update(salesRepUpdate, new Object[] { salesRep.getfName(), salesRep.getmName(), salesRep.getlName(), salesRep.getSupPubKey(), salesRep.getStatusId(), salesRep.getExtn(), salesRep.getLand(), salesRep.getMob(), salesRep.getEmail(),
+                    salesRep.getDoj(), salesRep.getDesig(), username, pubKey });
+
+            PublicKey pubKeyObj = new PublicKey();
+            pubKeyObj.setPubKey(pubKey);
+            return pubKeyObj;
+        } else {
+            throw new Exception("Sales Representative cannot be modified as data is missing...");
+        }
     }
 
 }

@@ -15,6 +15,8 @@ public class SalesRepRowMapper implements RowMapper<SalesRep> {
         salesRep.setfName(rs.getString("F_NAME"));
         salesRep.setmName(rs.getString("M_NAME"));
         salesRep.setlName(rs.getString("L_NAME"));
+        salesRep.setSupPubKey(rs.getString("SUP_ID"));
+        salesRep.setStatusId(rs.getInt("STATUS_ID"));
         salesRep.setEmail(rs.getString("EMAIL"));
         salesRep.setDoj(rs.getDate("DOJ"));
         salesRep.setDesig(rs.getString("DESIG"));

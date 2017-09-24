@@ -19,7 +19,7 @@ public class SalesRep {
     private String fName;
     private String mName;
     private String lName;
-    private int supId;
+    private String supPubKey;
     private int statusId;
     private String extn;
     private String land;
@@ -100,17 +100,17 @@ public class SalesRep {
     }
 
     /**
-     * @return the supId
+     * @return the supPubKey
      */
-    public int getSupId() {
-        return supId;
+    public String getSupPubKey() {
+        return supPubKey;
     }
 
     /**
-     * @param supId the supId to set
+     * @param supPubKey the supPubKey to set
      */
-    public void setSupId(int supId) {
-        this.supId = supId;
+    public void setSupPubKey(String supPubKey) {
+        this.supPubKey = supPubKey;
     }
 
     /**
@@ -216,8 +216,8 @@ public class SalesRep {
      */
     @Override
     public String toString() {
-        return "SalesRep [salesRepId=" + salesRepId + ", pubKey=" + pubKey + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", supId=" + supId + ", statusId=" + statusId + ", extn=" + extn + ", land=" + land + ", mob=" + mob + ", email="
-                + email + ", doj=" + doj + ", desig=" + desig + "]";
+        return "SalesRep [salesRepId=" + salesRepId + ", pubKey=" + pubKey + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", supPubKey=" + supPubKey + ", statusId=" + statusId + ", extn=" + extn + ", land=" + land + ", mob=" + mob
+                + ", email=" + email + ", doj=" + doj + ", desig=" + desig + "]";
     }
 
 }

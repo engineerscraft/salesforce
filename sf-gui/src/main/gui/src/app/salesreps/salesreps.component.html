@@ -6,6 +6,10 @@
           <p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Simple Search</a></p>
         </div>
         <div *ngSwitchCase="'simple'">
+          <div *ngIf="paginationMessage" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+            <strong>{{paginationMessage}}</strong>
+          </div>
+
           <form [formGroup]="salesrepSearchFormGroup">
             <input type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
               placeholder="Search" required>
@@ -17,12 +21,44 @@
   </div>
   <div [ngSwitch]="message">
     <div *ngSwitchCase="''">
+      <nav *ngIf="salesrepQuadruples" class="row col-12 h-100 justify-content-center align-items-center">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="previous()">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+          </li>
+        </ul>
+      </nav>
       <div *ngFor="let quadruple of salesrepQuadruples" class="row my-4 mx-2">
         <app-salesrep-card *ngFor="let salesrep of quadruple" class="mx-auto col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12" pubKey="{{salesrep.pubKey}}"
           fName="{{salesrep.fName}}" mName="{{salesrep.mName}}" lName="{{salesrep.lName}}" email="{{salesrep.email}}" desig="{{salesrep.desig}}"
           mob="{{salesrep.mob}}" land="{{salesrep.land}}" extn="{{salesrep.extn}}" pubKey="{{salesrep.pubKey}}">
         </app-salesrep-card>
       </div>
+      <nav *ngIf="salesrepQuadruples" class="row col-12 h-100 justify-content-center align-items-center">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="previous()">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+          </li>
+        </ul>
+      </nav>
     </div>
     <div *ngSwitchCase="'No salesrep found'">
       <p class="text-center">No Sales Representative found</p>

@@ -30,6 +30,7 @@ import { SalesrepCardComponent } from './salesrep-card/salesrep-card.component';
 import { SalesrepFormComponent } from './salesrep-form/salesrep-form.component';
 import { SalesrepsComponent } from './salesreps/salesreps.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
+import { SalesrepDetailsComponent } from './salesrep-details/salesrep-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
   { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
   { path: 'contacts', component: ContactsComponent },
   { path: 'contactDetails/:pubKey', component: ContactDetailsComponent },
-  { path: 'salesreps', component: SalesrepsComponent }
+  { path: 'salesreps', component: SalesrepsComponent },
+  { path: 'salesrepDetails/:pubKey', component: SalesrepDetailsComponent }
 ];
 
 @NgModule({
@@ -60,7 +62,8 @@ const appRoutes: Routes = [
     SalesrepCardComponent,
     SalesrepFormComponent,
     SalesrepsComponent,
-    ContactDetailsComponent
+    ContactDetailsComponent,
+    SalesrepDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(

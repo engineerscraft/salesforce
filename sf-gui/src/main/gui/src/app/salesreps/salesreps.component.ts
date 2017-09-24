@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, trigger, transition, style, animate } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SalesrepService } from '../salesrep.service';
 import 'rxjs/add/operator/debounceTime.js';
@@ -7,7 +7,21 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-salesreps',
   templateUrl: './salesreps.component.html',
-  styleUrls: ['./salesreps.component.scss']
+  styleUrls: ['./salesreps.component.scss'],
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateY(-50%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateY(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateY(-50%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
 })
 export class SalesrepsComponent implements OnInit {
 
@@ -15,6 +29,10 @@ export class SalesrepsComponent implements OnInit {
   private salesrepSearchFormGroup: FormGroup;
   private salesrepQuadruples;
   private message = '';
+  private searchString;
+  private start = 0
+  private pageSize = 6;
+  private paginationMessage;
 
   constructor(private formBuilder: FormBuilder, private salesrepService: SalesrepService) { }
 
@@ -30,8 +48,9 @@ export class SalesrepsComponent implements OnInit {
           this.message = '';
           this.salesrepQuadruples = undefined;
         } else {
-
-          this.salesrepService.searchSalesreps(res, 0)
+          this.start = 0;
+          this.searchString = res;
+          this.salesrepService.searchSalesreps(this.searchString, 0)
             .subscribe(
             data => {
               this.message = '';
@@ -67,6 +86,51 @@ export class SalesrepsComponent implements OnInit {
     }
     else {
       this.search = 'simple';
+    }
+  }  
+
+  next() {
+    this.start = this.start + this.pageSize;
+    this.salesrepService.searchSalesreps(this.searchString, this.start)
+      .subscribe(
+      data => {
+        this.message = '';
+        this.salesrepQuadruples = this.getSalesrepQuadruples(data);
+        this.paginationMessage = undefined;
+      },
+      err => {
+        this.start = this.start - this.pageSize;
+        if (err.status === 404) {
+          this.paginationMessage = "You are on the last page";
+          setTimeout(
+            function () {
+              console.log(this.paginationMessage);
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+        }
+      });
+  }
+
+  previous() {
+    if (this.start === 0) {
+      this.paginationMessage = "You are on the first page";
+      setTimeout(
+        function () {
+          console.log(this.paginationMessage);
+          this.paginationMessage = undefined;
+        }.bind(this), 2000);
+    } else {
+      this.start = this.start - this.pageSize;
+      this.salesrepService.searchSalesreps(this.searchString, this.start)
+        .subscribe(
+        data => {
+          this.message = '';
+          this.salesrepQuadruples = this.getSalesrepQuadruples(data);
+          this.paginationMessage = undefined;
+        },
+        err => {
+          this.start = this.start + this.pageSize;
+        });
     }
   }  
 
