@@ -4,7 +4,8 @@ import { CountryService } from '../country.service';
 import { StateService } from '../state.service';
 import { DistrictService } from '../district.service';
 import { ContactService } from '../contact.service';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-contact-form',
@@ -35,7 +36,11 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit() {
 
-    if(this.mode === "View") {
+    this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
+      window.scroll(0, 0);
+    });
+
+  if(this.mode === "View") {
       this.readOnly = true;
       this.formTitle = 'Contact Details';
     }

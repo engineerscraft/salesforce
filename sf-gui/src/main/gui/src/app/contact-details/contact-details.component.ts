@@ -9,7 +9,6 @@ export class ContactDetailsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
 }
