@@ -85,3 +85,7 @@ insert into sfm.contact_attr
 select co_id,'DLF IT Park II, Action Area II', 'Rajarhat', 5583,41,101,700156,null,'TEST',current_timestamp, null,null from sfm.contact;
 
 update sfm.contact set pub_key='CO'||LPAD(co_id::text, 8, '0');
+update sfm.product set pub_key='PR'||LPAD(prod_id::text, 8, '0');
+update sfm.lead set pub_key='LD'||LPAD(lead_id::text, 8, '0');
+update sfm.opportunity set pub_key='OP'||LPAD(opp_id::text, 8, '0');
+update sfm.sales_rep set pub_key='SR'||LPAD(sales_rep_id::text, 8, '0');
