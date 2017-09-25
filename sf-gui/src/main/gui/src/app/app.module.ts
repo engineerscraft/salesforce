@@ -16,6 +16,7 @@ import { DistrictService } from './district.service';
 import { ContactService } from './contact.service';
 import { SalesrepService } from './salesrep.service';
 import { DivisionService } from './division.service';
+import { LeadService } from './lead.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
@@ -82,7 +83,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService, 
@@ -93,7 +94,8 @@ const appRoutes: Routes = [
     DistrictService,
     ContactService,
     SalesrepService,
-    DivisionService
+    DivisionService,
+    LeadService
   ],
   bootstrap: [AppComponent]
 })
