@@ -125,3 +125,10 @@ body {
   left: 55%;
   width: 100%;
 }
+
+.list-group-item:hover {
+  background-color: $lightaccent;
+  color: #fff;
+  opacity: 0.5;
+  transition: all 100ms linear;
+}

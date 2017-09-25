@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, trigger, transition, style, animate } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeadService } from '../lead.service';
 import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
@@ -7,7 +7,16 @@ import 'rxjs/add/operator/filter';
 @Component({
   selector: 'app-lead-form',
   templateUrl: './lead-form.component.html',
-  styleUrls: ['./lead-form.component.scss']
+  styleUrls: ['./lead-form.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':leave', [
+        style({transform: 'translateX(0)', opacity: 1}),
+        animate('500ms', style({transform: 'translateX(50%)', opacity: 0}))
+      ])
+    ]),
+  ]
+
 })
 export class LeadFormComponent implements OnInit {
 
@@ -54,8 +63,8 @@ export class LeadFormComponent implements OnInit {
       leadId: [''],
       pubKey: [''],
       title: ['', [Validators.required]],
-      discAmt: [0],
-      discPct: [0],
+      discType: [1],
+      discVal: [0],
       quotePrice: [0],
       statusId: [0, [Validators.required]],
       divId: [0, [Validators.required]]
@@ -154,5 +163,13 @@ export class LeadFormComponent implements OnInit {
         this.contacts.splice(i,1);
       }
     }
+  }
+
+  openProductDialog() {
+
+  }
+
+  openContactDialog() {
+
   }
 }
