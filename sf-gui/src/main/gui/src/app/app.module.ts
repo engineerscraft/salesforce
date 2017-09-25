@@ -15,6 +15,7 @@ import { StateService } from './state.service';
 import { DistrictService } from './district.service';
 import { ContactService } from './contact.service';
 import { SalesrepService } from './salesrep.service';
+import { DivisionService } from './division.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
@@ -31,6 +32,9 @@ import { SalesrepFormComponent } from './salesrep-form/salesrep-form.component';
 import { SalesrepsComponent } from './salesreps/salesreps.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { SalesrepDetailsComponent } from './salesrep-details/salesrep-details.component';
+import { LeadFormComponent } from './lead-form/lead-form.component';
+import { LeadsComponent } from './leads/leads.component';
+import { LeadDetailsComponent } from './lead-details/lead-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -63,7 +67,10 @@ const appRoutes: Routes = [
     SalesrepFormComponent,
     SalesrepsComponent,
     ContactDetailsComponent,
-    SalesrepDetailsComponent
+    SalesrepDetailsComponent,
+    LeadFormComponent,
+    LeadsComponent,
+    LeadDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -85,7 +92,8 @@ const appRoutes: Routes = [
     StateService, 
     DistrictService,
     ContactService,
-    SalesrepService
+    SalesrepService,
+    DivisionService
   ],
   bootstrap: [AppComponent]
 })
