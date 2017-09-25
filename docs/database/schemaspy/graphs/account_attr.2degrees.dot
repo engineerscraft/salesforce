@@ -30,6 +30,7 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
       <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
       <TR><TD PORT="div_id" COLSPAN="3" ALIGN="LEFT">div_id</TD></TR>
+      <TR><TD PORT="sold_price" COLSPAN="3" ALIGN="LEFT">sold_price</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
@@ -89,7 +90,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="division.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">division</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="division.html#graph"
     tooltip="division"
@@ -98,7 +99,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">status</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="status.html#graph"
     tooltip="status"

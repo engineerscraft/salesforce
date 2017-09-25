@@ -30,6 +30,7 @@
 <table width='100%' border='0'>
 <tr valign='top'><td class='container' align='left' valign='top'>
 <form name='options' action=''>
+ <input type=checkbox id='implied' onclick="if (!this.checked) selectGraph('../graphs/product.2degrees.png', '#twoDegreesRelationshipsGraph'); else selectGraph('../graphs/product.implied2degrees.png', '#impliedTwoDegreesRelationshipsGraph'); toggle(11);toggle(26);syncDegrees();">Implied relationships
  <input type=checkbox onclick="toggle(21);" id=showRelatedCols>Related columns
  <input type=checkbox onclick="toggle(22);" id=showConstNames>Constraint names
  <input type=checkbox onclick="toggle(23);" id=showComments>Comments
@@ -116,7 +117,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>prod_name</td>
+ <td class='detail'>des</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>100</td>
  <td class='detail' align='center'></td>
@@ -204,7 +205,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 10 rows at Sat Sep 16 11:59 AST 2017
+<p/>Table contained 2 rows at Mon Sep 25 19:28 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -239,16 +240,25 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/product.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="lead_prod.html#graph" title="lead_prod" alt="" coords="285,5,422,328"/>
-<area shape="rect" id="node2" href="product.html#" title="product" alt="" coords="5,200,236,504"/>
-<area shape="rect" id="node3" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="284,352,423,675"/>
+<area shape="rect" id="node1" href="lead_prod.html#graph" title="lead_prod" alt="" coords="277,5,414,304"/>
+<area shape="rect" id="node2" href="product.html#" title="product" alt="" coords="5,188,228,492"/>
+<area shape="rect" id="node3" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="276,328,415,627"/>
+</map>
+<map id="impliedTwoDegreesRelationshipsGraph" name="impliedTwoDegreesRelationshipsGraph">
+<area shape="rect" id="node1" href="account_prod.html#graph" title="account_prod" alt="" coords="285,5,406,328"/>
+<area shape="rect" id="node2" href="account.html#graph" title="account" alt="" coords="50,29,183,88"/>
+<area shape="rect" id="node3" href="product.html#" title="product" alt="" coords="5,373,228,677"/>
+<area shape="rect" id="node4" href="lead_prod.html#graph" title="lead_prod" alt="" coords="277,352,414,651"/>
+<area shape="rect" id="node5" href="lead.html#graph" title="lead" alt="" coords="38,291,195,349"/>
+<area shape="rect" id="node6" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="276,676,415,975"/>
+<area shape="rect" id="node7" href="opportunity.html#graph" title="opportunity" alt="" coords="42,701,191,760"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="lead_prod.html#graph" title="lead_prod" alt="" coords="285,13,422,336"/>
-<area shape="rect" id="node2" href="lead.html#graph" title="lead" alt="" coords="42,5,199,64"/>
-<area shape="rect" id="node3" href="product.html#" title="product" alt="" coords="5,88,236,392"/>
-<area shape="rect" id="node4" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="284,376,423,699"/>
-<area shape="rect" id="node5" href="opportunity.html#graph" title="opportunity" alt="" coords="54,416,187,475"/>
+<area shape="rect" id="node1" href="lead_prod.html#graph" title="lead_prod" alt="" coords="277,24,414,323"/>
+<area shape="rect" id="node2" href="lead.html#graph" title="lead" alt="" coords="38,5,195,64"/>
+<area shape="rect" id="node3" href="product.html#" title="product" alt="" coords="5,88,228,392"/>
+<area shape="rect" id="node4" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="276,369,415,668"/>
+<area shape="rect" id="node5" href="opportunity.html#graph" title="opportunity" alt="" coords="42,416,191,475"/>
 </map>
 </td></tr></table>
 </div>

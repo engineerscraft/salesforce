@@ -85,6 +85,11 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
+    <td class='relatedTable' title="div_role.role_id refs role.role_id via div_role_role_id_fkey"><a href='div_role.html'>div_role</a><span class='relatedKey'>.role_id</span>
+    </td>
+    <td class='constraint'>div_role_role_id_fkey</td>
+   </tr>
+   <tr valign='top'>
     <td class='relatedTable' title="role_perm.role_id refs role.role_id via role_perm_role_id_fkey"><a href='role_perm.html'>role_perm</a><span class='relatedKey'>.role_id</span>
     </td>
     <td class='constraint'>role_perm_role_id_fkey</td>
@@ -95,7 +100,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>role_name</td>
+ <td class='detail'>pub_key</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>30</td>
  <td class='detail' align='center'></td>
@@ -106,7 +111,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>role_des</td>
+ <td class='detail'>des</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>60</td>
  <td class='detail' align='center'></td>
@@ -117,7 +122,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 2 rows at Sat Sep 16 11:59 AST 2017
+<p/>Table contained 2 rows at Mon Sep 25 19:28 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -146,13 +151,16 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/role.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="role_perm.html#graph" title="role_perm" alt="" coords="244,8,365,115"/>
-<area shape="rect" id="node2" href="role.html#" title="role" alt="" coords="5,5,196,141"/>
+<area shape="rect" id="node1" href="div_role.html#graph" title="div_role" alt="" coords="244,5,365,112"/>
+<area shape="rect" id="node2" href="role.html#" title="role" alt="" coords="5,80,196,216"/>
+<area shape="rect" id="node3" href="role_perm.html#graph" title="role_perm" alt="" coords="244,136,365,243"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="role_perm.html#graph" title="role_perm" alt="" coords="244,63,365,169"/>
-<area shape="rect" id="node2" href="permission.html#graph" title="permission" alt="" coords="40,165,161,224"/>
-<area shape="rect" id="node3" href="role.html#" title="role" alt="" coords="5,5,196,141"/>
+<area shape="rect" id="node1" href="div_role.html#graph" title="div_role" alt="" coords="244,24,365,131"/>
+<area shape="rect" id="node2" href="division.html#graph" title="division" alt="" coords="40,5,161,64"/>
+<area shape="rect" id="node3" href="role.html#" title="role" alt="" coords="5,88,196,224"/>
+<area shape="rect" id="node4" href="role_perm.html#graph" title="role_perm" alt="" coords="244,156,365,263"/>
+<area shape="rect" id="node5" href="permission.html#graph" title="permission" alt="" coords="40,248,161,307"/>
 </map>
 </td></tr></table>
 </div>

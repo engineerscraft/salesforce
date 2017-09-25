@@ -24,6 +24,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
       <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
       <TR><TD PORT="div_id" COLSPAN="3" ALIGN="LEFT">div_id</TD></TR>
+      <TR><TD PORT="sold_price" COLSPAN="3" ALIGN="LEFT">sold_price</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>

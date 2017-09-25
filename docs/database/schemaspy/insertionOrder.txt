@@ -1,9 +1,10 @@
-status
+contact
 division
+status
 product
 country
-permission
 role
+permission
 lead
 account
 state
@@ -11,13 +12,13 @@ opportunity
 lead_attachment
 sales_rep
 opportunity_attachment
-contact
 opportunity_timeline
 district
 account_attr
 lead_attr
 opportunity_attr
 sales_rep_profile
+div_role
 lead_contact
 lead_prod
 opportunity_contact

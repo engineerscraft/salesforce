@@ -121,26 +121,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>status_id</td>
- <td class='detail'>int2</td>
- <td class='detail' align='right'>5</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='center'></td>
- <td></td>
- <td></td>
- <td>
-  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr valign='top'>
-    <td class='relatedTable' title="contact.status_id refs status.status_id via contact_status_id_fkey"><a href='status.html'>status</a><span class='relatedKey'>.status_id</span>
-    </td>
-    <td class='constraint'>contact_status_id_fkey</td>
-   </tr>
-  </table>
- </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>first_name</td>
+ <td class='indexedColumn' title='Indexed'>f_name</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>60</td>
  <td class='detail' align='center'></td>
@@ -151,7 +132,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>middle_name</td>
+ <td class='indexedColumn' title='Indexed'>m_name</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>60</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -162,7 +143,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>last_name</td>
+ <td class='indexedColumn' title='Indexed'>l_name</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>60</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -173,7 +154,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>company</td>
+ <td class='indexedColumn' title='Indexed'>company</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>100</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -184,7 +165,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>desig</td>
+ <td class='indexedColumn' title='Indexed'>desig</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>50</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -195,7 +176,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>email</td>
+ <td class='indexedColumn' title='Indexed'>email</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>100</td>
  <td class='detail' align='center'></td>
@@ -228,7 +209,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>mob</td>
+ <td class='indexedColumn' title='Indexed'>mob</td>
  <td class='detail'>varchar</td>
  <td class='detail' align='right'>20</td>
  <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
@@ -283,7 +264,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 100 rows at Sat Sep 16 11:59 AST 2017
+<p/>Table contained 100 rows at Mon Sep 25 19:28 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -304,10 +285,46 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='constraint' style='text-align:left;'>contact_pkey</td>
  </tr>
  <tr>
+  <td class='indexedColumn'>company</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>company_idx</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'></td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'></td>
+  <td class='constraint' style='text-align:left;'>contact_all_trg_idx</td>
+ </tr>
+ <tr>
   <td class='indexedColumn'>pub_key</td>
   <td class='detail'>Must be unique</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>contact_pub_key_key</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>desig</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>desig_idx</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>email</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>email_idx</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>mob</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>mob_idx</td>
+ </tr>
+ <tr>
+  <td class='indexedColumn'>f_name + m_name + l_name</td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+  <td class='constraint' style='text-align:left;'>name_idx</td>
  </tr>
 </table>
 </div>
@@ -318,27 +335,24 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/contact.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="account_contact.html#graph" title="account_contact" alt="" coords="479,5,617,256"/>
-<area shape="rect" id="node2" href="contact.html#" title="contact" alt="" coords="183,475,421,923"/>
-<area shape="rect" id="node3" href="status.html#graph" title="status" alt="" coords="5,525,135,728"/>
-<area shape="rect" id="node4" href="contact_attr.html#graph" title="contact_attr" alt="" coords="487,280,609,627"/>
-<area shape="rect" id="node5" href="lead_contact.html#graph" title="lead_contact" alt="" coords="487,651,609,853"/>
-<area shape="rect" id="node6" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="469,877,627,1080"/>
+<area shape="rect" id="node1" href="account_contact.html#graph" title="account_contact" alt="" coords="301,5,440,256"/>
+<area shape="rect" id="node2" href="contact.html#" title="contact" alt="" coords="5,475,244,899"/>
+<area shape="rect" id="node3" href="contact_attr.html#graph" title="contact_attr" alt="" coords="302,280,439,627"/>
+<area shape="rect" id="node4" href="lead_contact.html#graph" title="lead_contact" alt="" coords="302,651,439,853"/>
+<area shape="rect" id="node5" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="292,877,449,1080"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="account_contact.html#graph" title="account_contact" alt="" coords="479,5,617,256"/>
-<area shape="rect" id="node2" href="account.html#graph" title="account" alt="" coords="235,9,369,68"/>
-<area shape="rect" id="node3" href="contact.html#" title="contact" alt="" coords="183,287,421,735"/>
-<area shape="rect" id="node4" href="lead.html#graph" title="lead" alt="" coords="223,92,381,151"/>
-<area shape="rect" id="node5" href="status.html#graph" title="status" alt="" coords="5,259,135,461"/>
-<area shape="rect" id="node6" href="contact_attr.html#graph" title="contact_attr" alt="" coords="487,663,609,1009"/>
-<area shape="rect" id="node7" href="country.html#graph" title="country" alt="" coords="233,924,371,983"/>
-<area shape="rect" id="node8" href="district.html#graph" title="district" alt="" coords="217,759,387,817"/>
-<area shape="rect" id="node9" href="state.html#graph" title="state" alt="" coords="221,841,383,900"/>
-<area shape="rect" id="node10" href="lead_contact.html#graph" title="lead_contact" alt="" coords="487,280,609,483"/>
-<area shape="rect" id="node11" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="469,1033,627,1236"/>
-<area shape="rect" id="node12" href="opportunity.html#graph" title="opportunity" alt="" coords="235,1057,369,1116"/>
-<area shape="rect" id="node13" href="sales_rep.html#graph" title="sales_rep" alt="" coords="235,204,369,263"/>
+<area shape="rect" id="node1" href="account_contact.html#graph" title="account_contact" alt="" coords="301,5,440,256"/>
+<area shape="rect" id="node2" href="account.html#graph" title="account" alt="" coords="58,12,191,71"/>
+<area shape="rect" id="node3" href="contact.html#" title="contact" alt="" coords="5,231,244,655"/>
+<area shape="rect" id="node4" href="lead.html#graph" title="lead" alt="" coords="46,95,203,153"/>
+<area shape="rect" id="node5" href="contact_attr.html#graph" title="contact_attr" alt="" coords="302,583,439,929"/>
+<area shape="rect" id="node6" href="country.html#graph" title="country" alt="" coords="56,844,193,903"/>
+<area shape="rect" id="node7" href="district.html#graph" title="district" alt="" coords="40,679,209,737"/>
+<area shape="rect" id="node8" href="state.html#graph" title="state" alt="" coords="44,761,205,820"/>
+<area shape="rect" id="node9" href="lead_contact.html#graph" title="lead_contact" alt="" coords="302,280,439,483"/>
+<area shape="rect" id="node10" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="292,953,449,1156"/>
+<area shape="rect" id="node11" href="opportunity.html#graph" title="opportunity" alt="" coords="50,977,199,1036"/>
 </map>
 </td></tr></table>
 </div>

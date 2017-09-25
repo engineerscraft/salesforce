@@ -68,7 +68,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="division.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">division</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="division.html#graph"
     tooltip="division"
@@ -80,7 +80,6 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="lead_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD></TR>
       <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
       <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
-      <TR><TD PORT="total_prod_quote" COLSPAN="3" ALIGN="LEFT">total_prod_quote</TD></TR>
       <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
       <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
       <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
@@ -125,7 +124,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="lead_contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead_contact</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="lead_contact.html#graph"
     tooltip="lead_contact"
@@ -134,7 +133,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="lead_prod.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead_prod</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">200 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="lead_prod.html#graph"
     tooltip="lead_prod"
@@ -160,7 +159,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="opportunity.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 &gt;</TD></TR>
     </TABLE>>
     URL="opportunity.html#graph"
     tooltip="opportunity"
@@ -187,7 +186,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">status</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="status.html#graph"
     tooltip="status"

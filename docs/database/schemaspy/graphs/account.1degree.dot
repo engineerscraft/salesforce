@@ -30,6 +30,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="title" COLSPAN="2" ALIGN="LEFT">title</TD><TD PORT="title.type" ALIGN="LEFT">varchar[100]</TD></TR>
       <TR><TD PORT="status_id" COLSPAN="2" ALIGN="LEFT">status_id</TD><TD PORT="status_id.type" ALIGN="LEFT">int2[5]</TD></TR>
       <TR><TD PORT="div_id" COLSPAN="2" ALIGN="LEFT">div_id</TD><TD PORT="div_id.type" ALIGN="LEFT">int4[10]</TD></TR>
+      <TR><TD PORT="sold_price" COLSPAN="2" ALIGN="LEFT">sold_price</TD><TD PORT="sold_price.type" ALIGN="LEFT">numeric[32,2]</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="2" ALIGN="LEFT">crtd_by</TD><TD PORT="crtd_by.type" ALIGN="LEFT">varchar[15]</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="2" ALIGN="LEFT">crtd_on</TD><TD PORT="crtd_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="2" ALIGN="LEFT">mod_by</TD><TD PORT="mod_by.type" ALIGN="LEFT">varchar[15]</TD></TR>
@@ -95,7 +96,6 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="prod_id" COLSPAN="3" ALIGN="LEFT">prod_id</TD></TR>
       <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
       <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
-      <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
       <TR><TD PORT="sold_price" COLSPAN="3" ALIGN="LEFT">sold_price</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
@@ -131,12 +131,12 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="division.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">division</TD></TR>
       <TR><TD PORT="div_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">div_id</TD></TR>
       <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
-      <TR><TD PORT="div_name" COLSPAN="3" ALIGN="LEFT">div_name</TD></TR>
+      <TR><TD PORT="des" COLSPAN="3" ALIGN="LEFT">des</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="division.html#graph"
     tooltip="division"
@@ -151,7 +151,7 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="color" COLSPAN="3" ALIGN="LEFT">color</TD></TR>
       <TR><TD PORT="entity" COLSPAN="3" ALIGN="LEFT">entity</TD></TR>
       <TR><TD PORT="sort_order" COLSPAN="3" ALIGN="LEFT">sort_order</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="status.html#graph"
     tooltip="status"

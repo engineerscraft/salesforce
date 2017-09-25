@@ -14,8 +14,30 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
+  "div_role":"div_id":w -> "division":"division.heading":e [arrowtail=crowtee arrowhead=none];
+  "div_role":"role_id":w -> "role":"role_id.type":e [arrowtail=crowtee arrowhead=none];
   "role_perm":"perm_id":w -> "permission":"permission.heading":e [arrowtail=crowtee arrowhead=none];
   "role_perm":"role_id":w -> "role":"role_id.type":e [arrowtail=crowtee arrowhead=none];
+  "div_role" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="div_role.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">div_role</TD></TR>
+      <TR><TD PORT="div_id" COLSPAN="3" ALIGN="LEFT">div_id</TD></TR>
+      <TR><TD PORT="role_id" COLSPAN="3" ALIGN="LEFT">role_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="div_role.html#graph"
+    tooltip="div_role"
+  ];
+  "division" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="division.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">division</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+    </TABLE>>
+    URL="division.html#graph"
+    tooltip="division"
+  ];
   "permission" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -30,9 +52,9 @@ digraph "twoDegreesRelationshipsGraph" {
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="role.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">role</TD></TR>
       <TR><TD PORT="role_id" COLSPAN="2" BGCOLOR="#bed1b8" ALIGN="LEFT">role_id</TD><TD PORT="role_id.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="role_name" COLSPAN="2" ALIGN="LEFT">role_name</TD><TD PORT="role_name.type" ALIGN="LEFT">varchar[30]</TD></TR>
-      <TR><TD PORT="role_des" COLSPAN="2" ALIGN="LEFT">role_des</TD><TD PORT="role_des.type" ALIGN="LEFT">varchar[60]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
+      <TR><TD PORT="pub_key" COLSPAN="2" ALIGN="LEFT">pub_key</TD><TD PORT="pub_key.type" ALIGN="LEFT">varchar[30]</TD></TR>
+      <TR><TD PORT="des" COLSPAN="2" ALIGN="LEFT">des</TD><TD PORT="des.type" ALIGN="LEFT">varchar[60]</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 0</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
     </TABLE>>
     URL="role.html#"
     tooltip="role"

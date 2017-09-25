@@ -30,7 +30,7 @@
 <div class='indent'>
 <table width='100%'>
 <tr><td class='container' valign='bottom'><b>
-50 Foreign Key Constraints:</b>
+51 Foreign Key Constraints:</b>
 </td><td class='container' align='right'>
 <table>
   <tr><td class='container' align='right' valign='top'><a href='http://sourceforge.net' target='_blank'><img src='http://sourceforge.net/sflogo.php?group_id=137197&amp;type=1' alt='SourceForge.net' border='0' height='31' width='88'></a></td></tr>
@@ -151,14 +151,19 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'><a href='tables/state.html'>state</a>.s_id</td>
  </tr>
  <tr>
-  <td class='detail'>contact_status_id_fkey</td>
-  <td class='detail'><a href='tables/contact.html'>contact</a>.status_id</td>
-  <td class='detail'><a href='tables/status.html'>status</a>.status_id</td>
- </tr>
- <tr>
   <td class='detail'>district_s_id_fkey</td>
   <td class='detail'><a href='tables/district.html'>district</a>.s_id</td>
   <td class='detail'><a href='tables/state.html'>state</a>.s_id</td>
+ </tr>
+ <tr>
+  <td class='detail'>div_role_div_id_fkey</td>
+  <td class='detail'><a href='tables/div_role.html'>div_role</a>.div_id</td>
+  <td class='detail'><a href='tables/division.html'>division</a>.div_id</td>
+ </tr>
+ <tr>
+  <td class='detail'>div_role_role_id_fkey</td>
+  <td class='detail'><a href='tables/div_role.html'>div_role</a>.role_id</td>
+  <td class='detail'><a href='tables/role.html'>role</a>.role_id</td>
  </tr>
  <tr>
   <td class='detail'>lead_attachment_lead_id_fkey</td>

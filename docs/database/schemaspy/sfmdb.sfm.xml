@@ -30,10 +30,11 @@
          <column autoUpdated="false" digits="0" id="4" name="div_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="div_id" foreignKey="account_div_id_fkey" implied="false" onDeleteCascade="false" table="division"/>
          </column>
-         <column autoUpdated="false" digits="0" id="5" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="6" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
-         <column autoUpdated="false" digits="0" id="7" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="8" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="2" id="5" name="sold_price" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="6" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="7" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="9" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
          <primaryKey column="acc_id" sequenceNumberInPK="1"/>
          <index name="account_pkey" unique="true">
             <column ascending="true" name="acc_id"/>
@@ -118,12 +119,11 @@
          </column>
          <column autoUpdated="false" digits="2" id="4" name="disc_amt" nullable="true" remarks="" size="32" type="numeric"/>
          <column autoUpdated="false" digits="2" id="5" name="disc_pct" nullable="true" remarks="" size="3" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="6" name="quote_price" nullable="false" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="7" name="sold_price" nullable="false" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="0" id="8" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="9" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
-         <column autoUpdated="false" digits="0" id="10" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="11" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="2" id="6" name="sold_price" nullable="false" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="7" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="8" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="9" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="10" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
          <primaryKey column="acc_id" sequenceNumberInPK="1"/>
          <primaryKey column="opp_id" sequenceNumberInPK="2"/>
          <primaryKey column="lead_id" sequenceNumberInPK="3"/>
@@ -159,7 +159,7 @@
             <column ascending="true" name="entry_id"/>
          </index>
       </table>
-      <table name="app_sequence" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="app_sequence" numRows="11" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="seq_name" nullable="false" remarks="" size="20" type="varchar"/>
          <column autoUpdated="false" digits="0" id="1" name="seq_value" nullable="false" remarks="" size="19" type="int8"/>
          <primaryKey column="seq_name" sequenceNumberInPK="1"/>
@@ -175,31 +175,46 @@
             <child column="co_id" foreignKey="opportunity_contact_co_id_fkey" implied="false" onDeleteCascade="false" table="opportunity_contact"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="pub_key" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="status_id" nullable="false" remarks="" size="5" type="int2">
-            <parent column="status_id" foreignKey="contact_status_id_fkey" implied="false" onDeleteCascade="false" table="status"/>
-         </column>
-         <column autoUpdated="false" digits="0" id="3" name="first_name" nullable="false" remarks="" size="60" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="4" name="middle_name" nullable="true" remarks="" size="60" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="5" name="last_name" nullable="true" remarks="" size="60" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="6" name="company" nullable="true" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="7" name="desig" nullable="true" remarks="" size="50" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="8" name="email" nullable="false" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="9" name="extn" nullable="true" remarks="" size="10" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="10" name="land" nullable="true" remarks="" size="20" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="11" name="mob" nullable="true" remarks="" size="20" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="12" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="13" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
-         <column autoUpdated="false" digits="0" id="14" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="15" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="2" name="f_name" nullable="false" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="m_name" nullable="true" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="l_name" nullable="true" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="company" nullable="true" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="desig" nullable="true" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="email" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="8" name="extn" nullable="true" remarks="" size="10" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="9" name="land" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="10" name="mob" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="11" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="12" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="13" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="14" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
          <primaryKey column="co_id" sequenceNumberInPK="1"/>
          <index name="contact_pkey" unique="true">
             <column ascending="true" name="co_id"/>
          </index>
+         <index name="company_idx" unique="false">
+            <column ascending="true" name="company"/>
+         </index>
+         <index name="contact_all_trg_idx" unique="false"/>
          <index name="contact_pub_key_key" unique="true">
             <column ascending="true" name="pub_key"/>
          </index>
+         <index name="desig_idx" unique="false">
+            <column ascending="true" name="desig"/>
+         </index>
+         <index name="email_idx" unique="false">
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="mob_idx" unique="false">
+            <column ascending="true" name="mob"/>
+         </index>
+         <index name="name_idx" unique="false">
+            <column ascending="true" name="f_name"/>
+            <column ascending="true" name="m_name"/>
+            <column ascending="true" name="l_name"/>
+         </index>
       </table>
-      <table name="contact_attr" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="contact_attr" numRows="100" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="co_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="co_id" foreignKey="contact_attr_co_id_fkey" implied="false" onDeleteCascade="false" table="contact"/>
          </column>
@@ -249,14 +264,23 @@
             <column ascending="true" name="d_id"/>
          </index>
       </table>
+      <table name="div_role" numRows="4" remarks="" schema="sfm" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="div_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="div_id" foreignKey="div_role_div_id_fkey" implied="false" onDeleteCascade="false" table="division"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="role_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="role_id" foreignKey="div_role_role_id_fkey" implied="false" onDeleteCascade="false" table="role"/>
+         </column>
+      </table>
       <table name="division" numRows="3" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="div_id" nullable="false" remarks="" size="10" type="int4">
             <child column="div_id" foreignKey="account_div_id_fkey" implied="false" onDeleteCascade="false" table="account"/>
+            <child column="div_id" foreignKey="div_role_div_id_fkey" implied="false" onDeleteCascade="false" table="div_role"/>
             <child column="div_id" foreignKey="lead_div_id_fkey" implied="false" onDeleteCascade="false" table="lead"/>
             <child column="div_id" foreignKey="opportunity_div_id_fkey" implied="false" onDeleteCascade="false" table="opportunity"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="pub_key" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="div_name" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="des" nullable="false" remarks="" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="3" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
          <column autoUpdated="false" digits="6" id="4" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
          <column autoUpdated="false" digits="0" id="5" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
@@ -286,20 +310,19 @@
          </column>
          <column autoUpdated="false" digits="0" id="1" name="pub_key" nullable="false" remarks="" size="15" type="varchar"/>
          <column autoUpdated="false" digits="0" id="2" name="title" nullable="false" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="2" id="3" name="total_prod_quote" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="4" name="disc_amt" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="5" name="disc_pct" nullable="true" remarks="" size="3" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="6" name="quote_price" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="0" id="7" name="status_id" nullable="false" remarks="" size="5" type="int2">
+         <column autoUpdated="false" digits="2" id="3" name="disc_amt" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="2" id="4" name="disc_pct" nullable="true" remarks="" size="3" type="numeric"/>
+         <column autoUpdated="false" digits="2" id="5" name="quote_price" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="6" name="status_id" nullable="false" remarks="" size="5" type="int2">
             <parent column="status_id" foreignKey="lead_status_id_fkey" implied="false" onDeleteCascade="false" table="status"/>
          </column>
-         <column autoUpdated="false" digits="0" id="8" name="div_id" nullable="false" remarks="" size="10" type="int4">
+         <column autoUpdated="false" digits="0" id="7" name="div_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="div_id" foreignKey="lead_div_id_fkey" implied="false" onDeleteCascade="false" table="division"/>
          </column>
-         <column autoUpdated="false" digits="0" id="9" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="10" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
-         <column autoUpdated="false" digits="0" id="11" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="12" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="9" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="10" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="11" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
          <primaryKey column="lead_id" sequenceNumberInPK="1"/>
          <index name="lead_pkey" unique="true">
             <column ascending="true" name="lead_id"/>
@@ -342,7 +365,7 @@
             <column ascending="true" name="lead_id"/>
          </index>
       </table>
-      <table name="lead_contact" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="lead_contact" numRows="100" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="lead_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="lead_id" foreignKey="lead_contact_lead_id_fkey" implied="false" onDeleteCascade="false" table="lead"/>
          </column>
@@ -360,7 +383,7 @@
             <column ascending="true" name="co_id"/>
          </index>
       </table>
-      <table name="lead_prod" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="lead_prod" numRows="200" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="lead_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="lead_id" foreignKey="lead_prod_lead_id_fkey" implied="false" onDeleteCascade="false" table="lead"/>
          </column>
@@ -370,12 +393,11 @@
          <column autoUpdated="false" digits="2" id="2" name="prod_unit" nullable="true" remarks="" size="32" type="numeric"/>
          <column autoUpdated="false" digits="2" id="3" name="disc_amt" nullable="true" remarks="" size="32" type="numeric"/>
          <column autoUpdated="false" digits="2" id="4" name="disc_pct" nullable="true" remarks="" size="3" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="5" name="quote_unit_price" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="6" name="quote_price" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="0" id="7" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="8" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
-         <column autoUpdated="false" digits="0" id="9" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="10" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="2" id="5" name="quote_price" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="6" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="7" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="9" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
          <primaryKey column="lead_id" sequenceNumberInPK="1"/>
          <primaryKey column="prod_id" sequenceNumberInPK="2"/>
          <index name="lead_prod_pkey" unique="true">
@@ -403,7 +425,7 @@
             <column ascending="true" name="entry_id"/>
          </index>
       </table>
-      <table name="opportunity" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="opportunity" numRows="100" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="opp_id" nullable="false" remarks="" size="10" type="int4">
             <child column="opp_id" foreignKey="account_attachment_opp_id_fkey" implied="false" onDeleteCascade="false" table="account_attachment"/>
             <child column="opp_id" foreignKey="account_contact_opp_id_fkey" implied="false" onDeleteCascade="false" table="account_contact"/>
@@ -416,28 +438,26 @@
             <child column="opp_id" foreignKey="opportunity_timeline_opp_id_fkey" implied="false" onDeleteCascade="false" table="opportunity_timeline"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="pub_key" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="2" id="2" name="total_prod_quote" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="3" name="disc_amt" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="4" name="disc_pct" nullable="true" remarks="" size="3" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="5" name="quote_price" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="6" name="sold_price" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="0" id="7" name="title" nullable="false" remarks="" size="100" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="8" name="status_id" nullable="false" remarks="" size="5" type="int2">
+         <column autoUpdated="false" digits="2" id="2" name="disc_amt" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="2" id="3" name="disc_pct" nullable="true" remarks="" size="3" type="numeric"/>
+         <column autoUpdated="false" digits="2" id="4" name="quote_price" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="5" name="title" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="status_id" nullable="false" remarks="" size="5" type="int2">
             <parent column="status_id" foreignKey="opportunity_status_id_fkey" implied="false" onDeleteCascade="false" table="status"/>
          </column>
-         <column autoUpdated="false" digits="0" id="9" name="div_id" nullable="false" remarks="" size="10" type="int4">
+         <column autoUpdated="false" digits="0" id="7" name="div_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="div_id" foreignKey="opportunity_div_id_fkey" implied="false" onDeleteCascade="false" table="division"/>
          </column>
-         <column autoUpdated="false" digits="0" id="10" name="acc_id" nullable="true" remarks="" size="10" type="int4">
+         <column autoUpdated="false" digits="0" id="8" name="acc_id" nullable="true" remarks="" size="10" type="int4">
             <parent column="acc_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="account"/>
          </column>
-         <column autoUpdated="false" digits="0" id="11" name="lead_id" nullable="true" remarks="" size="10" type="int4">
+         <column autoUpdated="false" digits="0" id="9" name="lead_id" nullable="true" remarks="" size="10" type="int4">
             <parent column="lead_id" foreignKey="opportunity_lead_id_fkey" implied="false" onDeleteCascade="false" table="lead"/>
          </column>
-         <column autoUpdated="false" digits="0" id="12" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="13" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
-         <column autoUpdated="false" digits="0" id="14" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="15" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="10" name="crtd_by" nullable="false" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="11" name="crtd_on" nullable="false" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="12" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="13" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
          <primaryKey column="opp_id" sequenceNumberInPK="1"/>
          <index name="opportunity_pkey" unique="true">
             <column ascending="true" name="opp_id"/>
@@ -477,7 +497,7 @@
             <column ascending="true" name="opp_id"/>
          </index>
       </table>
-      <table name="opportunity_contact" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="opportunity_contact" numRows="100" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="opp_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="opp_id" foreignKey="opportunity_contact_opp_id_fkey" implied="false" onDeleteCascade="false" table="opportunity"/>
          </column>
@@ -495,7 +515,7 @@
             <column ascending="true" name="co_id"/>
          </index>
       </table>
-      <table name="opportunity_prod" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="opportunity_prod" numRows="200" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="opp_id" nullable="false" remarks="" size="10" type="int4">
             <parent column="opp_id" foreignKey="opportunity_prod_opp_id_fkey" implied="false" onDeleteCascade="false" table="opportunity"/>
          </column>
@@ -505,12 +525,11 @@
          <column autoUpdated="false" digits="2" id="2" name="prod_unit" nullable="true" remarks="" size="32" type="numeric"/>
          <column autoUpdated="false" digits="2" id="3" name="disc_amt" nullable="true" remarks="" size="32" type="numeric"/>
          <column autoUpdated="false" digits="2" id="4" name="disc_pct" nullable="true" remarks="" size="3" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="5" name="quote_unit_price" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="2" id="6" name="quote_price" nullable="true" remarks="" size="32" type="numeric"/>
-         <column autoUpdated="false" digits="0" id="7" name="crtd_by" nullable="true" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="8" name="crtd_on" nullable="true" remarks="" size="29" type="timestamp"/>
-         <column autoUpdated="false" digits="0" id="9" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="6" id="10" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="2" id="5" name="quote_price" nullable="true" remarks="" size="32" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="6" name="crtd_by" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="7" name="crtd_on" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="8" name="mod_by" nullable="true" remarks="" size="15" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="9" name="mod_on" nullable="true" remarks="" size="29" type="timestamp"/>
          <primaryKey column="opp_id" sequenceNumberInPK="1"/>
          <primaryKey column="prod_id" sequenceNumberInPK="2"/>
          <index name="opportunity_prod_pkey" unique="true">
@@ -546,25 +565,25 @@
          <column autoUpdated="false" digits="0" id="0" name="perm_id" nullable="false" remarks="" size="10" type="int4">
             <child column="perm_id" foreignKey="role_perm_perm_id_fkey" implied="false" onDeleteCascade="false" table="role_perm"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="perm_name" nullable="false" remarks="" size="50" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="perm_type" nullable="false" remarks="" size="1" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="3" name="res_name" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="pub_key" nullable="false" remarks="" size="50" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="des" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="perm_type" nullable="false" remarks="" size="1" type="varchar"/>
          <primaryKey column="perm_id" sequenceNumberInPK="1"/>
          <index name="permission_pkey" unique="true">
             <column ascending="true" name="perm_id"/>
          </index>
-         <index name="permission_perm_name_key" unique="true">
-            <column ascending="true" name="perm_name"/>
+         <index name="permission_pub_key_key" unique="true">
+            <column ascending="true" name="pub_key"/>
          </index>
       </table>
-      <table name="product" numRows="10" remarks="" schema="sfm" type="TABLE">
+      <table name="product" numRows="2" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="prod_id" nullable="false" remarks="" size="10" type="int4">
             <child column="prod_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="account_prod"/>
             <child column="prod_id" foreignKey="lead_prod_prod_id_fkey" implied="false" onDeleteCascade="false" table="lead_prod"/>
             <child column="prod_id" foreignKey="opportunity_prod_prod_id_fkey" implied="false" onDeleteCascade="false" table="opportunity_prod"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="pub_key" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="prod_name" nullable="false" remarks="" size="100" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="des" nullable="false" remarks="" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="3" name="vfrom" nullable="false" remarks="" size="13" type="date"/>
          <column autoUpdated="false" digits="0" id="4" name="vto" nullable="true" remarks="" size="13" type="date"/>
          <column autoUpdated="false" digits="2" id="5" name="price" nullable="false" remarks="" size="32" type="numeric"/>
@@ -582,10 +601,11 @@
       </table>
       <table name="role" numRows="2" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="role_id" nullable="false" remarks="" size="10" type="int4">
+            <child column="role_id" foreignKey="div_role_role_id_fkey" implied="false" onDeleteCascade="false" table="div_role"/>
             <child column="role_id" foreignKey="role_perm_role_id_fkey" implied="false" onDeleteCascade="false" table="role_perm"/>
          </column>
-         <column autoUpdated="false" digits="0" id="1" name="role_name" nullable="false" remarks="" size="30" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="role_des" nullable="false" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="pub_key" nullable="false" remarks="" size="30" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="des" nullable="false" remarks="" size="60" type="varchar"/>
          <primaryKey column="role_id" sequenceNumberInPK="1"/>
          <index name="role_pkey" unique="true">
             <column ascending="true" name="role_id"/>
@@ -605,15 +625,15 @@
             <column ascending="true" name="perm_id"/>
          </index>
       </table>
-      <table name="sales_rep" numRows="0" remarks="" schema="sfm" type="TABLE">
+      <table name="sales_rep" numRows="100" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="sales_rep_id" nullable="false" remarks="" size="10" type="int4">
             <child column="sup_id" foreignKey="sales_rep_sup_id_fkey" implied="false" onDeleteCascade="false" table="sales_rep"/>
             <child column="sales_rep_id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="sales_rep_profile"/>
          </column>
          <column autoUpdated="false" digits="0" id="1" name="pub_key" nullable="false" remarks="" size="15" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="2" name="first_name" nullable="false" remarks="" size="60" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="3" name="middle_name" nullable="true" remarks="" size="60" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="4" name="last_name" nullable="true" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="f_name" nullable="false" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="m_name" nullable="true" remarks="" size="60" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="l_name" nullable="true" remarks="" size="60" type="varchar"/>
          <column autoUpdated="false" digits="0" id="5" name="sup_id" nullable="true" remarks="" size="10" type="int4">
             <parent column="sales_rep_id" foreignKey="sales_rep_sup_id_fkey" implied="false" onDeleteCascade="false" table="sales_rep"/>
          </column>
@@ -636,6 +656,21 @@
          </index>
          <index name="sales_rep_pub_key_key" unique="true">
             <column ascending="true" name="pub_key"/>
+         </index>
+         <index name="salesrep_all_trg_idx" unique="false"/>
+         <index name="salesrep_desig_idx" unique="false">
+            <column ascending="true" name="desig"/>
+         </index>
+         <index name="salesrep_email_idx" unique="false">
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="salesrep_mob_idx" unique="false">
+            <column ascending="true" name="mob"/>
+         </index>
+         <index name="salesrep_name_idx" unique="false">
+            <column ascending="true" name="f_name"/>
+            <column ascending="true" name="m_name"/>
+            <column ascending="true" name="l_name"/>
          </index>
       </table>
       <table name="sales_rep_profile" numRows="0" remarks="" schema="sfm" type="TABLE">
@@ -665,7 +700,6 @@
       <table name="status" numRows="13" remarks="" schema="sfm" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="status_id" nullable="false" remarks="" size="5" type="int2">
             <child column="status_id" foreignKey="account_status_id_fkey" implied="false" onDeleteCascade="false" table="account"/>
-            <child column="status_id" foreignKey="contact_status_id_fkey" implied="false" onDeleteCascade="false" table="contact"/>
             <child column="status_id" foreignKey="lead_status_id_fkey" implied="false" onDeleteCascade="false" table="lead"/>
             <child column="status_id" foreignKey="opportunity_status_id_fkey" implied="false" onDeleteCascade="false" table="opportunity"/>
             <child column="status_id" foreignKey="sales_rep_status_id_fkey" implied="false" onDeleteCascade="false" table="sales_rep"/>
