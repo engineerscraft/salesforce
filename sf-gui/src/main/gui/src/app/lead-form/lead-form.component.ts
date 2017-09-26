@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeadService } from '../lead.service';
 import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/filter';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-lead-form',
@@ -35,18 +36,17 @@ export class LeadFormComponent implements OnInit {
     { pubKey: 'Item C', des: 'Item A', discType: 'percent', discAmt: 0 }, 
     { pubKey: 'Item D', des: 'Item A', discType: 'percent', discAmt: 0 }
   ];
-
+  
   private contacts = [
-    { pubKey: 'Item A', name: 'Item A' }, 
-    { pubKey: 'Item B', name: 'Item A' }, 
-    { pubKey: 'Item C', name: 'Item A' }, 
-    { pubKey: 'Item D', name: 'Item A' }
   ];
+
+  private closeResult: string;
 
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private leadService: LeadService,
-    private router: Router) { }
+    private router: Router,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
 
@@ -170,6 +170,32 @@ export class LeadFormComponent implements OnInit {
   }
 
   openContactDialog() {
-
+    open("content");
   }
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+  addContact($event) {
+    this.contacts.push({
+      pubKey: $event.pubKey,
+      name: $event.name
+    });
+  }
+
 }

@@ -14,30 +14,29 @@
           </div>
           <div class="form-group">
             <label for="title">Title <span class="text-danger">*</span></label>
-            <input type="text" formControlName="title" class="form-control" id="title" placeholder="Title text of the lead"
-              [readOnly]="readOnly" required>
+            <input type="text" formControlName="title" class="form-control" id="title" placeholder="Title text of the lead" [readOnly]="readOnly"
+              required>
           </div>
           <div class="form-group">
-              <label for="discType">Discount Type <span class="text-danger">*</span></label>
-              <select class="form-control" formControlName="discType" id="discType" required>
+            <label for="discType">Discount Type <span class="text-danger">*</span></label>
+            <select class="form-control" formControlName="discType" id="discType" required>
                 <option value="1">Amount</option>
                 <option value="2">Percent</option>
               </select>
-            </div>
-            <div class="form-group">
-                <label for="discValue">Discount Value <span class="text-danger">*</span></label>
-                <input type="text" formControlName="discVal" class="form-control" id="discValue" placeholder="Discount value"
-                  [readOnly]="readOnly" required>
-              </div>
-            </div>
+          </div>
+          <div class="form-group">
+            <label for="discValue">Discount Value <span class="text-danger">*</span></label>
+            <input type="text" formControlName="discVal" class="form-control" id="discValue" placeholder="Discount value" [readOnly]="readOnly"
+              required>
+          </div>
+        </div>
       </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Products</h6>
           <ul class="list-group my-4">
             <li [@fadeIn] *ngFor="let product of products" class="list-group-item">{{product.des}}<i (click)=removeProd(product.pubKey) class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i>
-              <i
-                class="fa fa-pencil pull-right mx-2" aria-hidden="true"></i>
+              <i class="fa fa-pencil pull-right mx-2" aria-hidden="true"></i>
             </li>
             <button (click)="openProductDialog()" class="btn btn-success float-right text-white ripple">Add Product</button>
           </ul>
@@ -48,11 +47,10 @@
           <h6 class="card-title mb-4 text-center text-muted">Contacts</h6>
 
           <ul class="list-group my-4">
-            <li [@fadeIn] *ngFor="let contact of contacts" class="list-group-item">{{contact.name}}<i (click)=removeContact(contact.pubKey) class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i>
-              <i
-                class="fa fa-pencil pull-right mx-2" aria-hidden="true"></i>
+            <li [@fadeIn] *ngFor="let contact of contacts" class="list-group-item">(<a routerLink="/contactDetails/{{contact.pubKey}}">{{contact.pubKey}})</a> : {{contact.name}}<i (click)=removeContact(contact.pubKey) class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i>
+              <i class="fa fa-pencil pull-right mx-2" aria-hidden="true"></i>
             </li>
-            <button (click)="openContactDialog()" class="btn btn-success float-right text-white ripple">Add Contact</button>
+            <button (click)="open(content)" class="btn btn-success float-right text-white ripple">Add Contact</button>
           </ul>
 
         </div>
@@ -63,6 +61,17 @@
       </div>
     </div>
   </form>
+  <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header bg-primary text-white">
+          <h4 class="modal-title">Contact Selection</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <app-contact-selector (add)="addContact($event)"></app-contact-selector>
+        </div>
+  </ng-template>
 </div>
 <div class="d-none d-lg-block help-text">
   <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Contact'" [helpText]="'Contacts are the people that you market to, sell to, support, etc. They are the people you interact with to get the business. Capture as much details about them as you can. You can use the Notes field for any additional information which do not fit into any other available fields.'"></app-help-gadget>

@@ -132,3 +132,7 @@ body {
   opacity: 0.5;
   transition: all 100ms linear;
 }
+
+.list-group-item:hover a {
+  color: #fff; 
+}

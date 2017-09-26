@@ -1,0 +1,9 @@
+
+  <form [formGroup]="contactSearchFormGroup">
+    <input type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
+      placeholder="Search" required>
+  </form>
+  <br/>
+  <ul class="list-group">
+    <li *ngFor="let contact of contacts" class="list-group-item"><a routerLink="/contactDetails/{{contact.pubKey}}">({{contact.pubKey}})</a> - {{contact.fName}} {{contact.mName}} {{contact.lName}}<i (click)="addContact(contact)" class="fa fa-plus-circle pull-right mx-2" aria-hidden="true"></i></li>
+  </ul>
