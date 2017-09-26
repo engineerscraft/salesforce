@@ -59,9 +59,9 @@ public class ContactRepository {
     private String contactAttrUpdate;
 
     public List<ContactSummary> getContactPage(String searchString, long startPosition) {
-        Object[] args = { searchString, '%' + searchString + '%', searchString, contactPageSize, startPosition };
+        Object[] args = { searchString, '%' + searchString + '%', searchString, startPosition, contactPageSize };
         logger.info(sqlMarker, contactPageSql);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> searchString, () -> '%' + searchString + '%', () -> searchString, () -> contactPageSize, () -> startPosition);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> searchString, () -> '%' + searchString + '%', () -> searchString, () -> startPosition, () -> contactPageSize);
         List<ContactSummary> contacts = (List<ContactSummary>) jdbcTemplate.query(contactPageSql, args, new ContactSummaryRowMapper());
         logger.debug("Retrieved contacts: {}", () -> contacts);
         return contacts;

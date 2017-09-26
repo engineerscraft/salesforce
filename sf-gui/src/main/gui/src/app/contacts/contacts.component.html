@@ -10,7 +10,7 @@
             <strong>{{paginationMessage}}</strong>
           </div>
 
-          <form [formGroup]="contactSearchFormGroup">
+          <form [formGroup]="contactSearchFormGroup" autocomplete="off">
             <input type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
               placeholder="Search" required>
           </form>
