@@ -80,7 +80,7 @@ public class SalesRepRepository {
                     salesRep.getMob(), salesRep.getEmail(), salesRep.getDoj(), salesRep.getDesig(), username });
 
             PublicKey pubKey = new PublicKey();
-            pubKey.setPubKey("CO" + String.format("%08d", salesRepId));
+            pubKey.setPubKey("SR" + String.format("%08d", salesRepId));
 
             // create LDAP user
             authRepo.createUser(pubKey.getPubKey(), salesRep);

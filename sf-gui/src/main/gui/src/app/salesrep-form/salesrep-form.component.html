@@ -2,7 +2,7 @@
     <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
         <strong>{{message}}</strong>
     </div>
-    <form [formGroup]="salesrepFormGroup" (ngSubmit)="submit()">
+    <form [formGroup]="salesRepFormGroup" (ngSubmit)="submit()">
     <div class="card-block">
       <h1 class="display-4 text-white ml-4 my-3">{{formTitle}}</h1>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
@@ -64,7 +64,7 @@
           <h6 class="card-title mb-4 text-center text-muted">Additional Information</h6>
           <div class="form-group">
             <label for="status">Status</label>
-            <select (focus)="attr = 'status'" formControlName="status" class="form-control py-0" id="status" #status [attr.disabled]="readOnly">
+            <select (focus)="attr = 'statusId'" formControlName="statusId" class="form-control py-0" id="statusId" #statusId [attr.disabled]="readOnly">
               <option value="1">Active</option>
               <option value="2">Deactivated</option>
             </select>
@@ -83,7 +83,7 @@
       </div>
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
           
-        <button [disabled]="!salesrepFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
+        <button [disabled]="!salesRepFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
         <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-primary float-right text-white ripple">Cancel</button>
       </div>
     </div>

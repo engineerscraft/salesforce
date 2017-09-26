@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SalesrepService } from '../salesrep.service';
 import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
+import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import 'rxjs/add/operator/filter';
 
 @Component({
@@ -14,7 +15,7 @@ export class SalesrepFormComponent implements OnInit {
   @Input() readOnly: boolean = null;
   @Input() mode = "Create";
 
-  private salesrepFormGroup: FormGroup;
+  private salesRepFormGroup: FormGroup;
   private attr = '';
   private buttonName = 'Create';
   private message = '';
@@ -24,7 +25,8 @@ export class SalesrepFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private salesrepService: SalesrepService,
-    private router: Router) { }
+    private router: Router,
+    private parserFormatter: NgbDateParserFormatter) { }
 
   ngOnInit() {
 
@@ -37,9 +39,9 @@ export class SalesrepFormComponent implements OnInit {
       this.formTitle = 'Sales Person Details';
     }
 
-    this.salesrepFormGroup = this.formBuilder.group({
+    this.salesRepFormGroup = this.formBuilder.group({
 
-        salesrepId: [''],
+        salesRepId: [''],
         pubKey: [''],
         fName: ['', [Validators.required]],
         mName: [''],
@@ -48,7 +50,7 @@ export class SalesrepFormComponent implements OnInit {
         desig: ['', [Validators.required]],
         email: ['', [Validators.required]],
         mob: ['', [Validators.required]],
-        status: [''],
+        statusId: [''],
         doj: ['', [Validators.required]],
         land: [''],
         extn: ['']
@@ -64,7 +66,7 @@ export class SalesrepFormComponent implements OnInit {
       this.salesrepService.readSalesRep(this.pubKey)
         .subscribe(
         res => {
-          this.salesrepFormGroup.setValue(res);          
+          this.salesRepFormGroup.setValue(res);          
         },
         err => {
           this.message = err.status + " : " + err.statusText;
@@ -79,14 +81,18 @@ export class SalesrepFormComponent implements OnInit {
 
 
     if (this.mode === 'View') {
-
+      //let dojDate = this.salesRepFormGroup.get('doj').value.day + '/' + this.salesRepFormGroup.get('doj').value.month + '/' + this.salesRepFormGroup.get('doj').value.year;
+      console.log("Fetched Date ====== " + JSON.stringify(this.salesRepFormGroup.get('doj').value));
     }
   }
 
   submit() {
     this.message = '';
     if (this.mode === 'Create') {
-      this.salesrepService.createSalesRep(this.salesrepFormGroup.value)
+      let dojDate = this.salesRepFormGroup.get('doj').value.day + '/' + this.salesRepFormGroup.get('doj').value.month + '/' + this.salesRepFormGroup.get('doj').value.year;
+      this.salesRepFormGroup.patchValue({ doj: dojDate });
+      console.log("Input JSON ====== " + JSON.stringify(this.salesRepFormGroup.value));
+      this.salesrepService.createSalesRep(JSON.stringify(this.salesRepFormGroup.value))
         .subscribe(
         res => {
           this.router.navigate(['salesrepDetails/' + res.pubKey]);
@@ -98,9 +104,11 @@ export class SalesrepFormComponent implements OnInit {
     } else if (this.mode === 'View') {
       this.readOnly = null;
       this.buttonName = 'Save';
-      this.mode = 'Modify';
+      this.mode = 'Modify';      
     } else if (this.mode === 'Modify') {
-      this.salesrepService.updateSalesRep(this.pubKey, this.salesrepFormGroup.value)
+      let dojDate = this.salesRepFormGroup.get('doj').value.day + '/' + this.salesRepFormGroup.get('doj').value.month + '/' + this.salesRepFormGroup.get('doj').value.year;
+      this.salesRepFormGroup.patchValue({ doj: dojDate });
+      this.salesrepService.updateSalesRep(this.pubKey, JSON.stringify(this.salesRepFormGroup.value))
         .subscribe(
         res => {
           this.readOnly = true;
