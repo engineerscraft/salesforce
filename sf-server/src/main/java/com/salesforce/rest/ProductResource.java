@@ -33,7 +33,7 @@ public class ProductResource {
     @Autowired
     private ProductRepository productRepository;
 
-    @GET
+    /*@GET
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Secured(Privilege.DEFAULT)
@@ -45,14 +45,13 @@ public class ProductResource {
                 logger.error("No product is found.");
                 return Response.status(Response.Status.NOT_FOUND).entity(new Message("No product is found.")).build();
             }
-            /* If data presents in DB */
             else
                 return Response.status(Response.Status.OK).entity(products).build();
         } catch (Exception e) {
             logger.error("The products could not be retrieved", e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
-    }
+    }*/
     
     @GET
     @Path("/")

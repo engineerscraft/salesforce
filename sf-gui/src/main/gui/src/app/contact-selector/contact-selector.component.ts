@@ -79,7 +79,13 @@ export class ContactSelectorComponent implements OnInit {
     let name = contact.fName + ' ' + (contact.mName ? (contact.mName + ' ') : '') + contact.lName;
     this.add.emit({
       "pubKey": contact.pubKey,
-      "name": name
+      "name": name,
+      "email": contact.email,
+      "mob": contact.mob,
+      "land": contact.land,
+      "extn": contact.extn,
+      "desig": contact.desig,
+      "company": contact.company
     });
     this.contacts.forEach(function (con) {
       if (contact.pubKey === con.pubKey) {

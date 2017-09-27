@@ -47,9 +47,12 @@
           <h6 class="card-title mb-4 text-center text-muted">Contacts</h6>
 
           <ul class="list-group my-4">
-            <li [@fadeIn] *ngFor="let contact of contacts" class="list-group-item">(<a routerLink="/contactDetails/{{contact.pubKey}}">{{contact.pubKey}})</a> : {{contact.name}}<i (click)=removeContact(contact.pubKey)
-                class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i>
-
+            <li [@fadeIn] *ngFor="let contact of contacts" class="list-group-item">
+              <p><strong>{{contact.name}} (<a routerLink="/contactDetails/{{contact.pubKey}}">{{contact.pubKey}}</a>)<i (click)=removeContact(contact.pubKey)
+                class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></strong></p>
+              <p class="p-0 m-0"><small>{{contact.desig}} - {{contact.company}}</small></p>
+              <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{contact.email}}</small></p>
+              <p class="p-0 m-0"><small><i class="fa fa-mobile" aria-hidden="true"></i> {{contact.mob}} / <i class="fa fa-phone" aria-hidden="true"></i> {{contact.land}} - {{contact.extn}}</small></p>
             </li>
             <button (click)="open(content)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
           </ul>

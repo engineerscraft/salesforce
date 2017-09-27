@@ -194,7 +194,13 @@ export class LeadFormComponent implements OnInit {
   addContact($event) {
     this.contacts.push({
       pubKey: $event.pubKey,
-      name: $event.name
+      name: $event.name,
+      mob: $event.mob,
+      email: $event.email,
+      company: $event.company,
+      desig: $event.desig,
+      land: $event.land,
+      extn: $event.extn
     });
   }
 
