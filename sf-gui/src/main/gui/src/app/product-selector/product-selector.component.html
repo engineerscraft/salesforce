@@ -1,3 +1,30 @@
-<p>
-  product-selector works!
-</p>
+<div *ngIf="paginationMessage" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+    <strong>{{paginationMessage}}</strong>
+  </div>
+  <form [formGroup]="productSearchFormGroup" autocomplete="off">
+    <input type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
+      placeholder="Search" required>
+  </form>
+  <br/>
+  <nav *ngIf="products" class="row col-12 h-100 justify-content-center align-items-center">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="javascript:void(0)" aria-label="Previous" (click)="previous()">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="javascript:void(0)" aria-label="Next" (click)="next()">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+      </li>
+    </ul>
+  </nav>
+  <ul class="list-group">
+    <li *ngFor="let product of products" class="list-group-item">({{product.pubKey}}) - {{product.des}}
+      <i *ngIf="!product.alreadyAdded"
+        (click)="addProduct(product)" class="fa fa-plus-circle pull-right mx-2" aria-hidden="true"></i>
+    </li>
+  </ul>

@@ -35,10 +35,14 @@
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Products</h6>
           <ul class="list-group my-4">
-            <li [@fadeIn] *ngFor="let product of products" class="list-group-item">{{product.des}}<i (click)=removeProd(product.pubKey) class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i>
-              <i class="fa fa-pencil pull-right mx-2" aria-hidden="true"></i>
+            <li [@fadeIn] *ngFor="let product of products" class="list-group-item">
+              <p><strong>{{product.des}} ({{product.pubKey}})<i (click)=removeProd(product.pubKey) class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i>
+              <i class="fa fa-pencil pull-right mx-2" aria-hidden="true"></i></strong></p>
+              <p class="p-0 m-0"><small>Quote Price : {{product.quotePrice}}</small></p>
+              <p class="p-0 m-0"><small>Quote Unit Price : {{product.quoteUnitPrice}} (Actual Unit Price: {{product.actualUnitPrice}})</small></p>
+              <p class="p-0 m-0"><small>No. of unit : {{product.unit}} (Discount: {{product.discVal}}{{product.discUnit}})</small></p>
             </li>
-            <button (click)="openProductDialog()" class="btn btn-primary float-right text-white ripple">Add Product</button>
+            <button (click)="open(product)" class="btn btn-primary float-right text-white ripple">Add Product</button>
           </ul>
         </div>
       </div>
@@ -54,7 +58,7 @@
               <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{contact.email}}</small></p>
               <p class="p-0 m-0"><small><i class="fa fa-mobile" aria-hidden="true"></i> {{contact.mob}} / <i class="fa fa-phone" aria-hidden="true"></i> {{contact.land}} - {{contact.extn}}</small></p>
             </li>
-            <button (click)="open(content)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
+            <button (click)="open(contact)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
           </ul>
 
         </div>
@@ -65,7 +69,18 @@
       </div>
     </div>
   </form>
-  <ng-template #content let-c="close" let-d="dismiss">
+  <ng-template #product let-c="close" let-d="dismiss">
+    <div class="modal-header bg-primary text-white">
+      <h4 class="modal-title">Product Selection</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+    </div>
+    <div class="modal-body">
+      <app-product-selector [addedProducts]="products" (add)="addProduct($event)"></app-product-selector>
+    </div>
+  </ng-template>
+  <ng-template #contact let-c="close" let-d="dismiss">
     <div class="modal-header bg-primary text-white">
       <h4 class="modal-title">Contact Selection</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">

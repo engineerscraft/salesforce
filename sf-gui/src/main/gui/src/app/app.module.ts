@@ -14,6 +14,7 @@ import { CountryService } from './country.service';
 import { StateService } from './state.service';
 import { DistrictService } from './district.service';
 import { ContactService } from './contact.service';
+import { ProductService } from './product.service';
 import { SalesrepService } from './salesrep.service';
 import { DivisionService } from './division.service';
 import { LeadService } from './lead.service';
@@ -97,6 +98,7 @@ const appRoutes: Routes = [
     StateService, 
     DistrictService,
     ContactService,
+    ProductService,
     SalesrepService,
     DivisionService,
     LeadService

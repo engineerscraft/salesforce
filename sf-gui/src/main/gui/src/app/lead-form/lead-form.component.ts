@@ -31,10 +31,6 @@ export class LeadFormComponent implements OnInit {
   private pubKey;
   private formTitle = 'Lead Creation';
   private products = [
-    { pubKey: 'Item A', des: 'Item A', discType: 'percent', discAmt: 0 }, 
-    { pubKey: 'Item B', des: 'Item A', discType: 'percent', discAmt: 0 }, 
-    { pubKey: 'Item C', des: 'Item A', discType: 'percent', discAmt: 0 }, 
-    { pubKey: 'Item D', des: 'Item A', discType: 'percent', discAmt: 0 }
   ];
   
   private contacts = [
@@ -165,14 +161,6 @@ export class LeadFormComponent implements OnInit {
     }
   }
 
-  openProductDialog() {
-
-  }
-
-  openContactDialog() {
-    open("content");
-  }
-
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -201,6 +189,20 @@ export class LeadFormComponent implements OnInit {
       desig: $event.desig,
       land: $event.land,
       extn: $event.extn
+    });
+  }
+
+  addProduct($event) {
+    this.products.push({
+      pubKey: $event.pubKey,
+      des: $event.des,
+      quotePrice: $event.price,
+      actualUnitPrice: $event.price,
+      discType: 'percent',
+      discVal: 0,
+      quoteUnitPrice: $event.price,
+      unit: 1,
+      discUnit: '%'
     });
   }
 
