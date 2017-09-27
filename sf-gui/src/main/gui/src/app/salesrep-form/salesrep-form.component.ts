@@ -50,7 +50,7 @@ export class SalesrepFormComponent implements OnInit {
         desig: ['', [Validators.required]],
         email: ['', [Validators.required]],
         mob: ['', [Validators.required]],
-        statusId: [''],
+        statusId: ['1'],
         doj: ['', [Validators.required]],
         land: [''],
         extn: ['']
@@ -66,7 +66,13 @@ export class SalesrepFormComponent implements OnInit {
       this.salesrepService.readSalesRep(this.pubKey)
         .subscribe(
         res => {
-          this.salesRepFormGroup.setValue(res);          
+          this.salesRepFormGroup.setValue(res);
+          console.log("Fetched Date After service call====== " + JSON.stringify(this.salesRepFormGroup.get('doj').value));
+          var dojDate = new Date(JSON.stringify(this.salesRepFormGroup.get('doj').value));
+          var year =  dojDate.getFullYear();
+          var month = dojDate.getMonth();
+          var day = dojDate.getDay();
+          console.log("Year === " + year + " , Month === " + month + " , Day === " + day);
         },
         err => {
           this.message = err.status + " : " + err.statusText;
@@ -81,8 +87,7 @@ export class SalesrepFormComponent implements OnInit {
 
 
     if (this.mode === 'View') {
-      //let dojDate = this.salesRepFormGroup.get('doj').value.day + '/' + this.salesRepFormGroup.get('doj').value.month + '/' + this.salesRepFormGroup.get('doj').value.year;
-      console.log("Fetched Date ====== " + JSON.stringify(this.salesRepFormGroup.get('doj').value));
+
     }
   }
 
