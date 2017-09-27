@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -52,5 +53,23 @@ public class ProductResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
     }
-
+    
+    @GET
+    @Path("/")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Secured(Privilege.DEFAULT)
+    public Response getProductPage(@QueryParam("searchString") String searchString, @QueryParam("startPosition") long startPosition) {
+        List<Product> products;
+        try {
+            products = productRepository.getProductPage(searchString, startPosition);
+            if (products.size() == 0) {
+                logger.error("No product found for searchString: {} and startPosition: {}", () -> searchString, () -> startPosition);
+                return Response.status(Response.Status.NOT_FOUND).entity(new Message("No product found")).build();
+            }
+            return Response.status(Response.Status.OK).entity(products).build();
+        } catch (Exception e) {
+            logger.error("The products could not be searched", e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+        }
+    }
 }

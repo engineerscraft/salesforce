@@ -31,6 +31,12 @@ public class ProductRepository {
     @Value("${sql.product.getAll}")
     private String productListSql;
 
+    @Value("${sql.product.page}")
+    private String productPageSql;
+
+    @Value("${product.pagesize}")
+    private Long productPageSize;
+
     public List<Product> getAllProducts() {
 
         logger.info(sqlMarker, productListSql);
@@ -38,6 +44,15 @@ public class ProductRepository {
         logger.debug("Retrieved products: {}", () -> products);
         return products;
 
+    }
+
+    public List<Product> getProductPage(String searchString, long startPosition) {
+        Object[] args = { searchString, '%' + searchString + '%', searchString, startPosition, productPageSize };
+        logger.info(sqlMarker, productPageSql);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> searchString, () -> '%' + searchString + '%', () -> searchString, () -> startPosition, () -> productPageSize);
+        List<Product> products = (List<Product>) jdbcTemplate.query(productPageSql, args, new ProductRowMapper());
+        logger.debug("Retrieved products: {}", () -> products);
+        return products;
     }
 
 }
