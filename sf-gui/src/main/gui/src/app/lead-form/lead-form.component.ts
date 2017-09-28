@@ -37,6 +37,7 @@ export class LeadFormComponent implements OnInit {
   ];
 
   private closeResult: string;
+  private productInstance;
 
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -198,12 +199,30 @@ export class LeadFormComponent implements OnInit {
       des: $event.des,
       quotePrice: $event.price,
       actualUnitPrice: $event.price,
-      discType: 'percent',
+      discType: 1,
       discVal: 0,
       quoteUnitPrice: $event.price,
       unit: 1,
-      discUnit: '%'
+      discUnit: ''
     });
   }
 
+  editProductInstance($event) {
+    this.products.forEach(function (prod) {
+      if(prod.pubKey === $event.pubKey) {
+        prod.quotePrice = $event.quotePrice;
+        prod.actualUnitPrice = $event.actualUnitPrice;
+        prod.discType = $event.discType;
+        prod.discVal = $event.discVal;
+        prod.quoteUnitPrice = $event.quoteUnitPrice;
+        prod.unit = $event.unit;
+        prod.discUnit = $event.discUnit;
+      }
+    });
+  }
+
+  editProdInstance(product, content) {
+    this.productInstance = product;
+    open(content);
+  }
 }

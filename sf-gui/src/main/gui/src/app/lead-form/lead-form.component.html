@@ -37,12 +37,12 @@
           <ul class="list-group my-4">
             <li [@fadeIn] *ngFor="let product of products" class="list-group-item">
               <p><strong>{{product.des}} ({{product.pubKey}})<i (click)=removeProd(product.pubKey) class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i>
-              <i class="fa fa-pencil pull-right mx-2" aria-hidden="true"></i></strong></p>
-              <p class="p-0 m-0"><small>Quote Price : {{product.quotePrice}}</small></p>
+              <i class="fa fa-pencil pull-right mx-2" aria-hidden="true" (click)="productInstance = product; open(prodInstEditor)"></i></strong></p>
               <p class="p-0 m-0"><small>Quote Unit Price : {{product.quoteUnitPrice}} (Actual Unit Price: {{product.actualUnitPrice}})</small></p>
               <p class="p-0 m-0"><small>No. of unit : {{product.unit}} (Discount: {{product.discVal}}{{product.discUnit}})</small></p>
+              <p class="p-0 m-0 pull-right text-success"><strong>Quote Price : {{product.quotePrice}}</strong></p>
             </li>
-            <button (click)="open(product)" class="btn btn-primary float-right text-white ripple">Add Product</button>
+            <button (click)="open(productSelector)" class="btn btn-primary float-right text-white ripple">Add Product</button>
           </ul>
         </div>
       </div>
@@ -58,7 +58,7 @@
               <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{contact.email}}</small></p>
               <p class="p-0 m-0"><small><i class="fa fa-mobile" aria-hidden="true"></i> {{contact.mob}} / <i class="fa fa-phone" aria-hidden="true"></i> {{contact.land}} - {{contact.extn}}</small></p>
             </li>
-            <button (click)="open(contact)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
+            <button (click)="open(contactSelector)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
           </ul>
 
         </div>
@@ -69,29 +69,40 @@
       </div>
     </div>
   </form>
-  <ng-template #product let-c="close" let-d="dismiss">
+  <ng-template #productSelector let-c="close" let-d="dismiss">
     <div class="modal-header bg-primary text-white">
       <h4 class="modal-title">Product Selection</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body p-4">
       <app-product-selector [addedProducts]="products" (add)="addProduct($event)"></app-product-selector>
     </div>
   </ng-template>
-  <ng-template #contact let-c="close" let-d="dismiss">
+  <ng-template #contactSelector let-c="close" let-d="dismiss">
     <div class="modal-header bg-primary text-white">
       <h4 class="modal-title">Contact Selection</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body p-4">
       <app-contact-selector [addedContacts]="contacts" (add)="addContact($event)"></app-contact-selector>
     </div>
   </ng-template>
-</div>
+  <ng-template #prodInstEditor let-c="close" let-d="dismiss">
+      <div class="modal-header bg-primary text-white">
+        <h4 class="modal-title">Product Instance Editor</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+      </div>
+      <div class="modal-body p-4">
+        <app-prod-inst-editor [productInstance]="productInstance" (add)="editProductInstance($event)"></app-prod-inst-editor>
+      </div>
+    </ng-template>
+  </div>
 <div class="d-none d-lg-block help-text">
   <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Contact'" [helpText]="'Contacts are the people that you market to, sell to, support, etc. They are the people you interact with to get the business. Capture as much details about them as you can. You can use the Notes field for any additional information which do not fit into any other available fields.'"></app-help-gadget>
   <app-help-gadget *ngIf="attr==='company'" [helpHeader]="'Company'" [helpText]="'The company which the contact works for.'"></app-help-gadget>

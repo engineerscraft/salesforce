@@ -1,0 +1,40 @@
+<form [formGroup]="productInstanceFormGroup" autocomplete="off">
+  <div class="form-group">
+    <label for="pubKey">Public Key</label>
+    <input type="text" class="form-control" id="pubKey" formControlName="pubKey" required readonly>
+  </div>
+  <div class="form-group">
+    <label for="des">Product</label>
+    <input type="text" class="form-control" id="des" formControlName="des" required readonly>
+  </div>
+  <div class="form-group">
+    <label for="quoteUnitPrice">Quote Unit Price</label>
+    <input type="text" class="form-control" id="quoteUnitPrice" formControlName="quoteUnitPrice" placeholder="The price per unit"
+      required readonly>
+  </div>
+  <div class="form-group">
+    <label for="actualUnitPrice">Actual Unit Price</label>
+    <input type="text" class="form-control" id="actualUnitPrice" formControlName="actualUnitPrice" required readonly>
+  </div>
+  <div class="form-group">
+    <label for="quotePrice">Quote Price</label>
+    <input type="text" class="form-control" id="quotePrice" formControlName="quotePrice" required readonly>
+  </div>
+  <div class="form-group">
+    <label for="unit">No. of Units</label>
+    <input type="number" class="form-control" id="unit" formControlName="unit" placeholder="No. of units" required>
+  </div>
+  <div class="form-group">
+    <label for="discType">Discount Type</label>
+    <select class="form-control" formControlName="discType" id="discType" required>
+        <option value="1">Amount</option>
+        <option value="2">Percent</option>
+      </select>
+
+  </div>
+  <div class="form-group">
+    <label for="discVal">Discount Value</label>
+    <input type="number" class="form-control" id="discVal" formControlName="discVal" placeholder="The discount value" required>
+  </div>
+  <button [disabled]="!productInstanceFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">Submit</button>
+</form>

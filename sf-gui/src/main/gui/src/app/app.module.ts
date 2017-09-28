@@ -39,6 +39,7 @@ import { LeadsComponent } from './leads/leads.component';
 import { LeadDetailsComponent } from './lead-details/lead-details.component';
 import { ProductSelectorComponent } from './product-selector/product-selector.component';
 import { ContactSelectorComponent } from './contact-selector/contact-selector.component';
+import { ProdInstEditorComponent } from './prod-inst-editor/prod-inst-editor.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -76,7 +77,8 @@ const appRoutes: Routes = [
     LeadsComponent,
     LeadDetailsComponent,
     ProductSelectorComponent,
-    ContactSelectorComponent
+    ContactSelectorComponent,
+    ProdInstEditorComponent
   ],
   imports: [
     RouterModule.forRoot(
