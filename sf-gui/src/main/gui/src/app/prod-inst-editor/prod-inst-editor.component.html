@@ -1,4 +1,4 @@
-<form [formGroup]="productInstanceFormGroup" autocomplete="off">
+<form [formGroup]="productInstanceFormGroup" (ngSubmit)="submit()" autocomplete="off">
   <div class="form-group">
     <label for="pubKey">Public Key</label>
     <input type="text" class="form-control" id="pubKey" formControlName="pubKey" required readonly>

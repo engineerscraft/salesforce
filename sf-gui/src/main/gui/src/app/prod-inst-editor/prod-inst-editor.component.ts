@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProdInstEditorComponent implements OnInit {
 
-  @Output() add = new EventEmitter<any>();
+  @Output() save = new EventEmitter<any>();
   @Input() productInstance;
 
   private productInstanceFormGroup: FormGroup;
@@ -26,6 +26,53 @@ export class ProdInstEditorComponent implements OnInit {
       quoteUnitPrice: [this.productInstance.quoteUnitPrice, [Validators.required]],
       unit: [this.productInstance.unit, [Validators.required]]
     });
+
+    this.productInstanceFormGroup.get("discType").valueChanges.debounceTime(400)
+      .subscribe(
+      res => {
+        this.calculate();
+      });
+    this.productInstanceFormGroup.get("discVal").valueChanges.debounceTime(400)
+      .subscribe(
+      res => {
+        this.calculate();
+      });
+    this.productInstanceFormGroup.get("quoteUnitPrice").valueChanges.debounceTime(400)
+      .subscribe(
+      res => {
+        this.calculate();
+      });
+    this.productInstanceFormGroup.get("unit").valueChanges.debounceTime(400)
+      .subscribe(
+      res => {
+        this.calculate();
+      });
   }
 
+
+
+  submit() {
+    this.calculate();
+    this.save.emit(this.productInstance);
+  }
+
+  calculate() {
+    this.productInstance = this.productInstanceFormGroup.value;
+    if (this.productInstance.discType === 1) {
+      this.productInstance.quoteUnitPrice = this.productInstance.actualUnitPrice - this.productInstance.discVal;
+      this.productInstance.discUnit = '';
+    } else {
+      this.productInstance.quoteUnitPrice = this.productInstance.actualUnitPrice - (this.productInstance.discVal * this.productInstance.actualUnitPrice) / 100;
+      this.productInstance.discUnit = '%';
+    }
+    this.productInstance.quotePrice = this.productInstance.quoteUnitPrice * this.productInstance.unit;
+
+    this.productInstanceFormGroup.patchValue({
+      quoteUnitPrice: this.productInstance.quoteUnitPrice,
+      quotePrice: this.productInstance.quotePrice,
+      discUnit: this.productInstance.discUnit,
+      discType: this.productInstance.discType
+    });
+
+  }
 }

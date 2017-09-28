@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeadService } from '../lead.service';
 import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/filter';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { DivisionService } from '../division.service';
 
 @Component({
   selector: 'app-lead-form',
@@ -12,8 +13,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   animations: [
     trigger('fadeIn', [
       transition(':leave', [
-        style({transform: 'translateX(0)', opacity: 1}),
-        animate('500ms', style({transform: 'translateX(50%)', opacity: 0}))
+        style({ transform: 'translateX(0)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(50%)', opacity: 0 }))
       ])
     ]),
   ]
@@ -32,18 +33,21 @@ export class LeadFormComponent implements OnInit {
   private formTitle = 'Lead Creation';
   private products = [
   ];
-  
+
   private contacts = [
   ];
 
   private closeResult: string;
   private productInstance;
+  private modal;
+  private divisions;
 
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private leadService: LeadService,
     private router: Router,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private divisionService: DivisionService) { }
 
   ngOnInit() {
 
@@ -72,6 +76,31 @@ export class LeadFormComponent implements OnInit {
       .subscribe(params => {
         this.pubKey = params.get('pubKey');
       });
+
+    this.leadFormGroup.get("discType").valueChanges.debounceTime(400)
+      .subscribe(
+      res => {
+        this.calculate();
+      });
+    this.leadFormGroup.get("discVal").valueChanges.debounceTime(400)
+      .subscribe(
+      res => {
+        this.calculate();
+      });
+    this.divisionService.getDivisions()
+      .subscribe(
+      data => {
+        this.divisions = data;
+        let i = this.divisions.length
+        while (i--) {
+          if (this.divisions[i].pubKey === 'ALL') {
+            this.divisions.splice(i, 1);
+          }
+        }
+      }
+      );
+
+
 
     /*if (this.pubKey) {
       this.leadService.readLead(this.pubKey)
@@ -147,23 +176,25 @@ export class LeadFormComponent implements OnInit {
   removeProd(pubKey) {
     let i = this.products.length
     while (i--) {
-      if(this.products[i].pubKey === pubKey) {
-        this.products.splice(i,1);
+      if (this.products[i].pubKey === pubKey) {
+        this.products.splice(i, 1);
       }
     }
+    this.calculate();
   }
 
   removeContact(pubKey) {
     let i = this.contacts.length
     while (i--) {
-      if(this.contacts[i].pubKey === pubKey) {
-        this.contacts.splice(i,1);
+      if (this.contacts[i].pubKey === pubKey) {
+        this.contacts.splice(i, 1);
       }
     }
   }
 
   open(content) {
-    this.modalService.open(content).result.then((result) => {
+    this.modal = this.modalService.open(content);
+    this.modal.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -176,7 +207,7 @@ export class LeadFormComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -205,11 +236,12 @@ export class LeadFormComponent implements OnInit {
       unit: 1,
       discUnit: ''
     });
+    this.calculate();
   }
 
   editProductInstance($event) {
     this.products.forEach(function (prod) {
-      if(prod.pubKey === $event.pubKey) {
+      if (prod.pubKey === $event.pubKey) {
         prod.quotePrice = $event.quotePrice;
         prod.actualUnitPrice = $event.actualUnitPrice;
         prod.discType = $event.discType;
@@ -219,10 +251,24 @@ export class LeadFormComponent implements OnInit {
         prod.discUnit = $event.discUnit;
       }
     });
+    this.modal.close();
+    this.calculate();
   }
 
-  editProdInstance(product, content) {
-    this.productInstance = product;
-    open(content);
+  calculate() {
+    let totalQuotePrice = 0;
+    this.products.forEach(function (prod) {
+      totalQuotePrice = totalQuotePrice + prod.quotePrice;
+    });
+
+    if (this.leadFormGroup.value.discType === 1) {
+      this.leadFormGroup.patchValue({
+        quotePrice: totalQuotePrice - this.leadFormGroup.value.discVal
+      });
+    } else {
+      this.leadFormGroup.patchValue({
+        quotePrice: totalQuotePrice - (totalQuotePrice * this.leadFormGroup.value.discVal / 100)
+      });
+    }
   }
 }

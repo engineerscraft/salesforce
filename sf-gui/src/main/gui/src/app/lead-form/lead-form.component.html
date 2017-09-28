@@ -18,6 +18,11 @@
               required>
           </div>
           <div class="form-group">
+            <label for="quotePrice">Total Quote Price</label>
+            <input type="text" formControlName="quotePrice" class="form-control" id="quotePrice" readonly
+              required>
+          </div>
+          <div class="form-group">
             <label for="discType">Discount Type <span class="text-danger">*</span></label>
             <select class="form-control" formControlName="discType" id="discType" required>
                 <option value="1">Amount</option>
@@ -28,6 +33,12 @@
             <label for="discValue">Discount Value <span class="text-danger">*</span></label>
             <input type="text" formControlName="discVal" class="form-control" id="discValue" placeholder="Discount value" [readOnly]="readOnly"
               required>
+          </div>
+          <div class="form-group">
+            <label for="divPubKey">Division <span class="text-danger">*</span></label>
+            <select class="form-control" formControlName="divPubKey" id="divPubKey" required>
+                <option *ngFor="let div of divisions" value="div.pubKey">{{div.des}}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -99,7 +110,7 @@
               </button>
       </div>
       <div class="modal-body p-4">
-        <app-prod-inst-editor [productInstance]="productInstance" (add)="editProductInstance($event)"></app-prod-inst-editor>
+        <app-prod-inst-editor [productInstance]="productInstance" (save)="editProductInstance($event)"></app-prod-inst-editor>
       </div>
     </ng-template>
   </div>
