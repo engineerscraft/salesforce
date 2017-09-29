@@ -271,4 +271,8 @@ export class LeadFormComponent implements OnInit {
       });
     }
   }
+
+  createLead() {
+    
+  }
 }
