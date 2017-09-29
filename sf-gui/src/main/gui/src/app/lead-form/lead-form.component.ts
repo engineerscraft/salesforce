@@ -68,7 +68,7 @@ export class LeadFormComponent implements OnInit {
       discVal: [0],
       quotePrice: [0],
       statusId: [0, [Validators.required]],
-      divId: [0, [Validators.required]]
+      divPubKey: [0, [Validators.required]]
     });
 
     this.activatedRoute
