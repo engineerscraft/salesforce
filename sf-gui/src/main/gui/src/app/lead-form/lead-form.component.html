@@ -31,7 +31,7 @@
           </div>
           <div class="form-group">
             <label for="discValue">Discount Value <span class="text-danger">*</span></label>
-            <input type="text" formControlName="discVal" class="form-control" id="discValue" placeholder="Discount value" [readOnly]="readOnly"
+            <input (focus)="attr = 'discVal'" type="text" formControlName="discVal" class="form-control" id="discValue" placeholder="Discount value" [readOnly]="readOnly"
               required>
           </div>
           <div class="form-group">
@@ -116,7 +116,5 @@
   </div>
 <div class="d-none d-lg-block help-text">
   <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Lead'" [helpText]="'Leads are potential new business. The customer has shown some interest in our product. However, we are still unsure if the sale will happen. We need to follow-up with the customer, gather more information and drive it towards an actual sale.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='company'" [helpHeader]="'Company'" [helpText]="'The company which the contact works for.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='desig'" [helpHeader]="'Designation'" [helpText]="'The designation of the contact in the company he/she works for.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='note'" [helpHeader]="'Notes'" [helpText]="'Use this space to capture any additional information about the contact that do not fit into any of the other fields.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='discVal'" [helpHeader]="'Discount Value'" [helpText]="'This is the overall discount on the Lead. If the discount type is Percent, this value will be treated as a percent value. Otherwise, this value is considered as a monetary amount'"></app-help-gadget>
 </div>
