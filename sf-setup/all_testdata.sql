@@ -95,3 +95,10 @@ update sfm.opportunity set disc_type=1;
 update sfm.lead_prod set disc_type=1;
 update sfm.opportunity_prod set disc_type=1;
 update sfm.account_prod set disc_type=1;
+
+INSERT INTO SFM.ACCOUNT (ACC_ID,PUB_KEY,TITLE,STATUS_ID,DIV_ID,SOLD_PRICE,CRTD_BY,CRTD_ON) VALUES (1,'AC00000001','Widget Corp','1','2','100','TEST',current_timestamp),(2,'AC00000002','Galaxy Corp','1','2','100','TEST',current_timestamp),(3,'AC00000003','Wayne Enterprises','1','2','100','TEST',current_timestamp),(4,'AC00000004','LexCorp','1','2','100','TEST',current_timestamp),(5,'AC00000005','Thatherton Fuels','1','2','100','TEST',current_timestamp),(6,'AC00000006','Mooby Corp','1','2','100','TEST',current_timestamp),(7,'AC00000007','Universal Export','1','2','100','TEST',current_timestamp),(8,'AC00000008','Widget Corp','1','2','100','TEST',current_timestamp),(9,'AC00000009','Colonial Movers','1','2','100','TEST',current_timestamp),(10,'AC00000010','General Services Corporation','1','2','100','TEST',current_timestamp);
+
+INSERT INTO SFM.ACCOUNT (ACC_ID,PUB_KEY,TITLE,STATUS_ID,DIV_ID,SOLD_PRICE,CRTD_BY,CRTD_ON) VALUES (11,'AC00000011','Axis Chemical Co.','1','2','100','TEST',current_timestamp),(12,'AC00000012','Vandelay Industries','1','2','100','TEST',current_timestamp),(13,'AC00000013','SpringShield','1','2','100','TEST',current_timestamp),(14,'AC00000014','Acme Corp','1','2','100','TEST',current_timestamp),(15,'AC00000015','LuthorCorp','1','2','100','TEST',current_timestamp),(16,'AC00000016','ZiffCorp','1','2','100','TEST',current_timestamp),(17,'AC00000017','Thrift Bank','1','2','100','TEST',current_timestamp),(18,'AC00000018','Demo, inc.','1','2','100','TEST',current_timestamp),(19,'AC00000019','Praxis Corporation','1','2','100','TEST',current_timestamp),(20,'AC00000020','Mammoth Pictures','1','2','100','TEST',current_timestamp);
+
+UPDATE SFM.APP_SEQUENCE SET SEQ_VALUE=21 WHERE SEQ_NAME='ACCOUNT_SEQ';
+
