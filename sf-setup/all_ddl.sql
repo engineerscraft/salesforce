@@ -438,6 +438,9 @@ create index salesrep_mob_idx on sfm.sales_rep(mob);
 CREATE INDEX product_all_trg_idx ON sfm.product
 USING gin(to_tsvector('english',(sfm.f_immutable_concat_ws_ten_var(pub_key, des, null, null, null, null,  null, null, null, null))));
 
+CREATE INDEX account_all_trg_idx ON sfm.account
+USING gin(to_tsvector('english',(sfm.f_immutable_concat_ws_ten_var(pub_key, title, null, null, null, null,  null, null, null, null))));
+
 CREATE SEQUENCE SFM.ACCESS_ID_SEQ START WITH 1 INCREMENT BY 1 CACHE 5 CYCLE;
 
 GRANT ALL ON SCHEMA SFM TO "sfmapp";
