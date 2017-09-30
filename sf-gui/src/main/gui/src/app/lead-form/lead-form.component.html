@@ -2,22 +2,22 @@
   <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
     <strong>{{message}}</strong>
   </div>
-  <form [formGroup]="leadFormGroup" (ngSubmit)="createLead()">
+  <form [formGroup]="leadFormGroup" (ngSubmit)="submit()">
     <div class="card-block">
       <h1 class="display-4 text-white ml-4 my-3">{{formTitle}}</h1>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Basic Information</h6>
-          <div *ngIf="pubKey" class="form-group">
+          <div *ngIf="pubKey" class="form-group" formGroupName="leadSummary">
             <label for="pubKey">Public Key</label>
             <input (focus)="attr = 'pubKey'" type="text" formControlName="pubKey" class="form-control" id="pubKey" required readonly>
           </div>
-          <div class="form-group">
+          <div class="form-group" formGroupName="leadSummary">
             <label for="title">Title <span class="text-danger">*</span></label>
             <input (focus)="attr = 'title'" type="text" formControlName="title" class="form-control" id="title" placeholder="Title text of the lead"
               [readOnly]="readOnly" required>
           </div>
-          <div class="form-group">
+          <div class="form-group" formGroupName="leadSummary">
             <label for="quotePrice">Total Quote Price</label>
             <input (focus)="attr = 'quotePrice'" type="text" formControlName="quotePrice" class="form-control" id="quotePrice" readonly
               required>
@@ -37,7 +37,7 @@
           <div class="form-group">
             <label for="divPubKey">Division <span class="text-danger">*</span></label>
             <select (focus)="attr = 'divPubKey'" class="form-control" formControlName="divPubKey" id="divPubKey" required>
-                <option *ngFor="let div of divisions" value="div.pubKey">{{div.des}}</option>
+                <option *ngFor="let div of divisions" value="{{div.pubKey}}">{{div.des}}</option>
             </select>
           </div>
         </div>
@@ -51,7 +51,7 @@
                   class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></p>
             </li>
           </ul>
-          <button (click)="open(accountSelector)" class="btn btn-primary float-right text-white ripple">Attach Account</button>
+          <button type="button" (click)="open(accountSelector)" class="btn btn-primary float-right text-white ripple">Attach Account</button>
 
         </div>
       </div>
@@ -67,7 +67,7 @@
               <p class="p-0 m-0 pull-right text-success"><strong>Quote Price : {{product.quotePrice}}</strong></p>
             </li>
           </ul>
-          <button (click)="open(productSelector)" class="btn btn-primary float-right text-white ripple">Add Product</button>
+          <button type="button" (click)="open(productSelector)" class="btn btn-primary float-right text-white ripple">Add Product</button>
         </div>
       </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
@@ -83,7 +83,7 @@
               <p class="p-0 m-0"><small><i class="fa fa-mobile" aria-hidden="true"></i> {{contact.mob}} / <i class="fa fa-phone" aria-hidden="true"></i> {{contact.land}} - {{contact.extn}}</small></p>
             </li>
           </ul>
-          <button (click)="open(contactSelector)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
+          <button type="button" (click)="open(contactSelector)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
         </div>
       </div>
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">

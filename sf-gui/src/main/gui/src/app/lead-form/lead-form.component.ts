@@ -63,15 +63,19 @@ export class LeadFormComponent implements OnInit {
     }
 
     this.leadFormGroup = this.formBuilder.group({
-      leadId: [''],
-      pubKey: [''],
-      title: ['', [Validators.required]],
+      leadSummary: this.formBuilder.group({
+        leadId: [''],
+        pubKey: [''],
+        title: ['', [Validators.required]],
+        quotePrice: [0],
+      }),
+
       discType: [1],
       discVal: [0],
-      quotePrice: [0],
-      statusId: [0, [Validators.required]],
-      divPubKey: [0, [Validators.required]],
-      account: ['', [Validators.required]]
+      divPubKey: ['', [Validators.required]],
+      accountPubKey: [''],
+      contactPubKeys: ['', [Validators.required]],
+      prodInstances: ['', [Validators.required]]
     });
 
     this.activatedRoute
@@ -133,39 +137,6 @@ export class LeadFormComponent implements OnInit {
     }
   }
 
-
-  submit() {
-    this.message = '';
-    if (this.mode === 'Create') {
-      /*      this.contactService.createContact(this.contactFormGroup.value)
-              .subscribe(
-              res => {
-                this.router.navigate(['leadDetails/' + res.pubKey]);
-              },
-              err => {
-                this.message = err.status + " : " + err.statusText;
-                this.message = this.message + " : " + err.json()["message"];
-              });
-          } else if (this.mode === 'View') {
-            this.readOnly = null;
-            this.buttonName = 'Save';
-            this.mode = 'Modify';
-          } else if (this.mode === 'Modify') {
-            this.contactService.updateContact(this.pubKey, this.contactFormGroup.value)
-              .subscribe(
-              res => {
-                this.readOnly = true;
-                this.buttonName = 'Modify';
-                this.mode = 'View';
-              },
-              err => {
-                this.message = err.status + " : " + err.statusText;
-                this.message = this.message + " : " + err.json()["message"];
-              }
-              );*/
-    }
-  }
-
   dismissAlert() {
     this.message = undefined;
   }
@@ -184,6 +155,7 @@ export class LeadFormComponent implements OnInit {
       }
     }
     this.calculate();
+    this.updateProduct();
   }
 
   removeContact(pubKey) {
@@ -193,6 +165,7 @@ export class LeadFormComponent implements OnInit {
         this.contacts.splice(i, 1);
       }
     }
+    this.updateContact();
   }
 
   open(content) {
@@ -225,6 +198,18 @@ export class LeadFormComponent implements OnInit {
       land: $event.land,
       extn: $event.extn
     });
+    this.updateContact();
+  }
+
+  updateContact() {
+    let addedContacts = [];
+    this.contacts.forEach(function(contact) {
+      addedContacts.push(contact.pubKey);
+    }.bind(this));
+ 
+    this.leadFormGroup.patchValue({
+      contactPubKeys: addedContacts
+    });
   }
 
   addProduct($event) {
@@ -240,6 +225,24 @@ export class LeadFormComponent implements OnInit {
       discUnit: ''
     });
     this.calculate();
+    this.updateProduct();
+  }
+
+  updateProduct() {
+    let addedProducts = [];
+    this.products.forEach(function(product) {
+      addedProducts.push({
+        pubKey: product.pubKey,
+        quotePrice: product.quoteUnitPrice,
+        discType: product.discType,
+        discVal: product.discVal,
+        unit: product.unit
+      });
+    }.bind(this));
+ 
+    this.leadFormGroup.patchValue({
+      prodInstances: addedProducts
+    });    
   }
 
   editProductInstance($event) {
@@ -256,6 +259,7 @@ export class LeadFormComponent implements OnInit {
     });
     this.modal.close();
     this.calculate();
+    this.updateProduct();
   }
 
   calculate() {
@@ -266,11 +270,15 @@ export class LeadFormComponent implements OnInit {
 
     if (this.leadFormGroup.value.discType === 1) {
       this.leadFormGroup.patchValue({
-        quotePrice: totalQuotePrice - this.leadFormGroup.value.discVal
+        leadSummary: {
+          quotePrice: totalQuotePrice - this.leadFormGroup.value.discVal
+        }
       });
     } else {
       this.leadFormGroup.patchValue({
-        quotePrice: totalQuotePrice - (totalQuotePrice * this.leadFormGroup.value.discVal / 100)
+        leadSummary: {
+          quotePrice: totalQuotePrice - (totalQuotePrice * this.leadFormGroup.value.discVal / 100)
+        }
       });
     }
   }
@@ -278,13 +286,22 @@ export class LeadFormComponent implements OnInit {
   attachAccount($event) {
     this.account['pubKey'] = $event.pubKey;
     this.account['title'] = $event.title;
+    this.leadFormGroup.patchValue({
+      account: this.account
+    });
   }
 
   removeAccount() {
     this.account = {};
+    this.leadFormGroup.patchValue({
+      account: this.account
+    });
   }
 
-  createLead() {
-    
+  submit() {
+    this.leadService.createLead(this.leadFormGroup.value).subscribe(
+      data=> { },
+      err => { }
+    );
   }
 }
