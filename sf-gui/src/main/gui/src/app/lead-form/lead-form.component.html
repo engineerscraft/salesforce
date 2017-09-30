@@ -14,8 +14,8 @@
           </div>
           <div class="form-group">
             <label for="title">Title <span class="text-danger">*</span></label>
-            <input (focus)="attr = 'title'" type="text" formControlName="title" class="form-control" id="title" placeholder="Title text of the lead" [readOnly]="readOnly"
-              required>
+            <input (focus)="attr = 'title'" type="text" formControlName="title" class="form-control" id="title" placeholder="Title text of the lead"
+              [readOnly]="readOnly" required>
           </div>
           <div class="form-group">
             <label for="quotePrice">Total Quote Price</label>
@@ -31,8 +31,8 @@
           </div>
           <div class="form-group">
             <label for="discValue">Discount Value <span class="text-danger">*</span></label>
-            <input (focus)="attr = 'discVal'" type="text" formControlName="discVal" class="form-control" id="discValue" placeholder="Discount value" [readOnly]="readOnly"
-              required>
+            <input (focus)="attr = 'discVal'" type="text" formControlName="discVal" class="form-control" id="discValue" placeholder="Discount value"
+              [readOnly]="readOnly" required>
           </div>
           <div class="form-group">
             <label for="divPubKey">Division <span class="text-danger">*</span></label>
@@ -40,6 +40,19 @@
                 <option *ngFor="let div of divisions" value="div.pubKey">{{div.des}}</option>
             </select>
           </div>
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Account</h6>
+          <ul class="list-group my-4">
+            <li *ngIf="account.pubKey" class="list-group-item">
+              <p>{{account.title}} (<a routerLink="/accountDetails/{{account.pubKey}}">{{account.pubKey}}</a>)<i (click)=removeAccount()
+                  class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></p>
+            </li>
+          </ul>
+          <button (click)="open(accountSelector)" class="btn btn-primary float-right text-white ripple">Attach Account</button>
+
         </div>
       </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
@@ -53,8 +66,8 @@
               <p class="p-0 m-0"><small>No. of unit : {{product.unit}} (Discount: {{product.discVal}}{{product.discUnit}})</small></p>
               <p class="p-0 m-0 pull-right text-success"><strong>Quote Price : {{product.quotePrice}}</strong></p>
             </li>
-            <button (click)="open(productSelector)" class="btn btn-primary float-right text-white ripple">Add Product</button>
           </ul>
+          <button (click)="open(productSelector)" class="btn btn-primary float-right text-white ripple">Add Product</button>
         </div>
       </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
@@ -69,9 +82,8 @@
               <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{contact.email}}</small></p>
               <p class="p-0 m-0"><small><i class="fa fa-mobile" aria-hidden="true"></i> {{contact.mob}} / <i class="fa fa-phone" aria-hidden="true"></i> {{contact.land}} - {{contact.extn}}</small></p>
             </li>
-            <button (click)="open(contactSelector)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
           </ul>
-
+          <button (click)="open(contactSelector)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
         </div>
       </div>
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
@@ -103,17 +115,28 @@
     </div>
   </ng-template>
   <ng-template #prodInstEditor let-c="close" let-d="dismiss">
-      <div class="modal-header bg-primary text-white">
-        <h4 class="modal-title">Product Instance Editor</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <div class="modal-header bg-primary text-white">
+      <h4 class="modal-title">Product Instance Editor</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
               </button>
-      </div>
-      <div class="modal-body p-4">
-        <app-prod-inst-editor [productInstance]="productInstance" (save)="editProductInstance($event)"></app-prod-inst-editor>
-      </div>
-    </ng-template>
-  </div>
+    </div>
+    <div class="modal-body p-4">
+      <app-prod-inst-editor [productInstance]="productInstance" (save)="editProductInstance($event)"></app-prod-inst-editor>
+    </div>
+  </ng-template>
+  <ng-template #accountSelector let-c="close" let-d="dismiss">
+    <div class="modal-header bg-primary text-white">
+      <h4 class="modal-title">Account Selector</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+    </div>
+    <div class="modal-body p-4">
+      <app-account-selector [attachedaccount]="account" (attach)="attachAccount($event)"></app-account-selector>
+    </div>
+  </ng-template>
+</div>
 <div class="d-none d-lg-block help-text">
   <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Lead'" [helpText]="'Leads are potential new business. The customer has shown some interest in our product. However, we are still unsure if the sale will happen. We need to follow-up with the customer, gather more information and drive it towards an actual sale.'"></app-help-gadget>
   <app-help-gadget *ngIf="attr==='discVal'" [helpHeader]="'Discount Value'" [helpText]="'This is the overall discount on the Lead. If the discount type is Percent, this value will be treated as a percent value. Otherwise, this value is considered as a monetary amount'"></app-help-gadget>

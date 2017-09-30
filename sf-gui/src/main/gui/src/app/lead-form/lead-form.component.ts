@@ -37,6 +37,8 @@ export class LeadFormComponent implements OnInit {
   private contacts = [
   ];
 
+  private account = {};
+
   private closeResult: string;
   private productInstance;
   private modal;
@@ -68,7 +70,8 @@ export class LeadFormComponent implements OnInit {
       discVal: [0],
       quotePrice: [0],
       statusId: [0, [Validators.required]],
-      divPubKey: [0, [Validators.required]]
+      divPubKey: [0, [Validators.required]],
+      account: ['', [Validators.required]]
     });
 
     this.activatedRoute
@@ -270,6 +273,15 @@ export class LeadFormComponent implements OnInit {
         quotePrice: totalQuotePrice - (totalQuotePrice * this.leadFormGroup.value.discVal / 100)
       });
     }
+  }
+
+  attachAccount($event) {
+    this.account['pubKey'] = $event.pubKey;
+    this.account['title'] = $event.title;
+  }
+
+  removeAccount() {
+    this.account = {};
   }
 
   createLead() {

@@ -17,6 +17,7 @@ import { ContactService } from './contact.service';
 import { ProductService } from './product.service';
 import { SalesrepService } from './salesrep.service';
 import { DivisionService } from './division.service';
+import { AccountService } from './account.service';
 import { LeadService } from './lead.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
@@ -40,6 +41,7 @@ import { LeadDetailsComponent } from './lead-details/lead-details.component';
 import { ProductSelectorComponent } from './product-selector/product-selector.component';
 import { ContactSelectorComponent } from './contact-selector/contact-selector.component';
 import { ProdInstEditorComponent } from './prod-inst-editor/prod-inst-editor.component';
+import { AccountSelectorComponent } from './account-selector/account-selector.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -78,7 +80,8 @@ const appRoutes: Routes = [
     LeadDetailsComponent,
     ProductSelectorComponent,
     ContactSelectorComponent,
-    ProdInstEditorComponent
+    ProdInstEditorComponent,
+    AccountSelectorComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -103,7 +106,8 @@ const appRoutes: Routes = [
     ProductService,
     SalesrepService,
     DivisionService,
-    LeadService
+    LeadService,
+    AccountService
   ],
   bootstrap: [AppComponent]
 })
