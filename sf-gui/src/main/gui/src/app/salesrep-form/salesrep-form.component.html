@@ -28,12 +28,23 @@
             <label for="desig">Designation <span class="text-danger">*</span></label>
             <input (focus)="attr = 'desig'" type="text" formControlName="desig" class="form-control" id="desig" placeholder="Designation of the Sales Representative"
               required [readOnly]="readOnly">
-          </div>
-          <div class="form-group" >
-            <label for="supPubKey">Supervisor Public Key <span class="text-danger">*</span></label>
-            <input (focus)="attr = 'supPubKey'" type="text" formControlName="supPubKey" class="form-control" id="supPubKey" placeholder="Supervisor's Public Key"
-              required [readOnly]="readOnly">
-          </div>            
+          </div>                      
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Supervisor</h6>
+
+          <ul class="list-group my-4">
+            <li *ngIf="salesrep.pubKey" class="list-group-item">
+              <p><strong>{{salesrep.name}} (<a routerLink="/salesrepDetails/{{salesrep.pubKey}}">{{salesrep.pubKey}}</a>)<i (click)=removeSalesrep(salesrep.pubKey)
+                class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></strong></p>
+              <p class="p-0 m-0"><small>{{salesrep.desig}}</small></p>
+              <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{salesrep.email}}</small></p>
+              <p class="p-0 m-0"><small><i class="fa fa-mobile" aria-hidden="true"></i> {{salesrep.mob}} / <i class="fa fa-phone" aria-hidden="true"></i> {{salesrep.land}} - {{salesrep.extn}}</small></p>
+            </li>
+          </ul>
+          <button type="button" (click)="open(salesrepSelector)" class="btn btn-primary float-right text-white ripple">Add Supervisor</button>
         </div>
       </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
@@ -64,7 +75,7 @@
           <h6 class="card-title mb-4 text-center text-muted">Additional Information</h6>
           <div class="form-group">
             <label for="status">Status</label>
-            <select (focus)="attr = 'statusId'" formControlName="statusId" class="form-control py-0" id="statusId" #statusId [attr.disabled]="readOnly">
+            <select (focus)="attr = 'statusId'" formControlName="statusId" class="form-control py-0" id="statusId" disabled="true">
               <option value="1">Active</option>
               <option value="2">Deactivated</option>
             </select>
@@ -88,6 +99,17 @@
       </div>
     </div>
   </form>
+  <ng-template #salesrepSelector let-c="close" let-d="dismiss">
+    <div class="modal-header bg-primary text-white">
+      <h4 class="modal-title">Supervisor Selection</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <div class="modal-body p-4">
+      <app-salesrep-selector [addedSalesreps]="salesreps" (add)="addSalesrep($event)"></app-salesrep-selector>
+    </div>
+  </ng-template>
 </div>
 <div class="d-none d-lg-block help-text">
   <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Sales Representative'" [helpText]="'Sales Representatives sell retail products, goods and services to customers. Sales Representatives work with customers to find what they want, create solutions and ensure a smooth sales process. Sales Representatives will work to find new sales leads, through business directories, client referrals, etc.'"></app-help-gadget>  

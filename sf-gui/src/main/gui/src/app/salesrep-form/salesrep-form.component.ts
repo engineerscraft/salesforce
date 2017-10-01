@@ -4,6 +4,7 @@ import { SalesrepService } from '../salesrep.service';
 import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import 'rxjs/add/operator/filter';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-salesrep-form',
@@ -22,10 +23,16 @@ export class SalesrepFormComponent implements OnInit {
   private pubKey;
   private formTitle = 'Sales Person Creation';
 
+  private salesrep = [
+  ];
+  private closeResult: string;
+  private modal;
+
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private salesrepService: SalesrepService,
     private router: Router,
+    private modalService: NgbModal,
     private parserFormatter: NgbDateParserFormatter) { }
 
   ngOnInit() {
@@ -46,7 +53,7 @@ export class SalesrepFormComponent implements OnInit {
         fName: ['', [Validators.required]],
         mName: [''],
         lName: [''],
-        supPubKey: ['', [Validators.required]],
+        supPubKey: [''],
         desig: ['', [Validators.required]],
         email: ['', [Validators.required]],
         mob: ['', [Validators.required]],
@@ -136,6 +143,54 @@ export class SalesrepFormComponent implements OnInit {
     this.readOnly = true;
     this.buttonName = 'Modify';
     this.mode = 'View';
+  }
+
+  open(content) {
+    this.modal = this.modalService.open(content);
+    this.modal.result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  addSalesrep($event) {
+    this.salesrep['pubKey'] = $event.pubKey;
+    this.salesRepFormGroup.patchValue({
+      supPubKey: this.salesrep
+    });
+
+    this.salesrep.push({
+      pubKey: $event.pubKey,
+      name: $event.name,
+      mob: $event.mob,
+      email: $event.email,
+      desig: $event.desig,
+      land: $event.land,
+      extn: $event.extn
+    });
+    let addedSalesreps = {};
+    addedSalesreps['pubKey'] = $event.pubKey;
+    this.salesRepFormGroup.patchValue({
+      supPubKey: addedSalesreps
+    });
+  }
+
+  removeSalesrep() {
+    this.salesrep = [];
+    this.salesRepFormGroup.patchValue({
+      supPubKey: this.salesrep
+    });
   }
 
 }
