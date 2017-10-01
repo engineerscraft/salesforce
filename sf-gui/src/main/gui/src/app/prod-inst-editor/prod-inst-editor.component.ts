@@ -20,10 +20,10 @@ export class ProdInstEditorComponent implements OnInit {
       pubKey: [this.productInstance.pubKey, [Validators.required]],
       des: [this.productInstance.des, [Validators.required]],
       quotePrice: [this.productInstance.quotePrice, [Validators.required]],
-      actualUnitPrice: [this.productInstance.actualUnitPrice, [Validators.required]],
+      actualPrice: [this.productInstance.actualPrice, [Validators.required]],
       discType: [this.productInstance.discType, [Validators.required]],
       discVal: [this.productInstance.discVal, [Validators.required]],
-      quoteUnitPrice: [this.productInstance.quoteUnitPrice, [Validators.required]],
+      totalQuotePrice: [this.productInstance.totalQuotePrice, [Validators.required]],
       unit: [this.productInstance.unit, [Validators.required]]
     });
 
@@ -37,7 +37,7 @@ export class ProdInstEditorComponent implements OnInit {
       res => {
         this.calculate();
       });
-    this.productInstanceFormGroup.get("quoteUnitPrice").valueChanges.debounceTime(400)
+    this.productInstanceFormGroup.get("quotePrice").valueChanges.debounceTime(400)
       .subscribe(
       res => {
         this.calculate();
@@ -59,17 +59,17 @@ export class ProdInstEditorComponent implements OnInit {
   calculate() {
     this.productInstance = this.productInstanceFormGroup.value;
     if (this.productInstance.discType === 1) {
-      this.productInstance.quoteUnitPrice = this.productInstance.actualUnitPrice - this.productInstance.discVal;
+      this.productInstance.quotePrice = this.productInstance.actualPrice - this.productInstance.discVal;
       this.productInstance.discUnit = '';
     } else {
-      this.productInstance.quoteUnitPrice = this.productInstance.actualUnitPrice - (this.productInstance.discVal * this.productInstance.actualUnitPrice) / 100;
+      this.productInstance.quotePrice = this.productInstance.actualPrice - (this.productInstance.discVal * this.productInstance.actualPrice) / 100;
       this.productInstance.discUnit = '%';
     }
-    this.productInstance.quotePrice = this.productInstance.quoteUnitPrice * this.productInstance.unit;
+    this.productInstance.totalQuotePrice = this.productInstance.quotePrice * this.productInstance.unit;
 
     this.productInstanceFormGroup.patchValue({
-      quoteUnitPrice: this.productInstance.quoteUnitPrice,
       quotePrice: this.productInstance.quotePrice,
+      totalQuotePrice: this.productInstance.totalQuotePrice,
       discUnit: this.productInstance.discUnit,
       discType: this.productInstance.discType
     });

@@ -76,10 +76,11 @@ export class ContactSelectorComponent implements OnInit {
   }
 
   addContact(contact) {
-    let name = contact.fName + ' ' + (contact.mName ? (contact.mName + ' ') : '') + contact.lName;
     this.add.emit({
       "pubKey": contact.pubKey,
-      "name": name,
+      "fName": contact.fName,
+      "mName": contact.mName,
+      "lName": contact.lName,
       "email": contact.email,
       "mob": contact.mob,
       "land": contact.land,

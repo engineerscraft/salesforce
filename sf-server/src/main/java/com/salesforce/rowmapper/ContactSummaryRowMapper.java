@@ -10,7 +10,6 @@ import com.salesforce.model.ContactSummary;
 public class ContactSummaryRowMapper implements RowMapper<ContactSummary> {
     public ContactSummary mapRow(ResultSet rs, int rowNum) throws SQLException {
         ContactSummary contact = new ContactSummary();
-        contact.setCoId(rs.getInt("CO_ID"));
         contact.setPubKey(rs.getString("PUB_KEY"));
         contact.setfName(rs.getString("F_NAME"));
         contact.setmName(rs.getString("M_NAME"));

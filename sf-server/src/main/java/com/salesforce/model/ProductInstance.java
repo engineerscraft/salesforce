@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 
 public class ProductInstance {
     private String pubKey;
+    private String des;
     private BigDecimal quotePrice;
+    private BigDecimal actualPrice;
     private int discType;
     private BigDecimal discVal;
     private int unit;
@@ -38,8 +40,20 @@ public class ProductInstance {
     public void setUnit(int unit) {
         this.unit = unit;
     }
+    public BigDecimal getActualPrice() {
+        return actualPrice;
+    }
+    public void setActualPrice(BigDecimal actualPrice) {
+        this.actualPrice = actualPrice;
+    }
+    public String getDes() {
+        return des;
+    }
+    public void setDes(String des) {
+        this.des = des;
+    }
     @Override
     public String toString() {
-        return "ProductInstance [pubKey=" + pubKey + ", quotePrice=" + quotePrice + ", discType=" + discType + ", discVal=" + discVal + ", unit=" + unit + "]";
+        return "ProductInstance [pubKey=" + pubKey + ", des=" + des + ", quotePrice=" + quotePrice + ", actualPrice=" + actualPrice + ", discType=" + discType + ", discVal=" + discVal + ", unit=" + unit + "]";
     }
 }

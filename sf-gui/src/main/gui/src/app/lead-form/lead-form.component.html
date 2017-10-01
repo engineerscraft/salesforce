@@ -62,9 +62,9 @@
             <li [@fadeIn] *ngFor="let product of products" class="list-group-item">
               <p><strong>{{product.des}} ({{product.pubKey}})<i (click)=removeProd(product.pubKey) class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i>
               <i class="fa fa-pencil pull-right mx-2" aria-hidden="true" (click)="productInstance = product; open(prodInstEditor)"></i></strong></p>
-              <p class="p-0 m-0"><small>Quote Unit Price : {{product.quoteUnitPrice}} (Actual Unit Price: {{product.actualUnitPrice}})</small></p>
+              <p class="p-0 m-0"><small>Quote Unit Price : {{product.quotePrice}} (Actual Unit Price: {{product.actualPrice}})</small></p>
               <p class="p-0 m-0"><small>No. of unit : {{product.unit}} (Discount: {{product.discVal}}{{product.discUnit}})</small></p>
-              <p class="p-0 m-0 pull-right text-success"><strong>Quote Price : {{product.quotePrice}}</strong></p>
+              <p class="p-0 m-0 pull-right text-success"><strong>Quote Price : {{product.totalQuotePrice}}</strong></p>
             </li>
           </ul>
           <button type="button" (click)="open(productSelector)" class="btn btn-primary float-right text-white ripple">Add Product</button>
@@ -76,7 +76,7 @@
 
           <ul class="list-group my-4">
             <li [@fadeIn] *ngFor="let contact of contacts" class="list-group-item">
-              <p><strong>{{contact.name}} (<a routerLink="/contactDetails/{{contact.pubKey}}">{{contact.pubKey}}</a>)<i (click)=removeContact(contact.pubKey)
+              <p><strong>{{contact.fName}} {{contact.mName}} {{contact.lName}} (<a routerLink="/contactDetails/{{contact.pubKey}}">{{contact.pubKey}}</a>)<i (click)=removeContact(contact.pubKey)
                 class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></strong></p>
               <p class="p-0 m-0"><small>{{contact.desig}} - {{contact.company}}</small></p>
               <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{contact.email}}</small></p>

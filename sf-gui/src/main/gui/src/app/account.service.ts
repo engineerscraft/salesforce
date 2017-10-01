@@ -10,4 +10,9 @@ export class AccountService {
     return this.httpService.callHttpGet("/resources/v1/account?searchString=" + searchString + "&startPosition=" + startPosition)
       .map(res => res.json())
   }
+
+  getAccountSummary(pubKey) {
+    return this.httpService.callHttpGet("/resources/v1/account/summary/" + pubKey)
+      .map(res => res.json())  
+  }
 }

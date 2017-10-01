@@ -21,7 +21,6 @@ public class ContactRowMapper implements RowMapper<Contact> {
         contact.setNote(rs.getString("note"));
         contact.setsId(rs.getInt("S_ID")==0?null:rs.getInt("S_ID"));
         contact.setZipCode(rs.getString("ZIP_CODE"));
-        contact.getContactSummary().setCoId(rs.getInt("CO_ID"));
         contact.getContactSummary().setCompany(rs.getString("COMPANY"));
         contact.getContactSummary().setDesig(rs.getString("DESIG"));
         contact.getContactSummary().setEmail(rs.getString("EMAIL"));

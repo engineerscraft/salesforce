@@ -49,7 +49,7 @@ select lead_id, 1, 'TEST', current_timestamp, null, null
 from sfm.lead;
 
 insert into sfm.lead_prod 
-select lead_id, prod_id, 1, 0, 0, 0, 'TEST', current_timestamp, null, null
+select lead_id, prod_id, 1, 1, 0, 0, 100, 'TEST', current_timestamp, null, null
 from sfm.lead, sfm.product;
 
 INSERT INTO sfm.opportunity (opp_id,pub_key,disc_type,disc_val,title,status_id,div_id,acc_id,lead_id,crtd_by,crtd_on,mod_by,mod_on) VALUES (1,'OP1','0','0','Mattis Industries','1','2','1',1,'TEST','11/20/2016','TEST','09/13/2018'),(2,'OP2','0','0','Sed Congue Elit Company','1','2','1',2,'TEST','09/30/2017','TEST','05/14/2018'),(3,'OP3','0','0','Mi Company','1','2','1',3,'TEST','03/14/2017','TEST','10/09/2017'),(4,'OP4','0','0','Urna Vivamus Molestie Corp.','1','2','1',4,'TEST','07/09/2018','TEST','09/25/2016'),(5,'OP5','0','0','Nec PC','1','2','1',5,'TEST','09/15/2017','TEST','06/02/2018'),(6,'OP6','0','0','Amet Incorporated','1','2','1',6,'TEST','06/18/2018','TEST','10/10/2016'),(7,'OP7','0','0','Mollis Corporation','1','2','1',7,'TEST','06/12/2018','TEST','11/09/2016'),(8,'OP8','0','0','Tellus Sem Company','1','2','1',8,'TEST','11/04/2016','TEST','02/01/2017'),(9,'OP9','0','0','Commodo Tincidunt Nibh Ltd','1','2','1',9,'TEST','11/11/2016','TEST','03/12/2018'),(10,'OP10','0','0','Et Ultrices Posuere Institute','1','2','1',10,'TEST','03/07/2018','TEST','07/10/2018');

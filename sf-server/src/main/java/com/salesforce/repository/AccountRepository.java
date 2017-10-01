@@ -34,6 +34,9 @@ public class AccountRepository {
     @Value("${account.pagesize}")
     private Long accountPageSize;
 
+    @Value("${sql.account.select}")
+    private String accountSelect;
+
     public List<AccountSummary> getAccountPage(String searchString, long startPosition) {
         Object[] args = { searchString, '%' + searchString + '%', searchString, startPosition, accountPageSize };
         logger.info(sqlMarker, accountPageSql);
@@ -41,6 +44,16 @@ public class AccountRepository {
         List<AccountSummary> accounts = (List<AccountSummary>) jdbcTemplate.query(accountPageSql, args, new AccountSummaryRowMapper());
         logger.debug("Retrieved products: {}", () -> accounts);
         return accounts;
+    }
+
+    public AccountSummary getAccount(String pubKey) {
+        Object[] args = { pubKey };
+        logger.info(sqlMarker, accountSelect);
+        logger.info(sqlMarker, "Params {}", () -> pubKey);
+        AccountSummary account = jdbcTemplate.queryForObject(accountSelect, args, new AccountSummaryRowMapper());
+        logger.debug("Retrieved account: {}", () -> account);
+        return account;
+
     }
 
 }

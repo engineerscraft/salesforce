@@ -1,17 +1,12 @@
 package com.salesforce.model;
 
+import java.math.BigDecimal;
+
 public class LeadSummary {
 
-    private int leadId;
     private String pubKey;
     private String title;
-    private double quotePrice;
-    public int getLeadId() {
-        return leadId;
-    }
-    public void setLeadId(int leadId) {
-        this.leadId = leadId;
-    }
+    private BigDecimal quotePrice;
     public String getPubKey() {
         return pubKey;
     }
@@ -24,14 +19,14 @@ public class LeadSummary {
     public void setTitle(String title) {
         this.title = title;
     }
-    public double getQuotePrice() {
+    public BigDecimal getQuotePrice() {
         return quotePrice;
     }
-    public void setQuotePrice(double quotePrice) {
+    public void setQuotePrice(BigDecimal quotePrice) {
         this.quotePrice = quotePrice;
     }
     @Override
     public String toString() {
-        return "LeadSummary [leadId=" + leadId + ", pubKey=" + pubKey + ", title=" + title + ", quotePrice=" + quotePrice + "]";
+        return "LeadSummary [pubKey=" + pubKey + ", title=" + title + ", quotePrice=" + quotePrice + "]";
     }
 }

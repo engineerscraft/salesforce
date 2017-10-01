@@ -2,7 +2,6 @@ package com.salesforce.model;
 
 public class ContactSummary {
 
-    private int coId;
     private String pubKey;
     private String fName;
     private String mName;
@@ -13,14 +12,6 @@ public class ContactSummary {
     private String mob;
     private String land;
     private String extn;
-
-    public int getCoId() {
-        return coId;
-    }
-
-    public void setCoId(int coId) {
-        this.coId = coId;
-    }
 
     public String getPubKey() {
         return pubKey;
@@ -107,6 +98,6 @@ public class ContactSummary {
      */
     @Override
     public String toString() {
-        return "ContactSummary [coId=" + coId + ", pubKey=" + pubKey + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", email=" + email + ", company=" + company + ", desig=" + desig + ", mob=" + mob + ", land=" + land + ", extn=" + extn + "]";
+        return "ContactSummary [pubKey=" + pubKey + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", email=" + email + ", company=" + company + ", desig=" + desig + ", mob=" + mob + ", land=" + land + ", extn=" + extn + "]";
     }
 }

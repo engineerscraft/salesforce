@@ -15,9 +15,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.salesforce.model.ContactSummary;
 import com.salesforce.model.Lead;
 import com.salesforce.model.ProductInstance;
 import com.salesforce.model.PublicKey;
+import com.salesforce.rowmapper.ContactSummaryRowMapper;
+import com.salesforce.rowmapper.LeadRowMapper;
+import com.salesforce.rowmapper.ProductInstanceRowMapper;
 import com.salesforce.utils.ApplicationUtils;
 
 @Component
@@ -44,6 +48,15 @@ public class LeadRepository {
     @Value("${sql.leadContactTable.insert}")
     private String leadContactTableInsert;
 
+    @Value("${sql.lead.select}")
+    private String leadSelect;
+    
+    @Value("${sql.leadcontact.select}")
+    private String leadContactSelect;
+    
+    @Value("${sql.leadprod.select}")
+    private String leadProductSelect;
+    
     @Transactional
     public PublicKey createLead(Lead lead, String username) throws Exception {
         Integer leadId = generateLeadId();
@@ -53,7 +66,7 @@ public class LeadRepository {
                     () -> lead.getLeadSummary().getQuotePrice(), () -> lead.getDivPubKey(), () -> username);
             jdbcTemplate.update(leadTableInsert, new Object[] { leadId, leadId, lead.getAccPubKey(), lead.getLeadSummary().getTitle(), lead.getDiscType(), lead.getDiscVal(), lead.getLeadSummary().getQuotePrice(), lead.getDivPubKey(), username });
             logger.info(sqlMarker, leadContactTableInsert);
-            this.saveLeadContacts(lead.getContactPubKeys(), leadId, username);
+            this.saveLeadContacts(lead.getContacts(), leadId, username);
             logger.info(sqlMarker, leadProductTableInsert);
             this.saveLeadProducts(lead.getProdInstances(), leadId, username);
             PublicKey pubKey = new PublicKey();
@@ -64,20 +77,20 @@ public class LeadRepository {
         }
     }
 
-    public void saveLeadContacts(final List<String> contactList, int leadId, String username) {
+    public void saveLeadContacts(final List<ContactSummary> contacts, int leadId, String username) {
         final int batchSize = 500;
 
-        for (int j = 0; j < contactList.size(); j += batchSize) {
+        for (int j = 0; j < contacts.size(); j += batchSize) {
 
-            final List<String> batchList = contactList.subList(j, j + batchSize > contactList.size() ? contactList.size() : j + batchSize);
+            final List<ContactSummary> batchList = contacts.subList(j, j + batchSize > contacts.size() ? contacts.size() : j + batchSize);
 
             jdbcTemplate.batchUpdate(leadContactTableInsert, new BatchPreparedStatementSetter() {
                 @Override
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     logger.info(sqlMarker, "Params {}, {}, {}", () -> leadId, () -> batchList.get(i), () -> username);
-                    String coPubKey = batchList.get(i);
+                    ContactSummary contact = batchList.get(i);
                     ps.setInt(1, leadId);
-                    ps.setString(2, coPubKey);
+                    ps.setString(2, contact.getPubKey());
                     ps.setString(3, username);
                 }
 
@@ -100,14 +113,15 @@ public class LeadRepository {
                 @Override
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     ProductInstance productInstance = batchList.get(i);
-                    logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}", () -> leadId, () -> productInstance.getPubKey(), () -> productInstance.getUnit(), () -> productInstance.getDiscType(), () -> productInstance.getDiscVal(), () -> productInstance.getQuotePrice(), () -> username);
+                    logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}", () -> leadId, () -> productInstance.getPubKey(), () -> productInstance.getUnit(), () -> productInstance.getDiscType(), () -> productInstance.getDiscVal(), () -> productInstance.getQuotePrice(), () -> productInstance.getActualPrice(), () -> username);
                     ps.setInt(1, leadId);
                     ps.setString(2, productInstance.getPubKey());
                     ps.setInt(3, productInstance.getUnit());
                     ps.setInt(4, productInstance.getDiscType());
                     ps.setBigDecimal(5, productInstance.getDiscVal());
                     ps.setBigDecimal(6, productInstance.getQuotePrice());
-                    ps.setString(7, username);
+                    ps.setBigDecimal(7, productInstance.getActualPrice());
+                    ps.setString(8, username);
                 }
 
                 @Override
@@ -132,5 +146,22 @@ public class LeadRepository {
 
         logger.debug("Lead ID generated: {}", () -> fetchedLeadId);
         return fetchedLeadId;
+    }
+
+    public Lead getLead(String pubKey) {
+        Object[] args = { pubKey };
+        logger.info(sqlMarker, leadSelect);
+        logger.info(sqlMarker, "Params {}", () -> pubKey);
+        Lead lead = jdbcTemplate.queryForObject(leadSelect, args, new LeadRowMapper());
+        logger.info(sqlMarker, leadContactSelect);
+        logger.info(sqlMarker, "Params {}", () -> pubKey);
+        List<ContactSummary> leadContacts = jdbcTemplate.query(leadContactSelect, args, new ContactSummaryRowMapper());
+        lead.setContacts(leadContacts);
+        logger.info(sqlMarker, leadProductSelect);
+        logger.info(sqlMarker, "Params {}", () -> pubKey);
+        List<ProductInstance> leadProducts = jdbcTemplate.query(leadProductSelect, args, new ProductInstanceRowMapper());
+        lead.setProdInstances(leadProducts);        
+        logger.debug("Retrieved lead: {}", () -> lead);
+        return lead;
     }
 }

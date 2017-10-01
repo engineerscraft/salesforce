@@ -7,7 +7,8 @@ export class LeadService {
   constructor(private httpService: HttpService) { }
 
   readLead(pubKey) {
-
+    return this.httpService.callHttpGet("/resources/v1/lead/" + pubKey)
+    .map(res => res.json())
   }
 
   createLead(lead) {

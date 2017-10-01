@@ -78,7 +78,7 @@ export class ProductSelectorComponent implements OnInit {
     this.add.emit({
       "pubKey": product.pubKey,
       "des": product.des,
-      "price": product.price
+      "actualPrice": product.price
     });
     this.products.forEach(function (prod) {
       if (product.pubKey === prod.pubKey) {

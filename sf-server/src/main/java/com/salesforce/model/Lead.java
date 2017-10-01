@@ -1,7 +1,6 @@
 package com.salesforce.model;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 public class Lead {
@@ -11,7 +10,7 @@ public class Lead {
     private String divPubKey;
     private String accPubKey;
     private String statusPubKey;
-    private List<String> contactPubKeys;
+    private List<ContactSummary> contacts;
     private List<ProductInstance> prodInstances;
     
     public LeadSummary getLeadSummary() {
@@ -44,12 +43,6 @@ public class Lead {
     public void setStatusPubKey(String statusPubKey) {
         this.statusPubKey = statusPubKey;
     }
-    public List<String> getContactPubKeys() {
-        return contactPubKeys;
-    }
-    public void setContactPubKeys(List<String> contactPubKeys) {
-        this.contactPubKeys = contactPubKeys;
-    }
     public String getAccPubKey() {
         return accPubKey;
     }
@@ -62,9 +55,15 @@ public class Lead {
     public void setProdInstances(List<ProductInstance> prodInstances) {
         this.prodInstances = prodInstances;
     }
+    public List<ContactSummary> getContacts() {
+        return contacts;
+    }
+    public void setContacts(List<ContactSummary> contacts) {
+        this.contacts = contacts;
+    }
     @Override
     public String toString() {
-        return "Lead [leadSummary=" + leadSummary + ", discType=" + discType + ", discVal=" + discVal + ", divPubKey=" + divPubKey + ", accPubKey=" + accPubKey + ", statusPubKey=" + statusPubKey + ", contactPubKeys=" + contactPubKeys + ", prodInstances="
-                + prodInstances + "]";
+        return "Lead [leadSummary=" + leadSummary + ", discType=" + discType + ", discVal=" + discVal + ", divPubKey=" + divPubKey + ", accPubKey=" + accPubKey + ", statusPubKey=" + statusPubKey + ", contacts=" + contacts + ", prodInstances=" + prodInstances
+                + "]";
     }
 }

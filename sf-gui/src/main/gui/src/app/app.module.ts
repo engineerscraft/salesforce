@@ -51,6 +51,7 @@ const appRoutes: Routes = [
   { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
   { path: 'contacts', component: ContactsComponent },
   { path: 'contactDetails/:pubKey', component: ContactDetailsComponent },
+  { path: 'leadDetails/:pubKey', component: LeadDetailsComponent },
   { path: 'salesreps', component: SalesrepsComponent },
   { path: 'salesrepDetails/:pubKey', component: SalesrepDetailsComponent }
 ];
