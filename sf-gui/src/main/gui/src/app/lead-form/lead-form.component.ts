@@ -323,7 +323,11 @@ export class LeadFormComponent implements OnInit {
       this.buttonName = 'Save';
       this.mode = 'Modify';
     } else if (this.mode === 'Modify') {
+      if(this.leadFormGroup.dirty) {
 
+      } else {
+        this.cancel();
+      }
     }
   }
 }

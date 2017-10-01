@@ -1,6 +1,7 @@
-<div id="help" class="card card-shadow height-100 {{background}} text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
-  <h2 [@helpGadgetAnimation] class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> {{helpHeader}}</h2>
-  <div [@helpGadgetAnimation] class="card-block">
+<div [@helpGadgetAnimation] *ngIf="!closed" id="help" class="card card-shadow height-100 {{background}} text-white my-4 mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4 py-4 px-4 col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+  <span class="text-right my-0 py-0" (click)="closed=true">&times;</span>
+  <h2 class="display-5 my-3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> {{helpHeader}}</h2>
+  <div class="card-block">
     {{helpText}}
   </div>
 </div>

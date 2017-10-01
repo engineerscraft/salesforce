@@ -10,7 +10,11 @@ import { trigger,state,style,transition,animate,keyframes } from '@angular/anima
       transition(':enter', [
         style({opacity: 0}),
         animate('500ms', style({opacity: 1}))
-      ])
+      ]),
+      transition(':leave', [
+        style({transform: 'rotateX(0)', opacity: 1}),
+        animate('500ms', style({transform: 'rotateX(90deg)', opacity: 0}))
+      ])      
     ])
   ]  
 })
