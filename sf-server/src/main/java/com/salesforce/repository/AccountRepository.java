@@ -34,7 +34,7 @@ public class AccountRepository {
     @Value("${account.pagesize}")
     private Long accountPageSize;
 
-    @Value("${sql.account.select}")
+    @Value("${sql.accountsummary.select}")
     private String accountSelect;
 
     public List<AccountSummary> getAccountPage(String searchString, long startPosition) {

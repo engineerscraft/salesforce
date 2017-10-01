@@ -7,6 +7,7 @@ public class LeadSummary {
     private String pubKey;
     private String title;
     private BigDecimal quotePrice;
+    private String statusPubKey;
     public String getPubKey() {
         return pubKey;
     }
@@ -25,8 +26,14 @@ public class LeadSummary {
     public void setQuotePrice(BigDecimal quotePrice) {
         this.quotePrice = quotePrice;
     }
+    public String getStatusPubKey() {
+        return statusPubKey;
+    }
+    public void setStatusPubKey(String statusPubKey) {
+        this.statusPubKey = statusPubKey;
+    }
     @Override
     public String toString() {
-        return "LeadSummary [pubKey=" + pubKey + ", title=" + title + ", quotePrice=" + quotePrice + "]";
+        return "LeadSummary [pubKey=" + pubKey + ", title=" + title + ", quotePrice=" + quotePrice + ", statusPubKey=" + statusPubKey + "]";
     }
 }

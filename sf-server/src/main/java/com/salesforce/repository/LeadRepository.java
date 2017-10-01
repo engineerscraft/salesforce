@@ -57,6 +57,15 @@ public class LeadRepository {
     @Value("${sql.leadprod.select}")
     private String leadProductSelect;
     
+    @Value("${sql.lead.update}")
+    private String leadUpdate;
+    
+    @Value("${sql.leadcontact.delete}")
+    private String leadContactDelete;
+    
+    @Value("${sql.leadprod.delete}")
+    private String leadProdDelete;
+
     @Transactional
     public PublicKey createLead(Lead lead, String username) throws Exception {
         Integer leadId = generateLeadId();
@@ -65,21 +74,28 @@ public class LeadRepository {
             logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> leadId, () -> leadId, () -> lead.getAccPubKey(), () -> lead.getLeadSummary().getTitle(), () -> lead.getDiscType(), () -> lead.getDiscVal(),
                     () -> lead.getLeadSummary().getQuotePrice(), () -> lead.getDivPubKey(), () -> username);
             jdbcTemplate.update(leadTableInsert, new Object[] { leadId, leadId, lead.getAccPubKey(), lead.getLeadSummary().getTitle(), lead.getDiscType(), lead.getDiscVal(), lead.getLeadSummary().getQuotePrice(), lead.getDivPubKey(), username });
-            logger.info(sqlMarker, leadContactTableInsert);
-            this.saveLeadContacts(lead.getContacts(), leadId, username);
-            logger.info(sqlMarker, leadProductTableInsert);
-            this.saveLeadProducts(lead.getProdInstances(), leadId, username);
             PublicKey pubKey = new PublicKey();
             pubKey.setPubKey("LD" + String.format("%08d", leadId));
+            logger.info(sqlMarker, leadContactTableInsert);
+            this.saveLeadContacts(lead.getContacts(), pubKey.getPubKey(), username, false);
+            logger.info(sqlMarker, leadProductTableInsert);
+            this.saveLeadProducts(lead.getProdInstances(), pubKey.getPubKey(), username, false);
             return pubKey;
         } else {
             throw new Exception("Lead cannot be created as basic lead data is missing...");
         }
     }
 
-    public void saveLeadContacts(final List<ContactSummary> contacts, int leadId, String username) {
+    public void saveLeadContacts(final List<ContactSummary> contacts, String leadPubKey, String username, boolean delete) {
         final int batchSize = 500;
 
+        if(delete) {
+            logger.info(sqlMarker, leadContactDelete);
+            logger.info(sqlMarker, "Params {}", () -> leadPubKey);
+            jdbcTemplate.update(leadContactDelete, new Object[] { leadPubKey });
+        }
+        logger.info(sqlMarker, leadContactTableInsert);
+        
         for (int j = 0; j < contacts.size(); j += batchSize) {
 
             final List<ContactSummary> batchList = contacts.subList(j, j + batchSize > contacts.size() ? contacts.size() : j + batchSize);
@@ -87,9 +103,9 @@ public class LeadRepository {
             jdbcTemplate.batchUpdate(leadContactTableInsert, new BatchPreparedStatementSetter() {
                 @Override
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
-                    logger.info(sqlMarker, "Params {}, {}, {}", () -> leadId, () -> batchList.get(i), () -> username);
+                    logger.info(sqlMarker, "Params {}, {}, {}", () -> leadPubKey, () -> batchList.get(i), () -> username);
                     ContactSummary contact = batchList.get(i);
-                    ps.setInt(1, leadId);
+                    ps.setString(1, leadPubKey);
                     ps.setString(2, contact.getPubKey());
                     ps.setString(3, username);
                 }
@@ -102,9 +118,18 @@ public class LeadRepository {
         }
     }
 
-    public void saveLeadProducts(final List<ProductInstance> productList, int leadId, String username) {
+    public void saveLeadProducts(final List<ProductInstance> productList, String leadPubKey, String username, boolean delete) {
         final int batchSize = 500;
-
+        
+        if(delete) {
+            
+            logger.info(sqlMarker, leadProdDelete);
+            logger.info(sqlMarker, "Params {}", () -> leadPubKey);
+            jdbcTemplate.update(leadProdDelete, new Object[] { leadPubKey });                        
+        }
+        
+        logger.info(sqlMarker, leadProductTableInsert);
+        
         for (int j = 0; j < productList.size(); j += batchSize) {
 
             final List<ProductInstance> batchList = productList.subList(j, j + batchSize > productList.size() ? productList.size() : j + batchSize);
@@ -113,8 +138,8 @@ public class LeadRepository {
                 @Override
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     ProductInstance productInstance = batchList.get(i);
-                    logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}", () -> leadId, () -> productInstance.getPubKey(), () -> productInstance.getUnit(), () -> productInstance.getDiscType(), () -> productInstance.getDiscVal(), () -> productInstance.getQuotePrice(), () -> productInstance.getActualPrice(), () -> username);
-                    ps.setInt(1, leadId);
+                    logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}", () -> leadPubKey, () -> productInstance.getPubKey(), () -> productInstance.getUnit(), () -> productInstance.getDiscType(), () -> productInstance.getDiscVal(), () -> productInstance.getQuotePrice(), () -> productInstance.getActualPrice(), () -> username);
+                    ps.setString(1, leadPubKey);
                     ps.setString(2, productInstance.getPubKey());
                     ps.setInt(3, productInstance.getUnit());
                     ps.setInt(4, productInstance.getDiscType());
@@ -163,5 +188,24 @@ public class LeadRepository {
         lead.setProdInstances(leadProducts);        
         logger.debug("Retrieved lead: {}", () -> lead);
         return lead;
+    }
+
+    public PublicKey modifyLead(Lead lead, String username) throws Exception {
+        if (lead.getLeadSummary() != null) {
+            logger.info(sqlMarker, leadUpdate);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> lead.getAccPubKey(), () -> lead.getLeadSummary().getTitle(), () -> lead.getDiscType(), () -> lead.getDiscVal(),
+                    () -> lead.getLeadSummary().getQuotePrice(),() -> lead.getLeadSummary().getStatusPubKey(), () -> lead.getDivPubKey(), () -> username, () -> lead.getLeadSummary().getPubKey());
+            jdbcTemplate.update(leadUpdate, new Object[] { lead.getAccPubKey(), lead.getLeadSummary().getTitle(), lead.getDiscType(), lead.getDiscVal(),
+                    lead.getLeadSummary().getQuotePrice(), lead.getLeadSummary().getStatusPubKey(), lead.getDivPubKey(), username, lead.getLeadSummary().getPubKey() });
+            
+            this.saveLeadContacts(lead.getContacts(), lead.getLeadSummary().getPubKey(), username, true);
+            
+            this.saveLeadProducts(lead.getProdInstances(), lead.getLeadSummary().getPubKey(), username, true);
+            PublicKey pubKey = new PublicKey();
+            pubKey.setPubKey(lead.getLeadSummary().getPubKey());
+            return pubKey;
+        } else {
+            throw new Exception("Lead cannot be updated as basic lead data is missing...");
+        }
     }
 }

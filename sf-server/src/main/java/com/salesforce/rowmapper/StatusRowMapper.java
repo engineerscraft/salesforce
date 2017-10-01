@@ -19,6 +19,7 @@ public class StatusRowMapper implements RowMapper<Status> {
         status.setPubKey(rs.getString("PUB_KEY"));
         status.setDes(rs.getString("DES"));
         status.setColor(rs.getString("COLOR"));
+        status.setConv(rs.getString("CONV"));
         return status;
     }
 }

@@ -14,6 +14,7 @@ public class Status {
     private String pubKey;
     private String des;
     private String color;
+    private String conv;
 
     /**
      * @return the statusId
@@ -71,12 +72,16 @@ public class Status {
         this.color = color;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "Status [statusId=" + statusId + ", pubKey=" + pubKey + ", des=" + des + ", color=" + color + "]";
+    public String getConv() {
+        return conv;
     }
 
+    public void setConv(String conv) {
+        this.conv = conv;
+    }
+
+    @Override
+    public String toString() {
+        return "Status [statusId=" + statusId + ", pubKey=" + pubKey + ", des=" + des + ", color=" + color + ", conv=" + conv + "]";
+    }
 }

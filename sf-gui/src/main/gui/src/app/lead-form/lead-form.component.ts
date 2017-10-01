@@ -6,6 +6,7 @@ import 'rxjs/add/operator/filter';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DivisionService } from '../division.service';
 import { AccountService } from '../account.service';
+import { StatusService } from '../status.service';
 
 @Component({
   selector: 'app-lead-form',
@@ -44,6 +45,7 @@ export class LeadFormComponent implements OnInit {
   private productInstance;
   private modal;
   private divisions;
+  private possibleStatus;
 
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -51,7 +53,8 @@ export class LeadFormComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private divisionService: DivisionService,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    private statusService: StatusService) { }
 
   ngOnInit() {
 
@@ -69,8 +72,8 @@ export class LeadFormComponent implements OnInit {
         pubKey: [''],
         title: ['', [Validators.required]],
         quotePrice: [0],
+        statusPubKey: ['', [Validators.required]]
       }),
-      statusPubKey: [''],
       discType: [1],
       discVal: [0],
       divPubKey: ['', [Validators.required]],
@@ -132,6 +135,12 @@ export class LeadFormComponent implements OnInit {
               }
               );
           }
+          this.statusService.readStatus('LEAD', res.leadSummary.statusPubKey)
+            .subscribe(
+              res => {
+                this.possibleStatus = res;
+              }
+            );
         }
         ,
         err => {
@@ -324,7 +333,12 @@ export class LeadFormComponent implements OnInit {
       this.mode = 'Modify';
     } else if (this.mode === 'Modify') {
       if(this.leadFormGroup.dirty) {
-
+        this.leadService.modifyLead(this.pubKey, this.leadFormGroup.value)
+          .subscribe(
+            res => {
+              this.cancel();
+            }
+          );
       } else {
         this.cancel();
       }

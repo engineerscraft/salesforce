@@ -36,10 +36,10 @@ public class StatusResource {
     @Path("/")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Secured(Privilege.DEFAULT)
-    public Response getStatus(@QueryParam("entity") String entity) {
+    public Response getStatus(@QueryParam("entity") String entity, @QueryParam("currentStatusPubKey") String statusPubKey) {
         List<Status> status;
         try {
-            status = statusRepository.getAllStatusByEntity(entity);
+            status = statusRepository.getAllStatusByEntity(entity, statusPubKey);
             if (status.isEmpty()) {
                 logger.error("No status found for the given entity.", () -> entity);
                 return Response.status(Response.Status.NOT_FOUND).entity(new Message("No status found for the given entity.")).build();

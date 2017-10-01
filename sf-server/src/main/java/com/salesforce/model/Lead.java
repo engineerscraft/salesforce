@@ -9,7 +9,6 @@ public class Lead {
     private BigDecimal discVal;
     private String divPubKey;
     private String accPubKey;
-    private String statusPubKey;
     private List<ContactSummary> contacts;
     private List<ProductInstance> prodInstances;
     
@@ -37,12 +36,6 @@ public class Lead {
     public void setDivPubKey(String divPubKey) {
         this.divPubKey = divPubKey;
     }
-    public String getStatusPubKey() {
-        return statusPubKey;
-    }
-    public void setStatusPubKey(String statusPubKey) {
-        this.statusPubKey = statusPubKey;
-    }
     public String getAccPubKey() {
         return accPubKey;
     }
@@ -63,7 +56,6 @@ public class Lead {
     }
     @Override
     public String toString() {
-        return "Lead [leadSummary=" + leadSummary + ", discType=" + discType + ", discVal=" + discVal + ", divPubKey=" + divPubKey + ", accPubKey=" + accPubKey + ", statusPubKey=" + statusPubKey + ", contacts=" + contacts + ", prodInstances=" + prodInstances
-                + "]";
+        return "Lead [leadSummary=" + leadSummary + ", discType=" + discType + ", discVal=" + discVal + ", divPubKey=" + divPubKey + ", accPubKey=" + accPubKey + ", contacts=" + contacts + ", prodInstances=" + prodInstances + "]";
     }
 }

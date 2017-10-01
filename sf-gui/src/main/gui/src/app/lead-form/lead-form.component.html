@@ -24,7 +24,8 @@
           </div>
           <div class="form-group">
             <label for="discType">Discount Type <span class="text-danger">*</span></label>
-            <select (focus)="attr = 'discType'" class="form-control" formControlName="discType" id="discType" [attr.disabled]="readOnly" required>
+            <select (focus)="attr = 'discType'" class="form-control" formControlName="discType" id="discType" [attr.disabled]="readOnly"
+              required>
                 <option value="1">Amount</option>
                 <option value="2">Percent</option>
               </select>
@@ -36,9 +37,17 @@
           </div>
           <div class="form-group">
             <label for="divPubKey">Division <span class="text-danger">*</span></label>
-            <select (focus)="attr = 'divPubKey'" class="form-control" formControlName="divPubKey" id="divPubKey" [attr.disabled]="readOnly" required>
+            <select (focus)="attr = 'divPubKey'" class="form-control" formControlName="divPubKey" id="divPubKey" [attr.disabled]="readOnly"
+              required>
                 <option *ngFor="let div of divisions" value="{{div.pubKey}}">{{div.des}}</option>
             </select>
+          </div>
+          <div *ngIf="pubKey" class="form-group" formGroupName="leadSummary">
+            <label for="status">Discount Type <span class="text-danger">*</span></label>
+            <select (focus)="attr = 'status'" class="form-control" formControlName="statusPubKey" id="status" [attr.disabled]="readOnly"
+              required>
+                  <option *ngFor="let status of possibleStatus" value="{{status.pubKey}}">{{status.des}}</option>
+                </select>
           </div>
         </div>
       </div>
@@ -47,8 +56,8 @@
           <h6 class="card-title mb-4 text-center text-muted">Account</h6>
           <ul class="list-group my-4">
             <li *ngIf="account.pubKey" class="list-group-item">
-              <p>{{account.title}} (<a routerLink="/accountDetails/{{account.pubKey}}">{{account.pubKey}}</a>)<i *ngIf="!readOnly" (click)=removeAccount()
-                  class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></p>
+              <p>{{account.title}} (<a routerLink="/accountDetails/{{account.pubKey}}">{{account.pubKey}}</a>)<i *ngIf="!readOnly"
+                  (click)=removeAccount() class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></p>
             </li>
           </ul>
           <button *ngIf="!readOnly" type="button" (click)="open(accountSelector)" class="btn btn-primary float-right text-white ripple">Attach Account</button>
@@ -86,6 +95,17 @@
           <button *ngIf="!readOnly" type="button" (click)="open(contactSelector)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
         </div>
       </div>
+      <div *ngIf="mode === 'Modify'" class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Comments</h6>
+
+          <div class="form-group">
+            <label for="changeDescription">Change Description</label>
+            <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Describe your changes"></textarea>
+          </div>
+        </div>
+      </div>
+
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
         <button [disabled]="!leadFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
         <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-primary float-right text-white ripple">Cancel</button>

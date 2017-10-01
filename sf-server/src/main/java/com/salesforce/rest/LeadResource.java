@@ -3,6 +3,7 @@ package com.salesforce.rest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -50,6 +51,22 @@ public class LeadResource {
 
     }
     
+    @PUT
+    @Path("{pubKey}")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Secured(Privilege.DEFAULT)
+    public Response modifyLead(@PathParam("pubKey") String pubKey, Lead lead) {
+        try {
+            String username = securityContext.getUserPrincipal().getName();
+            PublicKey pubKeyObj = leadRepository.modifyLead(lead, username);
+            return Response.status(Response.Status.OK).entity(pubKeyObj).build();
+        } catch (Exception e) {
+            logger.error("The lead could not be created", e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+        }
+
+    }
+
     @GET
     @Path("{pubKey}")
     @Secured(Privilege.DEFAULT)

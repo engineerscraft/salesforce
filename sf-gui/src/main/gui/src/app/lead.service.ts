@@ -15,4 +15,9 @@ export class LeadService {
     return this.httpService.callHttpPost("/resources/v1/lead", lead)
       .map(res => res.json())
   }
+
+  modifyLead(pubKey, lead) {
+    return this.httpService.callHttpPut("/resources/v1/lead/" + pubKey, lead)
+      .map(res => res.json())  
+  }
 }

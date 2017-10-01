@@ -31,14 +31,14 @@ public class StatusRepository {
     @Value("${sql.status.getAll.byEntity}")
     private String statusGetAllByEntitySql;
 
-    public List<Status> getAllStatusByEntity(String entity) {
+    public List<Status> getAllStatusByEntity(String entity, String statusPubKey) {
 
-        Object[] args = { entity };
+        Object[] args = { entity, statusPubKey, statusPubKey };
         logger.info(sqlMarker, statusGetAllByEntitySql);
-        logger.info(sqlMarker, "Params {}", () -> entity);
-        List<Status> districts = (List<Status>) jdbcTemplate.query(statusGetAllByEntitySql, args, new StatusRowMapper());
-        logger.debug("Retrieved districts: {}", () -> districts);
-        return districts;
+        logger.info(sqlMarker, "Params {}, {}, {}", () -> entity, () -> statusPubKey, () -> statusPubKey);
+        List<Status> statusList = (List<Status>) jdbcTemplate.query(statusGetAllByEntitySql, args, new StatusRowMapper());
+        logger.debug("Retrieved districts: {}", () -> statusList);
+        return statusList;
 
     }
 
