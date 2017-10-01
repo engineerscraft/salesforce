@@ -70,7 +70,7 @@ public class LeadRepository {
             logger.info(sqlMarker, leadProductTableInsert);
             this.saveLeadProducts(lead.getProdInstances(), leadId, username);
             PublicKey pubKey = new PublicKey();
-            pubKey.setPubKey("CO" + String.format("%08d", leadId));
+            pubKey.setPubKey("LD" + String.format("%08d", leadId));
             return pubKey;
         } else {
             throw new Exception("Lead cannot be created as basic lead data is missing...");
@@ -135,14 +135,14 @@ public class LeadRepository {
     private Integer generateLeadId() throws Exception {
 
         logger.info(sqlMarker, getLeadSequence);
-        logger.info(sqlMarker, "Params {}", () -> ApplicationUtils.CONTACT_SEQ_NAME);
+        logger.info(sqlMarker, "Params {}", () -> ApplicationUtils.LEAD_SEQ_NAME);
 
         Integer fetchedLeadId = jdbcTemplate.queryForObject(getLeadSequence, new Object[] { ApplicationUtils.LEAD_SEQ_NAME }, Integer.class);
         Integer newLeadId = fetchedLeadId + 1;
 
         logger.info(sqlMarker, updateLeadSequence);
-        logger.info(sqlMarker, "Params {} {}", () -> newLeadId, () -> ApplicationUtils.CONTACT_SEQ_NAME);
-        jdbcTemplate.update(updateLeadSequence, new Object[] { newLeadId, ApplicationUtils.CONTACT_SEQ_NAME });
+        logger.info(sqlMarker, "Params {} {}", () -> newLeadId, () -> ApplicationUtils.LEAD_SEQ_NAME);
+        jdbcTemplate.update(updateLeadSequence, new Object[] { newLeadId, ApplicationUtils.LEAD_SEQ_NAME });
 
         logger.debug("Lead ID generated: {}", () -> fetchedLeadId);
         return fetchedLeadId;

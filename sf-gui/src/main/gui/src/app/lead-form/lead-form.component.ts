@@ -124,12 +124,14 @@ export class LeadFormComponent implements OnInit {
               this.products[i].totalQuotePrice = (this.products[i].actualPrice - (this.products[i].actualPrice * this.products[i].discVal / 100)) * this.products[i].unit;
             }
           }
-          this.accountService.getAccountSummary(res.accPubKey)
-            .subscribe(
+          if (res.accPubKey) {
+            this.accountService.getAccountSummary(res.accPubKey)
+              .subscribe(
               res => {
                 this.account = res;
               }
-            );
+              );
+          }
         }
         ,
         err => {
@@ -308,9 +310,20 @@ export class LeadFormComponent implements OnInit {
   }
 
   submit() {
-    this.leadService.createLead(this.leadFormGroup.value).subscribe(
-      data => { },
-      err => { }
-    );
+    this.message = '';
+    if (this.mode === 'Create') {
+      this.leadService.createLead(this.leadFormGroup.value).subscribe(
+        data => {
+          this.router.navigate(['leadDetails/' + data.pubKey]);
+        },
+        err => { }
+      );
+    } else if (this.mode === 'View') {
+      this.readOnly = null;
+      this.buttonName = 'Save';
+      this.mode = 'Modify';
+    } else if (this.mode === 'Modify') {
+
+    }
   }
 }
