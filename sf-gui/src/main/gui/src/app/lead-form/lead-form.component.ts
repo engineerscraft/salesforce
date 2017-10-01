@@ -72,7 +72,7 @@ export class LeadFormComponent implements OnInit {
         pubKey: [''],
         title: ['', [Validators.required]],
         quotePrice: [0],
-        statusPubKey: ['', [Validators.required]]
+        statusPubKey: ['CREATED', [Validators.required]]
       }),
       discType: [1],
       discVal: [0],
