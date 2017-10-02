@@ -28,6 +28,14 @@ public class SalesRep {
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date doj;
     private String desig;
+    private String supFName;
+    private String supMName;
+    private String supLName;
+    private String supExtn;
+    private String supLand;
+    private String supMob;
+    private String supEmail;
+    private String supDesig;
 
     /**
      * @return the salesRepId
@@ -211,13 +219,126 @@ public class SalesRep {
         this.desig = desig;
     }
 
+    /**
+     * @return the supFName
+     */
+    public String getSupFName() {
+        return supFName;
+    }
+
+    /**
+     * @param supFName the supFName to set
+     */
+    public void setSupFName(String supFName) {
+        this.supFName = supFName;
+    }
+
+    /**
+     * @return the supMName
+     */
+    public String getSupMName() {
+        return supMName;
+    }
+
+    /**
+     * @param supMName the supMName to set
+     */
+    public void setSupMName(String supMName) {
+        this.supMName = supMName;
+    }
+
+    /**
+     * @return the supLName
+     */
+    public String getSupLName() {
+        return supLName;
+    }
+
+    /**
+     * @param supLName the supLName to set
+     */
+    public void setSupLName(String supLName) {
+        this.supLName = supLName;
+    }
+
+    /**
+     * @return the supExtn
+     */
+    public String getSupExtn() {
+        return supExtn;
+    }
+
+    /**
+     * @param supExtn the supExtn to set
+     */
+    public void setSupExtn(String supExtn) {
+        this.supExtn = supExtn;
+    }
+
+    /**
+     * @return the supLand
+     */
+    public String getSupLand() {
+        return supLand;
+    }
+
+    /**
+     * @param supLand the supLand to set
+     */
+    public void setSupLand(String supLand) {
+        this.supLand = supLand;
+    }
+
+    /**
+     * @return the supMob
+     */
+    public String getSupMob() {
+        return supMob;
+    }
+
+    /**
+     * @param supMob the supMob to set
+     */
+    public void setSupMob(String supMob) {
+        this.supMob = supMob;
+    }
+
+    /**
+     * @return the supEmail
+     */
+    public String getSupEmail() {
+        return supEmail;
+    }
+
+    /**
+     * @param supEmail the supEmail to set
+     */
+    public void setSupEmail(String supEmail) {
+        this.supEmail = supEmail;
+    }
+
+    /**
+     * @return the supDesig
+     */
+    public String getSupDesig() {
+        return supDesig;
+    }
+
+    /**
+     * @param supDesig the supDesig to set
+     */
+    public void setSupDesig(String supDesig) {
+        this.supDesig = supDesig;
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         return "SalesRep [salesRepId=" + salesRepId + ", pubKey=" + pubKey + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", supPubKey=" + supPubKey + ", statusId=" + statusId + ", extn=" + extn + ", land=" + land + ", mob=" + mob
-                + ", email=" + email + ", doj=" + doj + ", desig=" + desig + "]";
+                + ", email=" + email + ", doj=" + doj + ", desig=" + desig + ", supFName=" + supFName + ", supMName=" + supMName + ", supLName=" + supLName + ", supExtn=" + supExtn + ", supLand=" + supLand + ", supMob=" + supMob + ", supEmail=" + supEmail
+                + ", supDesig=" + supDesig + "]";
     }
 
 }

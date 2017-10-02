@@ -36,8 +36,8 @@
           <h6 class="card-title mb-4 text-center text-muted">Supervisor</h6>
 
           <ul class="list-group my-4">
-            <li *ngIf="salesrep.pubKey" class="list-group-item">
-              <p><strong>{{salesrep.name}} (<a routerLink="/salesrepDetails/{{salesrep.pubKey}}">{{salesrep.pubKey}}</a>)<i (click)=removeSalesrep(salesrep.pubKey)
+            <li [@fadeIn] *ngFor="let salesrep of salesreps" class="list-group-item">
+              <p><strong>{{salesrep.fName}} {{salesrep.mName}} {{salesrep.lName}} (<a routerLink="/salesrepDetails/{{salesrep.pubKey}}">{{salesrep.pubKey}}</a>)<i *ngIf="!readOnly" (click)=removeSalesrep(salesrep.pubKey)
                 class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></strong></p>
               <p class="p-0 m-0"><small>{{salesrep.desig}}</small></p>
               <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{salesrep.email}}</small></p>

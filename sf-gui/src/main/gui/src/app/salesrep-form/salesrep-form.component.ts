@@ -53,7 +53,7 @@ export class SalesrepFormComponent implements OnInit {
         fName: ['', [Validators.required]],
         mName: [''],
         lName: [''],
-        supPubKey: [''],
+        supPubKey: ['', [Validators.required]],
         desig: ['', [Validators.required]],
         email: ['', [Validators.required]],
         mob: ['', [Validators.required]],
@@ -165,29 +165,31 @@ export class SalesrepFormComponent implements OnInit {
   }
 
   addSalesrep($event) {
-    this.salesrep['pubKey'] = $event.pubKey;
-    this.salesRepFormGroup.patchValue({
-      supPubKey: this.salesrep
-    });
-
     this.salesrep.push({
       pubKey: $event.pubKey,
-      name: $event.name,
+      fName: $event.fName,
+      mName: $event.mName,
+      lName: $event.lName,
       mob: $event.mob,
       email: $event.email,
       desig: $event.desig,
       land: $event.land,
       extn: $event.extn
     });
-    let addedSalesreps = {};
-    addedSalesreps['pubKey'] = $event.pubKey;
-    this.salesRepFormGroup.patchValue({
-      supPubKey: addedSalesreps
-    });
+    this.updateSalesrep();
   }
 
-  removeSalesrep() {
-    this.salesrep = [];
+  removeSalesrep(pubKey) {
+    let i = this.salesrep.length
+    while (i--) {
+      if (this.salesrep[i].pubKey === pubKey) {
+        this.salesrep.splice(i, 1);
+      }
+    }
+    this.updateSalesrep();
+  }
+
+  updateSalesrep() {
     this.salesRepFormGroup.patchValue({
       supPubKey: this.salesrep
     });
