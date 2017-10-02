@@ -114,8 +114,8 @@ public class AuthenticationRepository {
      * @param salesRep
      * @return
      */
-    private String getFullName(SalesRep salesRep) {
-        String fullName = String.format("%s %s %s", salesRep.getfName(), salesRep.getmName() == null ? "" : salesRep.getmName(), salesRep.getlName());
+    private String getFullName(String fName, String mName, String lName) {
+        String fullName = String.format("%s %s %s", fName, mName == null ? "" : mName, lName);
         return fullName;
     }
 
@@ -128,7 +128,7 @@ public class AuthenticationRepository {
      */
     public void createUser(String salesRepPubKey, SalesRep salesRep) throws Exception {
         try {
-            String fullName = this.getFullName(salesRep);
+            String fullName = this.getFullName(salesRep.getSalesRepSummary().getfName(), salesRep.getSalesRepSummary().getmName(), salesRep.getSalesRepSummary().getlName());
             Attribute sn = new BasicAttribute("sn", fullName);
             Attribute password = new BasicAttribute("userPassword", salesRepPubKey);
             Attribute displayName = new BasicAttribute("displayName", fullName);

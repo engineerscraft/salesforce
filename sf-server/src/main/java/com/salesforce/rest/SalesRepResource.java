@@ -23,6 +23,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.salesforce.model.Message;
 import com.salesforce.model.PublicKey;
 import com.salesforce.model.SalesRep;
+import com.salesforce.model.SalesRepSummary;
 import com.salesforce.privileges.Privilege;
 import com.salesforce.repository.SalesRepRepository;
 import com.salesforce.security.Secured;
@@ -47,7 +48,7 @@ public class SalesRepResource {
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Secured(Privilege.DEFAULT)
     public Response getSalesRepPage(@QueryParam("searchString") String searchString, @QueryParam("startPosition") long startPosition) {
-        List<SalesRep> salesReps;
+        List<SalesRepSummary> salesReps;
         try {
             salesReps = salesRepRepository.getSalesRepPage(searchString, startPosition);
             if (salesReps.size() == 0) {
