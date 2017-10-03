@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, trigger, transition, style, animate } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SalesrepService } from '../salesrep.service';
 import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
@@ -9,7 +9,15 @@ import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-boo
 @Component({
   selector: 'app-salesrep-form',
   templateUrl: './salesrep-form.component.html',
-  styleUrls: ['./salesrep-form.component.scss']
+  styleUrls: ['./salesrep-form.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':leave', [
+        style({ transform: 'translateX(0)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(50%)', opacity: 0 }))
+      ])
+    ]),
+  ]
 })
 export class SalesrepFormComponent implements OnInit {
 
@@ -23,8 +31,9 @@ export class SalesrepFormComponent implements OnInit {
   private pubKey;
   private formTitle = 'Sales Person Creation';
 
-  private salesrep = [
+  private salesreps = [
   ];
+  private salesrep = {};
   private closeResult: string;
   private modal;
 
@@ -47,20 +56,21 @@ export class SalesrepFormComponent implements OnInit {
     }
 
     this.salesRepFormGroup = this.formBuilder.group({
-
+      salesRepSummary: this.formBuilder.group({
         salesRepId: [''],
         pubKey: [''],
         fName: ['', [Validators.required]],
         mName: [''],
         lName: [''],
-        supPubKey: ['', [Validators.required]],
         desig: ['', [Validators.required]],
         email: ['', [Validators.required]],
         mob: ['', [Validators.required]],
-        statusId: ['1'],
-        doj: ['', [Validators.required]],
         land: [''],
         extn: ['']
+      }),        
+      supPubKey: ['', [Validators.required]],
+      statusId: ['1'],
+      doj: ['', [Validators.required]]
     });
 
     this.activatedRoute
@@ -165,7 +175,7 @@ export class SalesrepFormComponent implements OnInit {
   }
 
   addSalesrep($event) {
-    this.salesrep.push({
+    this.salesreps.push({
       pubKey: $event.pubKey,
       fName: $event.fName,
       mName: $event.mName,
@@ -175,23 +185,25 @@ export class SalesrepFormComponent implements OnInit {
       desig: $event.desig,
       land: $event.land,
       extn: $event.extn
-    });
-    this.updateSalesrep();
+    });    
+    this.salesrep['pubKey'] = $event.pubKey;
+    this.updateSalesrep(this.salesrep['pubKey']);
   }
 
   removeSalesrep(pubKey) {
-    let i = this.salesrep.length
+    let i = this.salesreps.length
     while (i--) {
-      if (this.salesrep[i].pubKey === pubKey) {
-        this.salesrep.splice(i, 1);
+      if (this.salesreps[i].pubKey === pubKey) {
+        this.salesreps.splice(i, 1);
       }
-    }
-    this.updateSalesrep();
+    }    
+    this.salesrep = {};
+    this.updateSalesrep(this.salesrep);
   }
 
-  updateSalesrep() {
+  updateSalesrep(pubKey) {
     this.salesRepFormGroup.patchValue({
-      supPubKey: this.salesrep
+      supPubKey: pubKey
     });
   }
 

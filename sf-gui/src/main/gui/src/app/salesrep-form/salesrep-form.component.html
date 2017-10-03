@@ -8,23 +8,23 @@
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Basic Information</h6>
-          <div *ngIf="pubKey" class="form-group" >
+          <div *ngIf="pubKey" class="form-group" formGroupName="salesRepSummary">
             <label for="pubKey">Public Key</label>
             <input (focus)="attr = 'pubKey'" type="text" formControlName="pubKey" class="form-control" id="pubKey" required readonly>
           </div>
-          <div class="form-group" >
+          <div class="form-group" formGroupName="salesRepSummary">
             <label for="fName">First Name <span class="text-danger">*</span></label>
             <input (focus)="attr = 'fName'" type="text" formControlName="fName" class="form-control" id="fname" placeholder="First name of the Sales Representative" [readOnly]="readOnly" required>
           </div>
-          <div class="form-group" >
+          <div class="form-group" formGroupName="salesRepSummary">
             <label for="mName">Middle Name</label>
             <input (focus)="attr = 'mName'" type="text" formControlName="mName" class="form-control" id="mName" placeholder="Middle name of the Sales Representative" [readOnly]="readOnly">
           </div>
-          <div class="form-group" >
+          <div class="form-group" formGroupName="salesRepSummary">
             <label for="lName">Last Name</label>
             <input (focus)="attr = 'lName'" type="text" formControlName="lName" class="form-control" id="lName" placeholder="Last name of the Sales Representative" [readOnly]="readOnly">
           </div>
-          <div class="form-group" >
+          <div class="form-group" formGroupName="salesRepSummary">
             <label for="desig">Designation <span class="text-danger">*</span></label>
             <input (focus)="attr = 'desig'" type="text" formControlName="desig" class="form-control" id="desig" placeholder="Designation of the Sales Representative"
               required [readOnly]="readOnly">
@@ -50,21 +50,21 @@
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Sales Representative Information</h6>
-          <div class="form-group" >
+          <div class="form-group" formGroupName="salesRepSummary">
             <label for="email">Email <span class="text-danger">*</span></label>
             <input (focus)="attr = 'email'" type="email" formControlName="email" class="form-control" id="email" placeholder="Email of the Sales Representative"
               required [readOnly]="readOnly">
           </div>
-          <div class="form-group" >
+          <div class="form-group" formGroupName="salesRepSummary">
             <label for="mob">Mobile <span class="text-danger">*</span></label>
             <input (focus)="attr = 'mob'" type="text" formControlName="mob" class="form-control" id="mob" placeholder="Mobile number of the Sales Representative"
               required [readOnly]="readOnly">
           </div>
-          <div class="form-group" >
+          <div class="form-group" formGroupName="salesRepSummary">
             <label for="land">Telephone</label>
             <input (focus)="attr = 'land'" type="text" formControlName="land" class="form-control" id="land" placeholder="Land line number of the Sales Representative" [readOnly]="readOnly">
           </div>
-          <div class="form-group" >
+          <div class="form-group" formGroupName="salesRepSummary">
             <label for="extn">Extension</label>
             <input (focus)="attr = 'extn'" type="text" formControlName="extn" class="form-control" id="extn" placeholder="Extension number of the Sales Representative" [readOnly]="readOnly">
           </div>
