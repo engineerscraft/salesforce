@@ -5,6 +5,10 @@
   <form [formGroup]="leadFormGroup" (ngSubmit)="submit()">
     <div class="card-block">
       <h1 class="display-4 text-white ml-4 my-3">{{formTitle}}</h1>
+      <div class="ml-4 my-3">
+      <button class="btn btn-info text-white ripple">Show Updates</button>
+      <button *ngIf="showConversionControl" class="btn btn-success text-white ripple">Convert to Opportunity</button>
+      </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Basic Information</h6>
@@ -43,7 +47,7 @@
             </select>
           </div>
           <div *ngIf="pubKey" class="form-group" formGroupName="leadSummary">
-            <label for="status">Discount Type <span class="text-danger">*</span></label>
+            <label for="status">Status <span class="text-danger">*</span></label>
             <select (focus)="attr = 'status'" class="form-control" formControlName="statusPubKey" id="status" [attr.disabled]="readOnly"
               required>
                   <option *ngFor="let status of possibleStatus" value="{{status.pubKey}}">{{status.des}}</option>
@@ -107,8 +111,10 @@
       </div>
 
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
-        <button [disabled]="!leadFormGroup.valid" type="submit" class="btn btn-primary float-right text-white ripple">{{buttonName}}</button>
-        <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-primary float-right text-white ripple">Cancel</button>
+        <button class="btn btn-info text-white ripple">Show Updates</button>
+        <button *ngIf="showConversionControl" class="btn btn-success text-white ripple">Convert to Opportunity</button>
+        <button [disabled]="!leadFormGroup.valid" type="submit" class="btn btn-info float-right text-white ripple">{{buttonName}}</button>
+        <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-info float-right text-white ripple">Cancel</button>
       </div>
     </div>
   </form>

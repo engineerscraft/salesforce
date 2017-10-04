@@ -46,6 +46,7 @@ export class LeadFormComponent implements OnInit {
   private modal;
   private divisions;
   private possibleStatus;
+  private showConversionControl = false;
 
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -137,9 +138,10 @@ export class LeadFormComponent implements OnInit {
           }
           this.statusService.readStatus('LEAD', res.leadSummary.statusPubKey)
             .subscribe(
-              res => {
-                this.possibleStatus = res;
-              }
+            res => {
+              this.possibleStatus = res;
+              this.checkLeadStatus();
+            }
             );
         }
         ,
@@ -318,6 +320,15 @@ export class LeadFormComponent implements OnInit {
     });
   }
 
+  checkLeadStatus() {
+    this.showConversionControl = false;
+    this.possibleStatus.forEach(function (status) {
+      if (status.pubKey === this.leadFormGroup.get('leadSummary.statusPubKey').value && status.conv) {
+        this.showConversionControl = true;
+      }
+    }.bind(this));
+  }
+
   submit() {
     this.message = '';
     if (this.mode === 'Create') {
@@ -332,12 +343,19 @@ export class LeadFormComponent implements OnInit {
       this.buttonName = 'Save';
       this.mode = 'Modify';
     } else if (this.mode === 'Modify') {
-      if(this.leadFormGroup.dirty) {
+      if (this.leadFormGroup.dirty) {
         this.leadService.modifyLead(this.pubKey, this.leadFormGroup.value)
           .subscribe(
-            res => {
-              this.cancel();
-            }
+          res => {
+            this.statusService.readStatus('LEAD', this.leadFormGroup.get('leadSummary.statusPubKey').value)
+              .subscribe(
+              res => {
+                this.possibleStatus = res;
+                this.checkLeadStatus();
+              }
+              );
+            this.cancel();
+          }
           );
       } else {
         this.cancel();
