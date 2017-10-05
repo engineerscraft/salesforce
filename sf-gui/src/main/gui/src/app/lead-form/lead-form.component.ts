@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, trigger, transition, style, animate } from '@angular/core';
+import { Component, OnInit, Input, Output, trigger, transition, style, animate, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeadService } from '../lead.service';
 import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
@@ -16,9 +16,19 @@ import { StatusService } from '../status.service';
     trigger('fadeIn', [
       transition(':leave', [
         style({ transform: 'translateX(0)', opacity: 1 }),
-        animate('500ms', style({ transform: 'translateX(50%)', opacity: 0 }))
+        animate('500ms', style({ transform: 'translateX(25%)', opacity: 0 }))
       ])
     ]),
+    trigger('enterAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateX(-5%)', opacity: 0 }),
+        animate('500ms', style({ transform: 'translateX(0)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateX(0)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(5%)', opacity: 0 }))
+      ])
+    ])
   ]
 
 })
@@ -26,6 +36,7 @@ export class LeadFormComponent implements OnInit {
 
   @Input() readOnly: boolean = null;
   @Input() mode = "Create";
+  @Output() changeView = new EventEmitter<any>();
 
   private leadFormGroup: FormGroup;
   private attr = '';
@@ -361,5 +372,9 @@ export class LeadFormComponent implements OnInit {
         this.cancel();
       }
     }
+  }
+
+  changeViewDisplay() {
+    this.changeView.emit();
   }
 }

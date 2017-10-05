@@ -44,6 +44,9 @@ import { ContactSelectorComponent } from './contact-selector/contact-selector.co
 import { ProdInstEditorComponent } from './prod-inst-editor/prod-inst-editor.component';
 import { AccountSelectorComponent } from './account-selector/account-selector.component';
 import { SalesrepSelectorComponent } from './salesrep-selector/salesrep-selector.component';
+import { CommentCardComponent } from './comment-card/comment-card.component';
+import { CommentFormComponent } from './comment-form/comment-form.component';
+import { TimelineComponent } from './timeline/timeline.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -85,7 +88,10 @@ const appRoutes: Routes = [
     ContactSelectorComponent,
     ProdInstEditorComponent,
     AccountSelectorComponent,
-    SalesrepSelectorComponent
+    SalesrepSelectorComponent,
+    CommentCardComponent,
+    CommentFormComponent,
+    TimelineComponent
   ],
   imports: [
     RouterModule.forRoot(

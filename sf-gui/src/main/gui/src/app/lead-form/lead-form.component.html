@@ -1,4 +1,4 @@
-<div class="card card-shadow bg-primary pb-4">
+<div [@enterAnimation] class="card card-shadow bg-primary pb-4">
   <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
     <strong>{{message}}</strong>
   </div>
@@ -6,8 +6,8 @@
     <div class="card-block">
       <h1 class="display-4 text-white ml-4 my-3">{{formTitle}}</h1>
       <div class="ml-4 my-3">
-      <button class="btn btn-info text-white ripple">Show Updates</button>
-      <button *ngIf="showConversionControl" class="btn btn-success text-white ripple">Convert to Opportunity</button>
+        <button class="btn btn-info text-white ripple" (click)="changeViewDisplay()">Show Updates</button>
+        <button *ngIf="showConversionControl" class="btn btn-success text-white ripple">Convert to Opportunity</button>
       </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">

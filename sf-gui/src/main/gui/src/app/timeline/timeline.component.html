@@ -1,0 +1,44 @@
+<div [@enterAnimation] class="card card-shadow pb-4">
+  <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
+    <strong>{{message}}</strong>
+  </div>
+  <form (ngSubmit)="submit()">
+    <div class="card-block">
+      <h1 class="display-4 ml-4 my-3">{{formTitle}}</h1>
+      <div class="ml-4 my-3">
+        <button class="btn btn-info text-white ripple" (click)="changeViewDisplay()">Show Details</button>
+      </div>
+
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Comments</h6>
+          <div class="form-group">
+            <label for="changeDescription">Change Description</label>
+            <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Describe your changes"></textarea>
+          </div>
+          <button type="submit" class="btn btn-info float-right text-white ripple">Save</button>
+        </div>
+      </div>
+
+      <ul class="timeline py-4">
+        <li>
+          <div class="timeline-badge"><i class="fa fa-comment-o" aria-hidden="true"></i></div>
+          <div class="card card-shadow my-4 ml-5 py-4 px-md-4 px-3">
+            <div class="card-block">
+              <div class="card-body">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Mussum ipsum cacilds</h4>
+                </div>
+
+                <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris,
+                  paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis
+                  mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num
+                  significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>
