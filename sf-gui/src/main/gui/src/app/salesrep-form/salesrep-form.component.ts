@@ -17,6 +17,16 @@ import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-boo
         animate('500ms', style({ transform: 'translateX(50%)', opacity: 0 }))
       ])
     ]),
+    trigger('enterAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateY(-50%)', opacity: 0 }),
+        animate('500ms', style({ transform: 'translateX(0)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateY(0)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateY(-50%)', opacity: 0 }))
+      ])
+    ])
   ]
 })
 export class SalesrepFormComponent implements OnInit {
@@ -94,7 +104,6 @@ export class SalesrepFormComponent implements OnInit {
               .subscribe(
               res => {
                 this.salesrep = res;
-                console.log("Supervisor Fetched === " + this.salesrep);
               }
               );
           }
