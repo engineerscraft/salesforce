@@ -50,6 +50,7 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { AccountFormComponent } from './account-form/account-form.component';
+import { AccountCardComponent } from './account-card/account-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -61,7 +62,9 @@ const appRoutes: Routes = [
   { path: 'contactDetails/:pubKey', component: ContactDetailsComponent },
   { path: 'leadDetails/:pubKey', component: LeadDetailsComponent },
   { path: 'salesreps', component: SalesrepsComponent },
-  { path: 'salesrepDetails/:pubKey', component: SalesrepDetailsComponent }
+  { path: 'salesrepDetails/:pubKey', component: SalesrepDetailsComponent },
+  { path: 'accounts', component: AccountsComponent },
+  { path: 'accountDetails/:pubKey', component: AccountDetailsComponent }
 ];
 
 @NgModule({
@@ -97,7 +100,8 @@ const appRoutes: Routes = [
     TimelineComponent,
     AccountsComponent,
     AccountDetailsComponent,
-    AccountFormComponent
+    AccountFormComponent,
+    AccountCardComponent
   ],
   imports: [
     RouterModule.forRoot(
