@@ -31,8 +31,6 @@ export class SalesrepFormComponent implements OnInit {
   private pubKey;
   private formTitle = 'Sales Person Creation';
 
-  private salesreps = [
-  ];
   private salesrep = {};
   private closeResult: string;
   private modal;
@@ -90,6 +88,16 @@ export class SalesrepFormComponent implements OnInit {
           var month = dojDate.getMonth();
           var day = dojDate.getDay();
           console.log("Year === " + year + " , Month === " + month + " , Day === " + day);
+          console.log("Supervisor Pub key === " + res.supPubKey);
+          if (res.supPubKey) {
+            this.salesrepService.readSalesRep(res.supPubKey)
+              .subscribe(
+              res => {
+                this.salesrep = res;
+                console.log("Supervisor Fetched === " + this.salesrep);
+              }
+              );
+          }
         },
         err => {
           this.message = err.status + " : " + err.statusText;
@@ -175,35 +183,24 @@ export class SalesrepFormComponent implements OnInit {
   }
 
   addSalesrep($event) {
-    this.salesreps.push({
-      pubKey: $event.pubKey,
-      fName: $event.fName,
-      mName: $event.mName,
-      lName: $event.lName,
-      mob: $event.mob,
-      email: $event.email,
-      desig: $event.desig,
-      land: $event.land,
-      extn: $event.extn
-    });    
     this.salesrep['pubKey'] = $event.pubKey;
-    this.updateSalesrep(this.salesrep['pubKey']);
-  }
-
-  removeSalesrep(pubKey) {
-    let i = this.salesreps.length
-    while (i--) {
-      if (this.salesreps[i].pubKey === pubKey) {
-        this.salesreps.splice(i, 1);
-      }
-    }    
-    this.salesrep = {};
-    this.updateSalesrep(this.salesrep);
-  }
-
-  updateSalesrep(pubKey) {
+    this.salesrep['fName'] = $event.fName;
+    this.salesrep['mName'] = $event.mName;
+    this.salesrep['lName'] = $event.lName;
+    this.salesrep['mob'] = $event.mob;
+    this.salesrep['email'] = $event.email;
+    this.salesrep['desig'] = $event.desig;
+    this.salesrep['land'] = $event.land;
+    this.salesrep['extn'] = $event.extn;
     this.salesRepFormGroup.patchValue({
-      supPubKey: pubKey
+      supPubKey: this.salesrep['pubKey']
+    });
+  }
+
+  removeSalesrep() {
+    this.salesrep = {};
+    this.salesRepFormGroup.patchValue({
+      supPubKey: this.salesrep
     });
   }
 

@@ -36,15 +36,15 @@
           <h6 class="card-title mb-4 text-center text-muted">Supervisor</h6>
 
           <ul class="list-group my-4">
-            <li [@fadeIn] *ngFor="let salesrep of salesreps" class="list-group-item">
-              <p><strong>{{salesrep.fName}} {{salesrep.mName}} {{salesrep.lName}} (<a routerLink="/salesrepDetails/{{salesrep.pubKey}}">{{salesrep.pubKey}}</a>)<i *ngIf="!readOnly" (click)=removeSalesrep(salesrep.pubKey)
+            <li [@fadeIn] *ngIf="salesrep.pubKey" class="list-group-item">
+              <p><strong>{{salesrep.fName}} {{salesrep.mName}} {{salesrep.lName}} (<a routerLink="/salesrepDetails/{{salesrep.pubKey}}">{{salesrep.pubKey}}</a>)<i *ngIf="!readOnly" (click)=removeSalesrep()
                 class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></strong></p>
               <p class="p-0 m-0"><small>{{salesrep.desig}}</small></p>
               <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{salesrep.email}}</small></p>
               <p class="p-0 m-0"><small><i class="fa fa-mobile" aria-hidden="true"></i> {{salesrep.mob}} / <i class="fa fa-phone" aria-hidden="true"></i> {{salesrep.land}} - {{salesrep.extn}}</small></p>
             </li>
           </ul>
-          <button type="button" (click)="open(salesrepSelector)" class="btn btn-primary float-right text-white ripple">Add Supervisor</button>
+          <button *ngIf="!readOnly" type="button" (click)="open(salesrepSelector)" class="btn btn-primary float-right text-white ripple">Add Supervisor</button>
         </div>
       </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
@@ -107,7 +107,7 @@
             </button>
     </div>
     <div class="modal-body p-4">
-      <app-salesrep-selector [addedSalesreps]="salesreps" (add)="addSalesrep($event)"></app-salesrep-selector>
+      <app-salesrep-selector [addedSalesreps]="salesrep" (add)="addSalesrep($event)"></app-salesrep-selector>
     </div>
   </ng-template>
 </div>

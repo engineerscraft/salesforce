@@ -26,14 +26,6 @@ public class SalesRepRowMapper implements RowMapper<SalesRep> {
         salesRep.getSalesRepSummary().setLand(rs.getString("LAND"));
         salesRep.getSalesRepSummary().setExtn(rs.getString("EXTN"));
         salesRep.setSupPubKey(rs.getString("SUP_PUB_KEY"));
-        salesRep.setSupFName(rs.getString("SUP_F_NAME"));
-        salesRep.setSupMName(rs.getString("SUP_M_NAME"));
-        salesRep.setSupLName(rs.getString("SUP_L_NAME"));
-        salesRep.setSupExtn(rs.getString("SUP_EXTN"));
-        salesRep.setSupLand(rs.getString("SUP_LAND"));
-        salesRep.setSupMob(rs.getString("SUP_MOB"));
-        salesRep.setSupEmail(rs.getString("SUP_EMAIL"));
-        salesRep.setSupDesig(rs.getString("SUP_DESIG"));
         return salesRep;
     }
 }
