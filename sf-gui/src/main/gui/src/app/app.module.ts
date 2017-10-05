@@ -47,6 +47,9 @@ import { SalesrepSelectorComponent } from './salesrep-selector/salesrep-selector
 import { CommentCardComponent } from './comment-card/comment-card.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { AccountFormComponent } from './account-form/account-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -91,7 +94,10 @@ const appRoutes: Routes = [
     SalesrepSelectorComponent,
     CommentCardComponent,
     CommentFormComponent,
-    TimelineComponent
+    TimelineComponent,
+    AccountsComponent,
+    AccountDetailsComponent,
+    AccountFormComponent
   ],
   imports: [
     RouterModule.forRoot(
