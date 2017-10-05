@@ -60,9 +60,11 @@ export class SalesrepSelectorComponent implements OnInit {
             data => {
               this.salesreps = data;
               this.salesreps.forEach(function (sales) {
-                if (this.addedSalesreps.pubKey === sales.pubKey) {
+                this.addedSalesreps.forEach(function (addedSales) {
+                  if (sales.pubKey === addedSales.pubKey) {
                     sales.alreadyAdded = true;
                   }
+                }.bind(this))
               }.bind(this));
             },
             err => {
@@ -73,10 +75,11 @@ export class SalesrepSelectorComponent implements OnInit {
   }
 
   addSalesrep(salesrep) {
-    let name = salesrep.fName + ' ' + (salesrep.mName ? (salesrep.mName + ' ') : '') + salesrep.lName;
     this.add.emit({
       "pubKey": salesrep.pubKey,
-      "name": name,
+      "fName": salesrep.fName,
+      "mName": salesrep.mName,
+      "lName": salesrep.lName,
       "email": salesrep.email,
       "mob": salesrep.mob,
       "land": salesrep.land,
@@ -101,9 +104,11 @@ export class SalesrepSelectorComponent implements OnInit {
         this.salesreps = data;
         this.paginationMessage = undefined;
         this.salesreps.forEach(function (sales) {
-          if (sales.pubKey === this.addedSalesreps.pubKey) {
+          this.addedSalesreps.forEach(function (addedSales) {
+            if (sales.pubKey === addedSales.pubKey) {
               sales.alreadyAdded = true;
-          }
+            }
+          }.bind(this))
         }.bind(this));
 
       },
@@ -136,9 +141,11 @@ export class SalesrepSelectorComponent implements OnInit {
           this.message = '';
           this.paginationMessage = undefined;
           this.salesreps.forEach(function (sales) {
-            if (sales.pubKey === this.addedSalesreps.pubKey) {
-              sales.alreadyAdded = true;
-            }
+            this.addedSalesreps.forEach(function (addedSales) {
+              if (sales.pubKey === addedSales.pubKey) {
+                sales.alreadyAdded = true;
+              }
+            }.bind(this))
           }.bind(this));
         },
         err => {

@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.salesforce.model.PublicKey;
 import com.salesforce.model.SalesRep;
+import com.salesforce.model.SalesRepSummary;
 import com.salesforce.rowmapper.SalesRepRowMapper;
+import com.salesforce.rowmapper.SalesRepSummaryRowMapper;
 import com.salesforce.utils.ApplicationUtils;
 
 /**
@@ -53,11 +55,11 @@ public class SalesRepRepository {
     @Value("${sql.salesRep.update}")
     private String salesRepUpdate;
 
-    public List<SalesRep> getSalesRepPage(String searchString, long startPosition) {
+    public List<SalesRepSummary> getSalesRepPage(String searchString, long startPosition) {
         Object[] args = { searchString, '%' + searchString + '%', searchString, salesRepPageSize, startPosition };
         logger.info(sqlMarker, salesRepPageSql);
         logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> searchString, () -> '%' + searchString + '%', () -> searchString, () -> salesRepPageSize, () -> startPosition);
-        List<SalesRep> salesReps = (List<SalesRep>) jdbcTemplate.query(salesRepPageSql, args, new SalesRepRowMapper());
+        List<SalesRepSummary> salesReps = (List<SalesRepSummary>) jdbcTemplate.query(salesRepPageSql, args, new SalesRepSummaryRowMapper());
         logger.debug("Retrieved sales representatives: {}", () -> salesReps);
         return salesReps;
     }
@@ -74,10 +76,13 @@ public class SalesRepRepository {
             Integer salesRepId = generateSalesRepId();
 
             logger.info(sqlMarker, salesRepTableInsert);
-            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> salesRepId, () -> salesRepId, () -> salesRep.getfName(), () -> salesRep.getmName(), () -> salesRep.getlName(), () -> salesRep.getSupPubKey(),
-                    () -> salesRep.getStatusId(), () -> salesRep.getExtn(), () -> salesRep.getLand(), () -> salesRep.getMob(), () -> salesRep.getEmail(), () -> salesRep.getDoj(), () -> salesRep.getDesig(), () -> username);
-            jdbcTemplate.update(salesRepTableInsert, new Object[] { salesRepId, salesRepId, salesRep.getfName(), salesRep.getmName(), salesRep.getlName(), salesRep.getSupPubKey(), salesRep.getStatusId(), salesRep.getExtn(), salesRep.getLand(),
-                    salesRep.getMob(), salesRep.getEmail(), salesRep.getDoj(), salesRep.getDesig(), username });
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> salesRepId, () -> salesRepId, () -> salesRep.getSalesRepSummary().getfName(), () -> salesRep.getSalesRepSummary().getmName(),
+                    () -> salesRep.getSalesRepSummary().getlName(), () -> salesRep.getSupPubKey(), () -> salesRep.getStatusId(), () -> salesRep.getSalesRepSummary().getExtn(), () -> salesRep.getSalesRepSummary().getLand(),
+                    () -> salesRep.getSalesRepSummary().getMob(), () -> salesRep.getSalesRepSummary().getEmail(), () -> salesRep.getDoj(), () -> salesRep.getSalesRepSummary().getDesig(), () -> username);
+            jdbcTemplate.update(salesRepTableInsert,
+                    new Object[] { salesRepId, salesRepId, salesRep.getSalesRepSummary().getfName(), salesRep.getSalesRepSummary().getmName(), salesRep.getSalesRepSummary().getlName(), salesRep.getSupPubKey(), salesRep.getStatusId(),
+                            salesRep.getSalesRepSummary().getExtn(), salesRep.getSalesRepSummary().getLand(), salesRep.getSalesRepSummary().getMob(), salesRep.getSalesRepSummary().getEmail(), salesRep.getDoj(), salesRep.getSalesRepSummary().getDesig(),
+                            username });
 
             PublicKey pubKey = new PublicKey();
             pubKey.setPubKey("SR" + String.format("%08d", salesRepId));
@@ -124,10 +129,12 @@ public class SalesRepRepository {
     public PublicKey updateSalesRep(String pubKey, SalesRep salesRep, String username) throws Exception {
         if (salesRep != null) {
             logger.info(sqlMarker, salesRepUpdate);
-            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> salesRep.getfName(), () -> salesRep.getmName(), () -> salesRep.getlName(), () -> salesRep.getSupPubKey(), () -> salesRep.getStatusId(), () -> salesRep.getExtn(),
-                    () -> salesRep.getLand(), () -> salesRep.getMob(), () -> salesRep.getEmail(), () -> salesRep.getDoj(), () -> salesRep.getDesig(), () -> username, () -> pubKey);
-            jdbcTemplate.update(salesRepUpdate, new Object[] { salesRep.getfName(), salesRep.getmName(), salesRep.getlName(), salesRep.getSupPubKey(), salesRep.getStatusId(), salesRep.getExtn(), salesRep.getLand(), salesRep.getMob(), salesRep.getEmail(),
-                    salesRep.getDoj(), salesRep.getDesig(), username, pubKey });
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> salesRep.getSalesRepSummary().getfName(), () -> salesRep.getSalesRepSummary().getmName(), () -> salesRep.getSalesRepSummary().getlName(),
+                    () -> salesRep.getSupPubKey(), () -> salesRep.getStatusId(), () -> salesRep.getSalesRepSummary().getExtn(), () -> salesRep.getSalesRepSummary().getLand(), () -> salesRep.getSalesRepSummary().getMob(),
+                    () -> salesRep.getSalesRepSummary().getEmail(), () -> salesRep.getDoj(), () -> salesRep.getSalesRepSummary().getDesig(), () -> username, () -> pubKey);
+            jdbcTemplate.update(salesRepUpdate,
+                    new Object[] { salesRep.getSalesRepSummary().getfName(), salesRep.getSalesRepSummary().getmName(), salesRep.getSalesRepSummary().getlName(), salesRep.getSupPubKey(), salesRep.getStatusId(), salesRep.getSalesRepSummary().getExtn(),
+                            salesRep.getSalesRepSummary().getLand(), salesRep.getSalesRepSummary().getMob(), salesRep.getSalesRepSummary().getEmail(), salesRep.getDoj(), salesRep.getSalesRepSummary().getDesig(), username, pubKey });
 
             PublicKey pubKeyObj = new PublicKey();
             pubKeyObj.setPubKey(pubKey);
