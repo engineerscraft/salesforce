@@ -94,13 +94,13 @@ export class SalesrepFormComponent implements OnInit {
           this.salesRepFormGroup.setValue(res);
           console.log("Fetched Date After service call====== " + JSON.stringify(this.salesRepFormGroup.get('doj').value));
           var dojDate = new Date(JSON.stringify(this.salesRepFormGroup.get('doj').value));
-          var year =  dojDate.getFullYear();
-          var month = dojDate.getMonth();
-          var day = dojDate.getDay();
+          console.log("Date Object === " + dojDate);
+          var year =  dojDate.getUTCFullYear();
+          var month = dojDate.getUTCMonth();
+          var day = dojDate.getUTCDay();
           console.log("Year === " + year + " , Month === " + month + " , Day === " + day);
-          console.log("Supervisor Pub key === " + res.supPubKey);
           if (res.supPubKey) {
-            this.salesrepService.readSalesRep(res.supPubKey)
+            this.salesrepService.getSummary(res.supPubKey)
               .subscribe(
               res => {
                 this.salesrep = res;

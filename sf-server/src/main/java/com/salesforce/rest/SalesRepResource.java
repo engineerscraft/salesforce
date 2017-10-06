@@ -20,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import com.salesforce.model.AccountSummary;
 import com.salesforce.model.Message;
 import com.salesforce.model.PublicKey;
 import com.salesforce.model.SalesRep;
@@ -76,6 +77,24 @@ public class SalesRepResource {
             String username = securityContext.getUserPrincipal().getName();
             PublicKey pubKey = salesRepRepository.createSalesRep(salesRep, username);
             return Response.status(Response.Status.OK).entity(pubKey).build();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+        }
+    }
+
+    @GET
+    @Path("/summary/{pubKey}")
+    @Secured(Privilege.DEFAULT)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getSalesRepSummary(@PathParam("pubKey") String pubKey) {
+        try {
+            SalesRepSummary salesRepSummary = salesRepRepository.getSalesRepSummary(pubKey);
+            return Response.status(Response.Status.OK).entity(salesRepSummary).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No sales representative found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
