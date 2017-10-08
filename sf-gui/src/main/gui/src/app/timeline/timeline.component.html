@@ -2,7 +2,7 @@
   <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
     <strong>{{message}}</strong>
   </div>
-  <form (ngSubmit)="submit()">
+  <form [formGroup]="commentFormGroup" (ngSubmit)="submit()">
     <div class="card-block">
       <h1 class="display-4 ml-4 my-3">{{formTitle}}</h1>
       <div class="ml-4 my-3">
@@ -14,14 +14,14 @@
           <h6 class="card-title mb-4 text-center text-muted">Comments</h6>
           <div class="form-group">
             <label for="changeDescription">Change Description</label>
-            <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Describe your changes"></textarea>
+            <textarea formControlName="note" class="form-control" id="exampleTextarea" rows="5" placeholder="Describe your changes"></textarea>
           </div>
           <button type="submit" class="btn btn-info float-right text-white ripple">Save</button>
         </div>
       </div>
 
-      <ul *ngFor="let comment of comments" class="timeline py-4">
-        <li>
+      <ul class="timeline py-4">
+        <li *ngFor="let comment of comments">
           <div class="timeline-badge"><i class="fa fa-comment-o" aria-hidden="true"></i></div>
           <div class="card card-shadow my-4 ml-5 px-3">
             <div class="card-block">

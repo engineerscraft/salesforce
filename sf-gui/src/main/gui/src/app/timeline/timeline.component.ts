@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommentService } from '../comment.service';
 
@@ -25,17 +25,37 @@ export class TimelineComponent implements OnInit {
   private message;
   private formTitle = 'Lead Updates';
   private comments;
+  private commentFormGroup;
 
   @Input() entityPubKey;
   @Output() changeView = new EventEmitter<any>();
   constructor(private formBuilder: FormBuilder, private commentService: CommentService) { }
 
   ngOnInit() {
+
+    this.commentFormGroup = this.formBuilder.group({
+      note: ['', [Validators.required]],
+      entityPubKey: [this.entityPubKey]
+    });
+
     this.commentService.getComments(this.entityPubKey).subscribe(
       res => {
         this.comments = res;
       }
     )
+  }
+
+  submit() {
+    this.commentService.createComment(this.commentFormGroup.value)
+      .subscribe(
+        res => {
+          this.commentService.getComments(this.entityPubKey).subscribe(
+            res => {
+              this.comments = res;
+            }
+          )
+        }
+      );
   }
 
   changeViewDisplay() {
