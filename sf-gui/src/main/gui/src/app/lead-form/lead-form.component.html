@@ -112,8 +112,8 @@
 
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
         <button class="btn btn-info text-white ripple">Show Updates</button>
-        <button *ngIf="showConversionControl" class="btn btn-info text-white ripple">Convert to Opportunity</button>
-        <button [disabled]="!leadFormGroup.valid" type="submit" class="btn btn-info float-right text-white ripple">{{buttonName}}</button>
+        <button *ngIf="showConversionControl && !rdOnly" class="btn btn-info text-white ripple">Convert to Opportunity</button>
+        <button *ngIf="!rdOnly" [disabled]="!leadFormGroup.valid" type="submit" class="btn btn-info float-right text-white ripple">{{buttonName}}</button>
         <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-info float-right text-white ripple mr-2">Cancel</button>
       </div>
     </div>

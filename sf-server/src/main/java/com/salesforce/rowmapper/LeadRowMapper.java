@@ -20,6 +20,7 @@ public class LeadRowMapper implements RowMapper<Lead> {
         lead.setDiscVal(rs.getBigDecimal("DISC_VAL"));
         lead.setAccPubKey(rs.getString("ACC_PUB_KEY"));
         lead.setDivPubKey(rs.getString("DIV_PUB_KEY"));
+        lead.setReadOnly("X".equals(rs.getString("RD_ONLY"))?true:false);
         return lead;
     }
 }

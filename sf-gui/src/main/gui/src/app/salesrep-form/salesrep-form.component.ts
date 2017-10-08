@@ -92,13 +92,9 @@ export class SalesrepFormComponent implements OnInit {
         .subscribe(
         res => {
           this.salesRepFormGroup.setValue(res);
-          console.log("Fetched Date After service call====== " + JSON.stringify(this.salesRepFormGroup.get('doj').value));
-          var dojDate = new Date(JSON.stringify(this.salesRepFormGroup.get('doj').value));
-          console.log("Date Object === " + dojDate);
-          var year =  dojDate.getUTCFullYear();
-          var month = dojDate.getUTCMonth();
-          var day = dojDate.getUTCDay();
-          console.log("Year === " + year + " , Month === " + month + " , Day === " + day);
+          
+          this.salesRepFormGroup.patchValue({doj: this.parserFormatter.parse(res.doj)});
+
           if (res.supPubKey) {
             this.salesrepService.getSummary(res.supPubKey)
               .subscribe(
@@ -130,7 +126,6 @@ export class SalesrepFormComponent implements OnInit {
     if (this.mode === 'Create') {
       let dojDate = this.salesRepFormGroup.get('doj').value.day + '/' + this.salesRepFormGroup.get('doj').value.month + '/' + this.salesRepFormGroup.get('doj').value.year;
       this.salesRepFormGroup.patchValue({ doj: dojDate });
-      console.log("Input JSON ====== " + JSON.stringify(this.salesRepFormGroup.value));
       this.salesrepService.createSalesRep(JSON.stringify(this.salesRepFormGroup.value))
         .subscribe(
         res => {

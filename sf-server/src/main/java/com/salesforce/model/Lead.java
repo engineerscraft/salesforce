@@ -12,6 +12,7 @@ public class Lead {
     private List<ContactSummary> contacts;
     private List<ProductInstance> prodInstances;
     private String changeDes;
+    private boolean readOnly;
     
     public LeadSummary getLeadSummary() {
         return leadSummary;
@@ -61,8 +62,15 @@ public class Lead {
     public void setChangeDes(String changeDes) {
         this.changeDes = changeDes;
     }
+    public boolean isReadOnly() {
+        return readOnly;
+    }
+    public void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
+    }
     @Override
     public String toString() {
-        return "Lead [leadSummary=" + leadSummary + ", discType=" + discType + ", discVal=" + discVal + ", divPubKey=" + divPubKey + ", accPubKey=" + accPubKey + ", contacts=" + contacts + ", prodInstances=" + prodInstances + ", changeDes=" + changeDes + "]";
+        return "Lead [leadSummary=" + leadSummary + ", discType=" + discType + ", discVal=" + discVal + ", divPubKey=" + divPubKey + ", accPubKey=" + accPubKey + ", contacts=" + contacts + ", prodInstances=" + prodInstances + ", changeDes=" + changeDes
+                + ", readOnly=" + readOnly + "]";
     }
 }

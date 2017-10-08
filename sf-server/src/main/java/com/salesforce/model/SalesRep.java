@@ -3,9 +3,8 @@ package com.salesforce.model;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import com.salesforce.utils.DateAdapter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @author Arnab Kr Ghosh
@@ -17,7 +16,7 @@ public class SalesRep {
     private SalesRepSummary salesRepSummary;
     private String supPubKey;
     private int statusId;
-    @XmlJavaTypeAdapter(DateAdapter.class)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date doj;
 
     /**
@@ -65,6 +64,7 @@ public class SalesRep {
     /**
      * @return the doj
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getDoj() {
         return doj;
     }

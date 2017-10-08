@@ -58,6 +58,7 @@ export class LeadFormComponent implements OnInit {
   private divisions;
   private possibleStatus;
   private showConversionControl = false;
+  private rdOnly;
 
   constructor(private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -139,6 +140,9 @@ export class LeadFormComponent implements OnInit {
             } else {
               this.products[i].totalQuotePrice = (this.products[i].actualPrice - (this.products[i].actualPrice * this.products[i].discVal / 100)) * this.products[i].unit;
             }
+          }
+          if(res.rdOnly) {
+            this.rdOnly = true;
           }
           if (res.accPubKey) {
             this.accountService.getAccountSummary(res.accPubKey)
