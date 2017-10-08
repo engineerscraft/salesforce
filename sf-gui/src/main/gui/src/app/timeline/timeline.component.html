@@ -23,7 +23,7 @@
       <ul class="timeline py-4">
         <li *ngFor="let comment of comments">
           <div *ngIf="comment.statusPubKey === null" class="timeline-badge-success"><i class="fa fa-comment-o" aria-hidden="true"></i></div>
-          <div *ngIf="comment.statusPubKey !== null" class="timeline-badge-warn"><i class="fa fa-comment-o" aria-hidden="true"></i></div>
+          <div *ngIf="comment.statusPubKey !== null" class="timeline-badge-warn"><i class="fa fa-check" aria-hidden="true"></i></div>
           <div class="card card-shadow my-2 ml-5 px-2">
             <div class="card-block">
               <div class="card-body">
