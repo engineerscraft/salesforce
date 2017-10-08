@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
+import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-lead-details',
@@ -9,10 +10,16 @@ import { trigger,state,style,transition,animate,keyframes } from '@angular/anima
 export class LeadDetailsComponent implements OnInit {
 
   private displayedSection = 'Details';
+  private pubKey;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute
+    .paramMap
+    .subscribe(params => {
+      this.pubKey = params.get('pubKey');
+    });
   }
 
   changeView() {

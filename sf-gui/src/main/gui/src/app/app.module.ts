@@ -18,6 +18,7 @@ import { ProductService } from './product.service';
 import { SalesrepService } from './salesrep.service';
 import { DivisionService } from './division.service';
 import { AccountService } from './account.service';
+import { CommentService } from './comment.service';
 import { LeadService } from './lead.service';
 import { StatusService } from './status.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
@@ -118,7 +119,8 @@ const appRoutes: Routes = [
     DivisionService,
     LeadService,
     AccountService,
-    StatusService
+    StatusService,
+    CommentService
   ],
   bootstrap: [AppComponent]
 })

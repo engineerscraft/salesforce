@@ -17,5 +17,4 @@ public class ApplicationUtils {
     public static final String ACCOUNT_SEQ_NAME = "ACCOUNT_SEQ";
     public static final String ACCOUNT_ATT_SEQ_NAME = "ACCOUNT_ATT_SEQ";
     public static final String ACCOUNT_TM_SEQ_NAME = "ACCOUNT_TM_SEQ";
-
 }
