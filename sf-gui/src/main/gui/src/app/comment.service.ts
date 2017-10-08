@@ -6,8 +6,8 @@ export class CommentService {
 
   constructor(private httpService: HttpService) { }
 
-  getComments(pubKey) {
-    return this.httpService.callHttpGet('/resources/v1/comment?pubKey=' + pubKey +'&startPosition=0')
+  getComments(pubKey, startPos) {
+    return this.httpService.callHttpGet('/resources/v1/comment?pubKey=' + pubKey +'&startPosition=' + startPos)
       .map(res => res.json());
   }
 

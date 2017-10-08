@@ -22,13 +22,14 @@
 
       <ul class="timeline py-4">
         <li *ngFor="let comment of comments">
-          <div class="timeline-badge"><i class="fa fa-comment-o" aria-hidden="true"></i></div>
-          <div class="card card-shadow my-4 ml-5 px-3">
+          <div *ngIf="comment.statusPubKey === null" class="timeline-badge-success"><i class="fa fa-comment-o" aria-hidden="true"></i></div>
+          <div *ngIf="comment.statusPubKey !== null" class="timeline-badge-warn"><i class="fa fa-comment-o" aria-hidden="true"></i></div>
+          <div class="card card-shadow my-2 ml-5 px-2">
             <div class="card-block">
               <div class="card-body">
                 <p class="text-muted"><a class="text-muted" href="salesrepDetails/{{comment.crtdByPubKey}}">Created by: {{comment.crtdBy}}</a>, Created On: {{comment.crtdOn}}</p>
-                
-                <p>{{comment.note}}</p>
+                <p *ngIf="comment.statusPubKey !== null"><strong>{{comment.status}}</strong></p>
+                <p *ngIf="comment.statusPubKey === null">{{comment.note}}</p>
               </div>
             </div>
           </div>
@@ -36,4 +37,5 @@
       </ul>
     </div>
   </form>
+  <p *ngIf="!allCommentsShown" class="mr-4"><a href="javascript:void(0)" (click)="more()" class="pr-2 mr-4 pull-right">More &rarr;</a></p>
 </div>

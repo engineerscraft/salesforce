@@ -26,6 +26,8 @@ export class TimelineComponent implements OnInit {
   private formTitle = 'Lead Updates';
   private comments;
   private commentFormGroup;
+  private startPos;
+  private allCommentsShown;
 
   @Input() entityPubKey;
   @Output() changeView = new EventEmitter<any>();
@@ -38,7 +40,7 @@ export class TimelineComponent implements OnInit {
       entityPubKey: [this.entityPubKey]
     });
 
-    this.commentService.getComments(this.entityPubKey).subscribe(
+    this.commentService.getComments(this.entityPubKey, 0).subscribe(
       res => {
         this.comments = res;
       }
@@ -48,13 +50,13 @@ export class TimelineComponent implements OnInit {
   submit() {
     this.commentService.createComment(this.commentFormGroup.value)
       .subscribe(
-        res => {
-          this.commentService.getComments(this.entityPubKey).subscribe(
-            res => {
-              this.comments = res;
-            }
-          )
-        }
+      res => {
+        this.commentService.getComments(this.entityPubKey, 0).subscribe(
+          res => {
+            this.comments = res;
+          }
+        )
+      }
       );
   }
 
@@ -62,4 +64,21 @@ export class TimelineComponent implements OnInit {
     this.changeView.emit();
   }
 
+  more() {
+    if (this.startPos < this.comments.length) {
+      this.startPos = this.startPos + 10;
+      this.commentService.getComments(this.entityPubKey, this.startPos).subscribe(
+        res => {
+          res.array.forEach(element => {
+            this.comments.push(element);
+          });
+        }
+      )
+    }
+    else {
+      if(!this.allCommentsShown) {
+        this.allCommentsShown = true;
+      }
+    }
+  }
 }

@@ -105,7 +105,7 @@
 
           <div class="form-group">
             <label for="changeDescription">Change Description</label>
-            <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Describe your changes"></textarea>
+            <textarea class="form-control" id="exampleTextarea" formControlName="changeDes" rows="5" placeholder="Describe your changes"></textarea>
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@
         <button class="btn btn-info text-white ripple">Show Updates</button>
         <button *ngIf="showConversionControl" class="btn btn-info text-white ripple">Convert to Opportunity</button>
         <button [disabled]="!leadFormGroup.valid" type="submit" class="btn btn-info float-right text-white ripple">{{buttonName}}</button>
-        <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-info float-right text-white ripple">Cancel</button>
+        <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-info float-right text-white ripple mr-2">Cancel</button>
       </div>
     </div>
   </form>

@@ -11,6 +11,7 @@ public class Lead {
     private String accPubKey;
     private List<ContactSummary> contacts;
     private List<ProductInstance> prodInstances;
+    private String changeDes;
     
     public LeadSummary getLeadSummary() {
         return leadSummary;
@@ -54,8 +55,14 @@ public class Lead {
     public void setContacts(List<ContactSummary> contacts) {
         this.contacts = contacts;
     }
+    public String getChangeDes() {
+        return changeDes;
+    }
+    public void setChangeDes(String changeDes) {
+        this.changeDes = changeDes;
+    }
     @Override
     public String toString() {
-        return "Lead [leadSummary=" + leadSummary + ", discType=" + discType + ", discVal=" + discVal + ", divPubKey=" + divPubKey + ", accPubKey=" + accPubKey + ", contacts=" + contacts + ", prodInstances=" + prodInstances + "]";
+        return "Lead [leadSummary=" + leadSummary + ", discType=" + discType + ", discVal=" + discVal + ", divPubKey=" + divPubKey + ", accPubKey=" + accPubKey + ", contacts=" + contacts + ", prodInstances=" + prodInstances + ", changeDes=" + changeDes + "]";
     }
 }

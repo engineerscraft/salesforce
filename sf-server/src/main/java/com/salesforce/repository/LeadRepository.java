@@ -1,6 +1,7 @@
 package com.salesforce.repository;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.salesforce.model.Comment;
 import com.salesforce.model.ContactSummary;
 import com.salesforce.model.Lead;
 import com.salesforce.model.ProductInstance;
@@ -65,6 +68,12 @@ public class LeadRepository {
     
     @Value("${sql.leadprod.delete}")
     private String leadProdDelete;
+    
+    @Value("${sql.leadstatus.select}")
+    private String leadStatusQuery;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Transactional
     public PublicKey createLead(Lead lead, String username) throws Exception {
@@ -192,6 +201,7 @@ public class LeadRepository {
 
     public PublicKey modifyLead(Lead lead, String username) throws Exception {
         if (lead.getLeadSummary() != null) {
+            String currentStatus = getCurrentStatus(lead.getLeadSummary().getPubKey());
             logger.info(sqlMarker, leadUpdate);
             logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> lead.getAccPubKey(), () -> lead.getLeadSummary().getTitle(), () -> lead.getDiscType(), () -> lead.getDiscVal(),
                     () -> lead.getLeadSummary().getQuotePrice(),() -> lead.getLeadSummary().getStatusPubKey(), () -> lead.getDivPubKey(), () -> username, () -> lead.getLeadSummary().getPubKey());
@@ -201,11 +211,38 @@ public class LeadRepository {
             this.saveLeadContacts(lead.getContacts(), lead.getLeadSummary().getPubKey(), username, true);
             
             this.saveLeadProducts(lead.getProdInstances(), lead.getLeadSummary().getPubKey(), username, true);
+            
+            if(!currentStatus.equals(lead.getLeadSummary().getStatusPubKey())) {
+                Comment comment = new Comment();
+                comment.setNote("Status changed");
+                comment.setEntityPubKey(lead.getLeadSummary().getPubKey());
+                comment.setStatusPubKey(lead.getLeadSummary().getStatusPubKey());
+                this.commentRepository.createComment(comment, username);                
+            }
+            
+            if(lead.getChangeDes() != null) {
+                Comment comment = new Comment();
+                comment.setNote(lead.getChangeDes());
+                comment.setEntityPubKey(lead.getLeadSummary().getPubKey());
+                this.commentRepository.createComment(comment, username);
+            }
+            
             PublicKey pubKey = new PublicKey();
             pubKey.setPubKey(lead.getLeadSummary().getPubKey());
             return pubKey;
         } else {
             throw new Exception("Lead cannot be updated as basic lead data is missing...");
         }
+    }
+    
+    public String getCurrentStatus(String pubKey) {
+        logger.info(sqlMarker, leadStatusQuery);
+        logger.info(sqlMarker, "Params {}", () -> pubKey);
+        String statusPubKey = jdbcTemplate.queryForObject(leadStatusQuery, new Object[] { pubKey}, new RowMapper<String>() {
+            public String mapRow(ResultSet rs,int rowNum) throws SQLException {
+                return rs.getString("PUB_KEY");
+            }
+        });
+        return statusPubKey;
     }
 }

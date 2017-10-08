@@ -17,7 +17,7 @@ public class CommentRowMapper implements RowMapper<Comment> {
         comment.setCrtdByPubKey(rs.getString("CRTD_BY_PUB_KEY"));
         comment.setCrtdOn(rs.getDate("CRTD_ON"));
         comment.setStatus(rs.getString("STATUS"));
-        comment.setStatus(rs.getString("STATUS_PUB_KEY"));
+        comment.setStatusPubKey(rs.getString("STATUS_PUB_KEY"));
         comment.setEntityPubKey(rs.getString("ENTITY_PUB_KEY"));
         return comment;
     }

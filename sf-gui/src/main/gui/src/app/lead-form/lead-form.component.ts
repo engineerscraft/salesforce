@@ -91,7 +91,8 @@ export class LeadFormComponent implements OnInit {
       divPubKey: ['', [Validators.required]],
       accPubKey: [''],
       contacts: ['', [Validators.required]],
-      prodInstances: ['', [Validators.required]]
+      prodInstances: ['', [Validators.required]],
+      changeDes: ['']
     });
 
     this.activatedRoute
@@ -127,7 +128,7 @@ export class LeadFormComponent implements OnInit {
       this.leadService.readLead(this.pubKey)
         .subscribe(
         res => {
-          this.leadFormGroup.setValue(res);
+          this.leadFormGroup.patchValue(res);
           this.products = res.prodInstances;
           this.contacts = res.contacts
           for (let i = 0; i < this.products.length; i++) {

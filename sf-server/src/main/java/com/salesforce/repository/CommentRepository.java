@@ -58,6 +58,7 @@ public class CommentRepository {
         logger.info(sqlMarker, commentTableInsert);
         logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username, () -> comment.getStatusPubKey());
         jdbcTemplate.update(commentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username, comment.getStatusPubKey() });
+        
     }
 
     private Integer generateContactId() throws Exception {

@@ -1,3 +1,4 @@
+@import "../../variables.scss";
 .timeline {
     list-style: none;
     position: relative;
@@ -72,7 +73,7 @@
     content: " ";
   }
   
-  .timeline > li > .timeline-badge {
+  .timeline-badge {
     color: #fff;
     width: 3rem;
     height: 3rem;
@@ -83,14 +84,23 @@
     top: 2.5rem;
     left: 2%;
     margin-left: -1.5rem;
-    background-color: #3f903f;
     z-index: 100;
     border-top-right-radius: 50%;
     border-top-left-radius: 50%;
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 50%;
   }
+
+  .timeline-badge-success {
+    @extend .timeline-badge;
+    background-color: $green;
+  }
   
+  .timeline-badge-warn {
+    @extend .timeline-badge;
+    background-color: $yellow;
+  }
+
   .timeline-title {
     margin-top: 0;
     color: inherit;
