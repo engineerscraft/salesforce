@@ -20,10 +20,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.salesforce.model.Comment;
 import com.salesforce.model.ContactSummary;
 import com.salesforce.model.Lead;
+import com.salesforce.model.LeadSummary;
 import com.salesforce.model.ProductInstance;
 import com.salesforce.model.PublicKey;
 import com.salesforce.rowmapper.ContactSummaryRowMapper;
 import com.salesforce.rowmapper.LeadRowMapper;
+import com.salesforce.rowmapper.LeadSummaryRowMapper;
 import com.salesforce.rowmapper.ProductInstanceRowMapper;
 import com.salesforce.utils.ApplicationUtils;
 
@@ -53,24 +55,30 @@ public class LeadRepository {
 
     @Value("${sql.lead.select}")
     private String leadSelect;
-    
+
     @Value("${sql.leadcontact.select}")
     private String leadContactSelect;
-    
+
     @Value("${sql.leadprod.select}")
     private String leadProductSelect;
-    
+
     @Value("${sql.lead.update}")
     private String leadUpdate;
-    
+
     @Value("${sql.leadcontact.delete}")
     private String leadContactDelete;
-    
+
     @Value("${sql.leadprod.delete}")
     private String leadProdDelete;
-    
+
     @Value("${sql.leadstatus.select}")
     private String leadStatusQuery;
+
+    @Value("${sql.lead.page}")
+    private String leadPageSql;
+
+    @Value("${lead.pagesize}")
+    private Long leadPageSize;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -98,13 +106,13 @@ public class LeadRepository {
     public void saveLeadContacts(final List<ContactSummary> contacts, String leadPubKey, String username, boolean delete) {
         final int batchSize = 500;
 
-        if(delete) {
+        if (delete) {
             logger.info(sqlMarker, leadContactDelete);
             logger.info(sqlMarker, "Params {}", () -> leadPubKey);
             jdbcTemplate.update(leadContactDelete, new Object[] { leadPubKey });
         }
         logger.info(sqlMarker, leadContactTableInsert);
-        
+
         for (int j = 0; j < contacts.size(); j += batchSize) {
 
             final List<ContactSummary> batchList = contacts.subList(j, j + batchSize > contacts.size() ? contacts.size() : j + batchSize);
@@ -129,16 +137,16 @@ public class LeadRepository {
 
     public void saveLeadProducts(final List<ProductInstance> productList, String leadPubKey, String username, boolean delete) {
         final int batchSize = 500;
-        
-        if(delete) {
-            
+
+        if (delete) {
+
             logger.info(sqlMarker, leadProdDelete);
             logger.info(sqlMarker, "Params {}", () -> leadPubKey);
-            jdbcTemplate.update(leadProdDelete, new Object[] { leadPubKey });                        
+            jdbcTemplate.update(leadProdDelete, new Object[] { leadPubKey });
         }
-        
+
         logger.info(sqlMarker, leadProductTableInsert);
-        
+
         for (int j = 0; j < productList.size(); j += batchSize) {
 
             final List<ProductInstance> batchList = productList.subList(j, j + batchSize > productList.size() ? productList.size() : j + batchSize);
@@ -147,7 +155,8 @@ public class LeadRepository {
                 @Override
                 public void setValues(PreparedStatement ps, int i) throws SQLException {
                     ProductInstance productInstance = batchList.get(i);
-                    logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}", () -> leadPubKey, () -> productInstance.getPubKey(), () -> productInstance.getUnit(), () -> productInstance.getDiscType(), () -> productInstance.getDiscVal(), () -> productInstance.getQuotePrice(), () -> productInstance.getActualPrice(), () -> username);
+                    logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}", () -> leadPubKey, () -> productInstance.getPubKey(), () -> productInstance.getUnit(), () -> productInstance.getDiscType(), () -> productInstance.getDiscVal(),
+                            () -> productInstance.getQuotePrice(), () -> productInstance.getActualPrice(), () -> username);
                     ps.setString(1, leadPubKey);
                     ps.setString(2, productInstance.getPubKey());
                     ps.setInt(3, productInstance.getUnit());
@@ -194,7 +203,7 @@ public class LeadRepository {
         logger.info(sqlMarker, leadProductSelect);
         logger.info(sqlMarker, "Params {}", () -> pubKey);
         List<ProductInstance> leadProducts = jdbcTemplate.query(leadProductSelect, args, new ProductInstanceRowMapper());
-        lead.setProdInstances(leadProducts);        
+        lead.setProdInstances(leadProducts);
         logger.debug("Retrieved lead: {}", () -> lead);
         return lead;
     }
@@ -203,30 +212,30 @@ public class LeadRepository {
         if (lead.getLeadSummary() != null) {
             String currentStatus = getCurrentStatus(lead.getLeadSummary().getPubKey());
             logger.info(sqlMarker, leadUpdate);
-            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> lead.getAccPubKey(), () -> lead.getLeadSummary().getTitle(), () -> lead.getDiscType(), () -> lead.getDiscVal(),
-                    () -> lead.getLeadSummary().getQuotePrice(),() -> lead.getLeadSummary().getStatusPubKey(), () -> lead.getDivPubKey(), () -> username, () -> lead.getLeadSummary().getPubKey());
-            jdbcTemplate.update(leadUpdate, new Object[] { lead.getAccPubKey(), lead.getLeadSummary().getTitle(), lead.getDiscType(), lead.getDiscVal(),
-                    lead.getLeadSummary().getQuotePrice(), lead.getLeadSummary().getStatusPubKey(), lead.getDivPubKey(), username, lead.getLeadSummary().getPubKey() });
-            
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}, {}, {}, {}, {}", () -> lead.getAccPubKey(), () -> lead.getLeadSummary().getTitle(), () -> lead.getDiscType(), () -> lead.getDiscVal(), () -> lead.getLeadSummary().getQuotePrice(),
+                    () -> lead.getLeadSummary().getStatusPubKey(), () -> lead.getDivPubKey(), () -> username, () -> lead.getLeadSummary().getPubKey());
+            jdbcTemplate.update(leadUpdate, new Object[] { lead.getAccPubKey(), lead.getLeadSummary().getTitle(), lead.getDiscType(), lead.getDiscVal(), lead.getLeadSummary().getQuotePrice(), lead.getLeadSummary().getStatusPubKey(), lead.getDivPubKey(),
+                    username, lead.getLeadSummary().getPubKey() });
+
             this.saveLeadContacts(lead.getContacts(), lead.getLeadSummary().getPubKey(), username, true);
-            
+
             this.saveLeadProducts(lead.getProdInstances(), lead.getLeadSummary().getPubKey(), username, true);
-            
-            if(!currentStatus.equals(lead.getLeadSummary().getStatusPubKey())) {
+
+            if (!currentStatus.equals(lead.getLeadSummary().getStatusPubKey())) {
                 Comment comment = new Comment();
                 comment.setNote("Status changed");
                 comment.setEntityPubKey(lead.getLeadSummary().getPubKey());
                 comment.setStatusPubKey(lead.getLeadSummary().getStatusPubKey());
-                this.commentRepository.createComment(comment, username);                
+                this.commentRepository.createComment(comment, username);
             }
-            
-            if(lead.getChangeDes() != null) {
+
+            if (lead.getChangeDes() != null) {
                 Comment comment = new Comment();
                 comment.setNote(lead.getChangeDes());
                 comment.setEntityPubKey(lead.getLeadSummary().getPubKey());
                 this.commentRepository.createComment(comment, username);
             }
-            
+
             PublicKey pubKey = new PublicKey();
             pubKey.setPubKey(lead.getLeadSummary().getPubKey());
             return pubKey;
@@ -234,15 +243,24 @@ public class LeadRepository {
             throw new Exception("Lead cannot be updated as basic lead data is missing...");
         }
     }
-    
+
     public String getCurrentStatus(String pubKey) {
         logger.info(sqlMarker, leadStatusQuery);
         logger.info(sqlMarker, "Params {}", () -> pubKey);
-        String statusPubKey = jdbcTemplate.queryForObject(leadStatusQuery, new Object[] { pubKey}, new RowMapper<String>() {
-            public String mapRow(ResultSet rs,int rowNum) throws SQLException {
+        String statusPubKey = jdbcTemplate.queryForObject(leadStatusQuery, new Object[] { pubKey }, new RowMapper<String>() {
+            public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return rs.getString("PUB_KEY");
             }
         });
         return statusPubKey;
+    }
+
+    public List<LeadSummary> getLeadPage(String searchString, long startPosition) {
+        Object[] args = { searchString, '%' + searchString + '%', searchString, startPosition, leadPageSize };
+        logger.info(sqlMarker, leadPageSql);
+        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> searchString, () -> '%' + searchString + '%', () -> searchString, () -> startPosition, () -> leadPageSize);
+        List<LeadSummary> leads = (List<LeadSummary>) jdbcTemplate.query(leadPageSql, args, new LeadSummaryRowMapper());
+        logger.debug("Retrieved leads: {}", () -> leads);
+        return leads;
     }
 }

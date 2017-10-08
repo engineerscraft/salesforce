@@ -52,11 +52,13 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountCardComponent } from './account-card/account-card.component';
+import { LeadCardComponent } from './lead-card/lead-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home', component: AppDashboardComponent },
   { path: 'leadCreation', component: LeadCreationComponent },
+  { path: 'leads', component: LeadsComponent },
   { path: 'contactCreation', component: ContactCreationComponent },
   { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
   { path: 'contacts', component: ContactsComponent },
@@ -102,7 +104,8 @@ const appRoutes: Routes = [
     AccountsComponent,
     AccountDetailsComponent,
     AccountFormComponent,
-    AccountCardComponent
+    AccountCardComponent,
+    LeadCardComponent
   ],
   imports: [
     RouterModule.forRoot(
