@@ -19,7 +19,7 @@ public class AccountSummaryRowMapper implements RowMapper<AccountSummary> {
         account.setAccId(rs.getInt("ACC_ID"));
         account.setPubKey(rs.getString("PUB_KEY"));
         account.setTitle(rs.getString("TITLE"));
-        account.setSoldPrice(rs.getDouble("SOLD_PRICE"));
+        account.setSoldPrice(rs.getBigDecimal("SOLD_PRICE"));
         return account;
     }
 }

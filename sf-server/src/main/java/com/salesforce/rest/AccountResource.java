@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import com.salesforce.model.Account;
 import com.salesforce.model.AccountSummary;
 import com.salesforce.model.Message;
 import com.salesforce.privileges.Privilege;
@@ -59,13 +60,31 @@ public class AccountResource {
     @Secured(Privilege.DEFAULT)
     @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public Response getAccount(@PathParam("pubKey") String pubKey) {
+    public Response getAccountSummary(@PathParam("pubKey") String pubKey) {
         try {
-            AccountSummary account = accountRepository.getAccount(pubKey);
+            AccountSummary account = accountRepository.getAccountSummary(pubKey);
             return Response.status(Response.Status.OK).entity(account).build();
         } catch (EmptyResultDataAccessException e) {
             logger.error("No account found", e);
-            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();            
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+        }
+    }
+
+    @GET
+    @Path("{pubKey}")
+    @Secured(Privilege.DEFAULT)
+    @Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public Response getAccount(@PathParam("pubKey") String pubKey) {
+        try {
+            Account account = accountRepository.getAccount(pubKey);
+            return Response.status(Response.Status.OK).entity(account).build();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error("No account found", e);
+            return Response.status(Response.Status.NOT_FOUND).entity(new Message(e.getMessage())).build();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();

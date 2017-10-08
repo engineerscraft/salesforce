@@ -20,7 +20,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import com.salesforce.model.AccountSummary;
 import com.salesforce.model.Message;
 import com.salesforce.model.PublicKey;
 import com.salesforce.model.SalesRep;
