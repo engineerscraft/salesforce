@@ -20,4 +20,9 @@ export class LeadService {
     return this.httpService.callHttpPut("/resources/v1/lead/" + pubKey, lead)
       .map(res => res.json())  
   }
+
+  searchLeads(searchString, startPosition) {
+    return this.httpService.callHttpGet("/resources/v1/lead?searchString=" + searchString + "&startPosition=" + startPosition)
+      .map(res => res.json())
+  }
 }
