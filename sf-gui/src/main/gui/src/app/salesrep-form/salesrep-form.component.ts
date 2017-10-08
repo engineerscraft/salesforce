@@ -17,6 +17,16 @@ import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-boo
         animate('500ms', style({ transform: 'translateX(50%)', opacity: 0 }))
       ])
     ]),
+    trigger('enterAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateY(-50%)', opacity: 0 }),
+        animate('500ms', style({ transform: 'translateX(0)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateY(0)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateY(-50%)', opacity: 0 }))
+      ])
+    ])
   ]
 })
 export class SalesrepFormComponent implements OnInit {
@@ -31,8 +41,6 @@ export class SalesrepFormComponent implements OnInit {
   private pubKey;
   private formTitle = 'Sales Person Creation';
 
-  private salesreps = [
-  ];
   private salesrep = {};
   private closeResult: string;
   private modal;
@@ -86,10 +94,19 @@ export class SalesrepFormComponent implements OnInit {
           this.salesRepFormGroup.setValue(res);
           console.log("Fetched Date After service call====== " + JSON.stringify(this.salesRepFormGroup.get('doj').value));
           var dojDate = new Date(JSON.stringify(this.salesRepFormGroup.get('doj').value));
-          var year =  dojDate.getFullYear();
-          var month = dojDate.getMonth();
-          var day = dojDate.getDay();
+          console.log("Date Object === " + dojDate);
+          var year =  dojDate.getUTCFullYear();
+          var month = dojDate.getUTCMonth();
+          var day = dojDate.getUTCDay();
           console.log("Year === " + year + " , Month === " + month + " , Day === " + day);
+          if (res.supPubKey) {
+            this.salesrepService.getSummary(res.supPubKey)
+              .subscribe(
+              res => {
+                this.salesrep = res;
+              }
+              );
+          }
         },
         err => {
           this.message = err.status + " : " + err.statusText;
@@ -175,35 +192,24 @@ export class SalesrepFormComponent implements OnInit {
   }
 
   addSalesrep($event) {
-    this.salesreps.push({
-      pubKey: $event.pubKey,
-      fName: $event.fName,
-      mName: $event.mName,
-      lName: $event.lName,
-      mob: $event.mob,
-      email: $event.email,
-      desig: $event.desig,
-      land: $event.land,
-      extn: $event.extn
-    });    
     this.salesrep['pubKey'] = $event.pubKey;
-    this.updateSalesrep(this.salesrep['pubKey']);
-  }
-
-  removeSalesrep(pubKey) {
-    let i = this.salesreps.length
-    while (i--) {
-      if (this.salesreps[i].pubKey === pubKey) {
-        this.salesreps.splice(i, 1);
-      }
-    }    
-    this.salesrep = {};
-    this.updateSalesrep(this.salesrep);
-  }
-
-  updateSalesrep(pubKey) {
+    this.salesrep['fName'] = $event.fName;
+    this.salesrep['mName'] = $event.mName;
+    this.salesrep['lName'] = $event.lName;
+    this.salesrep['mob'] = $event.mob;
+    this.salesrep['email'] = $event.email;
+    this.salesrep['desig'] = $event.desig;
+    this.salesrep['land'] = $event.land;
+    this.salesrep['extn'] = $event.extn;
     this.salesRepFormGroup.patchValue({
-      supPubKey: pubKey
+      supPubKey: this.salesrep['pubKey']
+    });
+  }
+
+  removeSalesrep() {
+    this.salesrep = {};
+    this.salesRepFormGroup.patchValue({
+      supPubKey: this.salesrep
     });
   }
 

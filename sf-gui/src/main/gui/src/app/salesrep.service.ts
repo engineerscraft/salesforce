@@ -23,6 +23,11 @@ export class SalesrepService {
       .map(res => res.json())
   }
 
+  getSummary(pubKey) {
+    return this.httpService.callHttpGet("/resources/v1/salesrep/summary/" + pubKey)
+      .map(res => res.json())
+  }
+
   updateSalesRep(pubKey, salesRep) {
     return this.httpService.callHttpPut("/resources/v1/salesrep/" + pubKey, salesRep)
       .map(res => res.json())  

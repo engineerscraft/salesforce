@@ -52,6 +52,9 @@ public class SalesRepRepository {
     @Value("${sql.salesRep.select}")
     private String salesRepSelect;
 
+    @Value("${sql.salesRep.summary.select}")
+    private String salesRepSummarySelect;
+
     @Value("${sql.salesRep.update}")
     private String salesRepUpdate;
 
@@ -114,6 +117,16 @@ public class SalesRepRepository {
 
         logger.debug("Sales Representative ID generated: {}", () -> fetchedSalesRepId);
         return fetchedSalesRepId;
+    }
+
+    public SalesRepSummary getSalesRepSummary(String pubKey) {
+        Object[] args = { pubKey };
+        logger.info(sqlMarker, salesRepSummarySelect);
+        logger.info(sqlMarker, "Params {}", () -> pubKey);
+        SalesRepSummary salesRepSummary = jdbcTemplate.queryForObject(salesRepSummarySelect, args, new SalesRepSummaryRowMapper());
+        logger.debug("Retrieved account: {}", () -> salesRepSummary);
+        return salesRepSummary;
+
     }
 
     public SalesRep getSalesRep(String pubKey) {
