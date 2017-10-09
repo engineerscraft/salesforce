@@ -75,7 +75,7 @@
           <h6 class="card-title mb-4 text-center text-muted">Additional Information</h6>
           <div class="form-group">
             <label for="status">Status</label>
-            <select (focus)="attr = 'statusId'" formControlName="statusId" class="form-control py-0" id="statusId" disabled="true">
+            <select (focus)="attr = 'statusId'" formControlName="statusId" class="form-control py-0" id="statusId" required readonly>
               <option value="1">Active</option>
               <option value="2">Deactivated</option>
             </select>

@@ -1,3 +1,106 @@
-<p>
-  account-form works!
-</p>
+<div [@enterAnimation] class="card card-shadow bg-primary pb-4">
+  <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
+    <strong>{{message}}</strong>
+  </div>
+  <form [formGroup]="accountFormGroup" (ngSubmit)="submit()">
+    <div class="card-block">
+      <h1 class="display-4 text-white ml-4 my-3">{{formTitle}}</h1>
+      <div class="ml-4 my-3">
+        <button class="btn btn-info text-white ripple" (click)="changeViewDisplay()">Show Updates</button>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Basic Information</h6>
+          <div *ngIf="pubKey" class="form-group" formGroupName="accountSummary">
+            <label for="pubKey">Public Key</label>
+            <input (focus)="attr = 'pubKey'" type="text" formControlName="pubKey" class="form-control" id="pubKey" required readonly>
+          </div>
+          <div class="form-group" formGroupName="accountSummary">
+            <label for="title">Title <span class="text-danger">*</span></label>
+            <input (focus)="attr = 'title'" type="text" formControlName="title" class="form-control" id="title" placeholder="Title text of the account"
+              [readOnly]="readOnly" required>
+          </div>
+          <div class="form-group" formGroupName="accountSummary">
+            <label for="soldPrice">Sold Price</label>
+            <input (focus)="attr = 'soldPrice'" type="text" formControlName="soldPrice" class="form-control" id="soldPrice" readonly
+              required>
+          </div>                    
+          <div class="form-group">
+            <label for="divPubKey">Division <span class="text-danger">*</span></label>
+            <select (focus)="attr = 'divPubKey'" class="form-control" formControlName="divPubKey" id="divPubKey" [attr.disabled]="readOnly"
+              required>
+                <option *ngFor="let div of divisions" value="{{div.pubKey}}">{{div.des}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select (focus)="attr = 'statusId'" formControlName="statusId" class="form-control py-0" id="statusId" required readonly>
+              <option value="1">Active</option>
+              <option value="2">Deactivated</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Products</h6>
+          <ul class="list-group my-4">
+            <li [@fadeIn] *ngFor="let product of products" class="list-group-item">
+              <p><strong>{{product.des}} ({{product.pubKey}})</strong></p>
+              <p class="p-0 m-0"><small>Sold Price : {{product.soldPrice}}</small></p>
+              <p class="p-0 m-0"><small>Discount : {{product.discVal}}{{discUnit}}</small></p>
+              <p class="p-0 m-0 pull-right text-success"><strong>Sold Price : {{product.soldPrice}}</strong></p>
+            </li>
+          </ul>          
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Contacts</h6>
+
+          <ul class="list-group my-4">
+            <li [@fadeIn] *ngFor="let contact of contacts" class="list-group-item">
+              <p><strong>{{contact.fName}} {{contact.mName}} {{contact.lName}} (<a routerLink="/contactDetails/{{contact.pubKey}}">{{contact.pubKey}}</a>)<i *ngIf="!readOnly" (click)=removeContact(contact.pubKey)
+                class="fa fa-minus-circle pull-right mx-2" aria-hidden="true"></i></strong></p>
+              <p class="p-0 m-0"><small>{{contact.desig}} - {{contact.company}}</small></p>
+              <p class="p-0 m-0"><small><i class="fa fa-envelope-open-o" aria-hidden="true"></i> {{contact.email}}</small></p>
+              <p class="p-0 m-0"><small><i class="fa fa-mobile" aria-hidden="true"></i> {{contact.mob}} / <i class="fa fa-phone" aria-hidden="true"></i> {{contact.land}} - {{contact.extn}}</small></p>
+            </li>
+          </ul>
+          <button *ngIf="!readOnly" type="button" (click)="open(contactSelector)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
+        </div>
+      </div>
+      <div *ngIf="mode === 'Modify'" class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Comments</h6>
+
+          <div class="form-group">
+            <label for="changeDescription">Change Description</label>
+            <textarea class="form-control" id="exampleTextarea" formControlName="changeDes" rows="5" placeholder="Describe your changes"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
+        <button class="btn btn-info text-white ripple">Show Updates</button>        
+        <button *ngIf="!rdOnly" [disabled]="!accountFormGroup.valid" type="submit" class="btn btn-info float-right text-white ripple">{{buttonName}}</button>
+        <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-info float-right text-white ripple mr-2">Cancel</button>
+      </div>
+    </div>
+  </form>
+  <ng-template #contactSelector let-c="close" let-d="dismiss">
+    <div class="modal-header bg-primary text-white">
+      <h4 class="modal-title">Contact Selection</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+    </div>
+    <div class="modal-body p-4">
+      <app-contact-selector [addedContacts]="contacts" (add)="addContact($event)"></app-contact-selector>
+    </div>
+  </ng-template>
+</div>
+<div class="d-none d-lg-block help-text">
+  <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Lead'" [helpText]="'Accpounts are new business. The sale has happen amd the potential opportunity has been converted into an account.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='title'" [helpHeader]="'Account Title'" [helpText]="'The title of the account through which user can easily distinguish about the sale which has happened.'"></app-help-gadget>
+</div>
