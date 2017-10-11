@@ -10,8 +10,11 @@ public class Account {
     private AccountSummary accountSummary;
     private int statusId;
     private String divPubKey;
+    private String changeDes;
     private List<ContactSummary> contacts;
     private List<ProductAccount> prodAccount;
+    private List<LeadSummary> leads;
+    private List<OpportunitySummary> opportunities;
 
     /**
      * @return the accountSummary
@@ -56,6 +59,20 @@ public class Account {
     }
 
     /**
+     * @return the changeDes
+     */
+    public String getChangeDes() {
+        return changeDes;
+    }
+
+    /**
+     * @param changeDes the changeDes to set
+     */
+    public void setChangeDes(String changeDes) {
+        this.changeDes = changeDes;
+    }
+
+    /**
      * @return the contacts
      */
     public List<ContactSummary> getContacts() {
@@ -83,12 +100,41 @@ public class Account {
         this.prodAccount = prodAccount;
     }
 
+    /**
+     * @return the leads
+     */
+    public List<LeadSummary> getLeads() {
+        return leads;
+    }
+
+    /**
+     * @param leads the leads to set
+     */
+    public void setLeads(List<LeadSummary> leads) {
+        this.leads = leads;
+    }
+
+    /**
+     * @return the opportunities
+     */
+    public List<OpportunitySummary> getOpportunities() {
+        return opportunities;
+    }
+
+    /**
+     * @param opportunities the opportunities to set
+     */
+    public void setOpportunities(List<OpportunitySummary> opportunities) {
+        this.opportunities = opportunities;
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        return "Account [accountSummary=" + accountSummary + ", statusId=" + statusId + ", divPubKey=" + divPubKey + ", contacts=" + contacts + ", prodAccount=" + prodAccount + "]";
+        return "Account [accountSummary=" + accountSummary + ", statusId=" + statusId + ", divPubKey=" + divPubKey + ", changeDes=" + changeDes + ", contacts=" + contacts + ", prodAccount=" + prodAccount + ", leads=" + leads + ", opportunities="
+                + opportunities + "]";
     }
 
 }
