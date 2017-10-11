@@ -47,6 +47,12 @@ export class AccountFormComponent implements OnInit {
   private contacts = [
   ];
 
+  private leads = [
+  ];
+
+  private opportunities = [
+  ];
+
   private closeResult: string;
   private productAccount;
   private modal;
@@ -79,7 +85,9 @@ export class AccountFormComponent implements OnInit {
       statusId: ['1'],
       divPubKey: ['', [Validators.required]],
       contacts: ['', [Validators.required]],
-      prodAccount: ['', [Validators.required]]
+      prodAccount: ['', [Validators.required]],
+      leads: ['', [Validators.required]],
+      opportunities: ['', [Validators.required]]
     });
 
     this.activatedRoute
@@ -107,7 +115,9 @@ export class AccountFormComponent implements OnInit {
         res => {
           this.accountFormGroup.patchValue(res);
           this.products = res.prodAccount;
-          this.contacts = res.contacts
+          this.contacts = res.contacts;
+          this.leads = res.leads;
+          this.opportunities = res.opportunities;
           for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].discType === 2)
               this.discUnit = '%';

@@ -70,6 +70,28 @@
           <button *ngIf="!readOnly" type="button" (click)="open(contactSelector)" class="btn btn-primary float-right text-white ripple">Add Contact</button>
         </div>
       </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Leads</h6>
+          <ul class="list-group my-4">
+            <li [@fadeIn] *ngFor="let lead of leads" class="list-group-item">
+              <p><strong>{{lead.title}} ({{lead.pubKey}})</strong></p>
+              <p class="p-0 m-0 pull-right text-success"><strong>Quote Price : {{lead.quotePrice}}</strong></p>
+            </li>
+          </ul>          
+        </div>
+      </div>
+      <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
+        <div class="card-block">
+          <h6 class="card-title mb-4 text-center text-muted">Opportunities</h6>
+          <ul class="list-group my-4">
+            <li [@fadeIn] *ngFor="let opportunity of opportunities" class="list-group-item">
+              <p><strong>{{opportunity.title}} ({{opportunity.pubKey}})</strong></p>
+              <p class="p-0 m-0 pull-right text-success"><strong>Quote Price : {{opportunity.quotePrice}}</strong></p>
+            </li>
+          </ul>          
+        </div>
+      </div>
       <div *ngIf="mode === 'Modify'" class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Comments</h6>
