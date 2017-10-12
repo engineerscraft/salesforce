@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.salesforce.model.Comment;
+import com.salesforce.rowmapper.CommentAccountRowMapper;
 import com.salesforce.rowmapper.CommentRowMapper;
 import com.salesforce.utils.ApplicationUtils;
 
@@ -26,6 +27,9 @@ public class CommentRepository {
     @Value("${sql.comment.page}")
     private String leadCommentPageSql;
 
+    @Value("${sql.commentAccount.page}")
+    private String accountCommentPageSql;
+
     @Value("${comment.pagesize}")
     private Long commentPageSize;
 
@@ -38,42 +42,63 @@ public class CommentRepository {
     @Value("${sql.commentTable.insert}")
     private String commentTableInsert;
 
+    @Value("${sql.commentAccount.insert}")
+    private String commentAccountTableInsert;
+
     public List<Comment> getCommentPage(String pubKey, long startPosition) {
         Object[] args = { pubKey, pubKey, startPosition, commentPageSize };
         String sql = null;
+        List<Comment> comments = null;
 
         if (pubKey.contains("LD")) {
             sql = leadCommentPageSql;
+        } else if (pubKey.contains("AC")) {
+            sql = accountCommentPageSql;
         }
         logger.info(sqlMarker, sql);
         logger.info(sqlMarker, "Params {}. {}, {}, {}", () -> pubKey, () -> pubKey, () -> startPosition, () -> commentPageSize);
-        List<Comment> comments = (List<Comment>) jdbcTemplate.query(leadCommentPageSql, args, new CommentRowMapper());
-        logger.debug("Retrieved comments: {}", () -> comments);
+        if (pubKey.contains("LD")) {
+            comments = (List<Comment>) jdbcTemplate.query(leadCommentPageSql, args, new CommentRowMapper());
+        } else if (pubKey.contains("AC")) {
+            comments = (List<Comment>) jdbcTemplate.query(accountCommentPageSql, args, new CommentAccountRowMapper());
+        }
+        logger.debug("Retrieved comments: ", comments);
         return comments;
     }
 
     public void createComment(Comment comment, String username) throws Exception {
-        Integer commentId = generateContactId();
+        Integer commentId = generateId(comment.getEntityPubKey());
 
-        logger.info(sqlMarker, commentTableInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username, () -> comment.getStatusPubKey());
-        jdbcTemplate.update(commentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username, comment.getStatusPubKey() });
-        
+        if (comment.getEntityPubKey().contains("LD")) {
+            logger.info(sqlMarker, commentTableInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username, () -> comment.getStatusPubKey());
+            jdbcTemplate.update(commentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username, comment.getStatusPubKey() });
+        } else if (comment.getEntityPubKey().contains("AC")) {
+            logger.info(sqlMarker, commentAccountTableInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
+            jdbcTemplate.update(commentAccountTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username });
+        }
+
     }
 
-    private Integer generateContactId() throws Exception {
-
+    private Integer generateId(String pubKey) throws Exception {
+        Integer fetchedCommentId = 0;
+        String seqName = null;
         logger.info(sqlMarker, getCommentSequence);
-        logger.info(sqlMarker, "Params {}", () -> ApplicationUtils.LEAD_TIMELINE_SEQ_NAME);
-
-        Integer fetchedCommentId = jdbcTemplate.queryForObject(getCommentSequence, new Object[] { ApplicationUtils.LEAD_TIMELINE_SEQ_NAME }, Integer.class);
+        if (pubKey.contains("LD")) {
+            seqName = ApplicationUtils.LEAD_TIMELINE_SEQ_NAME;
+        } else if (pubKey.contains("AC")) {
+            seqName = ApplicationUtils.ACCOUNT_TM_SEQ_NAME;
+        }
+        logger.info(sqlMarker, "Params ", seqName);
+        fetchedCommentId = jdbcTemplate.queryForObject(getCommentSequence, new Object[] { seqName }, Integer.class);
         Integer newCommentId = fetchedCommentId + 1;
 
         logger.info(sqlMarker, updateCommentSequence);
-        logger.info(sqlMarker, "Params {} {}", () -> newCommentId, () -> ApplicationUtils.LEAD_TIMELINE_SEQ_NAME);
-        jdbcTemplate.update(updateCommentSequence, new Object[] { newCommentId, ApplicationUtils.LEAD_TIMELINE_SEQ_NAME });
+        logger.info(sqlMarker, "Params {} {}", newCommentId, seqName);
+        jdbcTemplate.update(updateCommentSequence, new Object[] { newCommentId, seqName });
 
-        logger.debug("Contact ID generated: {}", () -> fetchedCommentId);
+        logger.debug("Contact ID generated: ", fetchedCommentId);
         return fetchedCommentId;
     }
 }
