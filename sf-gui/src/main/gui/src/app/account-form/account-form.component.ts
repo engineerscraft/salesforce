@@ -87,7 +87,8 @@ export class AccountFormComponent implements OnInit {
       contacts: ['', [Validators.required]],
       prodAccount: ['', [Validators.required]],
       leads: ['', [Validators.required]],
-      opportunities: ['', [Validators.required]]
+      opportunities: ['', [Validators.required]],
+      changeDes: ['']
     });
 
     this.activatedRoute
@@ -209,19 +210,18 @@ export class AccountFormComponent implements OnInit {
       this.mode = 'Modify';
     } else if (this.mode === 'Modify') {
       if (this.accountFormGroup.dirty) {
-        /*this.leadService.modifyLead(this.pubKey, this.leadFormGroup.value)
+        this.accountService.modifyAccount(this.pubKey, this.accountFormGroup.value)
           .subscribe(
           res => {
-            this.statusService.readStatus('LEAD', this.leadFormGroup.get('leadSummary.statusPubKey').value)
-              .subscribe(
-              res => {
-                this.possibleStatus = res;
-                this.checkLeadStatus();
-              }
-              );
-            this.cancel();
+            this.readOnly = true;
+            this.buttonName = 'Modify';
+            this.mode = 'View';
+          },
+          err => {
+            this.message = err.status + " : " + err.statusText;
+            this.message = this.message + " : " + err.json()["message"];
           }
-          );*/
+          );
       } else {
         this.cancel();
       }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.salesforce.model.Account;
 import com.salesforce.model.AccountSummary;
+import com.salesforce.model.Comment;
 import com.salesforce.model.ContactSummary;
 import com.salesforce.model.LeadSummary;
 import com.salesforce.model.OpportunitySummary;
@@ -75,6 +76,9 @@ public class AccountRepository {
     @Value("${sql.accountContact.insert}")
     private String accountContactInsert;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     public List<AccountSummary> getAccountPage(String searchString, long startPosition) {
         Object[] args = { searchString, '%' + searchString + '%', searchString, startPosition, accountPageSize };
         logger.info(sqlMarker, accountPageSql);
@@ -128,10 +132,10 @@ public class AccountRepository {
             this.saveAccountContacts(account.getContacts(), account.getAccountSummary().getPubKey(), username, true);
 
             if (account.getChangeDes() != null) {
-                // Comment comment = new Comment();
-                // comment.setNote(lead.getChangeDes());
-                // comment.setEntityPubKey(lead.getLeadSummary().getPubKey());
-                // this.commentRepository.createComment(comment, username);
+                Comment comment = new Comment();
+                comment.setNote(account.getChangeDes());
+                comment.setEntityPubKey(account.getAccountSummary().getPubKey());
+                this.commentRepository.createComment(comment, username);
             }
 
             PublicKey pubKey = new PublicKey();
