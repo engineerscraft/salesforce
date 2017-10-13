@@ -1,6 +1,7 @@
 import { Component, OnInit, trigger, transition, style, animate } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
+import { ContactService } from '../contact.service';
 import 'rxjs/add/operator/debounceTime.js';
 import { Observable } from 'rxjs/Observable';
 
@@ -33,8 +34,13 @@ export class AppDashboardComponent implements OnInit {
   private startAccount = 0
   private pageSizeAccount = 6;
   private paginationMessageAccount;
+  private contactQuadruples;
+  private startContact = 0
+  private pageSizeContact = 6;
+  private paginationMessageContact;
 
-  constructor(private formBuilder: FormBuilder, private accountService: AccountService) { }
+  constructor(private formBuilder: FormBuilder, private accountService: AccountService, 
+    private contactService: ContactService) { }
 
   ngOnInit() {
     this.appDashboardSearchFormGroup = this.formBuilder.group({
@@ -59,6 +65,18 @@ export class AppDashboardComponent implements OnInit {
             err => {
               this.message = err.json()["message"];
             });
+
+          this.startContact = 0;
+          this.searchString = res;
+          this.contactService.searchContacts(this.searchString, 0)
+            .subscribe(
+            data => {
+              this.message = '';
+              this.contactQuadruples = this.getContactQuadruples(data);
+            },
+            err => {
+              this.message = err.json()["message"];
+            });
         }
       });
   }
@@ -68,6 +86,22 @@ export class AppDashboardComponent implements OnInit {
     let triple = [];
     for (let i = 1; i <= accounts.length; i++) {
       triple.push(accounts[i - 1]);
+      if (i % 3 === 0) {
+        arr.push(triple);
+        triple = [];
+      }
+    }
+    if (triple.length > 0) {
+      arr.push(triple);
+    }
+    return arr;
+  }
+
+  getContactQuadruples(contacts) {
+    let arr = [];
+    let triple = [];
+    for (let i = 1; i <= contacts.length; i++) {
+      triple.push(contacts[i - 1]);
       if (i % 3 === 0) {
         arr.push(triple);
         triple = [];
@@ -103,7 +137,7 @@ export class AppDashboardComponent implements OnInit {
           this.paginationMessageAccount = "You are on the last page";
           setTimeout(
             function () {
-              console.log(this.paginationMessage);
+              console.log(this.paginationMessageAccount);
               this.paginationMessage = undefined;
             }.bind(this), 2000);
         }
@@ -115,7 +149,7 @@ export class AppDashboardComponent implements OnInit {
       this.paginationMessageAccount = "You are on the first page";
       setTimeout(
         function () {
-          console.log(this.paginationMessage);
+          console.log(this.paginationMessageAccount);
           this.paginationMessage = undefined;
         }.bind(this), 2000);
     } else {
@@ -129,6 +163,51 @@ export class AppDashboardComponent implements OnInit {
         },
         err => {
           this.startAccount = this.startAccount + this.pageSizeAccount;
+        });
+    }
+  }
+
+  nextContact() {
+    this.startContact = this.startContact + this.pageSizeContact;
+    this.contactService.searchContacts(this.searchString, this.startContact)
+      .subscribe(
+      data => {
+        this.message = '';
+        this.contactQuadruples = this.getContactQuadruples(data);
+        this.paginationMessageContact = undefined;
+      },
+      err => {
+        this.startContact = this.startContact - this.pageSizeContact;
+        if (err.status === 404) {
+          this.paginationMessageContact = "You are on the last page";
+          setTimeout(
+            function () {
+              console.log(this.paginationMessageContact);
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+        }
+      });
+  }
+
+  previousContact() {
+    if (this.startContact === 0) {
+      this.paginationMessageContact = "You are on the first page";
+      setTimeout(
+        function () {
+          console.log(this.paginationMessageContact);
+          this.paginationMessage = undefined;
+        }.bind(this), 2000);
+    } else {
+      this.startContact = this.startContact - this.pageSizeContact;
+      this.contactService.searchContacts(this.searchString, this.startContact)
+        .subscribe(
+        data => {
+          this.message = '';
+          this.contactQuadruples = this.getContactQuadruples(data);
+          this.paginationMessageContact = undefined;
+        },
+        err => {
+          this.startContact = this.startContact + this.pageSizeContact;
         });
     }
   }
