@@ -70,7 +70,7 @@ select lead_id, 1, 'TEST', current_timestamp, null, null
 from sfm.opportunity;
 
 insert into sfm.opportunity_prod 
-select lead_id, prod_id, 1, 0, 0, 0, 'TEST', current_timestamp, null, null
+select lead_id, prod_id, 1, 0, 0, 0, 0, 'TEST', current_timestamp, null, null
 from sfm.opportunity, sfm.product;
 
 INSERT INTO SFM.DIV_ROLE VALUES

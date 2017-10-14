@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.salesforce.model.Comment;
@@ -28,6 +29,7 @@ import com.salesforce.rowmapper.OpportunitySummaryRowMapper;
 import com.salesforce.rowmapper.ProductInstanceRowMapper;
 import com.salesforce.utils.ApplicationUtils;
 
+@Component
 public class OpportunityRepository {
 
     private static final Logger logger = LogManager.getLogger(OpportunityRepository.class);
@@ -42,7 +44,7 @@ public class OpportunityRepository {
     @Value("${sql.updateSeq.byName}")
     private String updateOppSequence;
 
-    @Value("${sql.opportunityTable.insert}")
+    @Value("${sql.opportunity.insert}")
     private String oppTableInsert;
 
     @Value("${sql.oppProdFromLead.insert}")
@@ -69,7 +71,7 @@ public class OpportunityRepository {
     @Value("${sql.oppContact.delete}")
     private String oppContactDelete;
     
-    @Value("${sql.oppCommentTable.insert}")
+    @Value("${sql.oppContactTable.insert}")
     private String oppContactTableInsert;
     
     @Value("${opportunity.pagesize}")
@@ -106,9 +108,9 @@ public class OpportunityRepository {
         logger.info(sqlMarker, leadLockSql);
         jdbcTemplate.update(leadLockSql, new Object[] { leadPubKey.getPubKey() });
         Comment comment = new Comment();
-        comment.setNote("Status changed");
+        comment.setNote("Opportunity created");
         comment.setEntityPubKey(pubKey.getPubKey());
-        this.commentRepository.createComment(comment, username);
+        this.commentRepository.createInitialComment(comment, username);
         return pubKey;
     }
 
@@ -160,7 +162,7 @@ public class OpportunityRepository {
             pubKey.setPubKey(opportunity.getOpportunitySummary().getPubKey());
             return pubKey;
         } else {
-            throw new Exception("Lead cannot be updated as basic lead data is missing...");
+            throw new Exception("Opportunity cannot be updated as basic opportunity data is missing...");
         }
     }
 
@@ -261,7 +263,7 @@ public class OpportunityRepository {
         logger.info(sqlMarker, "Params {}", () -> pubKey);
         List<ProductInstance> oppProducts = jdbcTemplate.query(oppProductSelect, args, new ProductInstanceRowMapper());
         opportunity.setProdInstances(oppProducts);
-        logger.debug("Retrieved lead: {}", () -> opportunity);
+        logger.debug("Retrieved opporttunity: {}", () -> opportunity);
         return opportunity;
     }
 

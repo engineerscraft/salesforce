@@ -11,7 +11,6 @@ public class SalesRepSummaryRowMapper implements RowMapper<SalesRepSummary> {
 
     public SalesRepSummary mapRow(ResultSet rs, int rowNum) throws SQLException {
         SalesRepSummary salesRepSummary = new SalesRepSummary();
-        salesRepSummary.setSalesRepId(rs.getInt("SALES_REP_ID"));
         salesRepSummary.setPubKey(rs.getString("PUB_KEY"));
         salesRepSummary.setfName(rs.getString("F_NAME"));
         salesRepSummary.setmName(rs.getString("M_NAME"));

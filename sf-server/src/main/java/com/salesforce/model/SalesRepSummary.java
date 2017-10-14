@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SalesRepSummary {
 
-    private int salesRepId;
     private String pubKey;
     private String fName;
     private String mName;
@@ -19,20 +18,6 @@ public class SalesRepSummary {
     private String mob;
     private String email;
     private String desig;
-
-    /**
-     * @return the salesRepId
-     */
-    public int getSalesRepId() {
-        return salesRepId;
-    }
-
-    /**
-     * @param salesRepId the salesRepId to set
-     */
-    public void setSalesRepId(int salesRepId) {
-        this.salesRepId = salesRepId;
-    }
 
     /**
      * @return the pubKey
@@ -165,7 +150,7 @@ public class SalesRepSummary {
      */
     @Override
     public String toString() {
-        return "SalesRepSummary [salesRepId=" + salesRepId + ", pubKey=" + pubKey + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", extn=" + extn + ", land=" + land + ", mob=" + mob + ", email=" + email + ", desig=" + desig + "]";
+        return "SalesRepSummary [pubKey=" + pubKey + ", fName=" + fName + ", mName=" + mName + ", lName=" + lName + ", extn=" + extn + ", land=" + land + ", mob=" + mob + ", email=" + email + ", desig=" + desig + "]";
     }
 
 }

@@ -1,3 +1,4 @@
+import { OppService } from './opp.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -45,25 +46,31 @@ import { ContactSelectorComponent } from './contact-selector/contact-selector.co
 import { ProdInstEditorComponent } from './prod-inst-editor/prod-inst-editor.component';
 import { AccountSelectorComponent } from './account-selector/account-selector.component';
 import { SalesrepSelectorComponent } from './salesrep-selector/salesrep-selector.component';
-import { CommentCardComponent } from './comment-card/comment-card.component';
-import { CommentFormComponent } from './comment-form/comment-form.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountCardComponent } from './account-card/account-card.component';
 import { LeadCardComponent } from './lead-card/lead-card.component';
+import { OppCardComponent } from './opp-card/opp-card.component';
+import { OppCreationComponent } from './opp-creation/opp-creation.component';
+import { OppDetailsComponent } from './opp-details/opp-details.component';
+import { OppFormComponent } from './opp-form/opp-form.component';
+import { OppsComponent } from './opps/opps.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home', component: AppDashboardComponent },
-  { path: 'leadCreation', component: LeadCreationComponent },
-  { path: 'leads', component: LeadsComponent },
   { path: 'contactCreation', component: ContactCreationComponent },
-  { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
   { path: 'contacts', component: ContactsComponent },
   { path: 'contactDetails/:pubKey', component: ContactDetailsComponent },
+  { path: 'leadCreation', component: LeadCreationComponent },
+  { path: 'leads', component: LeadsComponent },
   { path: 'leadDetails/:pubKey', component: LeadDetailsComponent },
+  { path: 'oppCreation', component: OppCreationComponent },
+  { path: 'opps', component: OppsComponent },
+  { path: 'oppDetails/:pubKey', component: OppDetailsComponent },
+  { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
   { path: 'salesreps', component: SalesrepsComponent },
   { path: 'salesrepDetails/:pubKey', component: SalesrepDetailsComponent },
   { path: 'accounts', component: AccountsComponent },
@@ -98,14 +105,17 @@ const appRoutes: Routes = [
     ProdInstEditorComponent,
     AccountSelectorComponent,
     SalesrepSelectorComponent,
-    CommentCardComponent,
-    CommentFormComponent,
     TimelineComponent,
     AccountsComponent,
     AccountDetailsComponent,
     AccountFormComponent,
     AccountCardComponent,
-    LeadCardComponent
+    LeadCardComponent,
+    OppCardComponent,
+    OppCreationComponent,
+    OppDetailsComponent,
+    OppFormComponent,
+    OppsComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -133,7 +143,8 @@ const appRoutes: Routes = [
     LeadService,
     AccountService,
     StatusService,
-    CommentService
+    CommentService,
+    OppService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommentCardComponent } from './comment-card.component';
+import { OppCreationComponent } from './opp-creation.component';
 
-describe('CommentCardComponent', () => {
-  let component: CommentCardComponent;
-  let fixture: ComponentFixture<CommentCardComponent>;
+describe('OppCreationComponent', () => {
+  let component: OppCreationComponent;
+  let fixture: ComponentFixture<OppCreationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommentCardComponent ]
+      declarations: [ OppCreationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommentCardComponent);
+    fixture = TestBed.createComponent(OppCreationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

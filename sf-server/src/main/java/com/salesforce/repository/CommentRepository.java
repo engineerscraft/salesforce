@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.salesforce.model.Comment;
-import com.salesforce.rowmapper.CommentAccountRowMapper;
 import com.salesforce.rowmapper.CommentRowMapper;
 import com.salesforce.utils.ApplicationUtils;
 
@@ -45,25 +44,37 @@ public class CommentRepository {
     @Value("${sql.initialCommentTable.insert}")
     private String initialCommentTableInsert;
 
+    @Value("${sql.initialCommentAccount.insert}")
+    private String initialCommentAccountInsert;
+
+    @Value("${sql.initialCommentOpp.insert}")
+    private String initialCommentOppInsert;
+
     @Value("${sql.commentAccount.insert}")
     private String commentAccountTableInsert;
+    
+    @Value("${sql.oppCommentTable.insert}")
+    private String commentOppInsert;
 
+    @Value("${sql.oppComment.page}")
+    private String oppCommentPageSql;
+    
     public List<Comment> getCommentPage(String pubKey, long startPosition) {
         Object[] args = { pubKey, pubKey, startPosition, commentPageSize };
-        String sql = null;
         List<Comment> comments = null;
 
         if (pubKey.contains("LD")) {
-            sql = leadCommentPageSql;
-        } else if (pubKey.contains("AC")) {
-            sql = accountCommentPageSql;
-        }
-        logger.info(sqlMarker, sql);
-        logger.info(sqlMarker, "Params {}. {}, {}, {}", () -> pubKey, () -> pubKey, () -> startPosition, () -> commentPageSize);
-        if (pubKey.contains("LD")) {
+            logger.info(sqlMarker, leadCommentPageSql);
+            logger.info(sqlMarker, "Params {}. {}, {}, {}", () -> pubKey, () -> pubKey, () -> startPosition, () -> commentPageSize);
             comments = (List<Comment>) jdbcTemplate.query(leadCommentPageSql, args, new CommentRowMapper());
+        } else if (pubKey.contains("OP")) {
+            logger.info(sqlMarker, oppCommentPageSql);
+            logger.info(sqlMarker, "Params {}. {}, {}, {}", () -> pubKey, () -> pubKey, () -> startPosition, () -> commentPageSize);
+            comments = (List<Comment>) jdbcTemplate.query(oppCommentPageSql, args, new CommentRowMapper());
         } else if (pubKey.contains("AC")) {
-            comments = (List<Comment>) jdbcTemplate.query(accountCommentPageSql, args, new CommentAccountRowMapper());
+            logger.info(sqlMarker, accountCommentPageSql);
+            logger.info(sqlMarker, "Params {}. {}, {}, {}", () -> pubKey, () -> pubKey, () -> startPosition, () -> commentPageSize);
+            comments = (List<Comment>) jdbcTemplate.query(accountCommentPageSql, args, new CommentRowMapper());
         }
         logger.debug("Retrieved comments: ", comments);
         return comments;
@@ -76,6 +87,10 @@ public class CommentRepository {
             logger.info(sqlMarker, commentTableInsert);
             logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username, () -> comment.getStatusPubKey());
             jdbcTemplate.update(commentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username, comment.getStatusPubKey() });
+        } else if (comment.getEntityPubKey().contains("OP")) {
+            logger.info(sqlMarker, commentOppInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username, () -> comment.getStatusPubKey());
+            jdbcTemplate.update(commentOppInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username, comment.getStatusPubKey() });
         } else if (comment.getEntityPubKey().contains("AC")) {
             logger.info(sqlMarker, commentAccountTableInsert);
             logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
@@ -83,6 +98,25 @@ public class CommentRepository {
         }
 
     }
+    
+    public void createInitialComment(Comment comment, String username) throws Exception {
+        Integer commentId = generateId(comment.getEntityPubKey());
+
+        if (comment.getEntityPubKey().contains("LD")) {
+            logger.info(sqlMarker, initialCommentTableInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
+            jdbcTemplate.update(commentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username });
+        } else if (comment.getEntityPubKey().contains("OP")) {
+            logger.info(sqlMarker, initialCommentOppInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
+            jdbcTemplate.update(initialCommentOppInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username});
+        } else if (comment.getEntityPubKey().contains("AC")) {
+            logger.info(sqlMarker, initialCommentAccountInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
+            jdbcTemplate.update(initialCommentAccountInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username });
+        }
+
+    }    
 
     private Integer generateId(String pubKey) throws Exception {
         Integer fetchedCommentId = 0;
@@ -90,6 +124,8 @@ public class CommentRepository {
         logger.info(sqlMarker, getCommentSequence);
         if (pubKey.contains("LD")) {
             seqName = ApplicationUtils.LEAD_TIMELINE_SEQ_NAME;
+        } else if (pubKey.contains("OP")) {
+            seqName = ApplicationUtils.OPPORTUNITY_TM_SEQ_NAME;
         } else if (pubKey.contains("AC")) {
             seqName = ApplicationUtils.ACCOUNT_TM_SEQ_NAME;
         }

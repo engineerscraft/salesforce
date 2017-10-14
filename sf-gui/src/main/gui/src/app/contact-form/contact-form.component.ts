@@ -48,7 +48,6 @@ export class ContactFormComponent implements OnInit {
     this.contactFormGroup = this.formBuilder.group({
 
       contactSummary: this.formBuilder.group({
-        coId: [''],
         pubKey: [''],
         fName: ['', [Validators.required]],
         mName: [''],

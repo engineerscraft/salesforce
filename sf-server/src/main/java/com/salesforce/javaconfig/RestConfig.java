@@ -17,6 +17,7 @@ import com.salesforce.rest.DistrictResource;
 import com.salesforce.rest.DivisionResource;
 import com.salesforce.rest.HealthCheckEndpoint;
 import com.salesforce.rest.LeadResource;
+import com.salesforce.rest.OpportunityResource;
 import com.salesforce.rest.PermissionEndpoint;
 import com.salesforce.rest.ProductResource;
 import com.salesforce.rest.SalesRepResource;
@@ -27,6 +28,6 @@ import com.salesforce.rest.StatusResource;
 public class RestConfig extends ResourceConfig {
     public RestConfig() {
         registerClasses(AuthenticationEndpoint.class, AuthenticationFilter.class, AuthorizationFilter.class, HealthCheckEndpoint.class, PermissionEndpoint.class, ChangePasswordEndpoint.class, MultiPartFeature.class, StatusResource.class, CountryResource.class,
-                DistrictResource.class, StateResource.class, ProductResource.class, ContactResource.class, SalesRepResource.class, DivisionResource.class, AccountResource.class, LeadResource.class, CommentResource.class);
+                DistrictResource.class, StateResource.class, ProductResource.class, ContactResource.class, SalesRepResource.class, DivisionResource.class, AccountResource.class, LeadResource.class, CommentResource.class, OpportunityResource.class);
     }
 }

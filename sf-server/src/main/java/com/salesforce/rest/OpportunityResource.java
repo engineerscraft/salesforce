@@ -28,7 +28,7 @@ import com.salesforce.privileges.Privilege;
 import com.salesforce.repository.OpportunityRepository;
 import com.salesforce.security.Secured;
 
-@Path("v1/lead")
+@Path("v1/opp")
 public class OpportunityResource {
 
     private static final Logger logger = LogManager.getLogger(OpportunityResource.class);
@@ -49,7 +49,7 @@ public class OpportunityResource {
             PublicKey oppPubKey = oppRepository.createOpportunity(pubKey, username);
             return Response.status(Response.Status.OK).entity(oppPubKey).build();
         } catch (Exception e) {
-            logger.error("The lead could not be created", e);
+            logger.error("The opportunity could not be created", e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
 
@@ -65,7 +65,7 @@ public class OpportunityResource {
             PublicKey pubKeyObj = oppRepository.modifyOpportunity(opportunity, username);
             return Response.status(Response.Status.OK).entity(pubKeyObj).build();
         } catch (Exception e) {
-            logger.error("The lead could not be created", e);
+            logger.error("The opportunity could not be modified", e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
 

@@ -1,13 +1,13 @@
 import { Component, OnInit, trigger, transition, style, animate } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ContactService } from '../contact.service';
+import { OppService } from '../opp.service';
 import 'rxjs/add/operator/debounceTime.js';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss'],
+  selector: 'app-opps',
+  templateUrl: './opps.component.html',
+  styleUrls: ['./opps.component.scss'],
   animations: [
     trigger(
       'enterAnimation', [
@@ -23,11 +23,10 @@ import { Observable } from 'rxjs/Observable';
     )
   ]
 })
-export class ContactsComponent implements OnInit {
-
+export class OppsComponent implements OnInit {
   private search = 'simple';
-  private contactSearchFormGroup: FormGroup;
-  private contactQuadruples;
+  private opportunitySearchFormGroup: FormGroup;
+  private opportunityQuadruples;
   private message = '';
   private searchString;
   private start = 0
@@ -35,27 +34,27 @@ export class ContactsComponent implements OnInit {
   private paginationMessage;
 
 
-  constructor(private formBuilder: FormBuilder, private contactService: ContactService) { }
+  constructor(private formBuilder: FormBuilder, private oppService: OppService) { }
 
   ngOnInit() {
-    this.contactSearchFormGroup = this.formBuilder.group({
+    this.opportunitySearchFormGroup = this.formBuilder.group({
       searchString: ['', [Validators.required]]
     });
 
-    this.contactSearchFormGroup.get("searchString").valueChanges.debounceTime(400)
+    this.opportunitySearchFormGroup.get("searchString").valueChanges.debounceTime(400)
       .subscribe(
       res => {
         if (res.trim().length === 0) {
           this.message = '';
-          this.contactQuadruples = undefined;
+          this.opportunityQuadruples = undefined;
         } else {
           this.start = 0;
           this.searchString = res;
-          this.contactService.searchContacts(this.searchString, 0)
+          this.oppService.searchOpportunities(this.searchString, 0)
             .subscribe(
             data => {
               this.message = '';
-              this.contactQuadruples = this.getContactQuadruples(data);
+              this.opportunityQuadruples = this.getopportunityQuadruples(data);
             },
             err => {
               this.message = err.json()["message"];
@@ -65,11 +64,11 @@ export class ContactsComponent implements OnInit {
 
   }
 
-  getContactQuadruples(contacts) {
+  getopportunityQuadruples(opportunitys) {
     let arr = [];
     let triple = [];
-    for (let i = 1; i <= contacts.length; i++) {
-      triple.push(contacts[i - 1]);
+    for (let i = 1; i <= opportunitys.length; i++) {
+      triple.push(opportunitys[i - 1]);
       if (i % 3 === 0) {
         arr.push(triple);
         triple = [];
@@ -92,11 +91,11 @@ export class ContactsComponent implements OnInit {
 
   next() {
     this.start = this.start + this.pageSize;
-    this.contactService.searchContacts(this.searchString, this.start)
+    this.oppService.searchOpportunities(this.searchString, this.start)
       .subscribe(
       data => {
         this.message = '';
-        this.contactQuadruples = this.getContactQuadruples(data);
+        this.opportunityQuadruples = this.getopportunityQuadruples(data);
         this.paginationMessage = undefined;
       },
       err => {
@@ -122,11 +121,11 @@ export class ContactsComponent implements OnInit {
         }.bind(this), 2000);
     } else {
       this.start = this.start - this.pageSize;
-      this.contactService.searchContacts(this.searchString, this.start)
+      this.oppService.searchOpportunities(this.searchString, this.start)
         .subscribe(
         data => {
           this.message = '';
-          this.contactQuadruples = this.getContactQuadruples(data);
+          this.opportunityQuadruples = this.getopportunityQuadruples(data);
           this.paginationMessage = undefined;
         },
         err => {

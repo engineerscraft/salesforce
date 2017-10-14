@@ -2,7 +2,7 @@
   <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
     <strong>{{message}}</strong>
   </div>
-  <form [formGroup]="leadFormGroup" (ngSubmit)="submit()">
+  <form [formGroup]="opportunityFormGroup" (ngSubmit)="submit()">
     <div class="card-block">
       <h1 class="display-4 text-white ml-4 my-3">{{formTitle}}</h1>
       <div class="ml-4 my-3">
@@ -12,16 +12,16 @@
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">
           <h6 class="card-title mb-4 text-center text-muted">Basic Information</h6>
-          <div *ngIf="pubKey" class="form-group" formGroupName="leadSummary">
+          <div *ngIf="pubKey" class="form-group" formGroupName="opportunitySummary">
             <label for="pubKey">Public Key</label>
             <input (focus)="attr = 'pubKey'" type="text" formControlName="pubKey" class="form-control" id="pubKey" required readonly>
           </div>
-          <div class="form-group" formGroupName="leadSummary">
+          <div class="form-group" formGroupName="opportunitySummary">
             <label for="title">Title <span class="text-danger">*</span></label>
-            <input (focus)="attr = 'title'" type="text" formControlName="title" class="form-control" id="title" placeholder="Title text of the lead"
+            <input (focus)="attr = 'title'" type="text" formControlName="title" class="form-control" id="title" placeholder="Title text of the opportunity"
               [readOnly]="readOnly" required>
           </div>
-          <div class="form-group" formGroupName="leadSummary">
+          <div class="form-group" formGroupName="opportunitySummary">
             <label for="quotePrice">Total Quote Price</label>
             <input (focus)="attr = 'quotePrice'" type="text" formControlName="quotePrice" class="form-control" id="quotePrice" readonly
               required>
@@ -46,7 +46,7 @@
                 <option *ngFor="let div of divisions" value="{{div.pubKey}}">{{div.des}}</option>
             </select>
           </div>
-          <div *ngIf="pubKey" class="form-group" formGroupName="leadSummary">
+          <div *ngIf="pubKey" class="form-group" formGroupName="opportunitySummary">
             <label for="status">Status <span class="text-danger">*</span></label>
             <select (focus)="attr = 'status'" class="form-control" formControlName="statusPubKey" id="status" [attr.disabled]="readOnly"
               required>
@@ -113,7 +113,7 @@
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
         <button class="btn btn-info text-white ripple" (click)="changeViewDisplay()">Show Updates</button>
         <button *ngIf="showConversionControl && !rdOnly" class="btn btn-info text-white ripple">Convert to Opportunity</button>
-        <button *ngIf="!rdOnly" [disabled]="!leadFormGroup.valid" type="submit" class="btn btn-info float-right text-white ripple">{{buttonName}}</button>
+        <button *ngIf="!rdOnly" [disabled]="!opportunityFormGroup.valid" type="submit" class="btn btn-info float-right text-white ripple">{{buttonName}}</button>
         <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-info float-right text-white ripple mr-2">Cancel</button>
       </div>
     </div>
@@ -164,6 +164,6 @@
   </ng-template>
 </div>
 <div class="d-none d-lg-block help-text">
-  <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Lead'" [helpText]="'Leads are potential new business. The customer has shown some interest in our product. However, we are still unsure if the sale will happen. We need to follow-up with the customer, gather more information and drive it towards an actual sale.'"></app-help-gadget>
-  <app-help-gadget *ngIf="attr==='discVal'" [helpHeader]="'Discount Value'" [helpText]="'This is the overall discount on the Lead. If the discount type is Percent, this value will be treated as a percent value. Otherwise, this value is considered as a monetary amount'"></app-help-gadget>
+  <app-help-gadget [background]="'bg-laccent'" [helpHeader]="'Opportunity'" [helpText]="'Opportunities are potential new business. The customer is interested and is working together with us to close the deal.'"></app-help-gadget>
+  <app-help-gadget *ngIf="attr==='discVal'" [helpHeader]="'Discount Value'" [helpText]="'This is the overall discount on the opportunity. If the discount type is Percent, this value will be treated as a percent value. Otherwise, this value is considered as a monetary amount'"></app-help-gadget>
 </div>

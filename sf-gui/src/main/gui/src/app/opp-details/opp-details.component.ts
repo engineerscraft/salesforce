@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params, NavigationEnd } from '@angular/router';
 
 @Component({
-  selector: 'app-lead-details',
-  templateUrl: './lead-details.component.html',
-  styleUrls: ['./lead-details.component.scss']
+  selector: 'app-opp-details',
+  templateUrl: './opp-details.component.html',
+  styleUrls: ['./opp-details.component.scss']
 })
-export class LeadDetailsComponent implements OnInit {
+export class OppDetailsComponent implements OnInit {
 
   private displayedSection = 'Details';
   private pubKey;
@@ -28,5 +28,4 @@ export class LeadDetailsComponent implements OnInit {
       this.displayedSection = 'Details';
     }
   }
-
 }

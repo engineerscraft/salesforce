@@ -97,6 +97,10 @@ public class LeadRepository {
             this.saveLeadContacts(lead.getContacts(), pubKey.getPubKey(), username, false);
             logger.info(sqlMarker, leadProductTableInsert);
             this.saveLeadProducts(lead.getProdInstances(), pubKey.getPubKey(), username, false);
+            Comment comment = new Comment();
+            comment.setNote("Lead created");
+            comment.setEntityPubKey(pubKey.getPubKey());
+            this.commentRepository.createInitialComment(comment, username);
             return pubKey;
         } else {
             throw new Exception("Lead cannot be created as basic lead data is missing...");

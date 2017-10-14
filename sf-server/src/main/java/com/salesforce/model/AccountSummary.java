@@ -12,24 +12,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class AccountSummary {
 
-    private int accId;
     private String pubKey;
     private String title;
     private BigDecimal soldPrice;
-
-    /**
-     * @return the accId
-     */
-    public int getAccId() {
-        return accId;
-    }
-
-    /**
-     * @param accId the accId to set
-     */
-    public void setAccId(int accId) {
-        this.accId = accId;
-    }
 
     /**
      * @return the pubKey
@@ -78,7 +63,7 @@ public class AccountSummary {
      */
     @Override
     public String toString() {
-        return "AccountSummary [accId=" + accId + ", pubKey=" + pubKey + ", title=" + title + ", soldPrice=" + soldPrice + "]";
+        return "AccountSummary [pubKey=" + pubKey + ", title=" + title + ", soldPrice=" + soldPrice + "]";
     }
 
 }

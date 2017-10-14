@@ -13,7 +13,6 @@ public class SalesRepRowMapper implements RowMapper<SalesRep> {
     public SalesRep mapRow(ResultSet rs, int rowNum) throws SQLException {
         SalesRep salesRep = new SalesRep();
         salesRep.setSalesRepSummary(new SalesRepSummary());
-        salesRep.getSalesRepSummary().setSalesRepId(rs.getInt("SALES_REP_ID"));
         salesRep.getSalesRepSummary().setPubKey(rs.getString("PUB_KEY"));
         salesRep.getSalesRepSummary().setfName(rs.getString("F_NAME"));
         salesRep.getSalesRepSummary().setmName(rs.getString("M_NAME"));
