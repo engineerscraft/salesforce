@@ -100,6 +100,10 @@ export class SalesrepFormComponent implements OnInit {
               .subscribe(
               res => {
                 this.salesrep = res;
+              },
+              err => {
+                this.message = err.status + " : " + err.statusText;
+                this.message = this.message + " : " + err.json()["message"];      
               }
               );
           }
@@ -113,11 +117,6 @@ export class SalesrepFormComponent implements OnInit {
 
     if (this.pubKey) {
       this.buttonName = 'Modify';
-    }
-
-
-    if (this.mode === 'View') {
-
     }
   }
 

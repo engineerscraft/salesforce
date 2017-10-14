@@ -121,6 +121,10 @@ export class OppFormComponent implements OnInit {
             this.divisions.splice(i, 1);
           }
         }
+      },
+      err => {
+        this.message = err.status + " : " + err.statusText;
+        this.message = this.message + " : " + err.json()["message"];
       }
       );
 
@@ -148,6 +152,10 @@ export class OppFormComponent implements OnInit {
               .subscribe(
               res => {
                 this.account = res;
+              },
+              err => {
+                this.message = err.status + " : " + err.statusText;
+                this.message = this.message + " : " + err.json()["message"];      
               }
               );
           }
@@ -156,10 +164,13 @@ export class OppFormComponent implements OnInit {
             res => {
               this.possibleStatus = res;
               this.checkopportunityStatus();
+            },
+            err => {
+              this.message = err.status + " : " + err.statusText;
+              this.message = this.message + " : " + err.json()["message"];    
             }
             );
-        }
-        ,
+        },
         err => {
           this.message = err.status + " : " + err.statusText;
           this.message = this.message + " : " + err.json()["message"];
@@ -351,7 +362,10 @@ export class OppFormComponent implements OnInit {
         data => {
           this.router.navigate(['opportunityDetails/' + data.pubKey]);
         },
-        err => { }
+        err => { 
+          this.message = err.status + " : " + err.statusText;
+          this.message = this.message + " : " + err.json()["message"];
+        }
       );
     } else if (this.mode === 'View') {
       this.readOnly = null;
@@ -367,9 +381,17 @@ export class OppFormComponent implements OnInit {
               res => {
                 this.possibleStatus = res;
                 this.checkopportunityStatus();
+              },
+              err => {
+                this.message = err.status + " : " + err.statusText;
+                this.message = this.message + " : " + err.json()["message"];      
               }
               );
             this.cancel();
+          },
+          err => {
+            this.message = err.status + " : " + err.statusText;
+            this.message = this.message + " : " + err.json()["message"];  
           }
           );
       } else {

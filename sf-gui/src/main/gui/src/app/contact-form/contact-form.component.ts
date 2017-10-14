@@ -40,7 +40,7 @@ export class ContactFormComponent implements OnInit {
       window.scroll(0, 0);
     });
 
-  if(this.mode === "View") {
+    if (this.mode === "View") {
       this.readOnly = true;
       this.formTitle = 'Contact Details';
     }
@@ -79,18 +79,17 @@ export class ContactFormComponent implements OnInit {
         .subscribe(
         res => {
           this.contactFormGroup.setValue(res);
-          if(this.contactFormGroup.value.cId) {
+          if (this.contactFormGroup.value.cId) {
             this.onCountryChange(this.contactFormGroup.value.cId);
           }
-          if(this.contactFormGroup.value.sId) {
+          if (this.contactFormGroup.value.sId) {
             this.onStateChange(this.contactFormGroup.value.sId);
           }
         },
         err => {
           this.message = err.status + " : " + err.statusText;
           this.message = this.message + " : " + err.json()["message"];
-        }
-        );
+        });
     }
 
     if (this.pubKey) {
@@ -101,12 +100,12 @@ export class ContactFormComponent implements OnInit {
       subscribe(
       res => {
         this.locationLists.countries = res;
+      },
+      err => {
+        this.message = err.status + " : " + err.statusText;
+        this.message = this.message + " : " + err.json()["message"];
+
       });
-
-
-    if (this.mode === 'View') {
-
-    }
   }
 
   onCountryChange(cId) {
@@ -114,8 +113,11 @@ export class ContactFormComponent implements OnInit {
       subscribe(
       res => {
         this.locationLists.states = res;
-      }
-      );
+      },
+      err => {
+        this.message = err.status + " : " + err.statusText;
+        this.message = this.message + " : " + err.json()["message"];
+      });
   }
 
   onStateChange(sId) {
@@ -123,8 +125,11 @@ export class ContactFormComponent implements OnInit {
       subscribe(
       res => {
         this.locationLists.districts = res;
-      }
-      );
+      },
+      err => {
+        this.message = err.status + " : " + err.statusText;
+        this.message = this.message + " : " + err.json()["message"];
+      });
   }
 
   submit() {
@@ -154,8 +159,7 @@ export class ContactFormComponent implements OnInit {
         err => {
           this.message = err.status + " : " + err.statusText;
           this.message = this.message + " : " + err.json()["message"];
-        }
-        );
+        });
     }
   }
 

@@ -124,6 +124,10 @@ export class LeadFormComponent implements OnInit {
             this.divisions.splice(i, 1);
           }
         }
+      },
+      err => {
+        this.message = err.status + " : " + err.statusText;
+        this.message = this.message + " : " + err.json()["message"];
       }
       );
 
@@ -151,6 +155,10 @@ export class LeadFormComponent implements OnInit {
               .subscribe(
               res => {
                 this.account = res;
+              },
+              err => {
+                this.message = err.status + " : " + err.statusText;
+                this.message = this.message + " : " + err.json()["message"];      
               }
               );
           }
@@ -159,6 +167,10 @@ export class LeadFormComponent implements OnInit {
             res => {
               this.possibleStatus = res;
               this.checkLeadStatus();
+            },
+            err => {
+              this.message = err.status + " : " + err.statusText;
+              this.message = this.message + " : " + err.json()["message"];    
             }
             );
         }
@@ -370,9 +382,17 @@ export class LeadFormComponent implements OnInit {
               res => {
                 this.possibleStatus = res;
                 this.checkLeadStatus();
+              },
+              err => {
+                this.message = err.status + " : " + err.statusText;
+                this.message = this.message + " : " + err.json()["message"];      
               }
               );
             this.cancel();
+          },
+          err => {
+            this.message = err.status + " : " + err.statusText;
+            this.message = this.message + " : " + err.json()["message"];  
           }
           );
       } else {
@@ -392,6 +412,10 @@ export class LeadFormComponent implements OnInit {
     this.oppService.createOpportunity(publicKey).subscribe(
       res => {
         this.router.navigate(["oppDetails/"+res.pubKey]);
+      },
+      err => {
+        this.message = err.status + " : " + err.statusText;
+        this.message = this.message + " : " + err.json()["message"];
       }
     );
   }

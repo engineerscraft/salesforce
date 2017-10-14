@@ -96,7 +96,7 @@ export class AccountFormComponent implements OnInit {
       .subscribe(params => {
         this.pubKey = params.get('pubKey');
       });
-    
+
     this.divisionService.getDivisions()
       .subscribe(
       data => {
@@ -107,6 +107,10 @@ export class AccountFormComponent implements OnInit {
             this.divisions.splice(i, 1);
           }
         }
+      },
+      err => {
+        this.message = err.status + " : " + err.statusText;
+        this.message = this.message + " : " + err.json()["message"];
       }
       );
 
