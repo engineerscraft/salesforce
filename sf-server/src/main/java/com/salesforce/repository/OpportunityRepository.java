@@ -99,12 +99,14 @@ public class OpportunityRepository {
         pubKey.setPubKey("OP" + String.format("%08d", opportunityId));
 
         logger.info(sqlMarker, oppTableInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}", () -> opportunityId, () -> pubKey.getPubKey(), () -> username);
-        jdbcTemplate.update(oppTableInsert, new Object[] { opportunityId, pubKey.getPubKey(), username });
+        logger.info(sqlMarker, "Params {}, {}, {}", () -> opportunityId, () -> pubKey.getPubKey(), () -> username, () -> leadPubKey.getPubKey());
+        jdbcTemplate.update(oppTableInsert, new Object[] { opportunityId, pubKey.getPubKey(), username, leadPubKey.getPubKey() });
         logger.info(sqlMarker, oppContactFromLead);
-        jdbcTemplate.update(oppContactFromLead, new Object[] { opportunityId, username });
+        logger.info(sqlMarker, "Params {}, {}, {}", () -> opportunityId, () -> username, () -> leadPubKey.getPubKey());
+        jdbcTemplate.update(oppContactFromLead, new Object[] { opportunityId, username, leadPubKey.getPubKey() });
         logger.info(sqlMarker, oppProdFromLead);
-        jdbcTemplate.update(oppProdFromLead, new Object[] { opportunityId, username });
+        logger.info(sqlMarker, "Params {}, {}, {}", () -> opportunityId, () -> username, () -> leadPubKey.getPubKey());
+        jdbcTemplate.update(oppProdFromLead, new Object[] { opportunityId, username, leadPubKey.getPubKey() });
         logger.info(sqlMarker, leadLockSql);
         jdbcTemplate.update(leadLockSql, new Object[] { leadPubKey.getPubKey() });
         Comment comment = new Comment();

@@ -104,11 +104,11 @@ public class CommentRepository {
 
         if (comment.getEntityPubKey().contains("LD")) {
             logger.info(sqlMarker, initialCommentTableInsert);
-            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
             jdbcTemplate.update(commentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username });
         } else if (comment.getEntityPubKey().contains("OP")) {
             logger.info(sqlMarker, initialCommentOppInsert);
-            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
             jdbcTemplate.update(initialCommentOppInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username});
         } else if (comment.getEntityPubKey().contains("AC")) {
             logger.info(sqlMarker, initialCommentAccountInsert);

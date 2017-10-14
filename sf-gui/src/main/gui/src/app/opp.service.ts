@@ -11,8 +11,8 @@ export class OppService {
       .map(res => res.json())
     }
   
-    createOpportunity(opportunity) {
-      return this.httpService.callHttpPost("/resources/v1/opp", opportunity)
+    createOpportunity(pubKey) {
+      return this.httpService.callHttpPost("/resources/v1/opp", pubKey)
         .map(res => res.json())
     }
   

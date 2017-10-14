@@ -1,3 +1,4 @@
+import { OppService } from '../opp.service';
 import { Component, OnInit, Input, Output, trigger, transition, style, animate, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeadService } from '../lead.service';
@@ -67,7 +68,8 @@ export class LeadFormComponent implements OnInit {
     private modalService: NgbModal,
     private divisionService: DivisionService,
     private accountService: AccountService,
-    private statusService: StatusService) { }
+    private statusService: StatusService,
+    private oppService: OppService) { }
 
   ngOnInit() {
 
@@ -381,5 +383,16 @@ export class LeadFormComponent implements OnInit {
 
   changeViewDisplay() {
     this.changeView.emit();
+  }
+
+  convert() {
+    let publicKey = {
+      pubKey: this.pubKey
+    };
+    this.oppService.createOpportunity(publicKey).subscribe(
+      res => {
+        this.router.navigate(["oppDetails/"+res.pubKey]);
+      }
+    );
   }
 }
