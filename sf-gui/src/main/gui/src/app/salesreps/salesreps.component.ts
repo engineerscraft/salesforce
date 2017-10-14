@@ -57,7 +57,14 @@ export class SalesrepsComponent implements OnInit {
               this.salesrepQuadruples = this.getSalesrepQuadruples(data);
             },
             err => {
-              this.message = err.json()["message"];
+              this.paginationMessage = err.status + " : " + err.statusText;
+              setTimeout(
+                function () {
+                  this.paginationMessage = undefined;
+                }.bind(this), 2000);
+    
+              this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
+                  this.message = err.json()["message"];
             });
         }
       });
@@ -107,6 +114,14 @@ export class SalesrepsComponent implements OnInit {
               console.log(this.paginationMessage);
               this.paginationMessage = undefined;
             }.bind(this), 2000);
+        } else {
+          this.paginationMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
         }
       });
   }
@@ -130,6 +145,13 @@ export class SalesrepsComponent implements OnInit {
         },
         err => {
           this.start = this.start + this.pageSize;
+          this.paginationMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
         });
     }
   }  

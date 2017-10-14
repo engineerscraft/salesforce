@@ -57,7 +57,14 @@ export class LeadsComponent implements OnInit {
               this.leadQuadruples = this.getleadQuadruples(data);
             },
             err => {
-              this.message = err.json()["message"];
+              this.paginationMessage = err.status + " : " + err.statusText;
+              setTimeout(
+                function () {
+                  this.paginationMessage = undefined;
+                }.bind(this), 2000);
+    
+              this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
+                  this.message = err.json()["message"];
             });
         }
       });
@@ -104,9 +111,16 @@ export class LeadsComponent implements OnInit {
           this.paginationMessage = "You are on the last page";
           setTimeout(
             function () {
-              console.log(this.paginationMessage);
               this.paginationMessage = undefined;
             }.bind(this), 2000);
+        } else {
+          this.paginationMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
         }
       });
   }
@@ -116,7 +130,6 @@ export class LeadsComponent implements OnInit {
       this.paginationMessage = "You are on the first page";
       setTimeout(
         function () {
-          console.log(this.paginationMessage);
           this.paginationMessage = undefined;
         }.bind(this), 2000);
     } else {
@@ -130,6 +143,13 @@ export class LeadsComponent implements OnInit {
         },
         err => {
           this.start = this.start + this.pageSize;
+          this.paginationMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
         });
     }
   }

@@ -57,8 +57,14 @@ export class OppsComponent implements OnInit {
               this.opportunityQuadruples = this.getopportunityQuadruples(data);
             },
             err => {
-              this.message = err.json()["message"];
-            });
+              this.paginationMessage = err.status + " : " + err.statusText;
+              setTimeout(
+                function () {
+                  this.paginationMessage = undefined;
+                }.bind(this), 2000);
+    
+              this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
+                });
         }
       });
 
@@ -104,9 +110,16 @@ export class OppsComponent implements OnInit {
           this.paginationMessage = "You are on the last page";
           setTimeout(
             function () {
-              console.log(this.paginationMessage);
               this.paginationMessage = undefined;
             }.bind(this), 2000);
+        } else {
+          this.paginationMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
         }
       });
   }
@@ -130,6 +143,13 @@ export class OppsComponent implements OnInit {
         },
         err => {
           this.start = this.start + this.pageSize;
+          this.paginationMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
         });
     }
   }

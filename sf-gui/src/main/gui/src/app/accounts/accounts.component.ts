@@ -12,12 +12,12 @@ import { Observable } from 'rxjs/Observable';
     trigger(
       'enterAnimation', [
         transition(':enter', [
-          style({transform: 'translateY(-50%)', opacity: 0}),
-          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+          style({ transform: 'translateY(-50%)', opacity: 0 }),
+          animate('500ms', style({ transform: 'translateX(0)', opacity: 1 }))
         ]),
         transition(':leave', [
-          style({transform: 'translateY(0)', opacity: 1}),
-          animate('500ms', style({transform: 'translateY(-50%)', opacity: 0}))
+          style({ transform: 'translateY(0)', opacity: 1 }),
+          animate('500ms', style({ transform: 'translateY(-50%)', opacity: 0 }))
         ])
       ]
     )
@@ -58,6 +58,13 @@ export class AccountsComponent implements OnInit {
             },
             err => {
               this.message = err.json()["message"];
+              this.paginationMessage = err.status + " : " + err.statusText;
+              setTimeout(
+                function () {
+                  this.paginationMessage = undefined;
+                }.bind(this), 2000);
+
+              this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
             });
         }
       });
@@ -104,9 +111,16 @@ export class AccountsComponent implements OnInit {
           this.paginationMessage = "You are on the last page";
           setTimeout(
             function () {
-              console.log(this.paginationMessage);
               this.paginationMessage = undefined;
             }.bind(this), 2000);
+        } else {
+          this.paginationMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
         }
       });
   }
@@ -116,7 +130,6 @@ export class AccountsComponent implements OnInit {
       this.paginationMessage = "You are on the first page";
       setTimeout(
         function () {
-          console.log(this.paginationMessage);
           this.paginationMessage = undefined;
         }.bind(this), 2000);
     } else {
@@ -130,6 +143,13 @@ export class AccountsComponent implements OnInit {
         },
         err => {
           this.start = this.start + this.pageSize;
+          this.paginationMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessage = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessage = this.paginationMessage + " : " + err.json()["message"];
         });
     }
   }
