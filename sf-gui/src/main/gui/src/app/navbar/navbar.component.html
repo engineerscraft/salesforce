@@ -32,15 +32,6 @@
       </li>
     </ul>
 
-    <div class="dropdown show" ngbDropdown>
-      <button ngbDropdownToggle class="btn btn-primary dropdown-toggle text-white" id="dropdownMenuLink" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-          {{division}}
-      </button>
-      <div ngbDropdownMenu class="dropdown-menu pull-right" aria-labelledby="dropdownMenuLink">
-        <a *ngFor="let div of divisions" class="dropdown-item" (click)="setDivision(div)">{{div.des}}</a>
-      </div>
-    </div>
     <button class="btn btn-primary ml-md-4" (click)="logOff()"><i class="fa fa-sign-out text-white" aria-hidden="true"></i></button>
   </div>
 </nav>
