@@ -143,7 +143,7 @@ export class LeadFormComponent implements OnInit {
               this.products[i].totalQuotePrice = (this.products[i].actualPrice - (this.products[i].actualPrice * this.products[i].discVal / 100)) * this.products[i].unit;
             }
           }
-          if(res.rdOnly) {
+          if(res.readOnly) {
             this.rdOnly = true;
           }
           if (res.accPubKey) {

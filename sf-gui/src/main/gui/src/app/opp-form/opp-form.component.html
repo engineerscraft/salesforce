@@ -6,8 +6,8 @@
     <div class="card-block">
       <h1 class="display-4 text-white ml-4 my-3">{{formTitle}}</h1>
       <div class="ml-4 my-3">
-        <button class="btn btn-info text-white ripple" (click)="changeViewDisplay()">Show Updates</button>
-        <button *ngIf="showConversionControl" class="btn btn-info text-white ripple">Convert to Opportunity</button>
+        <button type="button" class="btn btn-info text-white ripple" (click)="changeViewDisplay()">Show Updates</button>
+        <button *ngIf="showConversionControl && !rdOnly" type="button" class="btn btn-info text-white ripple">Convert to Opportunity</button>
       </div>
       <div class="card card-shadow my-4 mx-sm-0 mx-md-4 py-4 px-md-4 px-3">
         <div class="card-block">
@@ -111,10 +111,10 @@
       </div>
 
       <div class="mx-xs-1 mx-sm-1 mx-md-4 mx-lg-4 mx-xl-4">
-        <button class="btn btn-info text-white ripple" (click)="changeViewDisplay()">Show Updates</button>
-        <button *ngIf="showConversionControl && !rdOnly" class="btn btn-info text-white ripple">Convert to Account</button>
+        <button type="button" class="btn btn-info text-white ripple" (click)="changeViewDisplay()">Show Updates</button>
+        <button *ngIf="showConversionControl && !rdOnly" type="button" class="btn btn-info text-white ripple">Convert to Account</button>
         <button *ngIf="!rdOnly" [disabled]="!opportunityFormGroup.valid" type="submit" class="btn btn-info float-right text-white ripple">{{buttonName}}</button>
-        <button *ngIf="mode==='Modify'" (click)="cancel()" class="btn btn-info float-right text-white ripple mr-2">Cancel</button>
+        <button *ngIf="mode==='Modify'" (click)="cancel()" type="button" class="btn btn-info float-right text-white ripple mr-2">Cancel</button>
       </div>
     </div>
   </form>
