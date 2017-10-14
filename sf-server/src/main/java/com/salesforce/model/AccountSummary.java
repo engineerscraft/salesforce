@@ -1,5 +1,7 @@
 package com.salesforce.model;
 
+import java.math.BigDecimal;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -13,7 +15,7 @@ public class AccountSummary {
     private int accId;
     private String pubKey;
     private String title;
-    private double soldPrice;
+    private BigDecimal soldPrice;
 
     /**
      * @return the accId
@@ -60,14 +62,14 @@ public class AccountSummary {
     /**
      * @return the soldPrice
      */
-    public double getSoldPrice() {
+    public BigDecimal getSoldPrice() {
         return soldPrice;
     }
 
     /**
      * @param soldPrice the soldPrice to set
      */
-    public void setSoldPrice(double soldPrice) {
+    public void setSoldPrice(BigDecimal soldPrice) {
         this.soldPrice = soldPrice;
     }
 

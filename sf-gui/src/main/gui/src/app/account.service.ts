@@ -15,4 +15,14 @@ export class AccountService {
     return this.httpService.callHttpGet("/resources/v1/account/summary/" + pubKey)
       .map(res => res.json())  
   }
+
+  readAccount(pubKey) {
+    return this.httpService.callHttpGet("/resources/v1/account/" + pubKey)
+    .map(res => res.json())
+  }
+
+  modifyAccount(pubKey, account) {
+    return this.httpService.callHttpPut("/resources/v1/account/" + pubKey, account)
+      .map(res => res.json())  
+  }
 }
