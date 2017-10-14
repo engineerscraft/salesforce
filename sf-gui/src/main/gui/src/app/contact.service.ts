@@ -25,4 +25,9 @@ export class ContactService {
     return this.httpService.callHttpPut("/resources/v1/contact/" + pubKey, contact)
       .map(res => res.json())  
   }
+
+  getAllCount() {
+    return this.httpService.callHttpGet("/resources/v1/count")
+      .map(res => res.json())
+  }
 }
