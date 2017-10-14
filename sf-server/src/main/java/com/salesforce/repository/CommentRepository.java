@@ -37,6 +37,9 @@ public class CommentRepository {
 
     @Value("${sql.commentTable.insert}")
     private String commentTableInsert;
+    
+    @Value("${sql.initialCommentTable.insert}")
+    private String initialCommentTableInsert;
 
     public List<Comment> getCommentPage(String pubKey, long startPosition) {
         Object[] args = { pubKey, pubKey, startPosition, commentPageSize };
@@ -54,10 +57,15 @@ public class CommentRepository {
 
     public void createComment(Comment comment, String username) throws Exception {
         Integer commentId = generateContactId();
-
-        logger.info(sqlMarker, commentTableInsert);
-        logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username, () -> comment.getStatusPubKey());
-        jdbcTemplate.update(commentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username, comment.getStatusPubKey() });
+        if(comment.getStatusPubKey() == null) {
+            logger.info(sqlMarker, commentTableInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username, () -> comment.getStatusPubKey());
+            jdbcTemplate.update(commentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username, comment.getStatusPubKey() });
+        } else {
+            logger.info(sqlMarker, initialCommentTableInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}, {}", () -> commentId, () -> comment.getEntityPubKey(), () -> comment.getNote(), () -> username);
+            jdbcTemplate.update(initialCommentTableInsert, new Object[] { commentId, comment.getEntityPubKey(), comment.getNote(), username });            
+        }
         
     }
 
