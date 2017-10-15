@@ -11,7 +11,7 @@
           </div>
 
           <form [formGroup]="accountSearchFormGroup">
-            <input type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
+            <input autocomplete="off" type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
               placeholder="Search" required>
           </form>
           <!--<p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Advanced Search</a></p>-->
@@ -37,8 +37,8 @@
           </li>
         </ul>
       </nav>
-      <div *ngFor="let quadruple of accountQuadruples" class="row my-4 mx-2">
-        <app-account-card *ngFor="let account of quadruple" class="mx-auto col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12" pubKey="{{account.pubKey}}"
+      <div *ngFor="let quadruple of accountQuadruples" class="d-flex row my-4 mx-2">
+        <app-account-card *ngFor="let account of quadruple" class="d-inline-flex mx-auto col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12" pubKey="{{account.pubKey}}"
           title="{{account.title}}" soldPrice="{{account.soldPrice}}" pubKey="{{account.pubKey}}">
         </app-account-card>
       </div>

@@ -11,7 +11,7 @@
           </div>
 
           <form [formGroup]="opportunitySearchFormGroup" autocomplete="off">
-            <input type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
+            <input autocomplete="off" type="text" #searchString class="form-control" formControlName="searchString" id="search" aria-describedby="search"
               placeholder="Search" required>
           </form>
           <!--<p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Advanced Search</a></p>-->
@@ -37,8 +37,8 @@
           </li>
         </ul>
       </nav>
-      <div *ngFor="let quadruple of opportunityQuadruples" class="row my-4 mx-2">
-        <app-opp-card *ngFor="let opportunity of quadruple" class="mx-auto col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12" pubKey="{{opportunity.pubKey}}"
+      <div *ngFor="let quadruple of opportunityQuadruples" class="d-flex row my-4 mx-2">
+        <app-opp-card *ngFor="let opportunity of quadruple" class="d-inline-flex mx-auto col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12" pubKey="{{opportunity.pubKey}}"
           title="{{opportunity.title}}" quotePrice="{{opportunity.quotePrice}}" status="{{opportunity.status}}">
         </app-opp-card>
       </div>

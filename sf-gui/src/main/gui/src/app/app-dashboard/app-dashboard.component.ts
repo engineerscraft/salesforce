@@ -30,23 +30,22 @@ export class AppDashboardComponent implements OnInit {
 
   private search = 'simple';
   private appDashboardSearchFormGroup: FormGroup;  
-  private message = '';
   private searchString;
   private accountQuadruples;
   private startAccount = 0
-  private pageSizeAccount = 6;
+  private pageSizeAccount = 3;
   private paginationMessageAccount;
   private opportunityQuadruples;
   private startOpportunity = 0
-  private pageSizeOpportunity = 6;
+  private pageSizeOpportunity = 3;
   private paginationMessageOpportunity;
   private leadQuadruples;
   private startLead = 0
-  private pageSizeLead = 6;
+  private pageSizeLead = 3;
   private paginationMessageLead;
   private contactQuadruples;
   private startContact = 0
-  private pageSizeContact = 6;
+  private pageSizeContact = 3;
   private paginationMessageContact;
 
   private accountTitle = '';
@@ -72,56 +71,51 @@ export class AppDashboardComponent implements OnInit {
       .subscribe(
       res => {
         if (res.trim().length === 0) {
-          this.message = '';
           this.accountQuadruples = undefined;
+          this.contactQuadruples = undefined;
+          this.opportunityQuadruples = undefined;
+          this.leadQuadruples = undefined;
         } else {
           this.startAccount = 0;
           this.searchString = res;
           this.accountService.searchAccounts(this.searchString, 0)
             .subscribe(
             data => {
-              this.message = '';
               this.accountQuadruples = this.getAccountQuadruples(data);
               this.accountTitle = 'Accounts';
             },
             err => {
-              this.message = err.json()["message"];
+              
             });
 
           this.startOpportunity = 0;
           this.oppService.searchOpportunities(this.searchString, 0)
             .subscribe(
             data => {
-              this.message = '';
               this.opportunityQuadruples = this.getOpportunityQuadruples(data);
               this.opportunityTitle = 'Opportunities';
             },
             err => {
-              this.message = err.json()["message"];
             });
 
           this.startLead = 0;
           this.leadService.searchLeads(this.searchString, 0)
             .subscribe(
             data => {
-              this.message = '';
               this.leadQuadruples = this.getLeadQuadruples(data);
               this.leadTitle = 'Leads';
             },
             err => {
-              this.message = err.json()["message"];
             });
 
           this.startContact = 0;
           this.contactService.searchContacts(this.searchString, 0)
             .subscribe(
             data => {
-              this.message = '';
               this.contactQuadruples = this.getContactQuadruples(data);
               this.contactTitle = 'Contacts';
             },
             err => {
-              this.message = err.json()["message"];
             });
         }
       });
@@ -145,6 +139,7 @@ export class AppDashboardComponent implements OnInit {
       if (i % 3 === 0) {
         arr.push(triple);
         triple = [];
+        break;
       }
     }
     if (triple.length > 0) {
@@ -161,6 +156,7 @@ export class AppDashboardComponent implements OnInit {
       if (i % 3 === 0) {
         arr.push(triple);
         triple = [];
+        break;
       }
     }
     if (triple.length > 0) {
@@ -177,6 +173,7 @@ export class AppDashboardComponent implements OnInit {
       if (i % 3 === 0) {
         arr.push(triple);
         triple = [];
+        break;
       }
     }
     if (triple.length > 0) {
@@ -193,6 +190,7 @@ export class AppDashboardComponent implements OnInit {
       if (i % 3 === 0) {
         arr.push(triple);
         triple = [];
+        break;
       }
     }
     if (triple.length > 0) {
@@ -215,7 +213,6 @@ export class AppDashboardComponent implements OnInit {
     this.accountService.searchAccounts(this.searchString, this.startAccount)
       .subscribe(
       data => {
-        this.message = '';
         this.accountQuadruples = this.getAccountQuadruples(data);
         this.paginationMessageAccount = undefined;
       },
@@ -245,7 +242,6 @@ export class AppDashboardComponent implements OnInit {
       this.accountService.searchAccounts(this.searchString, this.startAccount)
         .subscribe(
         data => {
-          this.message = '';
           this.accountQuadruples = this.getAccountQuadruples(data);
           this.paginationMessageAccount = undefined;
         },
@@ -260,7 +256,6 @@ export class AppDashboardComponent implements OnInit {
     this.oppService.searchOpportunities(this.searchString, this.startOpportunity)
       .subscribe(
       data => {
-        this.message = '';
         this.opportunityQuadruples = this.getOpportunityQuadruples(data);
         this.paginationMessageOpportunity = undefined;
       },
@@ -290,7 +285,6 @@ export class AppDashboardComponent implements OnInit {
       this.oppService.searchOpportunities(this.searchString, this.startOpportunity)
         .subscribe(
         data => {
-          this.message = '';
           this.opportunityQuadruples = this.getOpportunityQuadruples(data);
           this.paginationMessageOpportunity = undefined;
         },
@@ -305,7 +299,6 @@ export class AppDashboardComponent implements OnInit {
     this.leadService.searchLeads(this.searchString, this.startLead)
       .subscribe(
       data => {
-        this.message = '';
         this.leadQuadruples = this.getLeadQuadruples(data);
         this.paginationMessageLead = undefined;
       },
@@ -335,7 +328,6 @@ export class AppDashboardComponent implements OnInit {
       this.leadService.searchLeads(this.searchString, this.startLead)
         .subscribe(
         data => {
-          this.message = '';
           this.leadQuadruples = this.getLeadQuadruples(data);
           this.paginationMessageLead = undefined;
         },
@@ -350,7 +342,6 @@ export class AppDashboardComponent implements OnInit {
     this.contactService.searchContacts(this.searchString, this.startContact)
       .subscribe(
       data => {
-        this.message = '';
         this.contactQuadruples = this.getContactQuadruples(data);
         this.paginationMessageContact = undefined;
       },
@@ -380,7 +371,6 @@ export class AppDashboardComponent implements OnInit {
       this.contactService.searchContacts(this.searchString, this.startContact)
         .subscribe(
         data => {
-          this.message = '';
           this.contactQuadruples = this.getContactQuadruples(data);
           this.paginationMessageContact = undefined;
         },
