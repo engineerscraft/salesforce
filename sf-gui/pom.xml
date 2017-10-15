@@ -56,8 +56,8 @@
         </plugins>
         <resources>
             <resource>
-                <directory>target/sf-gui</directory>
-                <targetPath>static</targetPath>
+                <directory>src/main/gui/dist</directory>
+                <targetPath>../../../sf-server/src/main/resources/static</targetPath>
             </resource>
         </resources>
     </build>
