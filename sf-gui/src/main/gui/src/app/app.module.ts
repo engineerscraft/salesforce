@@ -22,6 +22,7 @@ import { AccountService } from './account.service';
 import { CommentService } from './comment.service';
 import { LeadService } from './lead.service';
 import { StatusService } from './status.service';
+import { AuthguardService } from './authguard.service';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { HeroimageComponent } from './heroimage/heroimage.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
@@ -60,21 +61,21 @@ import { OppsComponent } from './opps/opps.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'home', component: AppDashboardComponent },
-  { path: 'contactCreation', component: ContactCreationComponent },
-  { path: 'contacts', component: ContactsComponent },
-  { path: 'contactDetails/:pubKey', component: ContactDetailsComponent },
-  { path: 'leadCreation', component: LeadCreationComponent },
-  { path: 'leads', component: LeadsComponent },
-  { path: 'leadDetails/:pubKey', component: LeadDetailsComponent },
-  { path: 'oppCreation', component: OppCreationComponent },
-  { path: 'opps', component: OppsComponent },
-  { path: 'oppDetails/:pubKey', component: OppDetailsComponent },
-  { path: 'salesrepCreation', component: SalesrepCreationComponent }, 
-  { path: 'salesreps', component: SalesrepsComponent },
-  { path: 'salesrepDetails/:pubKey', component: SalesrepDetailsComponent },
-  { path: 'accounts', component: AccountsComponent },
-  { path: 'accountDetails/:pubKey', component: AccountDetailsComponent }
+  { path: 'home', component: AppDashboardComponent, canActivate: [AuthguardService] },
+  { path: 'contactCreation', component: ContactCreationComponent, canActivate: [AuthguardService] },
+  { path: 'contacts', component: ContactsComponent, canActivate: [AuthguardService] },
+  { path: 'contactDetails/:pubKey', component: ContactDetailsComponent, canActivate: [AuthguardService] },
+  { path: 'leadCreation', component: LeadCreationComponent, canActivate: [AuthguardService] },
+  { path: 'leads', component: LeadsComponent, canActivate: [AuthguardService] },
+  { path: 'leadDetails/:pubKey', component: LeadDetailsComponent, canActivate: [AuthguardService] },
+  { path: 'oppCreation', component: OppCreationComponent, canActivate: [AuthguardService] },
+  { path: 'opps', component: OppsComponent, canActivate: [AuthguardService] },
+  { path: 'oppDetails/:pubKey', component: OppDetailsComponent, canActivate: [AuthguardService] },
+  { path: 'salesrepCreation', component: SalesrepCreationComponent, canActivate: [AuthguardService] }, 
+  { path: 'salesreps', component: SalesrepsComponent, canActivate: [AuthguardService] },
+  { path: 'salesrepDetails/:pubKey', component: SalesrepDetailsComponent, canActivate: [AuthguardService] },
+  { path: 'accounts', component: AccountsComponent, canActivate: [AuthguardService] },
+  { path: 'accountDetails/:pubKey', component: AccountDetailsComponent, canActivate: [AuthguardService] }
 ];
 
 @NgModule({
@@ -144,7 +145,8 @@ const appRoutes: Routes = [
     AccountService,
     StatusService,
     CommentService,
-    OppService
+    OppService,
+    AuthguardService
   ],
   bootstrap: [AppComponent]
 })
