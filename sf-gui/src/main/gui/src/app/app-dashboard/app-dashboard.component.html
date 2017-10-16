@@ -1,5 +1,43 @@
 <div class="full-screen">
   <div class="home-background full-screen">
+    <div class="row my-3 mx-auto">
+      <div class="mx-auto col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="card card-shadow bg-success text-white py-2 px-4 my-2">
+          <div class="card-block">
+            <h1 class="display-4">
+              <i class="fa fa-usd" aria-hidden="true"></i> {{accountCount}} </h1>
+            <p>Accounts</p>
+          </div>
+        </div>
+      </div>
+      <div class="mx-auto col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="card card-shadow bg-primary text-white py-2 px-4 my-2">
+          <div class="card-block">
+            <h1 class="display-4">
+              <i class="fa fa-handshake-o" aria-hidden="true"></i> {{opportunityCount}} </h1>
+            <p>Opportunities</p>
+          </div>
+        </div>
+      </div>
+      <div class="mx-auto col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="card card-shadow bg-warning text-white py-2 px-4 my-2">
+          <div class="card-block">
+            <h1 class="display-4">
+              <i class="fa fa-briefcase" aria-hidden="true"></i> {{leadCount}} </h1>
+            <p>Leads</p>
+          </div>
+        </div>
+      </div>
+      <div class="mx-auto col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="card card-shadow bg-danger text-white py-2 px-4 my-2">
+          <div class="card-block">
+            <h1 class="display-4">
+              <i class="fa fa-address-card" aria-hidden="true"></i> {{contactCount}} </h1>
+            <p>Contacts</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="align-items-center d-flex h-100 w-100">
       <div class="mx-auto col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <!-- <div class="row my-4">
@@ -19,47 +57,12 @@
         <!--<p class="my-2 text-center"><a href="javascript:void(0)" (click)="toggleSearch()">Advanced Search</a></p>-->
       </div>
     </div>
-    <div class="row my-3 mx-auto">
-      <div class="mx-auto col-lg-3 col-md-6 col-sm-12 col-xs-12">
-        <div class="card bg-success text-white py-2 px-4 my-2">
-          <div class="card-block">
-            <h1 class="display-4">
-              <i class="fa fa-usd" aria-hidden="true"></i> {{accountCount}} </h1>
-            <p>Accounts</p>
-          </div>
-        </div>
-      </div>
-      <div class="mx-auto col-lg-3 col-md-6 col-sm-12 col-xs-12">
-        <div class="card bg-primary text-white py-2 px-4 my-2">
-          <div class="card-block">
-            <h1 class="display-4">
-              <i class="fa fa-handshake-o" aria-hidden="true"></i> {{opportunityCount}} </h1>
-            <p>Opportunities</p>
-          </div>
-        </div>
-      </div>
-      <div class="mx-auto col-lg-3 col-md-6 col-sm-12 col-xs-12">
-        <div class="card bg-warning text-white py-2 px-4 my-2">
-          <div class="card-block">
-            <h1 class="display-4">
-              <i class="fa fa-briefcase" aria-hidden="true"></i> {{leadCount}} </h1>
-            <p>Leads</p>
-          </div>
-        </div>
-      </div>
-      <div class="mx-auto col-lg-3 col-md-6 col-sm-12 col-xs-12">
-        <div class="card bg-danger text-white py-2 px-4 my-2">
-          <div class="card-block">
-            <h1 class="display-4">
-              <i class="fa fa-address-card" aria-hidden="true"></i> {{contactCount}} </h1>
-            <p>Contacts</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="accountQuadruples" class="card my-3 mx-3">
+    <div *ngIf="accountQuadruples" class="card card-shadow my-3 mx-3">
       <div class="card-header text-center text-white bg-success">
         {{accountTitle}}
+      </div>
+      <div *ngIf="paginationMessageAccount" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+        <strong>{{paginationMessageAccount}}</strong>
       </div>
       <div class="card-block">
         <div *ngFor="let quadruple of accountQuadruples" class="d-flex row my-4 mx-2">
@@ -87,9 +90,12 @@
       </div>
     </div>
 
-    <div *ngIf="opportunityQuadruples" class="card my-3 mx-3 d-flex">
+    <div *ngIf="opportunityQuadruples" class="card card-shadow my-3 mx-3 d-flex">
       <div class="card-header text-center text-white bg-primary">
         {{opportunityTitle}}
+      </div>
+      <div *ngIf="paginationMessageOpportunity" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+        <strong>{{paginationMessageOpportunity}}</strong>
       </div>
 
       <div class="card-block">
@@ -117,9 +123,12 @@
       </div>
 
     </div>
-    <div *ngIf="leadQuadruples" class="card my-3 mx-3 d-flex">
+    <div *ngIf="leadQuadruples" class="card card-shadow my-3 mx-3 d-flex">
       <div class="card-header text-center text-white bg-warning">
         {{leadTitle}}
+      </div>
+      <div *ngIf="paginationMessageLead" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+        <strong>{{paginationMessageLead}}</strong>
       </div>
       <div *ngIf="leadQuadruples" class="card-block">
         <div *ngFor="let quadruple of leadQuadruples" class="d-flex row my-4 mx-2">
@@ -147,9 +156,12 @@
       </div>
     </div>
 
-    <div *ngIf="contactQuadruples" class="card my-3 mx-3">
+    <div *ngIf="contactQuadruples" class="card card-shadow my-3 mx-3">
       <div class="card-header text-center text-white bg-danger">
         {{contactTitle}}
+      </div>
+      <div *ngIf="paginationMessageContact" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+        <strong>{{paginationMessageContact}}</strong>
       </div>
       <div class="card-block">
         <div *ngFor="let quadruple of contactQuadruples" class="d-flex row my-4 mx-2">

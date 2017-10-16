@@ -58,6 +58,8 @@ export class AppDashboardComponent implements OnInit {
   private leadCount = 0;
   private contactCount = 0;
 
+  private errMessage;
+
   constructor(private formBuilder: FormBuilder, private accountService: AccountService, 
     private contactService: ContactService, private oppService: OppService,
     private leadService: LeadService) { }
@@ -85,7 +87,7 @@ export class AppDashboardComponent implements OnInit {
               this.accountTitle = 'Accounts';
             },
             err => {
-              
+              this.accountQuadruples = undefined;
             });
 
           this.startOpportunity = 0;
@@ -96,6 +98,7 @@ export class AppDashboardComponent implements OnInit {
               this.opportunityTitle = 'Opportunities';
             },
             err => {
+              this.opportunityQuadruples = undefined;
             });
 
           this.startLead = 0;
@@ -106,6 +109,7 @@ export class AppDashboardComponent implements OnInit {
               this.leadTitle = 'Leads';
             },
             err => {
+              this.leadQuadruples = undefined;
             });
 
           this.startContact = 0;
@@ -116,6 +120,7 @@ export class AppDashboardComponent implements OnInit {
               this.contactTitle = 'Contacts';
             },
             err => {
+              this.contactQuadruples = undefined;
             });
         }
       });
@@ -223,8 +228,16 @@ export class AppDashboardComponent implements OnInit {
           setTimeout(
             function () {
               console.log(this.paginationMessageAccount);
-              this.paginationMessage = undefined;
+              this.paginationMessageAccount = undefined;
             }.bind(this), 2000);
+        } else {
+          this.paginationMessageAccount = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessageAccount = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessageAccount = this.paginationMessageAccount + " : " + err.json()["message"];
         }
       });
   }
@@ -235,7 +248,7 @@ export class AppDashboardComponent implements OnInit {
       setTimeout(
         function () {
           console.log(this.paginationMessageAccount);
-          this.paginationMessage = undefined;
+          this.paginationMessageAccount = undefined;
         }.bind(this), 2000);
     } else {
       this.startAccount = this.startAccount - this.pageSizeAccount;
@@ -247,6 +260,13 @@ export class AppDashboardComponent implements OnInit {
         },
         err => {
           this.startAccount = this.startAccount + this.pageSizeAccount;
+          this.paginationMessageAccount = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessageAccount = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessageAccount = this.paginationMessageAccount + " : " + err.json()["message"];
         });
     }
   }
@@ -268,6 +288,14 @@ export class AppDashboardComponent implements OnInit {
               console.log(this.paginationMessageOpportunity);
               this.paginationMessageOpportunity = undefined;
             }.bind(this), 2000);
+        } else {
+          this.paginationMessageOpportunity = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessageOpportunity = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessageOpportunity = this.paginationMessageOpportunity + " : " + err.json()["message"];
         }
       });
   }
@@ -278,7 +306,7 @@ export class AppDashboardComponent implements OnInit {
       setTimeout(
         function () {
           console.log(this.paginationMessageOpportunity);
-          this.paginationMessage = undefined;
+          this.paginationMessageOpportunity = undefined;
         }.bind(this), 2000);
     } else {
       this.startOpportunity = this.startOpportunity - this.pageSizeOpportunity;
@@ -290,6 +318,13 @@ export class AppDashboardComponent implements OnInit {
         },
         err => {
           this.startOpportunity = this.startOpportunity + this.pageSizeOpportunity;
+          this.paginationMessageOpportunity = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessageOpportunity = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessageOpportunity = this.paginationMessageOpportunity + " : " + err.json()["message"];
         });
     }
   }
@@ -311,6 +346,14 @@ export class AppDashboardComponent implements OnInit {
               console.log(this.paginationMessageLead);
               this.paginationMessageLead = undefined;
             }.bind(this), 2000);
+        } else {
+          this.paginationMessageLead = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessageLead = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessageLead = this.paginationMessageLead + " : " + err.json()["message"];
         }
       });
   }
@@ -333,7 +376,14 @@ export class AppDashboardComponent implements OnInit {
         },
         err => {
           this.startLead = this.startLead + this.pageSizeLead;
-        });
+          this.paginationMessageLead = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessageLead = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessageLead = this.paginationMessageLead + " : " + err.json()["message"];
+       });
     }
   }
 
@@ -352,8 +402,16 @@ export class AppDashboardComponent implements OnInit {
           setTimeout(
             function () {
               console.log(this.paginationMessageContact);
-              this.paginationMessage = undefined;
+              this.paginationMessageContact = undefined;
             }.bind(this), 2000);
+        } else {
+          this.paginationMessageContact = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessageContact = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessageContact = this.paginationMessageContact + " : " + err.json()["message"];
         }
       });
   }
@@ -364,7 +422,7 @@ export class AppDashboardComponent implements OnInit {
       setTimeout(
         function () {
           console.log(this.paginationMessageContact);
-          this.paginationMessage = undefined;
+          this.paginationMessageContact = undefined;
         }.bind(this), 2000);
     } else {
       this.startContact = this.startContact - this.pageSizeContact;
@@ -376,6 +434,13 @@ export class AppDashboardComponent implements OnInit {
         },
         err => {
           this.startContact = this.startContact + this.pageSizeContact;
+          this.paginationMessageContact = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.paginationMessageContact = undefined;
+            }.bind(this), 2000);
+
+          this.paginationMessageContact = this.paginationMessageContact + " : " + err.json()["message"];
         });
     }
   }

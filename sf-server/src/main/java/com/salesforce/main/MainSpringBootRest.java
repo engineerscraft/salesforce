@@ -2,13 +2,11 @@ package com.salesforce.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
 import com.salesforce.javaconfig.RestConfig;
 
-@SpringBootApplication
-@ComponentScan({ "com.salesforce" })
+@SpringBootApplication(scanBasePackages={"com.salesforce.javaconfig", "com.salesforce.repository"})
 @Import({ RestConfig.class })
 public class MainSpringBootRest {
     
