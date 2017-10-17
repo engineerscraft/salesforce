@@ -88,6 +88,13 @@ export class AppDashboardComponent implements OnInit {
             },
             err => {
               this.accountQuadruples = undefined;
+              this.errMessage = err.status + " : " + err.statusText;
+              setTimeout(
+                function () {
+                  this.errMessage = undefined;
+                }.bind(this), 2000);
+    
+              this.errMessage = this.errMessage + " : " + err.json()["message"];                  
             });
 
           this.startOpportunity = 0;
@@ -99,6 +106,13 @@ export class AppDashboardComponent implements OnInit {
             },
             err => {
               this.opportunityQuadruples = undefined;
+              this.errMessage = err.status + " : " + err.statusText;
+              setTimeout(
+                function () {
+                  this.errMessage = undefined;
+                }.bind(this), 2000);
+    
+              this.errMessage = this.errMessage + " : " + err.json()["message"];                  
             });
 
           this.startLead = 0;
@@ -110,6 +124,13 @@ export class AppDashboardComponent implements OnInit {
             },
             err => {
               this.leadQuadruples = undefined;
+              this.errMessage = err.status + " : " + err.statusText;
+              setTimeout(
+                function () {
+                  this.errMessage = undefined;
+                }.bind(this), 2000);
+    
+              this.errMessage = this.errMessage + " : " + err.json()["message"];                  
             });
 
           this.startContact = 0;
@@ -121,6 +142,13 @@ export class AppDashboardComponent implements OnInit {
             },
             err => {
               this.contactQuadruples = undefined;
+              this.errMessage = err.status + " : " + err.statusText;
+              setTimeout(
+                function () {
+                  this.errMessage = undefined;
+                }.bind(this), 2000);
+    
+              this.errMessage = this.errMessage + " : " + err.json()["message"];                  
             });
         }
       });
@@ -132,6 +160,15 @@ export class AppDashboardComponent implements OnInit {
           this.opportunityCount = res.opportunityCount;
           this.leadCount = res.leadCount;
           this.contactCount = res.contactCount;
+        },
+        err => {
+          this.errMessage = err.status + " : " + err.statusText;
+          setTimeout(
+            function () {
+              this.errMessage = undefined;
+            }.bind(this), 2000);
+
+          this.errMessage = this.errMessage + " : " + err.json()["message"];
         }
       );
   }
