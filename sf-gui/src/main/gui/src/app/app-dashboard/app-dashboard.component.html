@@ -44,16 +44,7 @@
       </div>
     </div>
     <div class="align-items-center d-flex h-100 w-100">
-      <div class="mx-auto col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <!-- <div class="row my-4">
-          <div class="mx-auto col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
-            <input type="text" class="form-control" id="search" aria-describedby="search" placeholder="Search">
-          </div>
-
-        </div> -->
-        <div *ngIf="paginationMessage" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
-          <strong>{{paginationMessage}}</strong>
-        </div>
+      <div class="mx-auto col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12">
 
         <form [formGroup]="appDashboardSearchFormGroup">
           <input autocomplete="off" type="text" #searchString class="form-control my-4" formControlName="searchString" id="search"
