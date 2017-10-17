@@ -12,6 +12,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +30,8 @@ import io.jsonwebtoken.Jws;
 @Priority(Priorities.AUTHENTICATION)
 @Component
 public class AuthenticationFilter implements ContainerRequestFilter {
+    
+    private static final Logger logger = LogManager.getLogger(AuthenticationFilter.class);
 
     @Autowired
     private AuthenticationRepository authenticationRepository;
@@ -80,9 +84,11 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 }
             });
         } catch (ExpiredJwtException e) {
+            logger.error(e.getMessage(), e);
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity(new Message("Token expired")).build());
         } catch (Exception e) {
-            requestContext.abortWith(Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build());
+            logger.error(e.getMessage(), e);
+            requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity(new Message("Token expired")).build());
         }
 
     }

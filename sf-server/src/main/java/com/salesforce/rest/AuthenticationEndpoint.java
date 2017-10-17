@@ -67,6 +67,9 @@ public class AuthenticationEndpoint {
             return Response.status(Response.Status.UNAUTHORIZED).entity(new Message("Refresh token expired")).build();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
+            if (loginDetails.getToken() != null) {
+                return Response.status(Response.Status.UNAUTHORIZED).entity(new Message("Token expired")).build();
+            }
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
         }
 

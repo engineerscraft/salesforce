@@ -33,7 +33,7 @@ export class HttpService {
                 return me.http.get(url, options);
             })
             .catch(error => {
-              if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+              if (error && error.status === 401 && (error.json()["message"]==="Refresh token expired" || error.json()["message"]==="Token expired")) {
                 this.router.navigate(['']);
                 localStorage.clear();
                 return Observable.throw(error);
