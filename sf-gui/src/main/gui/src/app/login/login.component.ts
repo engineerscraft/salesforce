@@ -24,11 +24,15 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
+
+    if(localStorage.getItem("accessToken")) {
+      this.router.navigate(["home"]);
+    }
+
     this.formGroup = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    localStorage.clear();
   }
 
   login() {

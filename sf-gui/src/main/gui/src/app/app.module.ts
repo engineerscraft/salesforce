@@ -58,6 +58,7 @@ import { OppCreationComponent } from './opp-creation/opp-creation.component';
 import { OppDetailsComponent } from './opp-details/opp-details.component';
 import { OppFormComponent } from './opp-form/opp-form.component';
 import { OppsComponent } from './opps/opps.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -75,7 +76,8 @@ const appRoutes: Routes = [
   { path: 'salesreps', component: SalesrepsComponent, canActivate: [AuthguardService] },
   { path: 'salesrepDetails/:pubKey', component: SalesrepDetailsComponent, canActivate: [AuthguardService] },
   { path: 'accounts', component: AccountsComponent, canActivate: [AuthguardService] },
-  { path: 'accountDetails/:pubKey', component: AccountDetailsComponent, canActivate: [AuthguardService] }
+  { path: 'accountDetails/:pubKey', component: AccountDetailsComponent, canActivate: [AuthguardService] },
+  { path: '**', component: NotFoundComponent } 
 ];
 
 @NgModule({
@@ -116,7 +118,8 @@ const appRoutes: Routes = [
     OppCreationComponent,
     OppDetailsComponent,
     OppFormComponent,
-    OppsComponent
+    OppsComponent,
+    NotFoundComponent
   ],
   imports: [
     RouterModule.forRoot(

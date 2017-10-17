@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,11 @@ export class AppComponent {
 
   getUserName() {
     return localStorage.getItem("userName");
+  }
+
+  @HostListener('window:unload', ['$event'])
+  unloadHandler(event) {
+    localStorage.removeItem("userName");
   }
 
 }
