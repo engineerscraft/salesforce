@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -42,6 +43,22 @@ public class AccountResource {
 
     @Context
     private SecurityContext securityContext;
+
+    @POST
+    @Path("/")
+    @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    @Secured(Privilege.DEFAULT)
+    public Response createAccount(PublicKey pubKey) {
+        try {
+            String username = securityContext.getUserPrincipal().getName();
+            PublicKey oppPubKey = accountRepository.createAccount(pubKey, username);
+            return Response.status(Response.Status.OK).entity(oppPubKey).build();
+        } catch (Exception e) {
+            logger.error("The account could not be created", e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new Message(e.getMessage())).build();
+        }
+
+    }
 
     @GET
     @Path("/")

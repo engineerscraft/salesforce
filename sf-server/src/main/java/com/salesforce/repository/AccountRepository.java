@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.salesforce.model.Account;
 import com.salesforce.model.AccountSummary;
@@ -28,6 +29,7 @@ import com.salesforce.rowmapper.ContactSummaryRowMapper;
 import com.salesforce.rowmapper.LeadShortDesRowMapper;
 import com.salesforce.rowmapper.OpportunityShortDesRowMapper;
 import com.salesforce.rowmapper.ProductAccountRowMapper;
+import com.salesforce.utils.ApplicationUtils;
 
 /**
  * @author Arnab Kr Ghosh
@@ -42,6 +44,30 @@ public class AccountRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Value("${sql.getSeq.byName}")
+    private String getAccountSequence;
+
+    @Value("${sql.updateSeq.byName}")
+    private String updateAccountSequence;
+
+    @Value("${sql.accIdFromOpp.select}")
+    private String getAccountIdFromOpp;
+
+    @Value("${sql.accountPubKey.select}")
+    private String getAccountPubKey;
+
+    @Value("${sql.account.insert}")
+    private String accountTableInsert;
+
+    @Value("${sql.accountContactFromOpp.insert}")
+    private String accountContactFromOpp;
+
+    @Value("${sql.accountProdFromOpp.insert}")
+    private String accountProdFromOpp;
+
+    @Value("${sql.oppLock.update}")
+    private String oppLockSql;
 
     @Value("${sql.account.page}")
     private String accountPageSql;
@@ -78,6 +104,63 @@ public class AccountRepository {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Transactional
+    public PublicKey createAccount(PublicKey oppPubKey, String username) throws Exception {
+        PublicKey pubKey = new PublicKey();
+        Integer accountId = null;
+
+        logger.info(sqlMarker, getAccountIdFromOpp);
+        logger.info(sqlMarker, "Params {}", () -> oppPubKey);
+
+        accountId = jdbcTemplate.queryForObject(getAccountIdFromOpp, new Object[] { oppPubKey }, Integer.class);
+
+        if (accountId != null && accountId > 0) {
+            logger.info(sqlMarker, getAccountPubKey);
+            logger.info(sqlMarker, "Params {}", accountId);
+            pubKey.setPubKey(jdbcTemplate.queryForObject(getAccountIdFromOpp, new Object[] { accountId }, String.class));
+        } else {
+            accountId = generateAccountId();
+            pubKey.setPubKey("AC" + String.format("%08d", accountId));
+
+            logger.info(sqlMarker, accountTableInsert);
+            logger.info(sqlMarker, "Params {}, {}, {}", accountId, pubKey.getPubKey(), username, oppPubKey.getPubKey());
+            jdbcTemplate.update(accountTableInsert, new Object[] { accountId, pubKey.getPubKey(), username, oppPubKey.getPubKey() });
+        }
+
+        logger.info(sqlMarker, accountContactFromOpp);
+        logger.info(sqlMarker, "Params {}, {}, {}", accountId, username, oppPubKey.getPubKey());
+        jdbcTemplate.update(accountContactFromOpp, new Object[] { accountId, username, oppPubKey.getPubKey() });
+
+        logger.info(sqlMarker, accountProdFromOpp);
+        logger.info(sqlMarker, "Params {}, {}, {}", accountId, username, oppPubKey.getPubKey());
+        jdbcTemplate.update(accountProdFromOpp, new Object[] { accountId, username, oppPubKey.getPubKey() });
+
+        logger.info(sqlMarker, oppLockSql);
+        jdbcTemplate.update(oppLockSql, new Object[] { oppPubKey.getPubKey() });
+
+        Comment comment = new Comment();
+        comment.setNote("Opportunity converted to Account");
+        comment.setEntityPubKey(pubKey.getPubKey());
+        this.commentRepository.createInitialComment(comment, username);
+        return pubKey;
+    }
+
+    private Integer generateAccountId() throws Exception {
+
+        logger.info(sqlMarker, getAccountSequence);
+        logger.info(sqlMarker, "Params {}", () -> ApplicationUtils.ACCOUNT_SEQ_NAME);
+
+        Integer fetchedAccountId = jdbcTemplate.queryForObject(getAccountSequence, new Object[] { ApplicationUtils.ACCOUNT_SEQ_NAME }, Integer.class);
+        Integer newAccountId = fetchedAccountId + 1;
+
+        logger.info(sqlMarker, updateAccountSequence);
+        logger.info(sqlMarker, "Params {} {}", () -> newAccountId, () -> ApplicationUtils.ACCOUNT_SEQ_NAME);
+        jdbcTemplate.update(updateAccountSequence, new Object[] { newAccountId, ApplicationUtils.ACCOUNT_SEQ_NAME });
+
+        logger.debug("Account ID generated: {}", () -> fetchedAccountId);
+        return fetchedAccountId;
+    }
 
     public List<AccountSummary> getAccountPage(String searchString, long startPosition) {
         Object[] args = { searchString, '%' + searchString + '%', searchString, startPosition, accountPageSize };
