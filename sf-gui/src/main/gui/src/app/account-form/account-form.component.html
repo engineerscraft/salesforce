@@ -75,7 +75,7 @@
           <h6 class="card-title mb-4 text-center text-muted">Leads</h6>
           <ul class="list-group my-4">
             <li [@fadeIn] *ngFor="let lead of leads" class="list-group-item">
-              <p>{{lead.title}} ({{lead.pubKey}})</p>
+              <p>{{lead.title}} (<a routerLink="/leadDetails/{{lead.pubKey}}">{{lead.pubKey}}</a>)</p>
               <p class="p-0 m-0 pull-right text-success"><strong>Sold Price : {{lead.quotePrice}}</strong></p>
             </li>
           </ul>          
@@ -86,7 +86,7 @@
           <h6 class="card-title mb-4 text-center text-muted">Opportunities</h6>
           <ul class="list-group my-4">
             <li [@fadeIn] *ngFor="let opportunity of opportunities" class="list-group-item">
-              <p>{{opportunity.title}} ({{opportunity.pubKey}})</p>
+              <p>{{opportunity.title}} (<a routerLink="/oppDetails/{{opportunity.pubKey}}">{{opportunity.pubKey}}</a>)</p>
               <p class="p-0 m-0 pull-right text-success"><strong>Sold Price : {{opportunity.quotePrice}}</strong></p>
             </li>
           </ul>          

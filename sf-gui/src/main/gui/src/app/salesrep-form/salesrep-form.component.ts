@@ -65,7 +65,6 @@ export class SalesrepFormComponent implements OnInit {
 
     this.salesRepFormGroup = this.formBuilder.group({
       salesRepSummary: this.formBuilder.group({
-        salesRepId: [''],
         pubKey: [''],
         fName: ['', [Validators.required]],
         mName: [''],
