@@ -14,53 +14,22 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "account_attachment":"account_attachment.heading":w -> "opportunity":"opp_id":e [arrowtail=crowodot arrowhead=none];
-  "account_contact":"account_contact.heading":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
-  "account_prod":"account_prod.heading":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
-  "account_timeline":"account_timeline.heading":w -> "opportunity":"opp_id":e [arrowtail=crowodot arrowhead=none];
+  "opportunity":"acc_id":w -> "account":"account.heading":e [arrowtail=crowodot arrowhead=none];
   "opportunity":"div_id":w -> "division":"division.heading":e [arrowtail=crowtee arrowhead=none];
   "opportunity":"lead_id":w -> "lead":"lead.heading":e [arrowtail=crowodot arrowhead=none];
   "opportunity":"status_id":w -> "status":"status.heading":e [arrowtail=crowtee arrowhead=none];
-  "opportunity_attachment":"opportunity_attachment.heading":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_attr":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=tee arrowhead=none];
   "opportunity_contact":"opportunity_contact.heading":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_prod":"opportunity_prod.heading":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_timeline":"opportunity_timeline.heading":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
-  "account_attachment" [
+  "account" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="account_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_attachment</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD PORT="account.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">20 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">6 &gt;</TD></TR>
     </TABLE>>
-    URL="account_attachment.html#graph"
-    tooltip="account_attachment"
-  ];
-  "account_contact" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="account_contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_contact</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="account_contact.html#graph"
-    tooltip="account_contact"
-  ];
-  "account_prod" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="account_prod.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_prod</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="account_prod.html#graph"
-    tooltip="account_prod"
-  ];
-  "account_timeline" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="account_timeline.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_timeline</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="account_timeline.html#graph"
-    tooltip="account_timeline"
+    URL="account.html#graph"
+    tooltip="account"
   ];
   "division" [
     label=<
@@ -75,7 +44,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="lead.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
     </TABLE>>
     URL="lead.html#graph"
     tooltip="lead"
@@ -86,8 +55,8 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="opportunity.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity</TD></TR>
       <TR><TD PORT="opp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD></TR>
       <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
-      <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
-      <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
       <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
       <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
       <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
@@ -98,19 +67,11 @@ digraph "twoDegreesRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 &gt;</TD></TR>
+      <TR><TD PORT="rd_only" COLSPAN="3" ALIGN="LEFT">rd_only</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">101 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="opportunity.html#graph"
     tooltip="opportunity"
-  ];
-  "opportunity_attachment" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="opportunity_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity_attachment</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
-    </TABLE>>
-    URL="opportunity_attachment.html#graph"
-    tooltip="opportunity_attachment"
   ];
   "opportunity_attr" [
     label=<
@@ -126,7 +87,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="opportunity_contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity_contact</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">101 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="opportunity_contact.html#graph"
     tooltip="opportunity_contact"
@@ -135,7 +96,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="opportunity_prod.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity_prod</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">200 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">202 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="opportunity_prod.html#graph"
     tooltip="opportunity_prod"
@@ -144,7 +105,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="opportunity_timeline.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity_timeline</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="opportunity_timeline.html#graph"
     tooltip="opportunity_timeline"
@@ -153,7 +114,7 @@ digraph "twoDegreesRelationshipsGraph" {
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="status.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">status</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">6 &gt;</TD></TR>
     </TABLE>>
     URL="status.html#graph"
     tooltip="status"

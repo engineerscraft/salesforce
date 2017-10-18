@@ -30,7 +30,7 @@
 <div class='indent'>
 <table width='100%'>
 <tr><td class='container' valign='bottom'><b>
-51 Foreign Key Constraints:</b>
+41 Foreign Key Constraints:</b>
 </td><td class='container' align='right'>
 <table>
   <tr><td class='container' align='right' valign='top'><a href='http://sourceforge.net' target='_blank'><img src='http://sourceforge.net/sflogo.php?group_id=137197&amp;type=1' alt='SourceForge.net' border='0' height='31' width='88'></a></td></tr>
@@ -51,21 +51,6 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody>
  <tr>
-  <td class='detail'>account_attachment_acc_id_fkey</td>
-  <td class='detail'><a href='tables/account_attachment.html'>account_attachment</a>.acc_id</td>
-  <td class='detail'><a href='tables/account.html'>account</a>.acc_id</td>
- </tr>
- <tr>
-  <td class='detail'>account_attachment_lead_id_fkey</td>
-  <td class='detail'><a href='tables/account_attachment.html'>account_attachment</a>.lead_id</td>
-  <td class='detail'><a href='tables/lead.html'>lead</a>.lead_id</td>
- </tr>
- <tr>
-  <td class='detail'>account_attachment_opp_id_fkey</td>
-  <td class='detail'><a href='tables/account_attachment.html'>account_attachment</a>.opp_id</td>
-  <td class='detail'><a href='tables/opportunity.html'>opportunity</a>.opp_id</td>
- </tr>
- <tr>
   <td class='detail'>account_attr_acc_id_fkey</td>
   <td class='detail'><a href='tables/account_attr.html'>account_attr</a>.acc_id</td>
   <td class='detail'><a href='tables/account.html'>account</a>.acc_id</td>
@@ -81,16 +66,6 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'><a href='tables/contact.html'>contact</a>.co_id</td>
  </tr>
  <tr>
-  <td class='detail'>account_contact_lead_id_fkey</td>
-  <td class='detail'><a href='tables/account_contact.html'>account_contact</a>.lead_id</td>
-  <td class='detail'><a href='tables/lead.html'>lead</a>.lead_id</td>
- </tr>
- <tr>
-  <td class='detail'>account_contact_opp_id_fkey</td>
-  <td class='detail'><a href='tables/account_contact.html'>account_contact</a>.opp_id</td>
-  <td class='detail'><a href='tables/opportunity.html'>opportunity</a>.opp_id</td>
- </tr>
- <tr>
   <td class='detail'>account_div_id_fkey</td>
   <td class='detail'><a href='tables/account.html'>account</a>.div_id</td>
   <td class='detail'><a href='tables/division.html'>division</a>.div_id</td>
@@ -101,14 +76,9 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'><a href='tables/account.html'>account</a>.acc_id</td>
  </tr>
  <tr>
-  <td class='detail'>account_prod_lead_id_fkey</td>
-  <td class='detail'><a href='tables/account_prod.html'>account_prod</a>.lead_id</td>
-  <td class='detail'><a href='tables/lead.html'>lead</a>.lead_id</td>
- </tr>
- <tr>
-  <td class='detail'>account_prod_opp_id_fkey</td>
-  <td class='detail'><a href='tables/account_prod.html'>account_prod</a>.opp_id</td>
-  <td class='detail'><a href='tables/opportunity.html'>opportunity</a>.opp_id</td>
+  <td class='detail'>account_prod_prod_id_fkey</td>
+  <td class='detail'><a href='tables/account_prod.html'>account_prod</a>.prod_id</td>
+  <td class='detail'><a href='tables/product.html'>product</a>.prod_id</td>
  </tr>
  <tr>
   <td class='detail'>account_status_id_fkey</td>
@@ -119,16 +89,6 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'>account_timeline_acc_id_fkey</td>
   <td class='detail'><a href='tables/account_timeline.html'>account_timeline</a>.acc_id</td>
   <td class='detail'><a href='tables/account.html'>account</a>.acc_id</td>
- </tr>
- <tr>
-  <td class='detail'>account_timeline_lead_id_fkey</td>
-  <td class='detail'><a href='tables/account_timeline.html'>account_timeline</a>.lead_id</td>
-  <td class='detail'><a href='tables/lead.html'>lead</a>.lead_id</td>
- </tr>
- <tr>
-  <td class='detail'>account_timeline_opp_id_fkey</td>
-  <td class='detail'><a href='tables/account_timeline.html'>account_timeline</a>.opp_id</td>
-  <td class='detail'><a href='tables/opportunity.html'>opportunity</a>.opp_id</td>
  </tr>
  <tr>
   <td class='detail'>contact_attr_c_id_fkey</td>
@@ -166,9 +126,9 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'><a href='tables/role.html'>role</a>.role_id</td>
  </tr>
  <tr>
-  <td class='detail'>lead_attachment_lead_id_fkey</td>
-  <td class='detail'><a href='tables/lead_attachment.html'>lead_attachment</a>.lead_id</td>
-  <td class='detail'><a href='tables/lead.html'>lead</a>.lead_id</td>
+  <td class='detail'>lead_acc_id_fkey</td>
+  <td class='detail'><a href='tables/lead.html'>lead</a>.acc_id</td>
+  <td class='detail'><a href='tables/account.html'>account</a>.acc_id</td>
  </tr>
  <tr>
   <td class='detail'>lead_attr_lead_id_fkey</td>
@@ -206,24 +166,19 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'><a href='tables/status.html'>status</a>.status_id</td>
  </tr>
  <tr>
-  <td class='detail'>lead_timeline_att_id_fkey</td>
-  <td class='detail'><a href='tables/lead_timeline.html'>lead_timeline</a>.att_id</td>
-  <td class='detail'><a href='tables/lead_attachment.html'>lead_attachment</a>.att_id</td>
- </tr>
- <tr>
   <td class='detail'>lead_timeline_lead_id_fkey</td>
   <td class='detail'><a href='tables/lead_timeline.html'>lead_timeline</a>.lead_id</td>
   <td class='detail'><a href='tables/lead.html'>lead</a>.lead_id</td>
  </tr>
  <tr>
-  <td class='detail'>opportunity_attachment_lead_id_fkey</td>
-  <td class='detail'><a href='tables/opportunity_attachment.html'>opportunity_attachment</a>.lead_id</td>
-  <td class='detail'><a href='tables/lead.html'>lead</a>.lead_id</td>
+  <td class='detail'>lead_timeline_status_id_fkey</td>
+  <td class='detail'><a href='tables/lead_timeline.html'>lead_timeline</a>.status_id</td>
+  <td class='detail'><a href='tables/status.html'>status</a>.status_id</td>
  </tr>
  <tr>
-  <td class='detail'>opportunity_attachment_opp_id_fkey</td>
-  <td class='detail'><a href='tables/opportunity_attachment.html'>opportunity_attachment</a>.opp_id</td>
-  <td class='detail'><a href='tables/opportunity.html'>opportunity</a>.opp_id</td>
+  <td class='detail'>opportunity_acc_id_fkey</td>
+  <td class='detail'><a href='tables/opportunity.html'>opportunity</a>.acc_id</td>
+  <td class='detail'><a href='tables/account.html'>account</a>.acc_id</td>
  </tr>
  <tr>
   <td class='detail'>opportunity_attr_opp_id_fkey</td>
@@ -266,19 +221,14 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='detail'><a href='tables/status.html'>status</a>.status_id</td>
  </tr>
  <tr>
-  <td class='detail'>opportunity_timeline_att_id_fkey</td>
-  <td class='detail'><a href='tables/opportunity_timeline.html'>opportunity_timeline</a>.att_id</td>
-  <td class='detail'><a href='tables/opportunity_attachment.html'>opportunity_attachment</a>.att_id</td>
- </tr>
- <tr>
-  <td class='detail'>opportunity_timeline_lead_id_fkey</td>
-  <td class='detail'><a href='tables/opportunity_timeline.html'>opportunity_timeline</a>.lead_id</td>
-  <td class='detail'><a href='tables/lead.html'>lead</a>.lead_id</td>
- </tr>
- <tr>
   <td class='detail'>opportunity_timeline_opp_id_fkey</td>
   <td class='detail'><a href='tables/opportunity_timeline.html'>opportunity_timeline</a>.opp_id</td>
   <td class='detail'><a href='tables/opportunity.html'>opportunity</a>.opp_id</td>
+ </tr>
+ <tr>
+  <td class='detail'>opportunity_timeline_status_id_fkey</td>
+  <td class='detail'><a href='tables/opportunity_timeline.html'>opportunity_timeline</a>.status_id</td>
+  <td class='detail'><a href='tables/status.html'>status</a>.status_id</td>
  </tr>
  <tr>
   <td class='detail'>role_perm_perm_id_fkey</td>

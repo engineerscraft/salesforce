@@ -16,7 +16,7 @@ digraph "twoDegreesRelationshipsGraph" {
   ];
   "contact_attr":"c_id":w -> "country":"c_id.type":e [arrowtail=crowodot arrowhead=none];
   "contact_attr":"contact_attr.heading":w -> "contact":"contact.heading":e [arrowtail=tee arrowhead=none];
-  "contact_attr":"contact_attr.heading":w -> "district":"district.heading":e [arrowtail=crowodot arrowhead=none];
+  "district":"district.heading":w -> "state":"state.heading":e [arrowtail=crowtee arrowhead=none];
   "state":"c_id":w -> "country":"c_id.type":e [arrowtail=crowtee arrowhead=none];
   "contact" [
     label=<

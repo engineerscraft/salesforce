@@ -95,7 +95,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='primaryKey' title='Primary Key'>opp_id</td>
+ <td class='primaryKey' title='Primary Key'>prod_id</td>
  <td class='detail'>int4</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center'></td>
@@ -105,70 +105,32 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
    <tr valign='top'>
-    <td class='relatedTable' title="account_prod.opp_id refs opportunity.opp_id via account_prod_opp_id_fkey"><a href='opportunity.html'>opportunity</a><span class='relatedKey'>.opp_id</span>
+    <td class='relatedTable' title="account_prod.prod_id refs product.prod_id via account_prod_prod_id_fkey"><a href='product.html'>product</a><span class='relatedKey'>.prod_id</span>
     </td>
-    <td class='constraint'>account_prod_opp_id_fkey</td>
+    <td class='constraint'>account_prod_prod_id_fkey</td>
    </tr>
   </table>
  </td>
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='primaryKey' title='Primary Key'>lead_id</td>
+ <td class='detail'>disc_type</td>
  <td class='detail'>int4</td>
  <td class='detail' align='right'>10</td>
  <td class='detail' align='center'></td>
  <td class='detail' align='center'></td>
  <td></td>
- <td></td>
- <td>
-  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr valign='top'>
-    <td class='relatedTable' title="account_prod.lead_id refs lead.lead_id via account_prod_lead_id_fkey"><a href='lead.html'>lead</a><span class='relatedKey'>.lead_id</span>
-    </td>
-    <td class='constraint'>account_prod_lead_id_fkey</td>
-   </tr>
-  </table>
- </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>prod_id</td>
- <td class='detail'>int4</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='center'></td>
- <td></td>
- <td></td>
- <td>
-  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr class='impliedRelationship' valign='top'>
-    <td class='relatedTable' title="account_prod.prod_id's name implies that it's a child of product.prod_id, but it doesn't reference that column."><a href='product.html'>product</a><span class='relatedKey'>.prod_id</span>
-    </td>
-    <td class='constraint'>Implied Constraint</td>
-   </tr>
-  </table>
- </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>disc_amt</td>
- <td class='detail'>numeric</td>
- <td class='detail' align='right'>32,2</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
  <td></td>
  <td> </td>
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>disc_pct</td>
+ <td class='detail'>disc_val</td>
  <td class='detail'>numeric</td>
  <td class='detail' align='right'>3,2</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
  <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
+ <td class='detail' align='center'></td>
+ <td></td>
  <td></td>
  <td> </td>
  <td class='comment'></td>
@@ -229,7 +191,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 0 rows at Mon Sep 25 19:28 IST 2017
+<p/>Table contained 12 rows at Wed Oct 18 11:55 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -244,9 +206,9 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </thead>
 <tbody>
  <tr>
-  <td class='primaryKey'>acc_id + opp_id + lead_id</td>
+  <td class='primaryKey'>acc_id + prod_id</td>
   <td class='detail'>Primary key</td>
-  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+  <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
   <td class='constraint' style='text-align:left;'>account_prod_pkey</td>
  </tr>
 </table>
@@ -258,32 +220,23 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/account_prod.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="account_prod.html#" title="account_prod" alt="" coords="211,301,433,629"/>
-<area shape="rect" id="node2" href="account.html#graph" title="account" alt="" coords="17,5,151,304"/>
-<area shape="rect" id="node3" href="lead.html#graph" title="lead" alt="" coords="5,747,163,1093"/>
-<area shape="rect" id="node4" href="opportunity.html#graph" title="opportunity" alt="" coords="9,328,159,723"/>
+<area shape="rect" id="node1" href="account_prod.html#" title="account_prod" alt="" coords="195,164,425,444"/>
+<area shape="rect" id="node2" href="account.html#graph" title="account" alt="" coords="5,5,147,328"/>
+<area shape="rect" id="node3" href="product.html#graph" title="product" alt="" coords="15,352,137,651"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="account.html#graph" title="account" alt="" coords="195,147,328,445"/>
-<area shape="rect" id="node2" href="division.html#graph" title="division" alt="" coords="9,296,131,355"/>
-<area shape="rect" id="node3" href="status.html#graph" title="status" alt="" coords="5,213,135,272"/>
-<area shape="rect" id="node4" href="account_attachment.html#graph" title="account_attachment" alt="" coords="418,88,581,147"/>
-<area shape="rect" id="node5" href="account_attr.html#graph" title="account_attr" alt="" coords="439,171,560,229"/>
-<area shape="rect" id="node6" href="account_contact.html#graph" title="account_contact" alt="" coords="430,253,569,312"/>
-<area shape="rect" id="node7" href="account_prod.html#" title="account_prod" alt="" coords="388,749,611,1077"/>
-<area shape="rect" id="node8" href="lead.html#graph" title="lead" alt="" coords="183,543,340,889"/>
-<area shape="rect" id="node9" href="opportunity.html#graph" title="opportunity" alt="" coords="187,1225,336,1620"/>
-<area shape="rect" id="node10" href="account_timeline.html#graph" title="account_timeline" alt="" coords="429,5,569,64"/>
-<area shape="rect" id="node11" href="lead_attachment.html#graph" title="lead_attachment" alt="" coords="430,501,569,560"/>
-<area shape="rect" id="node12" href="lead_attr.html#graph" title="lead_attr" alt="" coords="439,584,560,643"/>
-<area shape="rect" id="node13" href="lead_contact.html#graph" title="lead_contact" alt="" coords="431,667,568,725"/>
-<area shape="rect" id="node14" href="lead_prod.html#graph" title="lead_prod" alt="" coords="431,336,568,395"/>
-<area shape="rect" id="node15" href="lead_timeline.html#graph" title="lead_timeline" alt="" coords="439,419,560,477"/>
-<area shape="rect" id="node16" href="opportunity_attachment.html#graph" title="opportunity_attachment" alt="" coords="408,1101,591,1160"/>
-<area shape="rect" id="node17" href="opportunity_attr.html#graph" title="opportunity_attr" alt="" coords="434,1184,565,1243"/>
-<area shape="rect" id="node18" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="421,1267,578,1325"/>
-<area shape="rect" id="node19" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="430,1349,569,1408"/>
-<area shape="rect" id="node20" href="opportunity_timeline.html#graph" title="opportunity_timeline" alt="" coords="420,1432,579,1491"/>
+<area shape="rect" id="node1" href="account.html#graph" title="account" alt="" coords="183,188,324,511"/>
+<area shape="rect" id="node2" href="division.html#graph" title="division" alt="" coords="9,337,131,396"/>
+<area shape="rect" id="node3" href="status.html#graph" title="status" alt="" coords="5,255,135,313"/>
+<area shape="rect" id="node4" href="account_attr.html#graph" title="account_attr" alt="" coords="427,5,548,64"/>
+<area shape="rect" id="node5" href="account_contact.html#graph" title="account_contact" alt="" coords="418,88,557,147"/>
+<area shape="rect" id="node6" href="account_prod.html#" title="account_prod" alt="" coords="372,419,603,699"/>
+<area shape="rect" id="node7" href="product.html#graph" title="product" alt="" coords="193,699,314,997"/>
+<area shape="rect" id="node8" href="account_timeline.html#graph" title="account_timeline" alt="" coords="417,171,557,229"/>
+<area shape="rect" id="node9" href="lead.html#graph" title="lead" alt="" coords="413,253,562,312"/>
+<area shape="rect" id="node10" href="lead_prod.html#graph" title="lead_prod" alt="" coords="419,723,556,781"/>
+<area shape="rect" id="node11" href="opportunity.html#graph" title="opportunity" alt="" coords="413,336,562,395"/>
+<area shape="rect" id="node12" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="418,805,557,864"/>
 </map>
 </td></tr></table>
 </div>

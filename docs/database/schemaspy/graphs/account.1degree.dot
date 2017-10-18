@@ -16,11 +16,12 @@ digraph "oneDegreeRelationshipsGraph" {
   ];
   "account":"div_id":w -> "division":"div_id":e [arrowtail=crowtee arrowhead=none];
   "account":"status_id":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
-  "account_attachment":"acc_id":w -> "account":"acc_id.type":e [arrowtail=crowtee arrowhead=none];
   "account_attr":"acc_id":w -> "account":"acc_id.type":e [arrowtail=tee arrowhead=none];
   "account_contact":"acc_id":w -> "account":"acc_id.type":e [arrowtail=crowtee arrowhead=none];
   "account_prod":"acc_id":w -> "account":"acc_id.type":e [arrowtail=crowtee arrowhead=none];
   "account_timeline":"acc_id":w -> "account":"acc_id.type":e [arrowtail=crowtee arrowhead=none];
+  "lead":"acc_id":w -> "account":"acc_id.type":e [arrowtail=crowodot arrowhead=none];
+  "opportunity":"acc_id":w -> "account":"acc_id.type":e [arrowtail=crowodot arrowhead=none];
   "account" [
     label=<
     <TABLE BORDER="2" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -35,29 +36,11 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="2" ALIGN="LEFT">crtd_on</TD><TD PORT="crtd_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="2" ALIGN="LEFT">mod_by</TD><TD PORT="mod_by.type" ALIGN="LEFT">varchar[15]</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="2" ALIGN="LEFT">mod_on</TD><TD PORT="mod_on.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD PORT="rd_only" COLSPAN="2" ALIGN="LEFT">rd_only</TD><TD PORT="rd_only.type" ALIGN="LEFT">varchar[1]</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">20 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">6 &gt;</TD></TR>
     </TABLE>>
     URL="account.html#"
     tooltip="account"
-  ];
-  "account_attachment" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="account_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_attachment</TD></TR>
-      <TR><TD PORT="att_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">att_id</TD></TR>
-      <TR><TD PORT="acc_id" COLSPAN="3" ALIGN="LEFT">acc_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" ALIGN="LEFT">opp_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
-      <TR><TD PORT="att" COLSPAN="3" ALIGN="LEFT">att</TD></TR>
-      <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
-      <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
-      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
-      <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="account_attachment.html#graph"
-    tooltip="account_attachment"
   ];
   "account_attr" [
     label=<
@@ -75,13 +58,11 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="account_contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_contact</TD></TR>
       <TR><TD PORT="acc_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">acc_id</TD></TR>
       <TR><TD PORT="co_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">co_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="account_contact.html#graph"
     tooltip="account_contact"
@@ -91,17 +72,15 @@ digraph "oneDegreeRelationshipsGraph" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="account_prod.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_prod</TD></TR>
       <TR><TD PORT="acc_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">acc_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="prod_id" COLSPAN="3" ALIGN="LEFT">prod_id</TD></TR>
-      <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
-      <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
+      <TR><TD PORT="prod_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">prod_id</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
       <TR><TD PORT="sold_price" COLSPAN="3" ALIGN="LEFT">sold_price</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="account_prod.html#graph"
     tooltip="account_prod"
@@ -112,15 +91,13 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="account_timeline.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_timeline</TD></TR>
       <TR><TD PORT="entry_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">entry_id</TD></TR>
       <TR><TD PORT="acc_id" COLSPAN="3" ALIGN="LEFT">acc_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" ALIGN="LEFT">opp_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="att_id" COLSPAN="3" ALIGN="LEFT">att_id</TD></TR>
       <TR><TD PORT="note" COLSPAN="3" ALIGN="LEFT">note</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="account_timeline.html#graph"
     tooltip="account_timeline"
@@ -141,6 +118,53 @@ digraph "oneDegreeRelationshipsGraph" {
     URL="division.html#graph"
     tooltip="division"
   ];
+  "lead" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="lead.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead</TD></TR>
+      <TR><TD PORT="lead_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD></TR>
+      <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
+      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
+      <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
+      <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
+      <TR><TD PORT="div_id" COLSPAN="3" ALIGN="LEFT">div_id</TD></TR>
+      <TR><TD PORT="acc_id" COLSPAN="3" ALIGN="LEFT">acc_id</TD></TR>
+      <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
+      <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
+      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
+      <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
+      <TR><TD PORT="rd_only" COLSPAN="3" ALIGN="LEFT">rd_only</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+    </TABLE>>
+    URL="lead.html#graph"
+    tooltip="lead"
+  ];
+  "opportunity" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD PORT="opportunity.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity</TD></TR>
+      <TR><TD PORT="opp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD></TR>
+      <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
+      <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
+      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
+      <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
+      <TR><TD PORT="div_id" COLSPAN="3" ALIGN="LEFT">div_id</TD></TR>
+      <TR><TD PORT="acc_id" COLSPAN="3" ALIGN="LEFT">acc_id</TD></TR>
+      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
+      <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
+      <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
+      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
+      <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
+      <TR><TD PORT="rd_only" COLSPAN="3" ALIGN="LEFT">rd_only</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">101 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+    </TABLE>>
+    URL="opportunity.html#graph"
+    tooltip="opportunity"
+  ];
   "status" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -151,7 +175,8 @@ digraph "oneDegreeRelationshipsGraph" {
       <TR><TD PORT="color" COLSPAN="3" ALIGN="LEFT">color</TD></TR>
       <TR><TD PORT="entity" COLSPAN="3" ALIGN="LEFT">entity</TD></TR>
       <TR><TD PORT="sort_order" COLSPAN="3" ALIGN="LEFT">sort_order</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD PORT="conv" COLSPAN="3" ALIGN="LEFT">conv</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">6 &gt;</TD></TR>
     </TABLE>>
     URL="status.html#graph"
     tooltip="status"

@@ -30,7 +30,6 @@
 <table width='100%' border='0'>
 <tr valign='top'><td class='container' align='left' valign='top'>
 <form name='options' action=''>
- <input type=checkbox id='implied' onclick="if (!this.checked) selectGraph('../graphs/product.2degrees.png', '#twoDegreesRelationshipsGraph'); else selectGraph('../graphs/product.implied2degrees.png', '#impliedTwoDegreesRelationshipsGraph'); toggle(11);toggle(26);syncDegrees();">Implied relationships
  <input type=checkbox onclick="toggle(21);" id=showRelatedCols>Related columns
  <input type=checkbox onclick="toggle(22);" id=showConstNames>Constraint names
  <input type=checkbox onclick="toggle(23);" id=showComments>Comments
@@ -85,10 +84,10 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td></td>
  <td>
   <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr class='impliedRelationship' valign='top'>
-    <td class='relatedTable' title="account_prod.prod_id's name implies that it's a child of product.prod_id, but it doesn't reference that column."><a href='account_prod.html'>account_prod</a><span class='relatedKey'>.prod_id</span>
+   <tr valign='top'>
+    <td class='relatedTable' title="account_prod.prod_id refs product.prod_id via account_prod_prod_id_fkey"><a href='account_prod.html'>account_prod</a><span class='relatedKey'>.prod_id</span>
     </td>
-    <td class='constraint'>Implied Constraint</td>
+    <td class='constraint'>account_prod_prod_id_fkey</td>
    </tr>
    <tr valign='top'>
     <td class='relatedTable' title="lead_prod.prod_id refs product.prod_id via lead_prod_prod_id_fkey"><a href='lead_prod.html'>lead_prod</a><span class='relatedKey'>.prod_id</span>
@@ -205,7 +204,7 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 </table>
-<p/>Table contained 2 rows at Mon Sep 25 19:28 IST 2017
+<p/>Table contained 2 rows at Wed Oct 18 11:55 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -226,6 +225,12 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
   <td class='constraint' style='text-align:left;'>product_pkey</td>
  </tr>
  <tr>
+  <td class='indexedColumn'></td>
+  <td class='detail'>Performance</td>
+  <td class='detail' style='text-align:left;'></td>
+  <td class='constraint' style='text-align:left;'>product_all_trg_idx</td>
+ </tr>
+ <tr>
   <td class='indexedColumn'>pub_key</td>
   <td class='detail'>Must be unique</td>
   <td class='detail' style='text-align:left;'><span title='Ascending'>Asc</span></td>
@@ -240,25 +245,19 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/product.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="lead_prod.html#graph" title="lead_prod" alt="" coords="277,5,414,304"/>
-<area shape="rect" id="node2" href="product.html#" title="product" alt="" coords="5,188,228,492"/>
-<area shape="rect" id="node3" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="276,328,415,627"/>
-</map>
-<map id="impliedTwoDegreesRelationshipsGraph" name="impliedTwoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="account_prod.html#graph" title="account_prod" alt="" coords="285,5,406,328"/>
-<area shape="rect" id="node2" href="account.html#graph" title="account" alt="" coords="50,29,183,88"/>
-<area shape="rect" id="node3" href="product.html#" title="product" alt="" coords="5,373,228,677"/>
-<area shape="rect" id="node4" href="lead_prod.html#graph" title="lead_prod" alt="" coords="277,352,414,651"/>
-<area shape="rect" id="node5" href="lead.html#graph" title="lead" alt="" coords="38,291,195,349"/>
-<area shape="rect" id="node6" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="276,676,415,975"/>
-<area shape="rect" id="node7" href="opportunity.html#graph" title="opportunity" alt="" coords="42,701,191,760"/>
+<area shape="rect" id="node1" href="account_prod.html#graph" title="account_prod" alt="" coords="281,5,410,280"/>
+<area shape="rect" id="node2" href="product.html#" title="product" alt="" coords="5,325,228,629"/>
+<area shape="rect" id="node3" href="lead_prod.html#graph" title="lead_prod" alt="" coords="277,304,414,627"/>
+<area shape="rect" id="node4" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="276,651,415,973"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="lead_prod.html#graph" title="lead_prod" alt="" coords="277,24,414,323"/>
-<area shape="rect" id="node2" href="lead.html#graph" title="lead" alt="" coords="38,5,195,64"/>
-<area shape="rect" id="node3" href="product.html#" title="product" alt="" coords="5,88,228,392"/>
-<area shape="rect" id="node4" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="276,369,415,668"/>
-<area shape="rect" id="node5" href="opportunity.html#graph" title="opportunity" alt="" coords="42,416,191,475"/>
+<area shape="rect" id="node1" href="account_prod.html#graph" title="account_prod" alt="" coords="281,5,410,280"/>
+<area shape="rect" id="node2" href="account.html#graph" title="account" alt="" coords="46,29,187,88"/>
+<area shape="rect" id="node3" href="product.html#" title="product" alt="" coords="5,336,228,640"/>
+<area shape="rect" id="node4" href="lead_prod.html#graph" title="lead_prod" alt="" coords="277,304,414,627"/>
+<area shape="rect" id="node5" href="lead.html#graph" title="lead" alt="" coords="42,253,191,312"/>
+<area shape="rect" id="node6" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="276,651,415,973"/>
+<area shape="rect" id="node7" href="opportunity.html#graph" title="opportunity" alt="" coords="42,675,191,733"/>
 </map>
 </td></tr></table>
 </div>

@@ -30,7 +30,6 @@
 <table width='100%' border='0'>
 <tr valign='top'><td class='container' align='left' valign='top'>
 <form name='options' action=''>
- <input type=checkbox id='implied' onclick="if (!this.checked) selectGraph('../graphs/opportunity_timeline.2degrees.png', '#twoDegreesRelationshipsGraph'); else selectGraph('../graphs/opportunity_timeline.implied2degrees.png', '#impliedTwoDegreesRelationshipsGraph'); toggle(11);toggle(26);syncDegrees();">Implied relationships
  <input type=checkbox onclick="toggle(21);" id=showRelatedCols>Related columns
  <input type=checkbox onclick="toggle(22);" id=showConstNames>Constraint names
  <input type=checkbox onclick="toggle(23);" id=showComments>Comments
@@ -101,25 +100,6 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td class='comment'></td>
 </tr>
 <tr>
- <td class='detail'>lead_id</td>
- <td class='detail'>int4</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td>
-  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr valign='top'>
-    <td class='relatedTable' title="opportunity_timeline.lead_id refs lead.lead_id via opportunity_timeline_lead_id_fkey"><a href='lead.html'>lead</a><span class='relatedKey'>.lead_id</span>
-    </td>
-    <td class='constraint'>opportunity_timeline_lead_id_fkey</td>
-   </tr>
-  </table>
- </td>
- <td class='comment'></td>
-</tr>
-<tr>
  <td class='detail'>opp_id</td>
  <td class='detail'>int4</td>
  <td class='detail' align='right'>10</td>
@@ -133,25 +113,6 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
     <td class='relatedTable' title="opportunity_timeline.opp_id refs opportunity.opp_id via opportunity_timeline_opp_id_fkey"><a href='opportunity.html'>opportunity</a><span class='relatedKey'>.opp_id</span>
     </td>
     <td class='constraint'>opportunity_timeline_opp_id_fkey</td>
-   </tr>
-  </table>
- </td>
- <td class='comment'></td>
-</tr>
-<tr>
- <td class='detail'>att_id</td>
- <td class='detail'>int4</td>
- <td class='detail' align='right'>10</td>
- <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
- <td class='detail' align='center'></td>
- <td class='detail' align='right'>null</td>
- <td></td>
- <td>
-  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
-   <tr valign='top'>
-    <td class='relatedTable' title="opportunity_timeline.att_id refs opportunity_attachment.att_id via opportunity_timeline_att_id_fkey"><a href='opportunity_attachment.html'>opportunity_attachment</a><span class='relatedKey'>.att_id</span>
-    </td>
-    <td class='constraint'>opportunity_timeline_att_id_fkey</td>
    </tr>
   </table>
  </td>
@@ -212,8 +173,27 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
  <td> </td>
  <td class='comment'></td>
 </tr>
+<tr>
+ <td class='detail'>status_id</td>
+ <td class='detail'>int4</td>
+ <td class='detail' align='right'>10</td>
+ <td class='detail' align='center' title='nullable'>&nbsp;&radic;&nbsp;</td>
+ <td class='detail' align='center'></td>
+ <td class='detail' align='right'>null</td>
+ <td></td>
+ <td>
+  <table border='0' width='100%' cellspacing='0' cellpadding='0'>
+   <tr valign='top'>
+    <td class='relatedTable' title="opportunity_timeline.status_id refs status.status_id via opportunity_timeline_status_id_fkey"><a href='status.html'>status</a><span class='relatedKey'>.status_id</span>
+    </td>
+    <td class='constraint'>opportunity_timeline_status_id_fkey</td>
+   </tr>
+  </table>
+ </td>
+ <td class='comment'></td>
+</tr>
 </table>
-<p/>Table contained 0 rows at Mon Sep 25 19:28 IST 2017
+<p/>Table contained 1 rows at Wed Oct 18 11:55 IST 2017
 </td></tr></table>
 <div class='indent'>
 <b>Indexes:</b>
@@ -242,51 +222,22 @@ Please <a href='http://sourceforge.net/donate/index.php?group_id=137197' target=
 </span><b>:</b></form>
   <a name='graph'><img src='../graphs/opportunity_timeline.1degree.png' usemap='#oneDegreeRelationshipsGraph' id='relationships' border='0' alt='' align='left'></a>
 <map id="oneDegreeRelationshipsGraph" name="oneDegreeRelationshipsGraph">
-<area shape="rect" id="node1" href="opportunity_timeline.html#" title="opportunity_timeline" alt="" coords="236,325,465,605"/>
-<area shape="rect" id="node2" href="opportunity_attachment.html#graph" title="opportunity_attachment" alt="" coords="5,795,188,1069"/>
-<area shape="rect" id="node3" href="lead.html#graph" title="lead" alt="" coords="18,5,175,352"/>
-<area shape="rect" id="node4" href="opportunity.html#graph" title="opportunity" alt="" coords="22,376,171,771"/>
-</map>
-<map id="impliedTwoDegreesRelationshipsGraph" name="impliedTwoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="account_attachment.html#graph" title="account_attachment" alt="" coords="447,253,609,312"/>
-<area shape="rect" id="node2" href="opportunity.html#graph" title="opportunity" alt="" coords="199,619,349,1013"/>
-<area shape="rect" id="node14" href="division.html#graph" title="division" alt="" coords="9,577,131,636"/>
-<area shape="rect" id="node15" href="status.html#graph" title="status" alt="" coords="5,660,135,719"/>
-<area shape="rect" id="node3" href="account_contact.html#graph" title="account_contact" alt="" coords="459,336,597,395"/>
-<area shape="rect" id="node4" href="account_prod.html#graph" title="account_prod" alt="" coords="467,419,589,477"/>
-<area shape="rect" id="node5" href="account_timeline.html#graph" title="account_timeline" alt="" coords="691,584,831,883"/>
-<area shape="rect" id="node6" href="account.html#graph" title="account" alt="" coords="461,501,595,560"/>
-<area shape="rect" id="node7" href="lead_attachment.html#graph" title="lead_attachment" alt="" coords="459,584,597,643"/>
-<area shape="rect" id="node8" href="opportunity_timeline.html#" title="opportunity_timeline" alt="" coords="413,915,643,1195"/>
-<area shape="rect" id="node10" href="lead.html#graph" title="lead" alt="" coords="195,129,353,476"/>
-<area shape="rect" id="node19" href="opportunity_attachment.html#graph" title="opportunity_attachment" alt="" coords="183,1037,365,1312"/>
-<area shape="rect" id="node9" href="lead_attr.html#graph" title="lead_attr" alt="" coords="467,5,589,64"/>
-<area shape="rect" id="node11" href="lead_contact.html#graph" title="lead_contact" alt="" coords="459,88,597,147"/>
-<area shape="rect" id="node12" href="lead_prod.html#graph" title="lead_prod" alt="" coords="459,171,597,229"/>
-<area shape="rect" id="node13" href="lead_timeline.html#graph" title="lead_timeline" alt="" coords="700,917,821,1168"/>
-<area shape="rect" id="node16" href="opportunity_attr.html#graph" title="opportunity_attr" alt="" coords="463,667,593,725"/>
-<area shape="rect" id="node17" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="449,749,607,808"/>
-<area shape="rect" id="node18" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="459,832,597,891"/>
+<area shape="rect" id="node1" href="opportunity_timeline.html#" title="opportunity_timeline" alt="" coords="203,128,424,384"/>
+<area shape="rect" id="node2" href="opportunity.html#graph" title="opportunity" alt="" coords="5,5,155,424"/>
+<area shape="rect" id="node3" href="status.html#graph" title="status" alt="" coords="15,448,145,675"/>
 </map>
 <map id="twoDegreesRelationshipsGraph" name="twoDegreesRelationshipsGraph">
-<area shape="rect" id="node1" href="account_attachment.html#graph" title="account_attachment" alt="" coords="447,336,609,395"/>
-<area shape="rect" id="node2" href="opportunity.html#graph" title="opportunity" alt="" coords="199,253,349,648"/>
-<area shape="rect" id="node12" href="division.html#graph" title="division" alt="" coords="9,212,131,271"/>
-<area shape="rect" id="node13" href="status.html#graph" title="status" alt="" coords="5,295,135,353"/>
-<area shape="rect" id="node3" href="account_contact.html#graph" title="account_contact" alt="" coords="459,419,597,477"/>
-<area shape="rect" id="node4" href="account_prod.html#graph" title="account_prod" alt="" coords="467,501,589,560"/>
-<area shape="rect" id="node5" href="account_timeline.html#graph" title="account_timeline" alt="" coords="458,5,598,64"/>
-<area shape="rect" id="node6" href="lead_attachment.html#graph" title="lead_attachment" alt="" coords="459,1225,597,1284"/>
-<area shape="rect" id="node7" href="lead.html#graph" title="lead" alt="" coords="195,1019,353,1365"/>
-<area shape="rect" id="node8" href="lead_attr.html#graph" title="lead_attr" alt="" coords="467,895,589,953"/>
-<area shape="rect" id="node9" href="lead_contact.html#graph" title="lead_contact" alt="" coords="459,977,597,1036"/>
-<area shape="rect" id="node10" href="lead_prod.html#graph" title="lead_prod" alt="" coords="459,1060,597,1119"/>
-<area shape="rect" id="node11" href="lead_timeline.html#graph" title="lead_timeline" alt="" coords="467,1143,589,1201"/>
-<area shape="rect" id="node14" href="opportunity_attr.html#graph" title="opportunity_attr" alt="" coords="463,88,593,147"/>
-<area shape="rect" id="node15" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="449,171,607,229"/>
-<area shape="rect" id="node16" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="459,253,597,312"/>
-<area shape="rect" id="node17" href="opportunity_timeline.html#" title="opportunity_timeline" alt="" coords="413,591,643,871"/>
-<area shape="rect" id="node18" href="opportunity_attachment.html#graph" title="opportunity_attachment" alt="" coords="183,672,365,947"/>
+<area shape="rect" id="node1" href="account.html#graph" title="account" alt="" coords="412,5,553,64"/>
+<area shape="rect" id="node2" href="status.html#graph" title="status" alt="" coords="185,171,314,397"/>
+<area shape="rect" id="node3" href="lead.html#graph" title="lead" alt="" coords="408,88,557,147"/>
+<area shape="rect" id="node4" href="lead_timeline.html#graph" title="lead_timeline" alt="" coords="422,171,543,229"/>
+<area shape="rect" id="node5" href="opportunity.html#graph" title="opportunity" alt="" coords="175,572,324,991"/>
+<area shape="rect" id="node6" href="division.html#graph" title="division" alt="" coords="5,572,127,631"/>
+<area shape="rect" id="node7" href="opportunity_attr.html#graph" title="opportunity_attr" alt="" coords="417,781,548,840"/>
+<area shape="rect" id="node8" href="opportunity_contact.html#graph" title="opportunity_contact" alt="" coords="404,336,561,395"/>
+<area shape="rect" id="node9" href="opportunity_prod.html#graph" title="opportunity_prod" alt="" coords="413,699,552,757"/>
+<area shape="rect" id="node10" href="opportunity_timeline.html#" title="opportunity_timeline" alt="" coords="372,419,593,675"/>
+<area shape="rect" id="node11" href="sales_rep.html#graph" title="sales_rep" alt="" coords="408,253,557,312"/>
 </map>
 </td></tr></table>
 </div>

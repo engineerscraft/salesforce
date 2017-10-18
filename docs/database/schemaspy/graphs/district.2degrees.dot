@@ -14,10 +14,10 @@ digraph "twoDegreesRelationshipsGraph" {
   edge [
     arrowsize="0.8"
   ];
-  "contact_attr":"contact_attr.heading":w -> "country":"country.heading":e [arrowtail=crowodot arrowhead=none];
   "contact_attr":"contact_attr.heading":w -> "contact":"contact.heading":e [arrowtail=tee arrowhead=none];
   "contact_attr":"d_id":w -> "district":"d_id.type":e [arrowtail=crowodot arrowhead=none];
   "district":"s_id":w -> "state":"s_id":e [arrowtail=crowtee arrowhead=none];
+  "state":"state.heading":w -> "country":"country.heading":e [arrowtail=crowtee arrowhead=none];
   "contact" [
     label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">

@@ -30,29 +30,11 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
+      <TR><TD PORT="rd_only" COLSPAN="3" ALIGN="LEFT">rd_only</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">20 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">6 &gt;</TD></TR>
     </TABLE>>
     URL="tables/account.html#"
     tooltip="account"
-  ];
-  "account_attachment" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="account_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_attachment</TD></TR>
-      <TR><TD PORT="att_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">att_id</TD></TR>
-      <TR><TD PORT="acc_id" COLSPAN="3" ALIGN="LEFT">acc_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" ALIGN="LEFT">opp_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
-      <TR><TD PORT="att" COLSPAN="3" ALIGN="LEFT">att</TD></TR>
-      <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
-      <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
-      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
-      <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
-    </TABLE>>
-    URL="tables/account_attachment.html#"
-    tooltip="account_attachment"
   ];
   "account_attr" [
     label=<
@@ -70,13 +52,11 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="account_contact.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_contact</TD></TR>
       <TR><TD PORT="acc_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">acc_id</TD></TR>
       <TR><TD PORT="co_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">co_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/account_contact.html#"
     tooltip="account_contact"
@@ -86,17 +66,15 @@ digraph "compactRelationshipsGraph" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="account_prod.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_prod</TD></TR>
       <TR><TD PORT="acc_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">acc_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="prod_id" COLSPAN="3" ALIGN="LEFT">prod_id</TD></TR>
-      <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
-      <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
+      <TR><TD PORT="prod_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">prod_id</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
       <TR><TD PORT="sold_price" COLSPAN="3" ALIGN="LEFT">sold_price</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/account_prod.html#"
     tooltip="account_prod"
@@ -107,15 +85,13 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="account_timeline.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">account_timeline</TD></TR>
       <TR><TD PORT="entry_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">entry_id</TD></TR>
       <TR><TD PORT="acc_id" COLSPAN="3" ALIGN="LEFT">acc_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" ALIGN="LEFT">opp_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="att_id" COLSPAN="3" ALIGN="LEFT">att_id</TD></TR>
       <TR><TD PORT="note" COLSPAN="3" ALIGN="LEFT">note</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/account_timeline.html#"
     tooltip="account_timeline"
@@ -222,36 +198,21 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="lead_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD></TR>
       <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
       <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
-      <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
-      <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
       <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
       <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
       <TR><TD PORT="div_id" COLSPAN="3" ALIGN="LEFT">div_id</TD></TR>
+      <TR><TD PORT="acc_id" COLSPAN="3" ALIGN="LEFT">acc_id</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">12 &gt;</TD></TR>
+      <TR><TD PORT="rd_only" COLSPAN="3" ALIGN="LEFT">rd_only</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">5 &gt;</TD></TR>
     </TABLE>>
     URL="tables/lead.html#"
     tooltip="lead"
-  ];
-  "lead_attachment" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="lead_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead_attachment</TD></TR>
-      <TR><TD PORT="att_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">att_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
-      <TR><TD PORT="att" COLSPAN="3" ALIGN="LEFT">att</TD></TR>
-      <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
-      <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
-      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
-      <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
-    </TABLE>>
-    URL="tables/lead_attachment.html#"
-    tooltip="lead_attachment"
   ];
   "lead_attr" [
     label=<
@@ -289,9 +250,10 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="lead_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">lead_id</TD></TR>
       <TR><TD PORT="prod_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">prod_id</TD></TR>
       <TR><TD PORT="prod_unit" COLSPAN="3" ALIGN="LEFT">prod_unit</TD></TR>
-      <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
-      <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
       <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
+      <TR><TD PORT="actual_price" COLSPAN="3" ALIGN="LEFT">actual_price</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
@@ -307,13 +269,13 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="lead_timeline.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">lead_timeline</TD></TR>
       <TR><TD PORT="entry_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">entry_id</TD></TR>
       <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="att_id" COLSPAN="3" ALIGN="LEFT">att_id</TD></TR>
       <TR><TD PORT="note" COLSPAN="3" ALIGN="LEFT">note</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/lead_timeline.html#"
     tooltip="lead_timeline"
@@ -324,8 +286,8 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="opportunity.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity</TD></TR>
       <TR><TD PORT="opp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD></TR>
       <TR><TD PORT="pub_key" COLSPAN="3" BGCOLOR="#f4f7da" ALIGN="LEFT">pub_key</TD></TR>
-      <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
-      <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
       <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
       <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
       <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
@@ -336,28 +298,11 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 &gt;</TD></TR>
+      <TR><TD PORT="rd_only" COLSPAN="3" ALIGN="LEFT">rd_only</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">101 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
     </TABLE>>
     URL="tables/opportunity.html#"
     tooltip="opportunity"
-  ];
-  "opportunity_attachment" [
-    label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD PORT="opportunity_attachment.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity_attachment</TD></TR>
-      <TR><TD PORT="att_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">att_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
-      <TR><TD PORT="opp_id" COLSPAN="3" ALIGN="LEFT">opp_id</TD></TR>
-      <TR><TD PORT="title" COLSPAN="3" ALIGN="LEFT">title</TD></TR>
-      <TR><TD PORT="att" COLSPAN="3" ALIGN="LEFT">att</TD></TR>
-      <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
-      <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
-      <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
-      <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 &gt;</TD></TR>
-    </TABLE>>
-    URL="tables/opportunity_attachment.html#"
-    tooltip="opportunity_attachment"
   ];
   "opportunity_attr" [
     label=<
@@ -379,7 +324,7 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">100 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">101 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/opportunity_contact.html#"
     tooltip="opportunity_contact"
@@ -391,14 +336,15 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="opp_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">opp_id</TD></TR>
       <TR><TD PORT="prod_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">prod_id</TD></TR>
       <TR><TD PORT="prod_unit" COLSPAN="3" ALIGN="LEFT">prod_unit</TD></TR>
-      <TR><TD PORT="disc_amt" COLSPAN="3" ALIGN="LEFT">disc_amt</TD></TR>
-      <TR><TD PORT="disc_pct" COLSPAN="3" ALIGN="LEFT">disc_pct</TD></TR>
+      <TR><TD PORT="disc_type" COLSPAN="3" ALIGN="LEFT">disc_type</TD></TR>
+      <TR><TD PORT="disc_val" COLSPAN="3" ALIGN="LEFT">disc_val</TD></TR>
       <TR><TD PORT="quote_price" COLSPAN="3" ALIGN="LEFT">quote_price</TD></TR>
+      <TR><TD PORT="actual_price" COLSPAN="3" ALIGN="LEFT">actual_price</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">200 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">202 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/opportunity_prod.html#"
     tooltip="opportunity_prod"
@@ -408,15 +354,14 @@ digraph "compactRelationshipsGraph" {
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
       <TR><TD PORT="opportunity_timeline.heading" COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">opportunity_timeline</TD></TR>
       <TR><TD PORT="entry_id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">entry_id</TD></TR>
-      <TR><TD PORT="lead_id" COLSPAN="3" ALIGN="LEFT">lead_id</TD></TR>
       <TR><TD PORT="opp_id" COLSPAN="3" ALIGN="LEFT">opp_id</TD></TR>
-      <TR><TD PORT="att_id" COLSPAN="3" ALIGN="LEFT">att_id</TD></TR>
       <TR><TD PORT="note" COLSPAN="3" ALIGN="LEFT">note</TD></TR>
       <TR><TD PORT="crtd_by" COLSPAN="3" ALIGN="LEFT">crtd_by</TD></TR>
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 3</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+      <TR><TD PORT="status_id" COLSPAN="3" ALIGN="LEFT">status_id</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">&lt; 2</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">1 row</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
     </TABLE>>
     URL="tables/opportunity_timeline.html#"
     tooltip="opportunity_timeline"
@@ -448,7 +393,7 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="crtd_on" COLSPAN="3" ALIGN="LEFT">crtd_on</TD></TR>
       <TR><TD PORT="mod_by" COLSPAN="3" ALIGN="LEFT">mod_by</TD></TR>
       <TR><TD PORT="mod_on" COLSPAN="3" ALIGN="LEFT">mod_on</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">2 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">3 &gt;</TD></TR>
     </TABLE>>
     URL="tables/product.html#"
     tooltip="product"
@@ -524,27 +469,20 @@ digraph "compactRelationshipsGraph" {
       <TR><TD PORT="color" COLSPAN="3" ALIGN="LEFT">color</TD></TR>
       <TR><TD PORT="entity" COLSPAN="3" ALIGN="LEFT">entity</TD></TR>
       <TR><TD PORT="sort_order" COLSPAN="3" ALIGN="LEFT">sort_order</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">4 &gt;</TD></TR>
+      <TR><TD PORT="conv" COLSPAN="3" ALIGN="LEFT">conv</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">13 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">6 &gt;</TD></TR>
     </TABLE>>
     URL="tables/status.html#"
     tooltip="status"
   ];
   "account":"div_id":w -> "division":"div_id":e [arrowtail=crowtee arrowhead=none];
   "account":"status_id":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
-  "account_attachment":"acc_id":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
-  "account_attachment":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowodot arrowhead=none];
-  "account_attachment":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowodot arrowhead=none];
   "account_attr":"acc_id":w -> "account":"acc_id":e [arrowtail=tee arrowhead=none];
   "account_contact":"acc_id":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
   "account_contact":"co_id":w -> "contact":"co_id":e [arrowtail=crowtee arrowhead=none];
-  "account_contact":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
-  "account_contact":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
   "account_prod":"acc_id":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
-  "account_prod":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
-  "account_prod":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
+  "account_prod":"prod_id":w -> "product":"prod_id":e [arrowtail=crowtee arrowhead=none];
   "account_timeline":"acc_id":w -> "account":"acc_id":e [arrowtail=crowtee arrowhead=none];
-  "account_timeline":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowodot arrowhead=none];
-  "account_timeline":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowodot arrowhead=none];
   "contact_attr":"c_id":w -> "country":"c_id":e [arrowtail=crowodot arrowhead=none];
   "contact_attr":"co_id":w -> "contact":"co_id":e [arrowtail=tee arrowhead=none];
   "contact_attr":"d_id":w -> "district":"d_id":e [arrowtail=crowodot arrowhead=none];
@@ -552,29 +490,27 @@ digraph "compactRelationshipsGraph" {
   "district":"s_id":w -> "state":"s_id":e [arrowtail=crowtee arrowhead=none];
   "div_role":"div_id":w -> "division":"div_id":e [arrowtail=crowtee arrowhead=none];
   "div_role":"role_id":w -> "role":"role_id":e [arrowtail=crowtee arrowhead=none];
+  "lead":"acc_id":w -> "account":"acc_id":e [arrowtail=crowodot arrowhead=none];
   "lead":"div_id":w -> "division":"div_id":e [arrowtail=crowtee arrowhead=none];
   "lead":"status_id":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
-  "lead_attachment":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
   "lead_attr":"lead_id":w -> "lead":"lead_id":e [arrowtail=tee arrowhead=none];
   "lead_contact":"co_id":w -> "contact":"co_id":e [arrowtail=crowtee arrowhead=none];
   "lead_contact":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
   "lead_prod":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
   "lead_prod":"prod_id":w -> "product":"prod_id":e [arrowtail=crowtee arrowhead=none];
-  "lead_timeline":"att_id":w -> "lead_attachment":"att_id":e [arrowtail=crowodot arrowhead=none];
   "lead_timeline":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
+  "lead_timeline":"status_id":w -> "status":"status_id":e [arrowtail=crowodot arrowhead=none];
+  "opportunity":"acc_id":w -> "account":"acc_id":e [arrowtail=crowodot arrowhead=none];
   "opportunity":"div_id":w -> "division":"div_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowodot arrowhead=none];
   "opportunity":"status_id":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
-  "opportunity_attachment":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowtee arrowhead=none];
-  "opportunity_attachment":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_attr":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=tee arrowhead=none];
   "opportunity_contact":"co_id":w -> "contact":"co_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_contact":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_prod":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
   "opportunity_prod":"prod_id":w -> "product":"prod_id":e [arrowtail=crowtee arrowhead=none];
-  "opportunity_timeline":"att_id":w -> "opportunity_attachment":"att_id":e [arrowtail=crowodot arrowhead=none];
-  "opportunity_timeline":"lead_id":w -> "lead":"lead_id":e [arrowtail=crowodot arrowhead=none];
   "opportunity_timeline":"opp_id":w -> "opportunity":"opp_id":e [arrowtail=crowtee arrowhead=none];
+  "opportunity_timeline":"status_id":w -> "status":"status_id":e [arrowtail=crowodot arrowhead=none];
   "role_perm":"perm_id":w -> "permission":"perm_id":e [arrowtail=crowtee arrowhead=none];
   "role_perm":"role_id":w -> "role":"role_id":e [arrowtail=crowtee arrowhead=none];
   "sales_rep":"status_id":w -> "status":"status_id":e [arrowtail=crowtee arrowhead=none];
