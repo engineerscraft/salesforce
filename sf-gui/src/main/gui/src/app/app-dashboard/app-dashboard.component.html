@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="full-screen">
   <div class="home-background full-screen">
-    <div *ngIf="errMessage" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+    <div *ngIf="errMessage" [@enterAnimation] class="mx-auto col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12 my-2 alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
       <strong>{{errMessage}}</strong>
     </div>
 
@@ -57,7 +57,7 @@
       <div class="card-header text-center text-white bg-success">
         {{accountTitle}}
       </div>
-      <div *ngIf="paginationMessageAccount" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+      <div *ngIf="paginationMessageAccount" [@enterAnimation] class="mx-auto col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12 my-2 alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
         <strong>{{paginationMessageAccount}}</strong>
       </div>
       <div class="card-block">
@@ -90,7 +90,7 @@
       <div class="card-header text-center text-white bg-primary">
         {{opportunityTitle}}
       </div>
-      <div *ngIf="paginationMessageOpportunity" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert"
+      <div *ngIf="paginationMessageOpportunity" [@enterAnimation] class="mx-auto col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12 my-2 alert text-white bg-daccent alert-position" role="alert"
         (click)="dismissAlert()">
         <strong>{{paginationMessageOpportunity}}</strong>
       </div>
@@ -124,7 +124,7 @@
       <div class="card-header text-center text-white bg-warning">
         {{leadTitle}}
       </div>
-      <div *ngIf="paginationMessageLead" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+      <div *ngIf="paginationMessageLead" [@enterAnimation] class="mx-auto col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12 my-2 alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
         <strong>{{paginationMessageLead}}</strong>
       </div>
       <div *ngIf="leadQuadruples" class="card-block">
@@ -157,7 +157,7 @@
       <div class="card-header text-center text-white bg-danger">
         {{contactTitle}}
       </div>
-      <div *ngIf="paginationMessageContact" [@enterAnimation] class="alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
+      <div *ngIf="paginationMessageContact" [@enterAnimation] class="mx-auto col-xl-6 col-lg-6 col-md-8 col-sm-12 col-xs-12 my-2 alert text-white bg-daccent alert-position" role="alert" (click)="dismissAlert()">
         <strong>{{paginationMessageContact}}</strong>
       </div>
       <div class="card-block">
