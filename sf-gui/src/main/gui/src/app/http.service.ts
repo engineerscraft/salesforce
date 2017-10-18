@@ -68,7 +68,7 @@ export class HttpService {
                 return me.http.put(url, body, options);
               })
             .catch(error => {
-              if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+              if (error && error.status === 401 && (error.json()["message"]==="Refresh token expired" || error.json()["message"]==="Token expired")) {
                 localStorage.clear();
                 this.router.navigate(['']);
                 return Observable.throw(error);
@@ -103,7 +103,7 @@ callHttpDelete(url: string) {
                 return me.http.delete(url, options);
               })
             .catch(error => {
-              if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+              if (error && error.status === 401 && (error.json()["message"]==="Refresh token expired" || error.json()["message"]==="Token expired")) {
                 localStorage.clear();
                 this.router.navigate(['']);
                 return Observable.throw(error);
@@ -137,7 +137,7 @@ callHttpPost(url: string, body: object) {
                 return me.http.post(url, body, options);
               })
             .catch(error => {
-              if (error && error.status === 401 && error.json()["message"]==="Refresh token expired") {
+              if (error && error.status === 401 && (error.json()["message"]==="Refresh token expired" || error.json()["message"]==="Token expired")) {
                 localStorage.clear();
                 this.router.navigate(['']);
                 return Observable.throw(error);
