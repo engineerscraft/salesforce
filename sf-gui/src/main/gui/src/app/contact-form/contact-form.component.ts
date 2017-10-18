@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, trigger, transition, style, animate, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CountryService } from '../country.service';
 import { StateService } from '../state.service';
@@ -10,7 +10,25 @@ import 'rxjs/add/operator/filter';
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
-  styleUrls: ['./contact-form.component.scss']
+  styleUrls: ['./contact-form.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':leave', [
+        style({ transform: 'translateX(0)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(25%)', opacity: 0 }))
+      ])
+    ]),
+    trigger('enterAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateX(-5%)', opacity: 0 }),
+        animate('500ms', style({ transform: 'translateX(0)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateX(0)', opacity: 1 }),
+        animate('500ms', style({ transform: 'translateX(5%)', opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class ContactFormComponent implements OnInit {
 

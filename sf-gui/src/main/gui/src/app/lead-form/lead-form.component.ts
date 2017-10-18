@@ -31,7 +31,6 @@ import { StatusService } from '../status.service';
       ])
     ])
   ]
-
 })
 export class LeadFormComponent implements OnInit {
 

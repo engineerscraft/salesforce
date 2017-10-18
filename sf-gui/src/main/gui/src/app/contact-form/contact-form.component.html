@@ -1,4 +1,4 @@
-<div class="card card-shadow bg-primary pb-4">
+<div [@enterAnimation] class="card card-shadow bg-primary pb-4">
     <div *ngIf="message" class="alert alert-danger alert-position" role="alert" (click)="dismissAlert()">
         <strong>{{message}}</strong>
     </div>
