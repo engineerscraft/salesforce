@@ -348,7 +348,7 @@ export class OppFormComponent implements OnInit {
 
   checkopportunityStatus() {
     this.showConversionControl = false;
-    this.possibleStatus.forEach(function (status) {
+    this.possibleStatus.forEach(function (status) {      
       if (status.pubKey === this.opportunityFormGroup.get('opportunitySummary.statusPubKey').value && status.conv) {
         this.showConversionControl = true;
       }
@@ -402,6 +402,21 @@ export class OppFormComponent implements OnInit {
 
   changeViewDisplay() {
     this.changeView.emit();
+  }
+
+  convert() {
+    let publicKey = {
+      pubKey: this.pubKey
+    };
+    this.accountService.createAccount(publicKey).subscribe(
+      res => {
+        this.router.navigate(["accountDetails/"+res.pubKey]);
+      },
+      err => {
+        this.message = err.status + " : " + err.statusText;
+        this.message = this.message + " : " + err.json()["message"];
+      }
+    );
   }
 
 }

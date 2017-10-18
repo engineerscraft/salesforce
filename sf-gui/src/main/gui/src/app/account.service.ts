@@ -25,4 +25,9 @@ export class AccountService {
     return this.httpService.callHttpPut("/resources/v1/account/" + pubKey, account)
       .map(res => res.json())  
   }
+
+  createAccount(pubKey) {
+      return this.httpService.callHttpPost("/resources/v1/account", pubKey)
+        .map(res => res.json())
+    }
 }

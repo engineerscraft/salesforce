@@ -111,14 +111,14 @@ public class AccountRepository {
         Integer accountId = null;
 
         logger.info(sqlMarker, getAccountIdFromOpp);
-        logger.info(sqlMarker, "Params {}", () -> oppPubKey);
+        logger.info(sqlMarker, "Params {}", () -> oppPubKey.getPubKey());
 
-        accountId = jdbcTemplate.queryForObject(getAccountIdFromOpp, new Object[] { oppPubKey }, Integer.class);
+        accountId = jdbcTemplate.queryForObject(getAccountIdFromOpp, new Object[] { oppPubKey.getPubKey() }, Integer.class);
 
         if (accountId != null && accountId > 0) {
             logger.info(sqlMarker, getAccountPubKey);
             logger.info(sqlMarker, "Params {}", accountId);
-            pubKey.setPubKey(jdbcTemplate.queryForObject(getAccountIdFromOpp, new Object[] { accountId }, String.class));
+            pubKey.setPubKey(jdbcTemplate.queryForObject(getAccountPubKey, new Object[] { accountId }, String.class));
         } else {
             accountId = generateAccountId();
             pubKey.setPubKey("AC" + String.format("%08d", accountId));
